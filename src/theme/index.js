@@ -2,6 +2,8 @@ import { createMuiTheme, colors } from "@material-ui/core";
 import shadows from "./shadows";
 import typography from "./typography";
 
+const white = "#FFFFFF";
+
 const theme = createMuiTheme({
   palette: {
     background: {
@@ -10,18 +12,27 @@ const theme = createMuiTheme({
       paper: colors.common.white,
     },
     primary: {
-      main: colors.indigo[500],
+      contrastText: white,
+      dark: "#2e7b1d",
+      main: "#43b02a",
+      light: "#68bf54",
     },
     secondary: {
-      main: colors.pink[500],
+      contrastText: white,
+      dark: colors.blue[900],
+      main: colors.blue.A400,
+      light: colors.blue.A400,
     },
     text: {
       primary: colors.blueGrey[900],
       secondary: colors.blueGrey[600],
+      link: colors.blue[600],
     },
     white: {
-      main: "#ffffff",
+      main: white,
     },
+    icon: colors.blueGrey[600],
+    divider: colors.grey[200],
   },
   shadows,
   typography,

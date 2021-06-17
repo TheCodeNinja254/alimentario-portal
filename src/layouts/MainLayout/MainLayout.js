@@ -5,12 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import { loadingStatus } from "../../Apollo/ReactiveVariables";
+import Topbar from "./Topbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    height: "100%",
-    overflow: "hidden",
     width: "100%",
   },
   wrapper: {
@@ -41,6 +39,7 @@ const MainLayout = ({ children }) => {
       <Backdrop open={loading} className={classes.backdrop}>
         <CircularProgress color="inherit" />
       </Backdrop>
+      <Topbar />
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>{children}</div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import Box from "@material-ui/core/Box";
 import Loader from "./Loader";
@@ -49,15 +48,10 @@ const Query = ({
     refetch,
   } = useQuery(query, { ...restProps });
   if (error && hideError === false) {
-    let message;
+    let message = printErrorMessage(error);
     if (printErrorMessage(error).match(/Network error.*/)) {
       message =
         "Looks like we are experiencing a technical difficulty. Our team is working to resolve the issue. Please try again later.";
-    } else {
-      message = printErrorMessage(error);
-      if (message === "Please sign in") {
-        return <Navigate to="/sign-in" />;
-      }
     }
     // const errorCode = getErrorCode(error);
     // TODO: check errorPolicy and if === 'all' then pass thru render props all extracted/formated errors with errorcodes instead of inline error message

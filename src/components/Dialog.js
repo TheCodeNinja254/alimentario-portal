@@ -82,7 +82,6 @@ const Modal = ({
   form = false,
   handleClose,
   disableBackdropClose = false,
-  ...rest
 }) => {
   const theme = useTheme();
   const classes = useSyles();
@@ -102,7 +101,7 @@ const Modal = ({
       }}
       aria-labelledby="responsive-dialog-title"
     >
-      <Box className={classes.dialog} {...rest}>
+      <Box className={classes.dialog}>
         {form ? (
           <FormikForm className={classes.form}>
             <ModalChildren

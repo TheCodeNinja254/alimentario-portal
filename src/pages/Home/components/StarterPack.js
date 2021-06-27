@@ -11,7 +11,6 @@ const useStyles = makeStyles(() => ({
 }));
 const StarterPack = () => {
   const classes = useStyles();
-  console.log("test  starte");
   return (
     <Card>
       <CardHeader title="Starter Pack" className={classes.cardHeader} />

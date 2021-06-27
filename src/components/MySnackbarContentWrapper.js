@@ -74,7 +74,6 @@ const useStyles = makeStyles((theme) => ({
 const MySnackbarContentWrapper = (props) => {
   const classes = useStyles();
   const { className, message, onClose, variant, variantText, ...other } = props;
-
   return (
     <SnackbarContent
       className={clsx(classes.snackbarContent, className)}

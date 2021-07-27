@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useReactiveVar } from "@apollo/client";
-import { makeStyles } from "@material-ui/core/styles";
+import {useReactiveVar} from "@apollo/client";
+import {makeStyles} from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
-import { loadingStatus } from "../../Apollo/ReactiveVariables";
-import Topbar from "./Topbar";
+import {loadingStatus} from "../../Apollo/ReactiveVariables";
+import {Menubar, Topbar} from "./MenuNavigation";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +39,8 @@ const MainLayout = ({ children }) => {
       <Backdrop open={loading} className={classes.backdrop}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <Topbar />
+      <Topbar/>
+      <Menubar/>
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>{children}</div>

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Logo from "../../assets/images/saf-logo.png";
+import Logo from "../../../public/favicons/saf-logo.png";
 import Image from "../../components/Image";
 
 describe("<Image />", () => {

@@ -2,7 +2,7 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import {fade, makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import {Link} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,64 +24,15 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(36),
     flexGrow: 1,
   },
-  lowerMenu: {
-    paddingLeft: theme.spacing(4),
-    flexGrow: 1,
-  },
   topMenuItem: {
     marginRight: theme.spacing(3),
     "&:hover": {
       backgroundColor: theme.palette.common.black,
-      height: "46px",
+      height: "45px",
     },
-  },
-  lowerMenuItem: {
-    marginRight: theme.spacing(4),
   },
   denseTopBar: {
     height: "35px",
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  logo: {
-    paddingLeft: theme.spacing(36),
-    height: 27,
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
   },
 }));
 
@@ -91,7 +42,7 @@ const TopAppBar = () => {
   return (
       <div className={classes.root}>
         <AppBar elevation={1} position="static">
-          <Toolbar variant="dense" classes={classes.denseTopBar}>
+          <Toolbar variant="dense" className={classes.denseTopBar}>
             <Typography className={classes.topMenu} variant="h6" noWrap>
               <Link
                   href="/some"

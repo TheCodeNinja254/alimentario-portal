@@ -1,8 +1,8 @@
 const typography = {
   h1: {
-    fontWeight: 500,
-    fontSize: 35,
-    letterSpacing: "-0.24px",
+      fontWeight: 600,
+      fontSize: 55,
+      letterSpacing: "-0.24px",
   },
   h2: {
     fontWeight: 500,

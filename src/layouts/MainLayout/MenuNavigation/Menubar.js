@@ -21,23 +21,12 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
-  topMenu: {
-    paddingLeft: theme.spacing(36),
-    flexGrow: 1,
-  },
   lowerMenu: {
     paddingLeft: theme.spacing(4),
     flexGrow: 1,
   },
-  topMenuItem: {
-    marginRight: theme.spacing(3),
-    "&:hover": {
-      backgroundColor: theme.palette.common.black,
-      height: "46px",
-    },
-  },
   lowerMenuItem: {
-    marginRight: theme.spacing(4),
+    marginRight: theme.spacing(6),
   },
   denseTopBar: {
     height: "35px",

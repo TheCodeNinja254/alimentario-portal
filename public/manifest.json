@@ -1,7 +1,7 @@
 {
-  "short_name": "Saf Boilerplate",
-  "name": "Safaricom React Boilerplate",
-  "description": "This is just a starter pack to get tou started ASAP",
+  "short_name": "Safaricom Intenet",
+  "name": "Safaricom | Internet Connectivity",
+  "description": "Safaricom PLC, Home and Business Fiber Connection",
   "icons": [
     { "src": "favicons/57x57.png", "sizes": "57x57", "type": "image/png" },
     { "src": "favicons/72x72.png", "sizes": "72x72", "type": "image/png" },
@@ -14,6 +14,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#2CB34A",
   "background_color": "#ffffff"
 }

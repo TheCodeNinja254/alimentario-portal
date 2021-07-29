@@ -1,10 +1,10 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import {fade, makeStyles} from "@material-ui/core/styles";
-import {InputBase, Link} from "@material-ui/core";
+import { fade, makeStyles } from "@material-ui/core/styles";
+import { InputBase, Link } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
   },
   lowerMenuItem: {
     marginRight: theme.spacing(6),
+    fontSize: 15,
+    fontWeight: 500,
   },
   denseTopBar: {
     height: "35px",
@@ -39,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.common.black, 0.25),
     },
     marginLeft: 0,
+    marginRight: theme.spacing(36),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
@@ -79,72 +82,72 @@ const SearchAppBar = () => {
   const classes = useStyles();
 
   return (
-      <div className={classes.root}>
-        <AppBar color="inherit" elevation={1} position="static">
-          <Toolbar>
-            <img
-                alt="Logo"
-                className={classes.logo}
-                src="/favicons/saf-logo.png"
-            />
-            <Typography className={classes.lowerMenu} variant="h4" noWrap>
-              <Link
-                  href="/some"
-                  component="button"
-                  className={classes.lowerMenuItem}
-                  color="inherit"
-              >
-                Voice
-              </Link>
-              <Link
-                  href="/some"
-                  component="button"
-                  className={classes.lowerMenuItem}
-                  color="inherit"
-              >
-                Data
-              </Link>
-              <Link
-                  href="/some"
-                  component="button"
-                  className={classes.lowerMenuItem}
-                  color="inherit"
-              >
-                M-PESA
-              </Link>
-              <Link
-                  href="/some"
-                  component="button"
-                  className={classes.lowerMenuItem}
-                  color="inherit"
-              >
-                Fixed Internet
-              </Link>
-              <Link
-                  href="/some"
-                  component="button"
-                  className={classes.lowerMenuItem}
-                  color="inherit"
-              >
-                Value Added Services
-              </Link>
-            </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon/>
-              </div>
-              <InputBase
-                  placeholder="Search…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{"aria-label": "search"}}
-              />
+    <div className={classes.root}>
+      <AppBar color="inherit" elevation={1} position="static">
+        <Toolbar>
+          <img
+            alt="Logo"
+            className={classes.logo}
+            src="/favicons/saf-logo.png"
+          />
+          <Typography className={classes.lowerMenu} variant="h4" noWrap>
+            <Link
+              href="/some"
+              component="button"
+              className={classes.lowerMenuItem}
+              color="inherit"
+            >
+              Voice
+            </Link>
+            <Link
+              href="/some"
+              component="button"
+              className={classes.lowerMenuItem}
+              color="inherit"
+            >
+              Data
+            </Link>
+            <Link
+              href="/some"
+              component="button"
+              className={classes.lowerMenuItem}
+              color="inherit"
+            >
+              M-PESA
+            </Link>
+            <Link
+              href="/some"
+              component="button"
+              className={classes.lowerMenuItem}
+              color="inherit"
+            >
+              Fixed Internet
+            </Link>
+            <Link
+              href="/some"
+              component="button"
+              className={classes.lowerMenuItem}
+              color="inherit"
+            >
+              Value Added Services
+            </Link>
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
             </div>
-          </Toolbar>
-        </AppBar>
-      </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 };
 

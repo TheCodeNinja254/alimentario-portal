@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {useReactiveVar} from "@apollo/client";
-import {makeStyles} from "@material-ui/core/styles";
+import { useReactiveVar } from "@apollo/client";
+import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
-import {loadingStatus} from "../../Apollo/ReactiveVariables";
-import {Menubar, Topbar} from "./MenuNavigation";
+import { loadingStatus } from "../../Apollo/ReactiveVariables";
+import { Menubar, Topbar } from "./MenuNavigation";
 import Footer from "./Footer/Footer";
 import InformationTab from "./InformationTab/InformationTab";
+import IntroductionScreen from "./IntroductionScreen/IntroductionScreen";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,20 +41,21 @@ const MainLayout = ({ children }) => {
   const classes = useStyles();
   const loading = useReactiveVar(loadingStatus);
   return (
-      <div className={classes.root}>
-        <Backdrop open={loading} className={classes.backdrop}>
-          <CircularProgress color="inherit"/>
-        </Backdrop>
-        <Topbar/>
-        <Menubar/>
-        <div className={classes.wrapper}>
-          <div className={classes.contentContainer}>
-            <div className={classes.content}>{children}</div>
-          </div>
+    <div className={classes.root}>
+      <Backdrop open={loading} className={classes.backdrop}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      <Topbar />
+      <Menubar />
+      <IntroductionScreen />
+      <div className={classes.wrapper}>
+        <div className={classes.contentContainer}>
+          <div className={classes.content}>{children}</div>
         </div>
-        <InformationTab/>
-        <Footer/>
       </div>
+      <InformationTab />
+      <Footer />
+    </div>
   );
 };
 

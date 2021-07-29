@@ -6,6 +6,9 @@ import MainLayout from "./layouts/MainLayout";
 const HomeView = lazy(() =>
   import(/* webpackChunkName: "homeView" */ "./pages/Home")
 );
+const RegisterCustomerView = lazy(() =>
+  import(/* webpackChunkName: "RegisterCustomer" */ "./pages/Home/Register")
+);
 const NotFoundView = lazy(() =>
   import(/* webpackChunkName: "notFound" */ "./pages/NotFound")
 );
@@ -17,6 +20,12 @@ const AppRoutes = () => {
         layout={MainLayout}
         exact
         path="/"
+      />
+      <RouteWithLayout
+        component={RegisterCustomerView}
+        layout={MainLayout}
+        exact
+        path="/register"
       />
       <RouteWithLayout component={NotFoundView} layout={MainLayout} />
     </Switch>

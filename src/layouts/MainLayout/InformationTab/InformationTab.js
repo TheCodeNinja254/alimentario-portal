@@ -11,11 +11,6 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import clipboard from "../../../assets/images/clipboard.png";
-import brandingIcon from "../../../assets/images/brandingIcon.png";
-import checkedIcon from "../../../assets/images/checkedIcon.png";
-import personIcon from "../../../assets/images/personIcon.png";
-import cardIcon from "../../../assets/images/cardIcon.png";
 import Male from "../../../assets/images/Male.png";
 import Female from "../../../assets/images/Female.png";
 import FaqsAndTermsTab from "./component/FaqsAndTermsTab";
@@ -81,232 +76,204 @@ const InformationTab = () => {
       <Card elevation={0} className={classes.infoCard}>
         <CardContent>
           <div className={classes.contentWrapper}>
-            <Typography variant="h2" className={classes.heading}>
-              Requirements to Sign Up
-            </Typography>
-            <Typography variant="h5">
-              You will be required to visit a Safaricom Shop or sign up online
-              with the following documents/details
-            </Typography>
-            <Grid container>
-              <Grid
-                item
-                lg={2}
-                md={6}
-                xl={2}
-                xs={6}
-                sm={6}
-                justify="center"
-                spacing={0}
-                className={classes.requirementsIcons}
-              >
-                <div align="center">
-                  <Box
-                    className={classes.infoIcons}
-                    justifyContent="center"
-                    alignItems="center"
-                    display="flex"
-                  >
-                    <img
-                      src={clipboard}
-                      alt="info icon"
-                      className={classes.infoIconImage}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.heading}
-                  >
-                    Filled Form
-                  </Typography>
-                  <Typography variant="body2" align="center">
-                    A duly filled Business Connectivity application form
-                    provided by a Sales agent or at a Safaricom Shop.
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid
-                item
-                lg={2}
-                md={6}
-                xl={2}
-                xs={6}
-                sm={6}
-                justify="center"
-                spacing={0}
-                className={classes.requirementsIcons}
-              >
-                <div align="center">
-                  <Box
-                    className={classes.infoIcons}
-                    justifyContent="center"
-                    alignItems="center"
-                    display="flex"
-                  >
-                    <img
-                      src={checkedIcon}
-                      alt="info icon"
-                      className={classes.infoIconImage}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.heading}
-                  >
-                    Certificate/Permit
-                  </Typography>
-                  <Typography variant="body2" align="center">
-                    Certificate of Incorporation or Business Permit for the
-                    business.
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid
-                item
-                lg={2}
-                md={6}
-                xl={2}
-                xs={6}
-                sm={6}
-                justify="center"
-                spacing={0}
-                className={classes.requirementsIcons}
-              >
-                <div align="center">
-                  <Box
-                    className={classes.infoIcons}
-                    justifyContent="center"
-                    alignItems="center"
-                    display="flex"
-                  >
-                    <img
-                      src={brandingIcon}
-                      alt="info icon"
-                      className={classes.infoIconImage}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.heading}
-                  >
-                    KRA PIN
-                  </Typography>
-                  <Typography variant="body2" align="center">
-                    KRA PIN Certificate
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid
-                item
-                lg={2}
-                md={6}
-                xl={2}
-                xs={6}
-                sm={6}
-                justify="center"
-                spacing={0}
-                className={classes.requirementsIcons}
-              >
-                <div align="center">
-                  <Box
-                    className={classes.infoIcons}
-                    justifyContent="center"
-                    alignItems="center"
-                    display="flex"
-                  >
-                    <img
-                      src={personIcon}
-                      alt="info icon"
-                      className={classes.infoIconImage}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.heading}
-                  >
-                    Details
-                  </Typography>
-                  <Typography variant="body2" align="center">
-                    Details of the Contact Person
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid
-                item
-                lg={2}
-                md={6}
-                xl={2}
-                xs={6}
-                sm={6}
-                justify="center"
-                spacing={0}
-                className={classes.requirementsIcons}
-              >
-                <div align="center">
-                  <Box
-                    className={classes.infoIcons}
-                    justifyContent="center"
-                    alignItems="center"
-                    display="flex"
-                  >
-                    <img
-                      src={cardIcon}
-                      alt="info icon"
-                      className={classes.infoIconImage}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.heading}
-                  >
-                    Payment
-                  </Typography>
-                  <Typography variant="body2" align="center">
-                    For the post-pay plan, a deposit payment equivalent to one
-                    month’s payment will be required and for prepay plan, no
-                    deposit is required during the service activation process.
-                    The deposit is refundable upon termination of the service.
-                  </Typography>
-                </div>
-              </Grid>
-            </Grid>
+            {/* <Typography variant="h2" className={classes.heading}> */}
+            {/*  Requirements to Sign Up */}
+            {/* </Typography> */}
+            {/* <Typography variant="h5"> */}
+            {/*  You will be required to visit a Safaricom Shop or sign up online */}
+            {/*  with the following documents/details */}
+            {/* </Typography> */}
+            {/* <Grid container justify="center"> */}
+            {/*  <Grid */}
+            {/*    item */}
+            {/*    lg={2} */}
+            {/*    md={6} */}
+            {/*    xl={2} */}
+            {/*    xs={6} */}
+            {/*    sm={6} */}
+            {/*    className={classes.requirementsIcons} */}
+            {/*  > */}
+            {/*    <div align="center"> */}
+            {/*      <Box */}
+            {/*        className={classes.infoIcons} */}
+            {/*        justifyContent="center" */}
+            {/*        alignItems="center" */}
+            {/*        display="flex" */}
+            {/*      > */}
+            {/*        <img */}
+            {/*          src={clipboard} */}
+            {/*          alt="info icon" */}
+            {/*          className={classes.infoIconImage} */}
+            {/*        /> */}
+            {/*      </Box> */}
+            {/*      <Typography */}
+            {/*        variant="h3" */}
+            {/*        align="center" */}
+            {/*        className={classes.heading} */}
+            {/*      > */}
+            {/*        Filled Form */}
+            {/*      </Typography> */}
+            {/*      <Typography variant="body2" align="center"> */}
+            {/*        A duly filled Business Connectivity application form */}
+            {/*        provided by a Sales agent or at a Safaricom Shop. */}
+            {/*      </Typography> */}
+            {/*    </div> */}
+            {/*  </Grid> */}
+            {/*  <Grid */}
+            {/*    item */}
+            {/*    lg={2} */}
+            {/*    md={6} */}
+            {/*    xl={2} */}
+            {/*    xs={6} */}
+            {/*    sm={6} */}
+            {/*    className={classes.requirementsIcons} */}
+            {/*  > */}
+            {/*    <div align="center"> */}
+            {/*      <Box */}
+            {/*        className={classes.infoIcons} */}
+            {/*        justifyContent="center" */}
+            {/*        alignItems="center" */}
+            {/*        display="flex" */}
+            {/*      > */}
+            {/*        <img */}
+            {/*          src={checkedIcon} */}
+            {/*          alt="info icon" */}
+            {/*          className={classes.infoIconImage} */}
+            {/*        /> */}
+            {/*      </Box> */}
+            {/*      <Typography */}
+            {/*        variant="h3" */}
+            {/*        align="center" */}
+            {/*        className={classes.heading} */}
+            {/*      > */}
+            {/*        Certificate/Permit */}
+            {/*      </Typography> */}
+            {/*      <Typography variant="body2" align="center"> */}
+            {/*        Certificate of Incorporation or Business Permit for the */}
+            {/*        business. */}
+            {/*      </Typography> */}
+            {/*    </div> */}
+            {/*  </Grid> */}
+            {/*  <Grid */}
+            {/*    item */}
+            {/*    lg={2} */}
+            {/*    md={6} */}
+            {/*    xl={2} */}
+            {/*    xs={6} */}
+            {/*    sm={6} */}
+            {/*    className={classes.requirementsIcons} */}
+            {/*  > */}
+            {/*    <div align="center"> */}
+            {/*      <Box */}
+            {/*        className={classes.infoIcons} */}
+            {/*        justifyContent="center" */}
+            {/*        alignItems="center" */}
+            {/*        display="flex" */}
+            {/*      > */}
+            {/*        <img */}
+            {/*          src={brandingIcon} */}
+            {/*          alt="info icon" */}
+            {/*          className={classes.infoIconImage} */}
+            {/*        /> */}
+            {/*      </Box> */}
+            {/*      <Typography */}
+            {/*        variant="h3" */}
+            {/*        align="center" */}
+            {/*        className={classes.heading} */}
+            {/*      > */}
+            {/*        KRA PIN */}
+            {/*      </Typography> */}
+            {/*      <Typography variant="body2" align="center"> */}
+            {/*        KRA PIN Certificate */}
+            {/*      </Typography> */}
+            {/*    </div> */}
+            {/*  </Grid> */}
+            {/*  <Grid */}
+            {/*    item */}
+            {/*    lg={2} */}
+            {/*    md={6} */}
+            {/*    xl={2} */}
+            {/*    xs={6} */}
+            {/*    sm={6} */}
+            {/*    className={classes.requirementsIcons} */}
+            {/*  > */}
+            {/*    <div align="center"> */}
+            {/*      <Box */}
+            {/*        className={classes.infoIcons} */}
+            {/*        justifyContent="center" */}
+            {/*        alignItems="center" */}
+            {/*        display="flex" */}
+            {/*      > */}
+            {/*        <img */}
+            {/*          src={personIcon} */}
+            {/*          alt="info icon" */}
+            {/*          className={classes.infoIconImage} */}
+            {/*        /> */}
+            {/*      </Box> */}
+            {/*      <Typography */}
+            {/*        variant="h3" */}
+            {/*        align="center" */}
+            {/*        className={classes.heading} */}
+            {/*      > */}
+            {/*        Details */}
+            {/*      </Typography> */}
+            {/*      <Typography variant="body2" align="center"> */}
+            {/*        Details of the Contact Person */}
+            {/*      </Typography> */}
+            {/*    </div> */}
+            {/*  </Grid> */}
+            {/*  <Grid */}
+            {/*    item */}
+            {/*    lg={2} */}
+            {/*    md={6} */}
+            {/*    xl={2} */}
+            {/*    xs={6} */}
+            {/*    sm={6} */}
+            {/*    className={classes.requirementsIcons} */}
+            {/*  > */}
+            {/*    <div align="center"> */}
+            {/*      <Box */}
+            {/*        className={classes.infoIcons} */}
+            {/*        justifyContent="center" */}
+            {/*        alignItems="center" */}
+            {/*        display="flex" */}
+            {/*      > */}
+            {/*        <img */}
+            {/*          src={cardIcon} */}
+            {/*          alt="info icon" */}
+            {/*          className={classes.infoIconImage} */}
+            {/*        /> */}
+            {/*      </Box> */}
+            {/*      <Typography */}
+            {/*        variant="h3" */}
+            {/*        align="center" */}
+            {/*        className={classes.heading} */}
+            {/*      > */}
+            {/*        Payment */}
+            {/*      </Typography> */}
+            {/*      <Typography variant="body2" align="center"> */}
+            {/*        For the post-pay plan, a deposit payment equivalent to one */}
+            {/*        month’s payment will be required and for prepay plan, no */}
+            {/*        deposit is required during the service activation process. */}
+            {/*        The deposit is refundable upon termination of the service. */}
+            {/*      </Typography> */}
+            {/*    </div> */}
+            {/*  </Grid> */}
+            {/* </Grid> */}
             <Typography variant="h2" className={classes.heading}>
               How Does Billing Work?
             </Typography>
             <Card elevation={0} className={classes.billingCards}>
               <CardContent>
                 <Grid container>
-                  <Grid
-                    item
-                    lg={6}
-                    md={6}
-                    xl={6}
-                    xs={6}
-                    sm={6}
-                    justify="center"
-                    spacing={0}
-                  >
+                  <Grid item lg={6} md={6} xl={6} xs={6} sm={6}>
                     <img
                       src={Male}
                       alt="info icon"
                       className={classes.cardImage}
                     />
                   </Grid>
-                  <Grid
-                    item
-                    lg={6}
-                    md={6}
-                    xl={6}
-                    xs={6}
-                    sm={6}
-                    justify="center"
-                    spacing={0}
-                  >
+                  <Grid item lg={6} md={6} xl={6} xs={6} sm={6}>
                     <div className={classes.cardWithImageText}>
                       <Typography variant="h3" className={classes.heading}>
                         For Post-Pay service

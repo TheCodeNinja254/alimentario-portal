@@ -7,7 +7,8 @@
  */
 
 export default {
-    outlined: {
-        borderRadius: "24px",
-    },
+  outlined: {
+    borderRadius: "24px",
+    backgroundColor: "#FFFFFF",
+  },
 };

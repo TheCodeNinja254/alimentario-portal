@@ -12,6 +12,8 @@ import {
 } from "@material-ui/core";
 import feedbackImage from "../../../assets/images/img_1.png";
 import socialIcons from "../../../assets/images/img_2.png";
+import googleStore from "../../../assets/images/googleStore.png";
+import appStore from "../../../assets/images/appStore.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -57,6 +59,11 @@ const useStyles = makeStyles((theme) => ({
     height: 35,
     marginLeft: theme.spacing(2),
     marginTop: theme.spacing(3),
+  },
+  appIcons: {
+    height: 45,
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(1),
   },
   linkTexts: {
     fontSize: 12,
@@ -105,10 +112,10 @@ const TopAppBar = () => {
           <Grid container>
             <Grid
               item
-              lg={12}
-              md={12}
-              xl={12}
-              xs={12}
+              lg={6}
+              md={6}
+              xl={6}
+              xs={6}
               direction="column"
               justify="center"
               alignItems="center"
@@ -117,6 +124,20 @@ const TopAppBar = () => {
               <Typography variant="subtitle2" className={classes.appLinksText}>
                 Manage All your services in one App
               </Typography>
+            </Grid>
+            <Grid
+              item
+              lg={6}
+              md={6}
+              xl={6}
+              xs={6}
+              direction="column"
+              justify="center"
+              alignItems="center"
+              spacing={0}
+            >
+              <img src={appStore} className={classes.appIcons} alt="" />
+              <img src={googleStore} className={classes.appIcons} alt="" />
             </Grid>
           </Grid>
         </CardContent>

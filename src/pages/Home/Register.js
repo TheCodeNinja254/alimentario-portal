@@ -3,7 +3,7 @@ import { Box, Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Page from "../../components/Page";
 import ProductView from "./components/ProductView";
-import FiberAvailabilityForm from "./forms/FiberAvailabilityForm";
+import RegisterCustomerForm from "./forms/RegisterCustomerForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = () => {
+const RegistrationPage = () => {
   const classes = useStyles();
 
   return (
@@ -34,7 +34,7 @@ const Home = () => {
               <ProductView />
             </Grid>
             <Grid item lg={5} xl={5} sm={12} xs={12}>
-              <FiberAvailabilityForm />
+              <RegisterCustomerForm />
             </Grid>
             <Grid item lg={4} xl={4} />
           </Grid>
@@ -44,4 +44,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default RegistrationPage;

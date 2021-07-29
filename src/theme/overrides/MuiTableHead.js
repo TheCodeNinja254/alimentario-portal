@@ -6,7 +6,7 @@
  * @Author: Fredrick Mbugua/FMMBUGUA
  */
 
-import {colors} from "@material-ui/core";
+import { colors } from "@material-ui/core";
 
 export default {
   root: {

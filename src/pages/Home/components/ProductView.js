@@ -1,21 +1,42 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-} from "@material-ui/core";
+import { Box, Button, Tab, Tabs, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import CancelIcon from "@material-ui/icons/Cancel";
+import PropTypes from "prop-types";
+import HomeProducts from "./HomeProducts";
+import EnterpriseProducts from "./EnterpriseProducts";
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
 
 const useStyles = makeStyles((theme) => ({
   cardHeader: {
@@ -38,30 +59,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(4),
   },
-  bundleSizeText: {
-    height: 32,
-    fontWeight: 700,
-  },
-  productCard: {
-    backgroundColor: "#E5E5E5",
-    marginTop: theme.spacing(2),
-  },
-  productCardExtended: {
-    backgroundColor: "#F3F3F3",
-  },
-  availableIconColor: {
-    color: theme.palette.primary.main,
-  },
-  unavailableIconColor: {
-    color: theme.palette.error.main,
-  },
-  listText: {
-    fontSize: 18,
-  },
 }));
 
 const ProductView = () => {
   const classes = useStyles();
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <>
       <Typography variant="h1" className={classes.pageHeading}>
@@ -76,260 +84,35 @@ const ProductView = () => {
         justifyContent="center"
         className={classes.exploreButtons}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.exploreHomeButton}
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="simple tabs example"
         >
-          Explore Home
-        </Button>
-        <Button variant="contained">Explore Business</Button>
+          <Tab
+            label={
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.exploreHomeButton}
+              >
+                Explore Home
+              </Button>
+            }
+            {...a11yProps(0)}
+          />
+          <Tab
+            label={<Button variant="contained">Explore Business</Button>}
+            {...a11yProps(1)}
+          />
+        </Tabs>
       </Box>
-      <Card className={classes.productCard} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4}>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <span>
-                  <Typography align="center" className={classes.bundleSizeText}>
-                    8
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2" align="center">
-                    MBPS
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={7} md={7} xl={7} xs={7}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    BRONZE
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">
-                    Small offices of 1-10 users
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={3}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    Ksh. 3,999
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">Valid for 30 days</Typography>
-                </span>
-              </Grid>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <KeyboardArrowDownIcon />
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
-      <Card className={classes.productCardExtended} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4}>
-              <Grid item lg={4} md={4} xl={4} xs={4} justifyContent="center">
-                <List
-                  component="nav"
-                  aria-label="main mailbox folders"
-                  className={classes.listText}
-                >
-                  <ListItem button>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Frequent Email" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Light Web Browsing" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Light File Sharing" />
-                  </ListItem>
-                </List>
-              </Grid>
-              <Grid item lg={4} md={4} xl={4} xs={4} justifyContent="center">
-                <List component="nav" aria-label="main mailbox folders">
-                  <ListItem button>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="CCTV Backup" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Online Based Businesses" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cloud Connectivity" />
-                  </ListItem>
-                </List>
-              </Grid>
-              <Grid item lg={4} md={4} xl={4} xs={4} justifyContent="center">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.getConnectedButton}
-                >
-                  Get Connected
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
-      <Card className={classes.productCard} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4}>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <span>
-                  <Typography align="center" className={classes.bundleSizeText}>
-                    20
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2" align="center">
-                    MBPS
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={7} md={7} xl={7} xs={7}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    SILVER
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">
-                    Small offices of 1-10 users
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={3}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    Ksh. 4,999
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">Valid for 30 days</Typography>
-                </span>
-              </Grid>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <NavigateNextIcon />
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
-      <Card className={classes.productCard} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4}>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <span>
-                  <Typography align="center" className={classes.bundleSizeText}>
-                    40
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2" align="center">
-                    MBPS
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={7} md={7} xl={7} xs={7}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    GOLD
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">
-                    Small offices of 1-10 users
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={3}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    Ksh. 5,999
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">Valid for 30 days</Typography>
-                </span>
-              </Grid>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <NavigateNextIcon />
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
-      <Card className={classes.productCard} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4}>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <span>
-                  <Typography align="center" className={classes.bundleSizeText}>
-                    80
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2" align="center">
-                    MBPS
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={7} md={7} xl={7} xs={7}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    DIAMOND
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">
-                    Small offices of 1-10 users
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={3}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    Ksh. 10,999
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">Valid for 30 days</Typography>
-                </span>
-              </Grid>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <NavigateNextIcon />
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
+      <TabPanel value={value} index={0}>
+        <HomeProducts />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <EnterpriseProducts />
+      </TabPanel>
     </>
   );
 };

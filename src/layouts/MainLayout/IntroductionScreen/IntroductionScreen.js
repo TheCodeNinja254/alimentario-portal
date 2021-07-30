@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Male from "../../../assets/images/Intro.png";
+import IntroImage from "../../../assets/images/Intro.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,18 +76,22 @@ const IntroductionScreen = () => {
                     color="primary"
                     className={classes.exploreHomeButton}
                   >
-                    Explore Home
+                    Get Connected
                   </Button>
                   <Button
                     variant="contained"
                     className={classes.explorePackages}
                   >
-                    Explore Business
+                    Explore Packages
                   </Button>
                 </div>
               </Grid>
               <Grid item lg={6} xl={6}>
-                <img src={Male} alt="info icon" className={classes.cardImage} />
+                <img
+                  src={IntroImage}
+                  alt="info icon"
+                  className={classes.cardImage}
+                />
               </Grid>
             </Grid>
           </Container>

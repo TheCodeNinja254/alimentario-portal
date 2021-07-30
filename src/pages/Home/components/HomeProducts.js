@@ -2,60 +2,121 @@ import React from "react";
 import {
   Button,
   Card,
+  CardActions,
   CardContent,
-  Collapse,
   Grid,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Typography,
+  Paper,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import Typography from "@material-ui/core/Typography";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
-import IconButton from "@material-ui/core/IconButton";
-import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
-  cardHeader: {
-    "& span": {
-      fontSize: 20,
-    },
+  root: {},
+  productCard: {
+    height: 690,
+    borderRadius: 10,
+    backgroundColor: theme.palette.white.main,
+    marginTop: theme.spacing(0),
   },
-  pageHeading: {
-    marginTop: theme.spacing(6),
-    height: 70,
-    fontWeight: 800,
+  productCardTitle: {
+    fontSize: 18,
+    fontWeight: "lighter",
+    fontStyle: "normal",
+    textAlign: "center",
+    color: theme.palette.black,
+    textTransform: "uppercase",
   },
-  exploreHomeButton: {
-    marginRight: theme.spacing(2),
+  validityCardTitle: {
+    fontSize: 17,
+    fontWeight: "lighter",
+    fontStyle: "normal",
+    textAlign: "center",
+    color: theme.palette.black,
   },
-  getConnectedButton: {
-    marginTop: theme.spacing(8),
-  },
-  exploreButtons: {
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(4),
+  productCardSubtitle: {
+    height: 18,
+    fontSize: 15,
+    fontWeight: "bolder",
+    fontStyle: "normal",
+    textAlign: "center",
   },
   bundleSizeText: {
-    height: 32,
-    fontWeight: 700,
-    textDecoration: "bold",
+    height: 59,
+    fontSize: 50,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    textAlign: "center",
+    color: theme.palette.black,
   },
-  productCard: {
-    backgroundColor: "rgba(229, 229, 229, 0.4)",
-    marginTop: theme.spacing(2),
+  productColorName: {
+    height: 48,
+    fontSize: 24,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    textAlign: "center",
+    color: theme.palette.white.main,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
-  bundleBrief: {
-    backgroundColor: "rgba(229, 229, 229, 0.6)",
-    height: "100%",
-    marginBottom: theme.spacing(0.5),
+  bronzeProductColorHeader: {
+    background:
+      "linear-gradient(0deg, #8B5A44 0%, rgba(156, 116, 97, 0) 202.04%)",
+    paddingTop: theme.spacing(0),
+    marginTop: theme.spacing(0),
+    height: "66px",
+    borderRadius: "0 0 5 5",
+    marginLeft: theme.spacing(4),
+    marginRight: theme.spacing(4),
   },
-  productCardExtended: {
-    backgroundColor: "rgba(229, 229, 229, 0.2)",
-    fontSize: "12px",
+  silverProductColorHeader: {
+    background:
+      "linear-gradient(0deg, #515151 0%, rgba(255, 255, 255, 0) 181.63%)",
+    paddingTop: theme.spacing(0),
+    marginTop: theme.spacing(0),
+    height: "66px",
+    borderRadius: "0 0 5 5",
+    marginLeft: theme.spacing(4),
+    marginRight: theme.spacing(4),
+  },
+  goldProductColorHeader: {
+    background:
+      "linear-gradient(0deg, #E5BF4F 57.88%, rgba(255, 255, 255, 0) 246.94%)",
+    paddingTop: theme.spacing(0),
+    marginTop: theme.spacing(0),
+    height: "66px",
+    borderRadius: "0 0 5 5",
+    marginLeft: theme.spacing(4),
+    marginRight: theme.spacing(4),
+  },
+  diamondProductColorHeader: {
+    background:
+      "linear-gradient(0deg, #C2576C 0%, rgba(255, 255, 255, 0) 403.06%)",
+    paddingTop: theme.spacing(0),
+    marginTop: theme.spacing(0),
+    height: "66px",
+    borderRadius: "0 0 5 5",
+    marginLeft: theme.spacing(4),
+    marginRight: theme.spacing(4),
+  },
+  amountText: {
+    height: 59,
+    fontSize: 30,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    textAlign: "center",
+    color: theme.palette.black,
+  },
+  productCardTitleHolder: {
+    marginTop: theme.spacing(1),
+  },
+  listText: {
+    fontSize: "8px",
   },
   availableIconColor: {
     color: theme.palette.primary.main,
@@ -63,694 +124,326 @@ const useStyles = makeStyles((theme) => ({
   unavailableIconColor: {
     color: theme.palette.error.main,
   },
-  listText: {
-    fontSize: "8px",
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    // marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-    color: theme.palette.primary.main,
+  getConnectedButton: {
+    marginTop: theme.spacing(1),
+    justifyContent: "center",
   },
 }));
 
-const ProductView = () => {
+const packageCapabilities = {
+  bronze: [
+    {
+      capabilityName: "Fast web browsing",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "SD Movie & music streaming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "SD TV programming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "Multiple device streaming",
+      capabilityAvailability: false,
+    },
+    {
+      capabilityName: "Superfast video downloads",
+      capabilityAvailability: false,
+    },
+    {
+      capabilityName: "CCTV devices Capability",
+      capabilityAvailability: false,
+    },
+  ],
+  silver: [
+    {
+      capabilityName: "Fast web browsing",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "SD Movie & music streaming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "SD TV programming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "Multiple device streaming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "Superfast video downloads",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "CCTV devices Capability",
+      capabilityAvailability: true,
+    },
+  ],
+  gold: [
+    {
+      capabilityName: "Fast web browsing",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "SD Movie & music streaming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "SD TV programming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "Multiple device streaming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "Superfast video downloads",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "CCTV devices Capability",
+      capabilityAvailability: true,
+    },
+  ],
+  diamond: [
+    {
+      capabilityName: "Fast web browsing",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "SD Movie & music streaming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "SD TV programming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "Multiple device streaming",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "Superfast video downloads",
+      capabilityAvailability: true,
+    },
+    {
+      capabilityName: "CCTV devices Capability",
+      capabilityAvailability: true,
+    },
+  ],
+};
+
+const HomeProductsView = () => {
   const classes = useStyles();
-
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-  const [expandedP2, setExpandedP2] = React.useState(false);
-
-  const handleExpandClickP2 = () => {
-    setExpandedP2(!expandedP2);
-  };
-
-  const [expandedP3, setExpandedP3] = React.useState(false);
-
-  const handleExpandClickP3 = () => {
-    setExpandedP3(!expandedP3);
-  };
-
-  const [expandedP4, setExpandedP4] = React.useState(false);
-
-  const handleExpandClickP4 = () => {
-    setExpandedP4(!expandedP4);
-  };
 
   return (
     <>
-      <Card className={classes.productCard} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4}>
-              <Grid
-                item
-                lg={1}
-                md={1}
-                xl={1}
-                xs={1}
-                justifyContent="center"
-                className={classes.bundleBrief}
-              >
-                <span>
-                  <Typography align="center" className={classes.bundleSizeText}>
-                    8
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2" align="center">
-                    MBPS
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={7} md={7} xl={7} xs={7}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    BRONZE
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">
-                    Small offices of 1-10 users
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={3}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    Ksh. 3,999
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">Valid for 30 days</Typography>
-                </span>
-              </Grid>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <IconButton
-                  className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded,
-                  })}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <KeyboardArrowDownIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
-      <Collapse
-        in={expanded}
-        timeout="auto"
-        unmountOnExit
-        className={classes.productCardExtended}
-        elevation={0}
-      >
-        <CardContent>
-          <div>
-            <Grid container spacing={0}>
-              <Grid item lg={4} md={4} xl={4} xs={12}>
+      <Grid container spacing={3}>
+        <Grid item lg={3} md={3} xl={3} sm={12} xs={12}>
+          <Card className={classes.productCard} elevation={0}>
+            <Paper elevation={1} className={classes.bronzeProductColorHeader}>
+              <Typography className={classes.productColorName}>
+                BRONZE
+              </Typography>
+            </Paper>
+            <CardContent>
+              <Typography className={classes.bundleSizeText}>8</Typography>
+              <Typography className={classes.productCardTitle}>MBPS</Typography>
+              <div>
                 <List component="nav" aria-label="main mailbox folders">
-                  <ListItem className={classes.listText}>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2"> Frequent Email</Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Light Web Browsing
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Light File Sharing
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
+                  {packageCapabilities.bronze.map((packageCapability) => (
+                    <ListItem className={classes.listText}>
+                      <ListItemIcon
+                        className={
+                          packageCapability.capabilityAvailability
+                            ? classes.availableIconColor
+                            : classes.unavailableIconColor
+                        }
+                      >
+                        {packageCapability.capabilityAvailability ? (
+                          <CheckCircleIcon />
+                        ) : (
+                          <CancelIcon />
+                        )}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={
+                          <Typography variant="body2">
+                            {packageCapability.capabilityName}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                  ))}
                 </List>
-              </Grid>
-              <Grid item lg={5} md={5} xl={5} xs={12}>
+              </div>
+              <Typography className={classes.amountText}>Ksh 2,900</Typography>
+              <Typography className={classes.validityCardTitle}>
+                Valid for 30 days
+              </Typography>
+            </CardContent>
+            <CardActions className={classes.getConnectedButton}>
+              <Button variant="contained" color="primary">
+                Get Connected
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item lg={3} md={3} xl={3} sm={12} xs={12}>
+          <Card className={classes.productCard} elevation={0}>
+            <Paper elevation={1} className={classes.silverProductColorHeader}>
+              <Typography className={classes.productColorName}>
+                SILVER
+              </Typography>
+            </Paper>
+            <CardContent>
+              <Typography className={classes.bundleSizeText}>20</Typography>
+              <Typography className={classes.productCardTitle}>MBPS</Typography>
+              <div>
                 <List component="nav" aria-label="main mailbox folders">
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">CCTV Backup</Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Online Based Businesses
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Cloud Connectivity
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
+                  {packageCapabilities.silver.map((packageCapability) => (
+                    <ListItem className={classes.listText}>
+                      <ListItemIcon
+                        className={
+                          packageCapability.capabilityAvailability
+                            ? classes.availableIconColor
+                            : classes.unavailableIconColor
+                        }
+                      >
+                        {packageCapability.capabilityAvailability ? (
+                          <CheckCircleIcon />
+                        ) : (
+                          <CancelIcon />
+                        )}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={
+                          <Typography variant="body2">
+                            {packageCapability.capabilityName}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                  ))}
                 </List>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={12} justifyContent="center">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.getConnectedButton}
-                >
-                  Get Connected
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Collapse>
-      <Card className={classes.productCard} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4} justify="center">
-              <Grid
-                item
-                lg={1}
-                md={1}
-                xl={1}
-                xs={1}
-                className={classes.bundleBrief}
-              >
-                <span>
-                  <Typography align="center" className={classes.bundleSizeText}>
-                    20
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2" align="center">
-                    MBPS
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={7} md={7} xl={7} xs={7}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    SILVER
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">
-                    Small offices of 1-10 users
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={3}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    Ksh. 4,999
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">Valid for 30 days</Typography>
-                </span>
-              </Grid>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <IconButton
-                  className={clsx(classes.expand, {
-                    [classes.expandOpen]: expandedP2,
-                  })}
-                  onClick={handleExpandClickP2}
-                  aria-expanded={expandedP2}
-                  aria-label="show more"
-                >
-                  <KeyboardArrowDownIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
-      <Collapse
-        in={expandedP2}
-        timeout="auto"
-        unmountOnExit
-        className={classes.productCardExtended}
-        elevation={0}
-      >
-        <CardContent>
-          <div>
-            <Grid container spacing={0}>
-              <Grid item lg={4} md={4} xl={4} xs={12}>
+              </div>
+              <Typography className={classes.amountText}>Ksh 3,999</Typography>
+              <Typography className={classes.validityCardTitle}>
+                Valid for 30 days
+              </Typography>
+            </CardContent>
+            <CardActions className={classes.getConnectedButton}>
+              <Button variant="contained" color="primary">
+                Get Connected
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item lg={3} md={3} xl={3} sm={12} xs={12}>
+          <Card className={classes.productCard} elevation={0}>
+            <Paper elevation={1} className={classes.goldProductColorHeader}>
+              <Typography className={classes.productColorName}>GOLD</Typography>
+            </Paper>
+            <CardContent>
+              <Typography className={classes.bundleSizeText}>40</Typography>
+              <Typography className={classes.productCardTitle}>MBPS</Typography>
+              <div>
                 <List component="nav" aria-label="main mailbox folders">
-                  <ListItem className={classes.listText}>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2"> Frequent Email</Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Light Web Browsing
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Light File Sharing
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
+                  {packageCapabilities.gold.map((packageCapability) => (
+                    <ListItem className={classes.listText}>
+                      <ListItemIcon
+                        className={
+                          packageCapability.capabilityAvailability
+                            ? classes.availableIconColor
+                            : classes.unavailableIconColor
+                        }
+                      >
+                        {packageCapability.capabilityAvailability ? (
+                          <CheckCircleIcon />
+                        ) : (
+                          <CancelIcon />
+                        )}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={
+                          <Typography variant="body2">
+                            {packageCapability.capabilityName}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                  ))}
                 </List>
-              </Grid>
-              <Grid item lg={5} md={5} xl={5} xs={12}>
+              </div>
+              <Typography className={classes.amountText}>Ksh 5,999</Typography>
+              <Typography className={classes.validityCardTitle}>
+                Valid for 30 days
+              </Typography>
+            </CardContent>
+            <CardActions className={classes.getConnectedButton}>
+              <Button variant="contained" color="primary">
+                Get Connected
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item lg={3} md={3} xl={3} sm={12} xs={12}>
+          <Card className={classes.productCard} elevation={0}>
+            <Paper elevation={1} className={classes.diamondProductColorHeader}>
+              <Typography className={classes.productColorName}>
+                DIAMOND
+              </Typography>
+            </Paper>
+            <CardContent>
+              <Typography className={classes.bundleSizeText}>100</Typography>
+              <Typography className={classes.productCardTitle}>MBPS</Typography>
+              <div>
                 <List component="nav" aria-label="main mailbox folders">
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">CCTV Backup</Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Online Based Businesses
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Cloud Connectivity
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
+                  {packageCapabilities.diamond.map((packageCapability) => (
+                    <ListItem className={classes.listText}>
+                      <ListItemIcon
+                        className={
+                          packageCapability.capabilityAvailability
+                            ? classes.availableIconColor
+                            : classes.unavailableIconColor
+                        }
+                      >
+                        {packageCapability.capabilityAvailability ? (
+                          <CheckCircleIcon />
+                        ) : (
+                          <CancelIcon />
+                        )}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={
+                          <Typography variant="body2">
+                            {packageCapability.capabilityName}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                  ))}
                 </List>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={12} justifyContent="center">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.getConnectedButton}
-                >
-                  Get Connected
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Collapse>
-      <Card className={classes.productCard} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4}>
-              <Grid
-                item
-                lg={1}
-                md={1}
-                xl={1}
-                xs={1}
-                className={classes.bundleBrief}
-              >
-                <span>
-                  <Typography align="center" className={classes.bundleSizeText}>
-                    40
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2" align="center">
-                    MBPS
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={7} md={7} xl={7} xs={7}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    GOLD
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">
-                    Small offices of 1-10 users
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={3}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    Ksh. 5,999
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">Valid for 30 days</Typography>
-                </span>
-              </Grid>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <IconButton
-                  className={clsx(classes.expand, {
-                    [classes.expandOpen]: expandedP3,
-                  })}
-                  onClick={handleExpandClickP3}
-                  aria-expanded={expandedP3}
-                  aria-label="show more"
-                >
-                  <KeyboardArrowDownIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
-      <Collapse
-        in={expandedP3}
-        timeout="auto"
-        unmountOnExit
-        className={classes.productCardExtended}
-        elevation={0}
-      >
-        <CardContent>
-          <div>
-            <Grid container spacing={0}>
-              <Grid item lg={4} md={4} xl={4} xs={12}>
-                <List component="nav" aria-label="main mailbox folders">
-                  <ListItem className={classes.listText}>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2"> Frequent Email</Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Light Web Browsing
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Light File Sharing
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              </Grid>
-              <Grid item lg={5} md={5} xl={5} xs={12}>
-                <List component="nav" aria-label="main mailbox folders">
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">CCTV Backup</Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Online Based Businesses
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Cloud Connectivity
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={12} justifyContent="center">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.getConnectedButton}
-                >
-                  Get Connected
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Collapse>
-      <Card className={classes.productCard} elevation={0}>
-        <CardContent>
-          <div>
-            <Grid container spacing={4}>
-              <Grid
-                item
-                lg={1}
-                md={1}
-                xl={1}
-                xs={1}
-                className={classes.bundleBrief}
-              >
-                <span>
-                  <Typography align="center" className={classes.bundleSizeText}>
-                    80
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2" align="center">
-                    MBPS
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={7} md={7} xl={7} xs={7}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    DIAMOND
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">
-                    Small offices of 1-10 users
-                  </Typography>
-                </span>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={3}>
-                <span>
-                  <Typography className={classes.bundleSizeText}>
-                    Ksh. 10,999
-                  </Typography>
-                </span>
-                <span>
-                  <Typography variant="body2">Valid for 30 days</Typography>
-                </span>
-              </Grid>
-              <Grid item lg={1} md={1} xl={1} xs={1} justifyContent="center">
-                <IconButton
-                  className={clsx(classes.expand, {
-                    [classes.expandOpen]: expandedP4,
-                  })}
-                  onClick={handleExpandClickP4}
-                  aria-expanded={expandedP4}
-                  aria-label="show more"
-                >
-                  <KeyboardArrowDownIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Card>
-      <Collapse
-        in={expandedP4}
-        timeout="auto"
-        unmountOnExit
-        className={classes.productCardExtended}
-        elevation={0}
-      >
-        <CardContent>
-          <div>
-            <Grid container spacing={0}>
-              <Grid item lg={4} md={4} xl={4} xs={12}>
-                <List component="nav" aria-label="main mailbox folders">
-                  <ListItem className={classes.listText}>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2"> Frequent Email</Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Light Web Browsing
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Light File Sharing
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              </Grid>
-              <Grid item lg={5} md={5} xl={5} xs={12}>
-                <List component="nav" aria-label="main mailbox folders">
-                  <ListItem>
-                    <ListItemIcon className={classes.availableIconColor}>
-                      <CheckCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">CCTV Backup</Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Online Based Businesses
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon className={classes.unavailableIconColor}>
-                      <CancelIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2">
-                          Cloud Connectivity
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              </Grid>
-              <Grid item lg={3} md={3} xl={3} xs={12} justifyContent="center">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.getConnectedButton}
-                >
-                  Get Connected
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </CardContent>
-      </Collapse>
+              </div>
+              <Typography className={classes.amountText}>Ksh 11,999</Typography>
+              <Typography className={classes.validityCardTitle}>
+                Valid for 30 days
+              </Typography>
+            </CardContent>
+            <CardActions className={classes.getConnectedButton}>
+              <Button variant="contained" color="primary">
+                Get Connected
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+      </Grid>
     </>
   );
 };
 
-export default React.memo(ProductView);
+export default React.memo(HomeProductsView);

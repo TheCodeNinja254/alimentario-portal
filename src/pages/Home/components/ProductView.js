@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(6),
     height: 70,
     fontWeight: 800,
+    textAlign: "center",
   },
   exploreHomeButton: {
     marginRight: theme.spacing(2),
@@ -73,11 +74,7 @@ const ProductView = () => {
   return (
     <>
       <Typography variant="h1" className={classes.pageHeading}>
-        Get connected
-      </Typography>
-      <Typography variant="h5">
-        See if your area is fibre ready and explore the best internet package
-        for you
+        Fiber Packages
       </Typography>
       <Box
         display="flex"

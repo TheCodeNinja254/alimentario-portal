@@ -11,10 +11,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(3),
     height: "100%",
   },
-  countriesWrapper: {
-    maxHeight: 300,
-    overflow: "scroll",
-  },
 }));
 
 const RegistrationPage = () => {

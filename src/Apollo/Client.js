@@ -10,11 +10,13 @@ const httpLink = createHttpLink({
 
 const authLink = setContext(() => {
   // you can manipulate your request headers from here
-  const token = localStorage.getItem("authToken");
+  // get the authentication token from env file. Use (l) - abstracted variable
+  // const token = process.env.REACT_APP_AUTH_TOKEN;
+  const tkn = process.env.REACT_APP_AUTH_TOKEN;
   // return the headers to the context so httpLink can read them
   return {
     headers: {
-      authorization: token || "",
+      j: tkn || "",
     },
   };
 });

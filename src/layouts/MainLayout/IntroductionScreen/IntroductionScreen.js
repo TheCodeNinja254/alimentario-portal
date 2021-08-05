@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  Box,
-  Grid,
-  Card,
-  CardContent,
-  Container,
-  Button,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import {Box, Button, Card, CardContent, Container, Grid, Link,} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import IntroImage from "../../../assets/images/Intro.png";
 
@@ -50,6 +43,12 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtons: {
     marginTop: theme.spacing(7),
+    marginBottom: theme.spacing(2),
+  },
+  anchorLink: {
+    marginTop: theme.spacing(2),
+    paddingTop: theme.spacing(2),
+    textDecoration: "underline",
   },
 }));
 const IntroductionScreen = () => {
@@ -84,7 +83,15 @@ const IntroductionScreen = () => {
                   >
                     Explore Packages
                   </Button>
+                  <br />
                 </div>
+                <Link
+                  href="#link"
+                  variant="body2"
+                  className={classes.anchorLink}
+                >
+                  Already made a request, Check Status
+                </Link>
               </Grid>
               <Grid item lg={6} xl={6}>
                 <img

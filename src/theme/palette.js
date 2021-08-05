@@ -6,7 +6,7 @@
  * @Author: Fredrick Mbugua/FMMBUGUA
  */
 
-import { colors } from "@material-ui/core";
+import {colors} from "@material-ui/core";
 
 const white = "#FFFFFF";
 const black = "#000000";
@@ -21,7 +21,7 @@ export default {
   primary: {
     contrastText: white,
     dark: "#2e7b1d",
-    main: "#2CB34A",
+    main: "#43B02A",
     light: "#68bf54",
   },
   secondary: {

@@ -1,5 +1,5 @@
-import React, { lazy } from "react";
-import { Switch } from "react-router-dom";
+import React, {lazy} from "react";
+import {Switch} from "react-router-dom";
 import RouteWithLayout from "./components/RouteWithLayout";
 import MainLayout from "./layouts/MainLayout";
 
@@ -8,6 +8,9 @@ const HomeView = lazy(() =>
 );
 const RegisterCustomerView = lazy(() =>
   import(/* webpackChunkName: "RegisterCustomer" */ "./pages/Home/Register")
+);
+const ProgressCheckView = lazy(() =>
+  import(/* webpackChunkName: "ProgressCheck" */ "./pages/Home/ProgressCheck")
 );
 const NotFoundView = lazy(() =>
   import(/* webpackChunkName: "notFound" */ "./pages/NotFound")
@@ -26,6 +29,12 @@ const AppRoutes = () => {
         layout={MainLayout}
         exact
         path="/register"
+      />
+      <RouteWithLayout
+        component={ProgressCheckView}
+        layout={MainLayout}
+        exact
+        path="/confirmation"
       />
       <RouteWithLayout component={NotFoundView} layout={MainLayout} />
     </Switch>

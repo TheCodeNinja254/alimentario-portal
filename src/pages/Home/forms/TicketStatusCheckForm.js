@@ -1,15 +1,24 @@
 import React from "react";
-import {Box, Button, Divider, FormControl, Grid, InputAdornment, OutlinedInput, Typography,} from "@material-ui/core";
-import {Form as FormikForm, Formik} from "formik";
-import {makeStyles} from "@material-ui/core/styles";
+import {
+  Box,
+  Button,
+  Divider,
+  FormControl,
+  Grid,
+  InputAdornment,
+  OutlinedInput,
+  Typography,
+} from "@material-ui/core";
+import { Form as FormikForm, Formik } from "formik";
+import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import isEmpty from "lodash.isempty";
-import {useMutation} from "@apollo/client";
-import {useHistory} from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import ErrorHandler from "../../../utils/errorHandler";
 import Dialog from "../../../components/Dialog";
 import StatusIcon from "../../../components/StatusIcon";
-import {CHECK_TICKET_STATUS} from "../../../api/Mutations/Customers";
+import { CHECK_TICKET_STATUS } from "../../../api/Mutations/Customers";
 
 const LeadStatusSchema = Yup.object().shape({
   crqNumber: Yup.string()

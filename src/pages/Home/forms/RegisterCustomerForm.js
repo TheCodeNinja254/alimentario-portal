@@ -1,19 +1,29 @@
 import "date-fns";
 import React from "react";
-import {KeyboardDatePicker, MuiPickersUtilsProvider,} from "@material-ui/pickers";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
 import TextField from "@material-ui/core/TextField";
-import {Form as FormikForm, Formik} from "formik";
-import {Box, Button, Card, CardContent, Chip, Typography,} from "@material-ui/core";
+import { Form as FormikForm, Formik } from "formik";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Typography,
+} from "@material-ui/core";
 import isEmpty from "lodash.isempty";
 import DateFnsUtils from "@date-io/date-fns";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
-import {useMutation} from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import {useHistory} from "react-router-dom";
-import {CREATE_CUSTOMER} from "../../../api/Mutations/Customers";
-import {encrypt} from "../../../utils/encryptDecrypt";
+import { useHistory } from "react-router-dom";
+import { CREATE_CUSTOMER } from "../../../api/Mutations/Customers";
+import { encrypt } from "../../../utils/encryptDecrypt";
 import ErrorHandler from "../../../utils/errorHandler";
 import Dialog from "../../../components/Dialog";
 import StatusIcon from "../../../components/StatusIcon";

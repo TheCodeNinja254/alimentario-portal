@@ -1,6 +1,14 @@
 import React from "react";
-import {Box, Button, Card, CardContent, Container, Grid, Link,} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Link,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import IntroImage from "../../../assets/images/Intro.png";
 

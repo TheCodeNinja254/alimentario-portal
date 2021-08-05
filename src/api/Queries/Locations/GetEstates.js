@@ -6,7 +6,7 @@
  * @Author: Fredrick Mbugua/FMMBUGUA
  */
 
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
 import React from "react";
 import Query from "../../../components/Query";
 

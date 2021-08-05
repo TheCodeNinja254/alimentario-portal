@@ -1,5 +1,5 @@
-import React, {lazy} from "react";
-import {Switch} from "react-router-dom";
+import React, { lazy } from "react";
+import { Switch } from "react-router-dom";
 import RouteWithLayout from "./components/RouteWithLayout";
 import MainLayout from "./layouts/MainLayout";
 

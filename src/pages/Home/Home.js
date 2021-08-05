@@ -1,6 +1,14 @@
 import React from "react";
-import {Box, Card, CardContent, Container, Divider, Grid, Paper,} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import {
+  Box,
+  Card,
+  CardContent,
+  Container,
+  Divider,
+  Grid,
+  Paper,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Page from "../../components/Page";

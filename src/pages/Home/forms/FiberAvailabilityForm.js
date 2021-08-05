@@ -1,11 +1,11 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import * as Yup from "yup";
-import {Form as FormikForm, Formik} from "formik";
-import {Box, Button, Card, CardContent, Typography} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
-import {Autocomplete} from "@material-ui/lab";
-import {useHistory} from "react-router-dom";
+import { Form as FormikForm, Formik } from "formik";
+import { Box, Button, Card, CardContent, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Autocomplete } from "@material-ui/lab";
+import { useHistory } from "react-router-dom";
 import TicketStatusCheckForm from "./TicketStatusCheckForm";
 import Alert from "../../../components/Alert";
 import Dialog from "../../../components/Dialog";
@@ -13,7 +13,7 @@ import StatusIcon from "../../../components/StatusIcon";
 import GetRegionsQuery from "../../../api/Queries/Locations/GetRegionsQuery";
 import GetZonesQuery from "../../../api/Queries/Locations/GetZones";
 import GetEstatesQuery from "../../../api/Queries/Locations/GetEstates";
-import {configs} from "../../../Configs";
+import { configs } from "../../../Configs";
 
 const LeadRegistrationSchema = Yup.object().shape({
   regionId: Yup.string().required("Please select an area"),

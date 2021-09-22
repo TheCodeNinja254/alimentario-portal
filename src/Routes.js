@@ -13,8 +13,15 @@ const ProgressCheckView = lazy(() =>
   import(/* webpackChunkName: "ProgressCheck" */ "./pages/Home/ProgressCheck")
 );
 const NotFoundView = lazy(() =>
-  import(/* webpackChunkName: "notFound" */ "./pages/NotFound")
+  import(/* webpackChunkName: "NotFound" */ "./pages/NotFound")
 );
+const SecureNetView = lazy(() =>
+  import(/* webpackChunkName: "SecureNet" */ "./pages/SecureNet")
+);
+const HomeInsuranceView = lazy(() =>
+  import(/* webpackChunkName: "SecureNet" */ "./pages/HomeInsurance")
+);
+
 const AppRoutes = () => {
   return (
     <Switch>
@@ -35,6 +42,18 @@ const AppRoutes = () => {
         layout={MainLayout}
         exact
         path="/confirmation"
+      />
+      <RouteWithLayout
+        component={SecureNetView}
+        layout={MainLayout}
+        exact
+        path="/secure-net"
+      />
+      <RouteWithLayout
+        component={HomeInsuranceView}
+        layout={MainLayout}
+        exact
+        path="/home-insurance"
       />
       <RouteWithLayout component={NotFoundView} layout={MainLayout} />
     </Switch>

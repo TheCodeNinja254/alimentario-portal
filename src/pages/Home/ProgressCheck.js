@@ -15,8 +15,8 @@ import moment from "moment";
 import Typography from "@material-ui/core/Typography";
 import StopIcon from "@material-ui/icons/Stop";
 import Page from "../../components/Page";
-import GoogleMapsContainer from "./components/GoogleMap";
-import ProductView from "./components/ProductView";
+import GoogleMapsContainer from "./components/ProductsView/GoogleMap";
+import ProductView from "./components/ProductsView/ProductView";
 import StatusCheckImage from "../../assets/images/StatusCheckImage.png";
 import CheckIcon from "../../components/CheckIcon";
 

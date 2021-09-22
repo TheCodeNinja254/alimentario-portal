@@ -6,9 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
+  root: {},
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -26,14 +24,18 @@ const useStyles = makeStyles((theme) => ({
   },
   topMenuItem: {
     marginRight: theme.spacing(1),
+    marginTop: theme.spacing(0),
     "&:hover": {
       backgroundColor: theme.palette.common.black,
       height: "45px",
+      marginTop: theme.spacing(0),
+      paddingTop: theme.spacing(0),
     },
     padding: theme.spacing(1),
   },
   denseTopBar: {
     height: "35px",
+    marginTop: theme.spacing(-1),
   },
 }));
 

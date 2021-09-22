@@ -16,8 +16,8 @@ import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Page from "../../components/Page";
 import RegisterCustomerForm from "./forms/RegisterCustomerForm";
-import GoogleMapsContainer from "./components/GoogleMap";
-import ProductView from "./components/ProductView";
+import GoogleMapsContainer from "./components/ProductsView/GoogleMap";
+import ProductView from "./components/ProductsView/ProductView";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,7 +98,7 @@ const RegistrationPage = (props) => {
   const placeholderOnEstateInput = "null_selection";
   if (selectedEstate === placeholderOnEstateInput) {
     estateName = inputEstate;
-    estateId = 0;
+    estateId = "0";
   }
 
   return (
@@ -126,7 +126,7 @@ const RegistrationPage = (props) => {
                     </Typography>
                   </Paper>
                   <Card elevation={2} className={classes.onMapInnerCard}>
-                    {estateId !== 0 ? (
+                    {estateId !== "0" ? (
                       <CardContent>
                         <Typography
                           gutterBottom
@@ -191,7 +191,7 @@ const RegistrationPage = (props) => {
                               color="default"
                               fullWidth
                             >
-                              Fixed LTE for HOME
+                              Fixed LTE for Business
                             </Button>
                           </Link>
                         </CardActions>

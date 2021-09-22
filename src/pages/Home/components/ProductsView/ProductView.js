@@ -73,9 +73,6 @@ const ProductView = () => {
 
   return (
     <>
-      <Typography variant="h1" className={classes.pageHeading}>
-        Fiber Packages
-      </Typography>
       <Box
         display="flex"
         justifyContent="center"
@@ -85,6 +82,11 @@ const ProductView = () => {
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"
+          TabIndicatorProps={{
+            style: {
+              display: "none",
+            },
+          }}
         >
           <Tab
             label={

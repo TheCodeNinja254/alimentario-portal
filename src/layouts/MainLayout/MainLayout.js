@@ -5,10 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import { loadingStatus } from "../../Apollo/ReactiveVariables";
-import { Menubar, Topbar } from "./MenuNavigation";
+import { Menubar, Topbar, SecondaryNavigation } from "./MenuNavigation";
 import Footer from "./Footer/Footer";
-import InformationTab from "./InformationTab/InformationTab";
-import IntroductionScreen from "./IntroductionScreen/IntroductionScreen";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,13 +44,12 @@ const MainLayout = ({ children }) => {
       </Backdrop>
       <Topbar />
       <Menubar />
-      <IntroductionScreen />
+      <SecondaryNavigation />
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>{children}</div>
         </div>
       </div>
-      <InformationTab />
       <Footer />
     </div>
   );

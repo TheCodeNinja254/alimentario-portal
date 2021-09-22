@@ -28,7 +28,14 @@ const useStyles = makeStyles((theme) => ({
   lowerMenuItem: {
     marginRight: theme.spacing(6),
     fontSize: 15,
-    fontWeight: 500,
+    fontWeight: 700,
+  },
+  lowerMenuItemActive: {
+    marginRight: theme.spacing(6),
+    fontSize: 15,
+    fontWeight: 700,
+    color: theme.palette.primary.main,
+    textDecoration: "underline",
   },
   denseTopBar: {
     height: "35px",
@@ -118,7 +125,7 @@ const SearchAppBar = () => {
             <Link
               href="/some"
               component="button"
-              className={classes.lowerMenuItem}
+              className={classes.lowerMenuItemActive}
               color="inherit"
             >
               Fixed Internet

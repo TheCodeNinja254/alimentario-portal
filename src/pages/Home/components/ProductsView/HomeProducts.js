@@ -67,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
   bronzeProductColorHeader: {
     background:
       "linear-gradient(0deg, #8B5A44 0%, rgba(156, 116, 97, 0) 202.04%)",
-    paddingTop: theme.spacing(0),
-    marginTop: theme.spacing(0),
+    paddingTop: theme.spacing(-2),
+    marginTop: theme.spacing(-1),
     height: "66px",
     borderRadius: "0 0 5 5",
     marginLeft: theme.spacing(4),
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     background:
       "linear-gradient(0deg, #515151 0%, rgba(255, 255, 255, 0) 181.63%)",
     paddingTop: theme.spacing(0),
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(-1),
     height: "66px",
     borderRadius: "0 0 5 5",
     marginLeft: theme.spacing(4),
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     background:
       "linear-gradient(0deg, #E5BF4F 57.88%, rgba(255, 255, 255, 0) 246.94%)",
     paddingTop: theme.spacing(0),
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(-1),
     height: "66px",
     borderRadius: "0 0 5 5",
     marginLeft: theme.spacing(4),
@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     background:
       "linear-gradient(0deg, #C2576C 0%, rgba(255, 255, 255, 0) 403.06%)",
     paddingTop: theme.spacing(0),
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(-1),
     height: "66px",
     borderRadius: "0 0 5 5",
     marginLeft: theme.spacing(4),
@@ -281,7 +281,7 @@ const HomeProductsView = () => {
                   ))}
                 </List>
               </div>
-              <Typography className={classes.amountText}>Ksh 2,900</Typography>
+              <Typography className={classes.amountText}>Ksh 2,999</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
@@ -331,7 +331,7 @@ const HomeProductsView = () => {
                   ))}
                 </List>
               </div>
-              <Typography className={classes.amountText}>Ksh 3,999</Typography>
+              <Typography className={classes.amountText}>Ksh 4,100</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
@@ -379,7 +379,7 @@ const HomeProductsView = () => {
                   ))}
                 </List>
               </div>
-              <Typography className={classes.amountText}>Ksh 5,999</Typography>
+              <Typography className={classes.amountText}>Ksh 6,299</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
@@ -429,7 +429,7 @@ const HomeProductsView = () => {
                   ))}
                 </List>
               </div>
-              <Typography className={classes.amountText}>Ksh 11,999</Typography>
+              <Typography className={classes.amountText}>Ksh 12,499</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>

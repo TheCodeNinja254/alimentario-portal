@@ -6,7 +6,6 @@ import { Box, Button, Card, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Autocomplete } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
-import TicketStatusCheckForm from "./TicketStatusCheckForm";
 import Alert from "../../../components/Alert";
 import Dialog from "../../../components/Dialog";
 import StatusIcon from "../../../components/StatusIcon";
@@ -32,12 +31,7 @@ const buttonDisabledStatus = (areaName, streetName) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: theme.spacing(5),
-    paddingTop: theme.spacing(2),
-    height: "100%",
-    backgroundColor: theme.palette.white.main,
-  },
+  root: {},
   wrapper: {
     padding: theme.spacing(2),
   },
@@ -113,7 +107,6 @@ const FiberAvailabilityForm = () => {
   return (
     <Card elevation={0} className={classes.root}>
       <CardContent>
-        <TicketStatusCheckForm />
         <Typography variant="h3" className={classes.formHeader}>
           Find out if your area is fibre ready
         </Typography>

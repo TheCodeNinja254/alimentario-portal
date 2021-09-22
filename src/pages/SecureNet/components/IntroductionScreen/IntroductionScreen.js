@@ -6,18 +6,15 @@ import {
   CardContent,
   Container,
   Grid,
-  Link,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import IntroImage from "../../../assets/images/Intro.png";
+import IntroImage from "../../../../assets/images/Intro.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(0.5),
     paddingBottom: theme.spacing(3),
-    height: "100%",
-    flexGrow: 1,
   },
   cardImage: {
     height: "400px",
@@ -28,8 +25,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
   },
   textInitial: {
-    fontSize: 36,
-    fontWeight: 500,
+    fontSize: 44,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    letterSpacing: 1.76,
+    textAlign: "left",
   },
   textTrailing: {
     fontSize: 36,
@@ -39,24 +39,26 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
   },
   sloganText: {
-    fontSize: 26,
-    fontWeight: 500,
-    marginTop: theme.spacing(4),
+    fontSize: 22,
+    fontWeight: "300",
+    fontStyle: "normal",
+    letterSpacing: 0,
+    textAlign: "left",
+    marginTop: theme.spacing(3),
+  },
+  sloganBold: {
+    fontSize: 22,
+    fontWeight: "700",
+    fontStyle: "normal",
+    letterSpacing: 0,
+    textAlign: "left",
   },
   exploreHomeButton: {
     marginRight: theme.spacing(2),
   },
-  explorePackages: {
-    backgroundColor: "#DBDBDB",
-  },
   actionButtons: {
     marginTop: theme.spacing(7),
     marginBottom: theme.spacing(2),
-  },
-  anchorLink: {
-    marginTop: theme.spacing(2),
-    paddingTop: theme.spacing(2),
-    textDecoration: "underline",
   },
 }));
 const IntroductionScreen = () => {
@@ -67,14 +69,22 @@ const IntroductionScreen = () => {
         <CardContent>
           <Container>
             <Grid container spacing={3} className={classes.introContainer}>
+              <Grid item lg={6} xl={6}>
+                <img
+                  src={IntroImage}
+                  alt="info icon"
+                  className={classes.cardImage}
+                />
+              </Grid>
               <Grid item lg={6} xl={6} sm={12} xs={12}>
                 <div className={classes.IntroText}>
-                  <span className={classes.textInitial}>Fast, Reliable & </span>
-                  <span className={classes.textTrailing}>
-                    Unlimited Internet Access
+                  <span className={classes.textInitial}>
+                    Safaricom Secure Net
                   </span>
                   <Typography className={classes.sloganText}>
-                    Unforgettable moments with <br /> family and friends
+                    Keep your loved ones safe and secure online. Sign up and
+                    enjoy a <span className={classes.sloganBold}>FREE</span>{" "}
+                    trial for one month.
                   </Typography>
                 </div>
                 <div className={classes.actionButtons}>
@@ -83,30 +93,9 @@ const IntroductionScreen = () => {
                     color="primary"
                     className={classes.exploreHomeButton}
                   >
-                    Get Connected
+                    What you Get
                   </Button>
-                  <Button
-                    variant="contained"
-                    className={classes.explorePackages}
-                  >
-                    Explore Packages
-                  </Button>
-                  <br />
                 </div>
-                <Link
-                  href="#link"
-                  variant="body2"
-                  className={classes.anchorLink}
-                >
-                  Already made a request, Check Status
-                </Link>
-              </Grid>
-              <Grid item lg={6} xl={6}>
-                <img
-                  src={IntroImage}
-                  alt="info icon"
-                  className={classes.cardImage}
-                />
               </Grid>
             </Grid>
           </Container>

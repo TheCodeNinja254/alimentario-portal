@@ -23,7 +23,6 @@ import * as Yup from "yup";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { CREATE_CUSTOMER } from "../../../api/Mutations/Customers";
-import { encrypt } from "../../../utils/encryptDecrypt";
 import ErrorHandler from "../../../utils/errorHandler";
 import Dialog from "../../../components/Dialog";
 import StatusIcon from "../../../components/StatusIcon";
@@ -80,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
     margin: theme.spacing(0.5),
-    // backgroundColor: "#E5E5E5",
     borderRadius: "8px",
     height: "39px",
     width: "133px",
@@ -170,7 +168,7 @@ const RegisterCustomerForm = (props) => {
                       ? values.fullName.split(" ")[1]
                       : values.fullName.split(" ")[2],
                   lastName: values.fullName.split(" ")[2] || "",
-                  sponsorMsisdn: encrypt(values.sponsorMsisdn),
+                  sponsorMsisdn: values.sponsorMsisdn,
                   sponsorAlternativeMsisdn: "",
                   emailAddress: values.emailAddress,
                   productId: Number(values.productId),

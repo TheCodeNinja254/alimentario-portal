@@ -199,7 +199,7 @@ const TicketStatusCheckForm = () => {
                         disabled={buttonDisabledStatus(errors, values, loading)}
                         variant="contained"
                       >
-                        Check Status
+                        {loading ? "Please wait" : "Check status"}
                       </Button>
                     </InputAdornment>
                   }

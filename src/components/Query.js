@@ -5,20 +5,6 @@ import Loader from "./Loader";
 import MySnackbarContentWrapper from "./MySnackbarContentWrapper";
 import ErrorHandler from "../utils/errorHandler";
 
-// const getErrorCode = (error) => {
-//   if (error) {
-//     const { graphQLErrors } = error;
-//     if (Array.isArray(graphQLErrors) && graphQLErrors.length > 0) {
-//       const { extensions = {} } = graphQLErrors[0];
-//       const { code } = extensions;
-//
-//       return code;
-//     }
-//   }
-//
-//   return undefined;
-// };
-
 const printErrorMessage = (error) => {
   let message =
     error.message ||

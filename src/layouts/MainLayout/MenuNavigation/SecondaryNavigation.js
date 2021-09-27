@@ -1,9 +1,13 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import { Container, Grid, Tab, Tabs } from "@material-ui/core";
-import PhoneIcon from "@material-ui/icons/Phone";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
 import { makeStyles } from "@material-ui/core/styles";
+import HomeIcon from "../../../assets/images/Icons/NavIcons/HomeIcon.png";
+import SecureNetIcon from "../../../assets/images/Icons/NavIcons/SecureNet.png";
+import WirelessRouterIcon from "../../../assets/images/Icons/NavIcons/WirelessRouter.png";
+import Entertainment from "../../../assets/images/Icons/NavIcons/Entertainment.png";
+import HomeCCTV from "../../../assets/images/Icons/NavIcons/HomeCCTV.png";
+import HomeInsurance from "../../../assets/images/Icons/NavIcons/HomeInsurance.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "500",
     fontStyle: "normal",
     letterSpacing: 0,
+    "&:hover": {
+      color: theme.palette.black,
+    },
   },
   TabItems: {
     color: theme.palette.white.main,
@@ -30,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
 const SecondaryNavigation = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const history = useHistory();
+
+  const handleRouteChange = (path) => {
+    history.push(path);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -53,34 +65,40 @@ const SecondaryNavigation = () => {
               }}
             >
               <Tab
-                icon={<PhoneIcon />}
+                icon={<img src={HomeIcon} alt="Home Icon" />}
                 className={classes.Tab}
                 label="HOME FIBER"
+                onClick={() => handleRouteChange("/")}
               />
               <Tab
-                icon={<FavoriteIcon />}
+                icon={<img src={SecureNetIcon} alt="Secure Net Icon" />}
                 className={classes.Tab}
                 label="SECURE NET"
+                onClick={() => handleRouteChange("/secure-net")}
               />
               <Tab
-                icon={<PersonPinIcon />}
+                icon={<img src={WirelessRouterIcon} alt="Wireless Icon" />}
                 className={classes.Tab}
                 label="4G WIFI ROUTER"
+                onClick={() => handleRouteChange("/4g-wifi-router")}
               />
               <Tab
-                icon={<PersonPinIcon />}
+                icon={<img src={Entertainment} alt="Wireless Icon" />}
                 className={classes.Tab}
                 label="ENTERTAINMENT"
+                onClick={() => handleRouteChange("/entertainment")}
               />
               <Tab
-                icon={<PersonPinIcon />}
+                icon={<img src={HomeCCTV} alt="Wireless Icon" />}
                 className={classes.Tab}
                 label="HOME CCTV"
+                onClick={() => handleRouteChange("/home-cctv")}
               />
               <Tab
-                icon={<PersonPinIcon />}
+                icon={<img src={HomeInsurance} alt="Wireless Icon" />}
                 className={classes.Tab}
                 label="INSURANCE"
+                onClick={() => handleRouteChange("/home-insurance")}
               />
             </Tabs>
           </Grid>

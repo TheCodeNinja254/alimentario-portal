@@ -37,7 +37,7 @@ const PaymentTab = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="secure-net-payment">
       <Card elevation={0}>
         <CardContent>
           <Container className={classes.contentWrapper}>

@@ -10,6 +10,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { HashLink } from "react-router-hash-link";
 import IntroImage from "../../../../assets/images/HomeInsuranceImg.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -97,15 +99,17 @@ const IntroductionScreen = () => {
                   </Typography>
                 </div>
                 <div className={classes.actionButtons}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.exploreHomeButton}
-                  >
-                    See Plans
-                  </Button>
+                  <HashLink to="#home-insurance-packages">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.exploreHomeButton}
+                    >
+                      See Plans <ArrowForwardIcon />
+                    </Button>
+                  </HashLink>
                   <span className={classes.sloganText}>or </span>
-                  <Link href="#link" className={classes.anchorLink}>
+                  <Link to="#link" className={classes.anchorLink}>
                     {" "}
                     Read FAQs
                   </Link>

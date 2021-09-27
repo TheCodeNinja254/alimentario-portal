@@ -1,30 +1,33 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import * as Yup from "yup";
-import { Form as FormikForm, Formik } from "formik";
-import { Box, Button, Card, CardContent, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Collapse,
+  Container,
+  FormControl,
+  Grid,
+  List,
+  ListItemText,
+  MenuItem,
+  Select,
+  Typography,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Autocomplete } from "@material-ui/lab";
-import { useHistory } from "react-router-dom";
+import moment from "moment";
+import StopIcon from "@material-ui/icons/Stop";
 import Alert from "../../../components/Alert";
-import Dialog from "../../../components/Dialog";
-import StatusIcon from "../../../components/StatusIcon";
 import GetRegionsQuery from "../../../api/Queries/Locations/GetRegionsQuery";
-import GetZonesQuery from "../../../api/Queries/Locations/GetZones";
 import GetEstatesQuery from "../../../api/Queries/Locations/GetEstates";
-import { configs } from "../../../Configs";
+import RegisterCustomerForm from "./RegisterCustomerForm";
 
-const LeadRegistrationSchema = Yup.object().shape({
-  regionId: Yup.string().required("Please select an area"),
-  streetName: Yup.string()
-    .max(32, "Please enter a valid address")
-    .min(3, "Please enter a valid address")
-    .required("Please enter a street/road name"),
-});
-
-const buttonDisabledStatus = (areaName, streetName) => {
+const buttonDisabledStatus = (streetName) => {
   let buttonStatus = false;
-  if (areaName === "" || streetName === "") {
+  if (streetName === "") {
     buttonStatus = true;
   }
   return buttonStatus;
@@ -42,151 +45,117 @@ const useStyles = makeStyles((theme) => ({
   },
   textFieldWithLable: {
     marginTop: theme.spacing(0),
-    marginBottom: theme.spacing(3),
     backgroundColor: theme.palette.white.main,
+  },
+  regionsTextarea: {
+    marginTop: theme.spacing(4),
+  },
+  regionsTextareaLabel: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(-4),
   },
   getConnectedButton: {
     marginTop: theme.spacing(3),
-    height: "56px",
   },
   dialogContent: {
     textAlign: "center",
+  },
+  confirmationCardTitle: {
+    fontSize: 36,
+    fontWeight: 700,
+  },
+  confirmationCard: {
+    marginTop: theme.spacing(6),
+    padding: theme.spacing(2),
+  },
+  cardSubtitle: {
+    fontSize: 18,
+    fontWeight: 200,
+  },
+  cardAction: {
+    padding: theme.spacing(3),
+    justifyContent: "center",
   },
 }));
 
 const FiberAvailabilityForm = () => {
   const classes = useStyles();
-  const history = useHistory();
 
-  const [addUserDetails, setAddUserDetails] = React.useState({
-    open: false,
-    status: false,
-    message: "",
+  const [regionId, setRegionId] = React.useState(3);
+  const [formOneCollapsed, setFormOneCollapsed] = React.useState(true);
+  const [formTwoCollapsed, setFormTwoCollapsed] = React.useState(false);
+  const [successfulRegistration, setSuccessfulRegistration] =
+    React.useState(false);
+
+  const [leadDetails, setLeadDetails] = React.useState({
+    preferredDate: "",
+    preferredTimePeriod: "",
+    crqNumber: "",
   });
-  const defaultRegionId = {
-    value: configs.defaultRegion,
-    retrieveBy: "region",
-  };
-  const [{ value, retrieveBy }, setValue] = React.useState(defaultRegionId);
 
-  const defaultZoneId = {
-    zoneValue: configs.defaultZone,
-    retrieveByZone: "zone",
-  };
-  const [{ zoneValue, retrieveByZone }, setZoneValue] =
-    React.useState(defaultZoneId);
+  const { preferredDate, preferredTimePeriod, crqNumber } = leadDetails;
 
-  const redirectToRegistration = (
-    areaName,
-    selectedEstate,
-    streetName,
-    inputEstate
-  ) => {
-    history.push({
-      pathname: "/register",
-      state: {
-        areaName,
-        selectedEstate,
-        streetName,
-        inputEstate,
-      },
-    });
+  const redirectToRegistration = () => {
+    setFormOneCollapsed(false);
+    setFormTwoCollapsed(true);
   };
 
   // State Data
   const [inputEstate, setInputEstate] = React.useState("");
-  const [areaName, setAreaName] = React.useState("");
+  const [closeLandmark, setCloseLandmark] = React.useState("");
   const [selectedEstate, setSelectedEstate] = React.useState("");
   const [streetName, setStreetName] = React.useState("");
 
-  const { open, status, message } = addUserDetails;
-  const closeDialog = () => {
-    setAddUserDetails({ open: false, status: false, message: "" });
-  };
+  let estateName = selectedEstate;
+  let estateId;
+  const passedEstateName = selectedEstate.split("-");
+  // eslint-disable-next-line prefer-destructuring
+  estateId = passedEstateName[0];
+  const placeholderOnEstateInput = "null_selection";
+  if (selectedEstate === placeholderOnEstateInput) {
+    estateName = inputEstate;
+    estateId = "0";
+  }
 
   return (
     <Card elevation={0} className={classes.root}>
       <CardContent>
-        <Typography variant="h3" className={classes.formHeader}>
-          Find out if your area is fibre ready
-        </Typography>
         <Box className={classes.wrapper}>
-          <Formik
-            initialValues={{
-              regionId: "3",
-              areaName: "",
-              estateName: "",
-              streetName: "",
-            }}
-            validationSchema={LeadRegistrationSchema}
-            onSubmit={() =>
-              redirectToRegistration(
-                areaName,
-                selectedEstate,
-                streetName,
-                inputEstate
-              )
-            }
-          >
-            {({ setFieldValue, values }) => (
-              <FormikForm>
-                <Dialog
-                  open={open}
-                  modalContent={
-                    <Box className={classes.dialogContent}>
-                      <StatusIcon status={status ? "success" : "error"} />
-                      <Typography variant="body1"> {message}</Typography>
-                    </Box>
-                  }
-                  modalActions={
-                    <Button
-                      variant="contained"
-                      onClick={() => closeDialog()}
-                      color="primary"
-                      autoFocus
-                    >
-                      Close
-                    </Button>
-                  }
-                  handleClose={closeDialog}
-                />
-                <Typography variant="subtitle2" gutterBottom>
-                  Select General area/Province
-                </Typography>
+          <Collapse in={formOneCollapsed}>
+            <Typography variant="h3" className={classes.formHeader}>
+              Find out if your area is fibre ready
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              gutterBottom
+              className={classes.regionsTextareaLabel}
+            >
+              Select Region
+            </Typography>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <GetRegionsQuery>
                   {({ getRegions }) => (
                     <>
                       {getRegions.getRegionsStatus ? (
-                        <TextField
-                          fullWidth
-                          className={classes.textFieldWithLable}
-                          placeholder="E.g Nairobi"
-                          name="regionId"
-                          // helperText={errors.regionId || null}
-                          onChange={(e) => {
-                            setFieldValue("regionId", e.target.value, true);
-                            setValue({
-                              value: e.target.value,
-                              retrieveBy: "region",
-                            });
-                          }}
-                          select
-                          // eslint-disable-next-line react/jsx-sort-props
-                          SelectProps={{ native: true }}
-                          value={values.regionId}
-                          variant="outlined"
-                        >
-                          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                          <option value="" />
-                          {getRegions.regions.map((regions) => (
-                            <option
-                              key={regions.regionId}
-                              value={regions.regionId}
-                            >
-                              {regions.regionName}
-                            </option>
-                          ))}
-                        </TextField>
+                        <FormControl variant="standard" fullWidth>
+                          <Select
+                            labelId="demo-simple-select-standard-label-products"
+                            className={classes.regionsTextarea}
+                            id="demo-simple-select-standard-products"
+                            fullWidth
+                            onChange={(e) => {
+                              setRegionId(e.target.value);
+                            }}
+                          >
+                            {getRegions.regions.map((regions) => (
+                              <MenuItem value={regions.regionId}>
+                                {" "}
+                                {regions.regionName}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
                       ) : (
                         <Alert severity="warning">
                           An error was encountered trying to load the list of
@@ -196,54 +165,14 @@ const FiberAvailabilityForm = () => {
                     </>
                   )}
                 </GetRegionsQuery>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <Typography variant="subtitle2" gutterBottom>
-                  Select Area
-                </Typography>
-                <GetZonesQuery variables={{ regionId: value, retrieveBy }}>
-                  {({ getZones }) => (
-                    <>
-                      {getZones.getZonesStatus ? (
-                        <TextField
-                          fullWidth
-                          name="areaName"
-                          className={classes.textFieldWithLable}
-                          // helperText={errors.areaName || null}
-                          onChange={(e) => {
-                            setZoneValue({
-                              zoneValue: Number(e.target.value),
-                              retrieveByZone: "zone",
-                            });
-                            setAreaName(e.target.value);
-                          }}
-                          select
-                          // eslint-disable-next-line react/jsx-sort-props
-                          SelectProps={{ native: true }}
-                          // value={values.areaName}
-                          variant="outlined"
-                        >
-                          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                          <option value="" />
-                          {getZones.zones.map((zones) => (
-                            <option key={zones.id} value={zones.id}>
-                              {zones.zoneName}
-                            </option>
-                          ))}
-                        </TextField>
-                      ) : (
-                        <Alert severity="warning">
-                          The selected region does not have zones mapped to it.
-                        </Alert>
-                      )}
-                    </>
-                  )}
-                </GetZonesQuery>
-                <Typography variant="subtitle2" gutterBottom>
-                  Estate/Building Name
+                  Enter Estate Name/Road
                 </Typography>
                 <GetEstatesQuery
                   variables={{
-                    zoneId: zoneValue,
-                    retrieveByZone,
+                    regionId: Number(regionId),
                     pageSize: 10000,
                     pageNo: 1,
                   }}
@@ -267,64 +196,148 @@ const FiberAvailabilityForm = () => {
                             (estate) => estate.estateName
                           )}
                           openOnFocus
-                          // error={!!errors.estateName}
-                          // noOptionsText="No router serial number to match your search"
                           renderInput={(params) => (
                             <TextField
                               {...params}
                               required
-                              // error={!!errors.estateName}
+                              className={classes.textFieldWithLable}
                               name="estateName"
-                              // helperText={errors.estateName || null}
-                              variant="outlined"
-                              // value={values.estateName}
+                              variant="standard"
                             />
                           )}
                         />
                       ) : (
                         <Alert severity="warning">
-                          The selected area does not have any covered estates.
+                          The selected region/town does not have any covered
+                          estates.
                         </Alert>
                       )}
                     </>
                   )}
                 </GetEstatesQuery>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                <Typography variant="subtitle2" gutterBottom>
+                  Enter Closest Landmark
+                </Typography>
+                <TextField
+                  fullWidth
+                  placeholder="Enter closest landmark"
+                  name="closeLandmark"
+                  onChange={(e) => {
+                    setCloseLandmark(e.target.value);
+                  }}
+                  variant="standard"
+                  className={classes.textFieldWithLable}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <Typography variant="subtitle2" gutterBottom>
                   Enter Address
                 </Typography>
                 <TextField
                   fullWidth
                   placeholder="Town/Street"
-                  margin="normal"
                   name="streetName"
-                  // error={!!errors.streetName}
                   onChange={(e) => {
                     setStreetName(e.target.value);
                   }}
-                  variant="outlined"
+                  variant="standard"
                   className={classes.textFieldWithLable}
                 />
-                <Button
-                  fullWidth
-                  variant="contained"
-                  disabled={buttonDisabledStatus(areaName, streetName)}
-                  color="primary"
-                  // type="submit"
-                  onClick={() =>
-                    redirectToRegistration(
-                      areaName,
-                      selectedEstate,
-                      streetName,
-                      inputEstate
-                    )
-                  }
-                  className={classes.getConnectedButton}
-                >
-                  Get Connected
-                </Button>
-              </FormikForm>
-            )}
-          </Formik>
+              </Grid>
+            </Grid>
+            <Button
+              variant="contained"
+              size="small"
+              disabled={buttonDisabledStatus(streetName)}
+              color="primary"
+              onClick={() => redirectToRegistration()}
+              className={classes.getConnectedButton}
+            >
+              Get Connected
+            </Button>
+          </Collapse>
+          <Collapse in={formTwoCollapsed}>
+            <RegisterCustomerForm
+              estateId={estateId}
+              areaName={closeLandmark}
+              streetName={streetName}
+              inputEstate={inputEstate || estateName}
+              setSuccessfulRegistration={setSuccessfulRegistration}
+              setLeadDetails={setLeadDetails}
+            />
+          </Collapse>
+          <Collapse in={successfulRegistration}>
+            <Container maxWidth="lg">
+              <Grid container spacing={3}>
+                <Grid item lg={5} xl={5} sm={12} xs={12}>
+                  <Card elevation={0} className={classes.confirmationCard}>
+                    <CardContent>
+                      <Typography className={classes.confirmationCardTitle}>
+                        We have received your request for fibre connection
+                      </Typography>
+                      <br />
+                      <Typography className={classes.cardSubtitle}>
+                        We will call you on{" "}
+                        {moment(preferredDate).format("MMMM Do YYYY")} between{" "}
+                        {preferredTimePeriod} Your ticket number is {crqNumber}
+                      </Typography>
+                      <List dense className={classes.cardSubtitle}>
+                        <ListItemText
+                          primary={
+                            <Typography className={classes.cardSubtitle}>
+                              <StopIcon />
+                              Find your position in the queue
+                            </Typography>
+                          }
+                        />
+                        <ListItemText
+                          primary={
+                            <Typography className={classes.cardSubtitle}>
+                              <StopIcon />
+                              Get your questions answered and updates
+                            </Typography>
+                          }
+                        />
+                        <ListItemText
+                          primary={
+                            <Typography className={classes.cardSubtitle}>
+                              <StopIcon />
+                              Reach one of our representatives{" "}
+                            </Typography>
+                          }
+                        />
+                        <ListItemText
+                          primary={
+                            <Typography className={classes.cardSubtitle}>
+                              <StopIcon />
+                              Know the status of your request.{" "}
+                            </Typography>
+                          }
+                        />
+                      </List>
+                      <Typography className={classes.cardSubtitle}>
+                        by viewing your ticket {crqNumber}
+                      </Typography>
+                    </CardContent>
+                    <CardActions className={classes.cardAction}>
+                      <Button
+                        color="primary"
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                      >
+                        Done
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+                <Grid item lg={4} xl={4} />
+              </Grid>
+            </Container>
+          </Collapse>
         </Box>
       </CardContent>
     </Card>

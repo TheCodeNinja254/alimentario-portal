@@ -9,7 +9,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import IntroImage from "../../../../assets/images/Intro.png";
+import { HashLink } from "react-router-hash-link";
+import IntroImage from "../../../../assets/images/SecureNet.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,13 +89,15 @@ const IntroductionScreen = () => {
                   </Typography>
                 </div>
                 <div className={classes.actionButtons}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.exploreHomeButton}
-                  >
-                    What you Get
-                  </Button>
+                  <HashLink to="#secure-net-features">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.exploreHomeButton}
+                    >
+                      What you Get
+                    </Button>
+                  </HashLink>
                 </div>
               </Grid>
             </Grid>

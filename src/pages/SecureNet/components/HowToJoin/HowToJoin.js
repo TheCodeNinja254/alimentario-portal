@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { HashLink } from "react-router-hash-link";
 import stepOne from "../../../../assets/images/stepOne.svg";
 import stepTwo from "../../../../assets/images/stepTwo.svg";
 import stepThree from "../../../../assets/images/stepThree.svg";
@@ -87,7 +88,7 @@ const HowToJoin = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="join-secure-net">
       <Card elevation={0}>
         <CardContent>
           <Container className={classes.contentWrapper}>
@@ -234,13 +235,15 @@ const HowToJoin = () => {
               />
             </Grid>
             <div align="center">
-              <Button
-                small
-                variant="outlined"
-                className={classes.actionButtons}
-              >
-                Proceed <ArrowForwardIcon />
-              </Button>
+              <HashLink to="#secure-net-payment">
+                <Button
+                  small
+                  variant="outlined"
+                  className={classes.actionButtons}
+                >
+                  Proceed <ArrowForwardIcon />
+                </Button>
+              </HashLink>
             </div>
           </Container>
         </CardContent>

@@ -12,6 +12,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import { Link } from "react-router-dom";
 import Page from "../../components/Page";
 import ProductView from "./components/ProductsView/ProductView";
 import FiberAvailabilityForm from "./forms/FiberAvailabilityForm";
@@ -24,7 +25,6 @@ import IntroductionScreen from "./components/IntroductionScreen/IntroductionScre
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
   },
   checkCoverageArea: {
@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
     marginLeft: theme.spacing(2),
     borderColor: "#d2d2d2",
+  },
+  coverageImage: {
+    height: 950,
   },
   backgroundImage: {
     width: 650,
@@ -93,7 +96,8 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     textAlign: "left",
     color: theme.palette.black,
-    margin: theme.spacing(3),
+    margin: theme.spacing(2),
+    marginLeft: theme.spacing(1),
   },
   onMapInnerCard: {
     borderRadius: 23,
@@ -130,8 +134,11 @@ const Home = () => {
               className={classes.checkCoverageArea}
             >
               <Card className={classes.mapContainer}>
-                {/* <GoogleMapsContainer /> */}
-                <img src={coverBackgroundImage} alt="BackgroundImage" />
+                <img
+                  src={coverBackgroundImage}
+                  alt="BackgroundImage"
+                  className={classes.coverageImage}
+                />
                 <Card elevation={0} className={classes.mapOverlayCard}>
                   <Paper elevation={0} className={classes.onMapCardTop}>
                     <Typography>
@@ -156,9 +163,11 @@ const Home = () => {
                       >
                         Find out if your area is Fibre Ready
                       </Typography>
-                      <Button variant="contained" color="primary">
-                        Explore 4G for Home
-                      </Button>
+                      <Link to="4g-wifi-router">
+                        <Button variant="contained" color="primary">
+                          Explore 4G for Home
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 </Card>
@@ -171,11 +180,12 @@ const Home = () => {
               sm={12}
               xs={12}
               className={classes.checkCoverageArea}
+              id="checkStatus"
             >
               <Typography variant="h1" className={classes.pageSubHeading}>
                 Get connected to Safaricom Fibre
               </Typography>
-              <Card elevation={0} className={classes.root}>
+              <Card elevation={0}>
                 <CardContent>
                   <TicketStatusCheckForm />
                 </CardContent>
@@ -183,7 +193,7 @@ const Home = () => {
               <FiberAvailabilityForm />
             </Grid>
           </Grid>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} id="packages">
             <Grid item lg={12} xl={12} sm={12} xs={12}>
               <Typography variant="h1" className={classes.pageHeading}>
                 Fiber Packages

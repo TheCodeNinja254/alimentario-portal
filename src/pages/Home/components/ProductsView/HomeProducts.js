@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { HashLink } from "react-router-hash-link";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -287,9 +288,11 @@ const HomeProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <Button variant="contained" color="primary">
-                Get Connected
-              </Button>
+              <HashLink to="#checkStatus">
+                <Button variant="contained" color="primary">
+                  Get Connected
+                </Button>
+              </HashLink>
             </CardActions>
           </Card>
         </Grid>
@@ -337,9 +340,11 @@ const HomeProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <Button variant="contained" color="primary">
-                Get Connected
-              </Button>
+              <HashLink to="#checkStatus">
+                <Button variant="contained" color="primary">
+                  Get Connected
+                </Button>
+              </HashLink>
             </CardActions>
           </Card>
         </Grid>
@@ -385,9 +390,11 @@ const HomeProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <Button variant="contained" color="primary">
-                Get Connected
-              </Button>
+              <HashLink to="#checkStatus">
+                <Button variant="contained" color="primary">
+                  Get Connected
+                </Button>
+              </HashLink>
             </CardActions>
           </Card>
         </Grid>
@@ -435,9 +442,11 @@ const HomeProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <Button variant="contained" color="primary">
-                Get Connected
-              </Button>
+              <HashLink to="#checkStatus">
+                <Button variant="contained" color="primary">
+                  Get Connected
+                </Button>
+              </HashLink>
             </CardActions>
           </Card>
         </Grid>

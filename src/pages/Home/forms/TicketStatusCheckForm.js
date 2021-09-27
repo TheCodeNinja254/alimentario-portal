@@ -2,11 +2,9 @@ import React from "react";
 import {
   Box,
   Button,
-  Divider,
   FormControl,
-  Grid,
+  Input,
   InputAdornment,
-  OutlinedInput,
   Typography,
 } from "@material-ui/core";
 import { Form as FormikForm, Formik } from "formik";
@@ -21,9 +19,9 @@ import StatusIcon from "../../../components/StatusIcon";
 import { CHECK_TICKET_STATUS } from "../../../api/Mutations/Customers";
 
 const LeadStatusSchema = Yup.object().shape({
-  crqNumber: Yup.string()
-    .required("Enter the ticket number sent on SMS to see current status")
-    .min(13, "Please enter a valid name"),
+  uniqueIdentity: Yup.string()
+    .required("Use your mobile number to check your request's status")
+    .min(9, "Please enter a valid mobile number"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -41,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     marginBottom: theme.spacing(2),
     textDecoration: "bold",
+    fontSize: 18,
   },
   textFieldWithLable: {
     marginTop: theme.spacing(0),
-    marginBottom: theme.spacing(3),
     backgroundColor: theme.palette.white.main,
   },
   margin: {
@@ -52,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogContent: {
     textAlign: "center",
+  },
+  submitButton: {
+    marginBottom: theme.spacing(2),
   },
 }));
 
@@ -61,7 +62,7 @@ const TicketStatusCheckForm = () => {
 
   const buttonDisabledStatus = (errors, values, loading) => {
     let buttonStatus = true;
-    if (isEmpty(errors) && values.crqNumber !== "" && loading === false) {
+    if (isEmpty(errors) && values.uniqueIdentity !== "" && loading === false) {
       buttonStatus = false;
     }
     return buttonStatus;
@@ -88,14 +89,14 @@ const TicketStatusCheckForm = () => {
       </Typography>
       <Formik
         initialValues={{
-          crqNumber: "",
+          uniqueIdentity: "",
         }}
         validationSchema={LeadStatusSchema}
         onSubmit={(values) => {
           CheckLeadDetailsMutation({
             variables: {
               input: {
-                crqNumber: values.crqNumber,
+                uniqueIdentity: values.uniqueIdentity,
               },
             },
           })
@@ -108,7 +109,7 @@ const TicketStatusCheckForm = () => {
                     estateName,
                     preferredDate,
                     preferredTimePeriod,
-                    crqNumber,
+                    uniqueIdentity,
                     firstName,
                     lastName,
                   },
@@ -122,7 +123,7 @@ const TicketStatusCheckForm = () => {
                     estateName,
                     preferredDate,
                     preferredTimePeriod,
-                    crqNumber,
+                    uniqueIdentity,
                     firstName,
                     lastName,
                   },
@@ -172,27 +173,28 @@ const TicketStatusCheckForm = () => {
             />
             <Box className={classes.wrapper}>
               <Typography variant="subtitle2" gutterBottom>
-                Enter Ticket Number
+                Enter Mobile Number
               </Typography>
               <FormControl
-                className={classes.textFieldWithLable}
                 fullWidth
-                variant="outlined"
-                placeholder="CRQ0000012345"
-                name="crqNumber"
-                error={!!errors.crqNumber}
-                helperText={errors.crqNumber || null}
+                className={classes.margin}
+                variant="standard"
+                placeholder="0722 000 000"
+                name="uniqueIdentity"
+                error={!!errors.uniqueIdentity}
+                helperText={errors.uniqueIdentity || null}
                 onChange={(e) => {
-                  setFieldValue("crqNumber", e.target.value, true);
+                  setFieldValue("uniqueIdentity", e.target.value, true);
                 }}
-                value={values.crqNumber}
+                value={values.uniqueIdentity}
               >
-                <OutlinedInput
-                  id="outlined-adornment-password"
+                <Input
+                  id="input-with-icon-adornment"
                   endAdornment={
-                    <InputAdornment position="end">
+                    <InputAdornment position="start">
                       <Button
                         color="primary"
+                        className={classes.submitButton}
                         type="submit"
                         disabled={buttonDisabledStatus(errors, values, loading)}
                         variant="contained"
@@ -203,19 +205,6 @@ const TicketStatusCheckForm = () => {
                   }
                 />
               </FormControl>
-              <Grid container>
-                <Grid item lg={5} xl={5} sm={5} xs={5}>
-                  <Divider />
-                </Grid>
-                <Grid item lg={2} xl={2} sm={2} xs={2}>
-                  <Typography variant="subtitle2" gutterBottom>
-                    OR
-                  </Typography>
-                </Grid>
-                <Grid item lg={5} xl={5} sm={5} xs={5}>
-                  <Divider />
-                </Grid>
-              </Grid>
             </Box>
           </FormikForm>
         )}
@@ -224,4 +213,4 @@ const TicketStatusCheckForm = () => {
   );
 };
 
-export default React.memo(TicketStatusCheckForm);
+export default TicketStatusCheckForm;

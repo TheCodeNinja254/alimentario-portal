@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { HashLink } from "react-router-hash-link";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -84,7 +85,7 @@ const EnterpriseProductsView = () => {
   return (
     <>
       <Grid container spacing={10}>
-        <Grid item lg={4} md={4} xl={4} xs={12}>
+        <Grid item sm={12} lg={4} md={4} xl={4} xs={12}>
           <Card className={classes.productCard} elevation={0}>
             <CardContent>
               <Typography className={classes.productCardTitle}>
@@ -177,13 +178,15 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <Button variant="contained" color="primary">
-                Get Connected
-              </Button>
+              <HashLink to="#checkStatus">
+                <Button variant="contained" color="primary">
+                  Get Connected
+                </Button>
+              </HashLink>
             </CardActions>
           </Card>
         </Grid>
-        <Grid item lg={4} md={4} xl={4} xs={12}>
+        <Grid item sm={12} lg={4} md={4} xl={4} xs={12}>
           <Card className={classes.productCard} elevation={0}>
             <CardContent>
               <Typography className={classes.productCardTitle}>
@@ -276,13 +279,15 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <Button variant="contained" color="primary">
-                Get Connected
-              </Button>
+              <HashLink to="#checkStatus">
+                <Button variant="contained" color="primary">
+                  Get Connected
+                </Button>
+              </HashLink>
             </CardActions>
           </Card>
         </Grid>
-        <Grid item lg={4} md={4} xl={4} xs={12}>
+        <Grid item lg={4} md={4} xl={4} xs={12} sm={12}>
           <Card className={classes.productCard} elevation={0}>
             <CardContent>
               <Typography className={classes.productCardTitle}>
@@ -375,9 +380,11 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <Button variant="contained" color="primary">
-                Get Connected
-              </Button>
+              <HashLink to="#checkStatus">
+                <Button variant="contained" color="primary">
+                  Get Connected
+                </Button>
+              </HashLink>
             </CardActions>
           </Card>
         </Grid>

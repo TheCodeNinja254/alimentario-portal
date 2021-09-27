@@ -2,7 +2,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Container, Grid } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import parentalControlsImg from "../../../../assets/images/Icons/paraental-controlS 1.svg";
+import EntertainmentIcon from "../../../../assets/images/Icons/HomeFiberIcons/Entertainment.svg";
+import GamingIcon from "../../../../assets/images/Icons/HomeFiberIcons/Gaming.svg";
+import LearningIcon from "../../../../assets/images/Icons/HomeFiberIcons/Learning.svg";
+import SafetyIcon from "../../../../assets/images/Icons/HomeFiberIcons/Safety.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,7 +91,7 @@ const HomeFiberIntro = () => {
               >
                 <div align="center">
                   <img
-                    src={parentalControlsImg}
+                    src={EntertainmentIcon}
                     alt="info icon"
                     className={classes.infoIconImage}
                   />
@@ -120,7 +123,7 @@ const HomeFiberIntro = () => {
               >
                 <div align="center">
                   <img
-                    src={parentalControlsImg}
+                    src={GamingIcon}
                     alt="info icon"
                     className={classes.infoIconImage}
                   />
@@ -152,7 +155,7 @@ const HomeFiberIntro = () => {
               >
                 <div align="center">
                   <img
-                    src={parentalControlsImg}
+                    src={LearningIcon}
                     alt="info icon"
                     className={classes.infoIconImage}
                   />
@@ -183,7 +186,7 @@ const HomeFiberIntro = () => {
               >
                 <div align="center">
                   <img
-                    src={parentalControlsImg}
+                    src={SafetyIcon}
                     alt="info icon"
                     className={classes.infoIconImage}
                   />

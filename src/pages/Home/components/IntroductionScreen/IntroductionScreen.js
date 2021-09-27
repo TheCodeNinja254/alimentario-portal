@@ -6,18 +6,15 @@ import {
   CardContent,
   Container,
   Grid,
-  Link,
 } from "@material-ui/core";
+import { HashLink } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import IntroImage from "../../../../assets/images/Intro.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: theme.spacing(0.5),
-    paddingBottom: theme.spacing(3),
-    height: "100%",
-    flexGrow: 1,
+    marginTop: theme.spacing(0),
   },
   cardImage: {
     height: "400px",
@@ -25,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
   },
   introContainer: {
     paddingTop: theme.spacing(5),
-    marginBottom: theme.spacing(5),
   },
   textInitial: {
     fontSize: 36,
@@ -57,13 +53,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     paddingTop: theme.spacing(2),
     textDecoration: "underline",
+    color: theme.palette.primary.main,
   },
 }));
 const IntroductionScreen = () => {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
-      <Card elevation={0}>
+      <Card elevation={0} className={classes.root}>
         <CardContent>
           <Container>
             <Grid container spacing={3} className={classes.introContainer}>
@@ -78,28 +75,32 @@ const IntroductionScreen = () => {
                   </Typography>
                 </div>
                 <div className={classes.actionButtons}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.exploreHomeButton}
-                  >
-                    Get Connected
-                  </Button>
-                  <Button
-                    variant="contained"
-                    className={classes.explorePackages}
-                  >
-                    Explore Packages
-                  </Button>
+                  <HashLink to="#checkStatus">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.exploreHomeButton}
+                    >
+                      Get Connected
+                    </Button>
+                  </HashLink>
+                  <HashLink to="#packages">
+                    <Button
+                      variant="contained"
+                      className={classes.explorePackages}
+                    >
+                      Explore Packages
+                    </Button>
+                  </HashLink>
                   <br />
                 </div>
-                <Link
-                  href="#link"
+                <HashLink
+                  to="#checkStatus"
                   variant="body2"
                   className={classes.anchorLink}
                 >
                   Already made a request, Check Status
-                </Link>
+                </HashLink>
               </Grid>
               <Grid item lg={6} xl={6}>
                 <img

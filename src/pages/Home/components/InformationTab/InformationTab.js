@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Card, CardContent, Container, Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import DisplayImage from "../../../../assets/images/img_3.png";
@@ -123,9 +124,11 @@ const InformationTab = () => {
                         today at Safaricom shops Countrywide
                       </Typography>
                     </div>
-                    <Button size="small" className={classes.buttonAction}>
-                      Find out more <NavigateNextIcon />
-                    </Button>
+                    <Link to="/4g-wifi-router">
+                      <Button size="small" className={classes.buttonAction}>
+                        Find out more <NavigateNextIcon />
+                      </Button>
+                    </Link>
                   </Grid>
                 </Grid>
               </CardContent>
@@ -142,9 +145,11 @@ const InformationTab = () => {
                             Safaricom GigaBox, Enjoy Wifi & TV
                           </Typography>
                         </div>
-                        <Button size="small" className={classes.buttonAction}>
-                          Find out more <NavigateNextIcon />
-                        </Button>
+                        <Link to="/entertainment">
+                          <Button size="small" className={classes.buttonAction}>
+                            Find out more <NavigateNextIcon />
+                          </Button>
+                        </Link>
                       </Grid>
                       <Grid item lg={5} md={5} xl={5} xs={5} sm={5}>
                         <img
@@ -167,9 +172,11 @@ const InformationTab = () => {
                             Maintain safety in your home with CCTV
                           </Typography>
                         </div>
-                        <Button size="small" className={classes.buttonAction}>
-                          Find out more <NavigateNextIcon />
-                        </Button>
+                        <Link to="/home-cctv">
+                          <Button size="small" className={classes.buttonAction}>
+                            Find out more <NavigateNextIcon />
+                          </Button>
+                        </Link>
                       </Grid>
                       <Grid item lg={5} md={5} xl={5} xs={5} sm={5}>
                         <img
@@ -209,9 +216,11 @@ const InformationTab = () => {
                         protected and your peace of mind remains intact.
                       </Typography>
                     </div>
-                    <Button size="small" className={classes.buttonAction}>
-                      Find out more <NavigateNextIcon />
-                    </Button>
+                    <Link to="/home-insurance">
+                      <Button size="small" className={classes.buttonAction}>
+                        Find out more <NavigateNextIcon />
+                      </Button>
+                    </Link>
                   </Grid>
                 </Grid>
               </CardContent>

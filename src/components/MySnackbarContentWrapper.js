@@ -25,8 +25,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ffaa31",
   },
   snackbarContent: {
-    backgroundColor: "#ffffff",
-    padding: "3px 15px",
+    backgroundColor: theme.palette.white.main,
     flexWrap: "inherit",
   },
   icon: {

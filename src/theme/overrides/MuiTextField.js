@@ -1,14 +1,13 @@
-/*
- * Copyright (c) 2020.
- * Safaricom PLC
- * Systems, URLs, Databases and content in this document maybe proprietary to Safaricom PLC. Use or reproduction may require written permission from Safaricom PLC
- *
- * @Author: Fredrick Mbugua/FMMBUGUA
- */
-
 export default {
   outlined: {
-    borderRadius: "24px",
+    borderRadius: "32px",
     backgroundColor: "#FFFFFF",
+  },
+  standard: {
+    borderRadius: 0,
+    borderBottom: 1,
+    borderLeft: 0,
+    borderRight: 0,
+    borderTop: 0,
   },
 };

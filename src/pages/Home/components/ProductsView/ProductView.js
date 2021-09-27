@@ -92,7 +92,7 @@ const ProductView = () => {
             label={
               <Button
                 variant="contained"
-                color="primary"
+                color={value === 0 ? "primary" : "default"}
                 className={classes.exploreHomeButton}
               >
                 Explore Home
@@ -101,7 +101,14 @@ const ProductView = () => {
             {...a11yProps(0)}
           />
           <Tab
-            label={<Button variant="contained">Explore Business</Button>}
+            label={
+              <Button
+                variant="contained"
+                color={value === 1 ? "primary" : "default"}
+              >
+                Explore Business
+              </Button>
+            }
             {...a11yProps(1)}
           />
         </Tabs>

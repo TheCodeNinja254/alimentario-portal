@@ -12,7 +12,10 @@ import {
 } from "@material-ui/core";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import Typography from "@material-ui/core/Typography";
-import clipboard from "../../../../assets/images/clipboard.png";
+import Offers from "../../../../assets/images/Icons/BusinessFiberIcons/Offers.svg";
+import Network from "../../../../assets/images/Icons/BusinessFiberIcons/Network.svg";
+import Services from "../../../../assets/images/Icons/BusinessFiberIcons/Services.svg";
+import Support from "../../../../assets/images/Icons/BusinessFiberIcons/Support.svg";
 import maleImg from "../../../../assets/images/Male.png";
 import { RegisterCustomerMinimalForm } from "../../forms";
 
@@ -130,7 +133,7 @@ const EnterpriseFiberIntro = () => {
                     display="flex"
                   >
                     <img
-                      src={clipboard}
+                      src={Network}
                       alt="info icon"
                       className={classes.infoIconImage}
                     />
@@ -171,7 +174,7 @@ const EnterpriseFiberIntro = () => {
                     display="flex"
                   >
                     <img
-                      src={clipboard}
+                      src={Support}
                       alt="info icon"
                       className={classes.infoIconImage}
                     />
@@ -211,7 +214,7 @@ const EnterpriseFiberIntro = () => {
                     display="flex"
                   >
                     <img
-                      src={clipboard}
+                      src={Offers}
                       alt="info icon"
                       className={classes.infoIconImage}
                     />
@@ -251,7 +254,7 @@ const EnterpriseFiberIntro = () => {
                     display="flex"
                   >
                     <img
-                      src={clipboard}
+                      src={Services}
                       alt="info icon"
                       className={classes.infoIconImage}
                     />

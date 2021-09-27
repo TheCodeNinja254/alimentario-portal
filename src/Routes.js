@@ -21,6 +21,15 @@ const SecureNetView = lazy(() =>
 const HomeInsuranceView = lazy(() =>
   import(/* webpackChunkName: "SecureNet" */ "./pages/HomeInsurance")
 );
+const HomeCCTV = lazy(() =>
+  import(/* webpackChunkName: "SecureNet" */ "./pages/HomeCCTV")
+);
+const WirelessView = lazy(() =>
+  import(/* webpackChunkName: "WirelessView" */ "./pages/Wireless")
+);
+const EntertainmentView = lazy(() =>
+  import(/* webpackChunkName: "EntertainmentView" */ "./pages/Entertainment")
+);
 
 const AppRoutes = () => {
   return (
@@ -54,6 +63,24 @@ const AppRoutes = () => {
         layout={MainLayout}
         exact
         path="/home-insurance"
+      />
+      <RouteWithLayout
+        component={HomeCCTV}
+        layout={MainLayout}
+        exact
+        path="/home-cctv"
+      />
+      <RouteWithLayout
+        component={WirelessView}
+        layout={MainLayout}
+        exact
+        path="/4g-wifi-router"
+      />
+      <RouteWithLayout
+        component={EntertainmentView}
+        layout={MainLayout}
+        exact
+        path="/entertainment"
       />
       <RouteWithLayout component={NotFoundView} layout={MainLayout} />
     </Switch>

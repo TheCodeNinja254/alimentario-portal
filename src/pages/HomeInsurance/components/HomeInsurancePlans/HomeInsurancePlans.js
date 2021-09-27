@@ -119,7 +119,7 @@ const HomeInsurancePlans = () => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root}>
+    <Container className={classes.root} id="home-insurance-packages">
       <Typography variant="h2" className={classes.heading}>
         HOME Insurance Plans
       </Typography>
@@ -185,7 +185,7 @@ const HomeInsurancePlans = () => {
           <Card className={classes.productCard} elevation={0}>
             <Paper elevation={1} className={classes.silverProductColorHeader}>
               <Typography className={classes.productColorName}>
-                HERO PLUS
+                PRO GUARD
               </Typography>
             </Paper>
             <CardContent className={classes.cardContent}>
@@ -237,7 +237,7 @@ const HomeInsurancePlans = () => {
           <Card className={classes.productCard} elevation={0}>
             <Paper elevation={1} className={classes.goldProductColorHeader}>
               <Typography className={classes.productColorName}>
-                HERO PLUS
+                FORTIFIED GUARD
               </Typography>
             </Paper>
             <CardContent className={classes.cardContent}>
@@ -289,7 +289,11 @@ const HomeInsurancePlans = () => {
       <Typography variant="body1" className={classes.disclaimerText}>
         *All risk items are only covered up to 30% of the value of the Home
         insurance package.{" "}
-        <span className={classes.disclaimerTextLink}>Terms and conditions</span>{" "}
+        <a href="http://www.safaricom.co.ke/home/wp-content/themes/safaricomhome/src/Ts_Cs_Domestic_Insurance_Service_final_12_10_2020.pdf">
+          <span className={classes.disclaimerTextLink}>
+            Terms and conditions
+          </span>{" "}
+        </a>
         apply.
       </Typography>
       <div align="center">

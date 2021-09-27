@@ -17,7 +17,7 @@ import StopIcon from "@material-ui/icons/Stop";
 import Page from "../../components/Page";
 import GoogleMapsContainer from "./components/ProductsView/GoogleMap";
 import ProductView from "./components/ProductsView/ProductView";
-import StatusCheckImage from "../../assets/images/StatusCheckImage.png";
+import StatusCheckImage from "../../assets/images/LandingPageImg.png";
 import CheckIcon from "../../components/CheckIcon";
 
 const useStyles = makeStyles((theme) => ({

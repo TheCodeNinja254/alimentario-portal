@@ -181,8 +181,6 @@ const TicketStatusCheckForm = () => {
                 variant="standard"
                 placeholder="0722 000 000"
                 name="uniqueIdentity"
-                error={!!errors.uniqueIdentity}
-                helperText={errors.uniqueIdentity || null}
                 onChange={(e) => {
                   setFieldValue("uniqueIdentity", e.target.value, true);
                 }}
@@ -190,6 +188,7 @@ const TicketStatusCheckForm = () => {
               >
                 <Input
                   id="input-with-icon-adornment"
+                  error={!!errors.sponsorMsisdn}
                   endAdornment={
                     <InputAdornment position="start">
                       <Button

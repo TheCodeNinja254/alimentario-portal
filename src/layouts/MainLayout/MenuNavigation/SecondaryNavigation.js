@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     backgroundColor: theme.palette.primary.main,
-    height: 90,
+    height: 95,
+    marginTop: theme.spacing(13),
   },
   menuItems: {
     alignContent: "flex-end",
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   Tab: {
     minWidth: 73,
     width: 120,
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "500",
     fontStyle: "normal",
     letterSpacing: 0,

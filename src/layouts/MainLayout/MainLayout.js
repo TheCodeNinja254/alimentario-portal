@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 import { loadingStatus } from "../../Apollo/ReactiveVariables";
-import { Menubar, Topbar, SecondaryNavigation } from "./MenuNavigation";
+import { Menubar, Topbar } from "./MenuNavigation";
 import Footer from "./Footer/Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,19 +14,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.white,
   },
   wrapper: {
-    display: "flex",
+    marginTop: theme.spacing(10),
     flex: "1 1 auto",
     overflow: "hidden",
-    backgroundColor: theme.palette.white,
+    backgroundColor: theme.palette.white.dark,
   },
   contentContainer: {
-    display: "flex",
     flex: "1 1 auto",
-    overflow: "hidden",
   },
   content: {
     flex: "1 1 auto",
-    height: "100%",
     backgroundColor: theme.palette.white,
   },
   backdrop: {
@@ -44,7 +41,7 @@ const MainLayout = ({ children }) => {
       </Backdrop>
       <Topbar />
       <Menubar />
-      <SecondaryNavigation />
+      {/* <SecondaryNavigation /> */}
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>{children}</div>

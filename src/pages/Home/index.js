@@ -39,10 +39,18 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 4,
     marginTop: 20,
     marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
     borderColor: "#d2d2d2",
+    [theme.breakpoints.down("sm")]: {
+      height: 400,
+      width: "auto",
+    },
   },
   coverageImage: {
     height: 950,
+    [theme.breakpoints.down("sm")]: {
+      maxHeight: 400,
+    },
   },
   backgroundImage: {
     width: 650,
@@ -56,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
     width: "45%",
     textAlign: "center",
     backgroundColor: "transparent",
+    [theme.breakpoints.down("sm")]: {
+      top: "25%",
+      left: "10%",
+      width: "80%",
+    },
   },
   onMapCardTop: {
     backgroundColor: "transparent",
@@ -84,8 +97,7 @@ const useStyles = makeStyles((theme) => ({
   },
   pageHeading: {
     marginTop: theme.spacing(6),
-    height: 70,
-    fontWeight: 800,
+    fontWeight: 700,
     textAlign: "center",
     alignContent: "center",
   },
@@ -118,7 +130,7 @@ const Home = () => {
     <Page title="Home" className={classes.root}>
       <IntroductionScreen />
       <Box justifyContent="center">
-        <Container maxWidth="lg">
+        <Container>
           <Grid container spacing={0}>
             <Grid item lg={12} xl={12} sm={12} xs={12}>
               <Typography variant="h1" className={classes.pageHeading}>

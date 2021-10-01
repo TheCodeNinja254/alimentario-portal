@@ -18,7 +18,6 @@ export const CREATE_CUSTOMER = gql`
       estateName
       preferredDate
       preferredTimePeriod
-      crqNumber
     }
   }
 `;
@@ -31,7 +30,6 @@ export const CHECK_TICKET_STATUS = gql`
       estateName
       preferredDate
       preferredTimePeriod
-      crqNumber
       firstName
       lastName
     }

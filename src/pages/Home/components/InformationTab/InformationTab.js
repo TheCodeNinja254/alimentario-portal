@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   inCardHeading: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(3),
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: "350",
     letterSpacing: 0,
     textAlign: "left",
@@ -71,6 +71,10 @@ const useStyles = makeStyles((theme) => ({
   cardImage: {
     height: 410,
     borderRadius: 10,
+    [theme.breakpoints.down("sm")]: {
+      height: 250,
+      width: 280,
+    },
   },
   smallCardImage: {
     height: 200,
@@ -139,24 +143,24 @@ const InformationTab = () => {
                 <Card elevation={0}>
                   <CardContent>
                     <Grid container>
-                      <Grid item lg={7} md={7} xl={7} xs={7} sm={7}>
+                      <Grid item lg={7} md={7} xl={7} xs={12} sm={12}>
                         <div className={classes.cardWithImageText}>
                           <Typography className={classes.inCardHeading}>
-                            Safaricom GigaBox, Enjoy Wifi & TV
+                            Smart TV Box
                           </Typography>
                         </div>
-                        <Link to="/entertainment">
-                          <Button size="small" className={classes.buttonAction}>
-                            Find out more <NavigateNextIcon />
-                          </Button>
-                        </Link>
                       </Grid>
-                      <Grid item lg={5} md={5} xl={5} xs={5} sm={5}>
+                      <Grid item lg={5} md={5} xl={5} xs={12} sm={12}>
                         <img
                           src={GigaBox}
                           alt="info icon"
                           className={classes.smallCardImage}
                         />
+                        <Link to="/entertainment">
+                          <Button size="small" className={classes.buttonAction}>
+                            Find out more <NavigateNextIcon />
+                          </Button>
+                        </Link>
                       </Grid>
                     </Grid>
                   </CardContent>
@@ -166,24 +170,24 @@ const InformationTab = () => {
                 <Card elevation={0}>
                   <CardContent>
                     <Grid container>
-                      <Grid item lg={7} md={7} xl={7} xs={7} sm={7}>
+                      <Grid item lg={7} md={7} xl={7} xs={12} sm={12}>
                         <div className={classes.cardWithImageText}>
                           <Typography className={classes.inCardHeading}>
                             Maintain safety in your home with CCTV
                           </Typography>
                         </div>
-                        <Link to="/home-cctv">
-                          <Button size="small" className={classes.buttonAction}>
-                            Find out more <NavigateNextIcon />
-                          </Button>
-                        </Link>
                       </Grid>
-                      <Grid item lg={5} md={5} xl={5} xs={5} sm={5}>
+                      <Grid item lg={5} md={5} xl={5} xs={12} sm={12}>
                         <img
                           src={OutdoorCamera}
                           alt="info icon"
                           className={classes.smallCardImage}
                         />
+                        <Link to="/home-cctv">
+                          <Button size="small" className={classes.buttonAction}>
+                            Find out more <NavigateNextIcon />
+                          </Button>
+                        </Link>
                       </Grid>
                     </Grid>
                   </CardContent>

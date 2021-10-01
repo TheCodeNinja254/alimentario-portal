@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "500",
     textAlign: "center",
     color: theme.palette.text.secondary,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+      marginTop: theme.spacing(1),
+    },
   },
   subHeading: {
     marginTop: theme.spacing(2),
@@ -26,9 +30,15 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+    },
   },
   contentWrapper: {
     marginTop: theme.spacing(6),
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(3),
+    },
   },
   infoIcons: {
     backgroundColor: theme.palette.white.main,
@@ -53,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 25,
     fontWeight: "bolder",
     color: theme.palette.primary.main,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16,
+    },
   },
   featureDescription: {
     fontSize: 14,

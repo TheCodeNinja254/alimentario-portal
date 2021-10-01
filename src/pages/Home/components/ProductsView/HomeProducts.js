@@ -242,7 +242,7 @@ const HomeProductsView = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <div>
       <Grid container spacing={3}>
         <Grid item lg={3} md={3} xl={3} sm={12} xs={12}>
           <Card className={classes.productCard} elevation={0}>
@@ -411,7 +411,10 @@ const HomeProductsView = () => {
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.diamond.map((packageCapability) => (
-                    <ListItem className={classes.listText}>
+                    <ListItem
+                      className={classes.listText}
+                      key={packageCapability.capabilityName}
+                    >
                       <ListItemIcon
                         className={
                           packageCapability.capabilityAvailability
@@ -451,7 +454,7 @@ const HomeProductsView = () => {
           </Card>
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 };
 

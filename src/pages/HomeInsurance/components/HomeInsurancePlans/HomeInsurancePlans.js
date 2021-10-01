@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productColorName: {
     height: 48,
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
     fontStyle: "normal",
     textAlign: "center",

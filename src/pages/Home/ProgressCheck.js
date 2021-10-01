@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import Typography from "@material-ui/core/Typography";
 import StopIcon from "@material-ui/icons/Stop";
+import { Link } from "react-router-dom";
 import Page from "../../components/Page";
 import GoogleMapsContainer from "./components/ProductsView/GoogleMap";
 import ProductView from "./components/ProductsView/ProductView";
@@ -278,14 +279,16 @@ const ProgressCheckPage = (props) => {
                           </List>
                         </CardContent>
                         <CardActions className={classes.cardAction}>
-                          <Button
-                            color="primary"
-                            size="large"
-                            type="submit"
-                            variant="contained"
-                          >
-                            Done
-                          </Button>
+                          <Link to="/">
+                            <Button
+                              color="primary"
+                              size="large"
+                              type="submit"
+                              variant="contained"
+                            >
+                              Done
+                            </Button>
+                          </Link>
                         </CardActions>
                       </Card>
                     </Grid>

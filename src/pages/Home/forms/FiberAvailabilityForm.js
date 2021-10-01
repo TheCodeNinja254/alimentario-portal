@@ -90,10 +90,9 @@ const FiberAvailabilityForm = () => {
   const [leadDetails, setLeadDetails] = React.useState({
     preferredDate: "",
     preferredTimePeriod: "",
-    crqNumber: "",
   });
 
-  const { preferredDate, preferredTimePeriod, crqNumber } = leadDetails;
+  const { preferredDate, preferredTimePeriod } = leadDetails;
 
   const redirectToRegistration = () => {
     setFormOneCollapsed(false);
@@ -149,7 +148,10 @@ const FiberAvailabilityForm = () => {
                             }}
                           >
                             {getRegions.regions.map((regions) => (
-                              <MenuItem value={regions.regionId}>
+                              <MenuItem
+                                value={regions.regionId}
+                                key={regions.regionId}
+                              >
                                 {" "}
                                 {regions.regionName}
                               </MenuItem>
@@ -282,7 +284,8 @@ const FiberAvailabilityForm = () => {
                       <Typography className={classes.cardSubtitle}>
                         We will call you on{" "}
                         {moment(preferredDate).format("MMMM Do YYYY")} between{" "}
-                        {preferredTimePeriod} Your ticket number is {crqNumber}
+                        {preferredTimePeriod}. You can check the status of your
+                        request using your mobile number.
                       </Typography>
                       <List dense className={classes.cardSubtitle}>
                         <ListItemText
@@ -319,7 +322,7 @@ const FiberAvailabilityForm = () => {
                         />
                       </List>
                       <Typography className={classes.cardSubtitle}>
-                        by viewing your ticket {crqNumber}
+                        using your mobile number
                       </Typography>
                     </CardContent>
                     <CardActions className={classes.cardAction}>

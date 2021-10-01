@@ -17,7 +17,6 @@ import Network from "../../../../assets/images/Icons/BusinessFiberIcons/Network.
 import Services from "../../../../assets/images/Icons/BusinessFiberIcons/Services.svg";
 import Support from "../../../../assets/images/Icons/BusinessFiberIcons/Support.svg";
 import maleImg from "../../../../assets/images/Male.png";
-import { RegisterCustomerMinimalForm } from "../../forms";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+    },
   },
   contentWrapper: {
     marginTop: theme.spacing(6),
@@ -286,7 +288,7 @@ const EnterpriseFiberIntro = () => {
             <Card className={classes.featureCard} elevation={0}>
               <CardMedia
                 component="img"
-                height="157"
+                height="210"
                 image={maleImg}
                 alt="green iguana"
               />
@@ -299,14 +301,14 @@ const EnterpriseFiberIntro = () => {
                 >
                   Get Connected
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="textSecondary">
                   Connect your business to fast internet with Fibre for business
                 </Typography>
-                <RegisterCustomerMinimalForm />
+                {/* <RegisterCustomerMinimalForm /> */}
               </CardContent>
               <CardActions>
                 <Button size="small" className={classes.submitButton}>
-                  Submit <NavigateNextIcon />
+                  Find out more <NavigateNextIcon />
                 </Button>
               </CardActions>
             </Card>
@@ -328,7 +330,7 @@ const EnterpriseFiberIntro = () => {
                 >
                   Internet for Business
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="textSecondary">
                   Create a unique and effective online presence for your
                   business easily
                 </Typography>
@@ -357,7 +359,7 @@ const EnterpriseFiberIntro = () => {
                 >
                   Voice For Business
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="textSecondary">
                   Get affordable internet and calling rates for your small or
                   medium sized business
                 </Typography>

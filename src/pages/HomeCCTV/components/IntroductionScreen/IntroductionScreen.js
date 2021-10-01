@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   cardImage: {
     height: "400px",
     marginLeft: theme.spacing(0),
+    [theme.breakpoints.down("sm")]: {
+      maxHeight: "250px",
+    },
   },
   introContainer: {
     paddingTop: theme.spacing(5),

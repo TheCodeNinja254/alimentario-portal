@@ -39,18 +39,8 @@ const Footer = () => {
       <Card className={classes.copyRight}>
         <CardContent>
           <Container>
-            <Grid container>
-              <Grid
-                item
-                lg={12}
-                md={12}
-                xl={12}
-                xs={12}
-                direction="column"
-                justify="center"
-                alignItems="center"
-                spacing={0}
-              >
+            <Grid container spacing={0}>
+              <Grid item lg={12} md={12} xl={12} xs={12} sm={12}>
                 <Typography
                   variant="subtitle2"
                   className={classes.feedbackText}

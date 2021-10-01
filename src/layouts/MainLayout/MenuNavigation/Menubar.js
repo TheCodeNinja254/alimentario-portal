@@ -2,14 +2,10 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import { InputBase, Link } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
-import Typography from "@material-ui/core/Typography";
+import { Container, Hidden, Tab, Tabs } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
+  root: {},
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -55,6 +51,10 @@ const useStyles = makeStyles((theme) => ({
       width: "auto",
     },
   },
+  Tab: {
+    fontWeight: 700,
+    textTransform: "none",
+  },
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: "100%",
@@ -68,8 +68,14 @@ const useStyles = makeStyles((theme) => ({
     color: "inherit",
   },
   logo: {
-    paddingLeft: theme.spacing(36),
     height: 27,
+    marginLeft: theme.spacing(36),
+  },
+  secondAppBar: {
+    marginTop: theme.spacing(5),
+  },
+  mobileSecondAppBar: {
+    marginTop: theme.spacing(5),
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -85,76 +91,112 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const siteLinks = [
+  {
+    label: "Voice",
+    url: "https://www.safaricom.co.ke/personal/index.php",
+  },
+  {
+    label: "Data",
+    url: "https://www.safaricom.co.ke/personal/index.php",
+  },
+  {
+    label: "M-PESA",
+    url: "https://www.safaricom.co.ke/personal/m-pesa/m-pesa-home",
+  },
+  {
+    label: "Fixed Internet",
+    url: "/",
+  },
+  {
+    label: "Value Added Services",
+    url: "https://www.safaricom.co.ke/personal/get-more",
+  },
+];
+
 const SearchAppBar = () => {
   const classes = useStyles();
 
+  const [value, setValue] = React.useState(0);
+
+  const handleRouteChange = (path) => {
+    window.location.href = path;
+  };
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <div className={classes.root}>
-      <AppBar color="inherit" elevation={1} position="static">
-        <Toolbar>
-          <img
-            alt="Logo"
-            className={classes.logo}
-            src="/favicons/saf-logo.png"
-          />
-          <Typography className={classes.lowerMenu} variant="h4" noWrap>
-            <Link
-              href="/some"
-              component="button"
-              className={classes.lowerMenuItem}
-              color="inherit"
-            >
-              Voice
-            </Link>
-            <Link
-              href="/some"
-              component="button"
-              className={classes.lowerMenuItem}
-              color="inherit"
-            >
-              Data
-            </Link>
-            <Link
-              href="/some"
-              component="button"
-              className={classes.lowerMenuItem}
-              color="inherit"
-            >
-              M-PESA
-            </Link>
-            <Link
-              href="/some"
-              component="button"
-              className={classes.lowerMenuItemActive}
-              color="inherit"
-            >
-              Fixed Internet
-            </Link>
-            <Link
-              href="/some"
-              component="button"
-              className={classes.lowerMenuItem}
-              color="inherit"
-            >
-              Value Added Services
-            </Link>
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
+    <Container className={classes.root}>
+      <Hidden mdDown>
+        <AppBar
+          color="inherit"
+          elevation={1}
+          position="fixed"
+          className={classes.secondAppBar}
+        >
+          <Toolbar>
+            <img
+              alt="Logo"
+              className={classes.logo}
+              src="/favicons/saf-logo.png"
             />
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="icon label tabs example"
+              TabIndicatorProps={{
+                style: {
+                  display: "none",
+                },
+              }}
+            >
+              {siteLinks.map((siteLink) => (
+                <Tab
+                  key={siteLink.label}
+                  className={classes.Tab}
+                  label={siteLink.label}
+                  onClick={() => handleRouteChange(siteLink.url)}
+                />
+              ))}
+            </Tabs>
+          </Toolbar>
+        </AppBar>
+      </Hidden>
+      <Hidden lgUp>
+        <AppBar
+          color="inherit"
+          elevation={1}
+          position="fixed"
+          className={classes.mobileSecondAppBar}
+        >
+          <Toolbar>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="icon label tabs example-2"
+              className={classes.TabItems}
+              TabIndicatorProps={{
+                style: {
+                  display: "none",
+                },
+              }}
+            >
+              {siteLinks.map((siteLink) => (
+                <Tab
+                  className={classes.Tab}
+                  key={siteLink.label}
+                  label={siteLink.label}
+                  onClick={() => handleRouteChange(siteLink.url)}
+                />
+              ))}
+            </Tabs>
+          </Toolbar>
+        </AppBar>
+      </Hidden>
+      )
+    </Container>
   );
 };
 

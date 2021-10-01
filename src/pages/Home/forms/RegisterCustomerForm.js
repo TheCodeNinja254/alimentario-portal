@@ -250,7 +250,6 @@ const RegisterCustomerForm = (props) => {
                     message: customerMessage,
                     preferredDate,
                     preferredTimePeriod,
-                    crqNumber,
                   },
                 },
               } = response;
@@ -259,7 +258,6 @@ const RegisterCustomerForm = (props) => {
                 setLeadDetails({
                   preferredDate,
                   preferredTimePeriod,
-                  crqNumber,
                 });
               } else {
                 // registration error
@@ -401,7 +399,10 @@ const RegisterCustomerForm = (props) => {
                     value={values.productId}
                   >
                     {mappedProducts(selectedProductType).map((product) => (
-                      <MenuItem value={product.productId}>
+                      <MenuItem
+                        value={product.productId}
+                        key={product.productId}
+                      >
                         <Typography>
                           <span className={classes.packageName}>
                             {product.packageName}
@@ -506,9 +507,9 @@ const RegisterCustomerForm = (props) => {
 
 RegisterCustomerForm.propTypes = {
   estateId: PropTypes.string.isRequired,
-  areaName: PropTypes.array.isRequired,
-  streetName: PropTypes.array.isRequired,
-  inputEstate: PropTypes.array.isRequired,
+  areaName: PropTypes.string.isRequired,
+  streetName: PropTypes.string.isRequired,
+  inputEstate: PropTypes.string.isRequired,
   setSuccessfulRegistration: PropTypes.func,
 };
 

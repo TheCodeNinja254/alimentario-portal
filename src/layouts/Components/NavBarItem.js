@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
   },
   nested: {
-    paddingLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(6),
   },
 }));
 
@@ -116,7 +116,6 @@ const NavBarItem = ({ page, subNav, location: { pathname } }) => {
                     className={classes.button}
                     component={CustomRouterLink}
                     to={item.href}
-                    onClick={() => handleRouteChange(page.href)}
                   >
                     {item.title}
                   </Button>

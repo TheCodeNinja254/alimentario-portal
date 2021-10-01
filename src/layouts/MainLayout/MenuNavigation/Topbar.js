@@ -48,14 +48,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(-1),
   },
   denseTopBarMobile: {
-    height: 45,
+    height: 55,
   },
   logo: {
     height: 20,
     marginLeft: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   burgerMenuIcon: {
     color: theme.palette.white.main,
+    marginBottom: theme.spacing(2),
   },
   drawer: {
     width: 240,

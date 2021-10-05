@@ -166,7 +166,7 @@ const HowToGetIt = () => {
               />
             </Grid>
             <div align="center">
-              <HashLink to="#home-cctv-cameras">
+              <HashLink to="#home-cctv-cameras" smooth>
                 <Button
                   small
                   variant="outlined"

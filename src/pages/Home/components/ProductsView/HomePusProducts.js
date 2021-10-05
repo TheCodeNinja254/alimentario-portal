@@ -20,7 +20,7 @@ import { HashLink } from "react-router-hash-link";
 const useStyles = makeStyles((theme) => ({
   root: {},
   productCard: {
-    height: 690,
+    height: 710,
     borderRadius: 10,
     backgroundColor: theme.palette.white.main,
     marginTop: theme.spacing(0),
@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   listText: {
-    fontSize: "8px",
+    fontSize: 8,
   },
   availableIconColor: {
     color: theme.palette.primary.main,
@@ -128,6 +128,10 @@ const useStyles = makeStyles((theme) => ({
   getConnectedButton: {
     marginTop: theme.spacing(1),
     justifyContent: "center",
+  },
+  additionalFeatures: {
+    marginLeft: theme.spacing(2),
+    fontSize: 14,
   },
 }));
 
@@ -238,7 +242,7 @@ const packageCapabilities = {
   ],
 };
 
-const HomeProductsView = () => {
+const HomePlusPackages = () => {
   const classes = useStyles();
 
   return (
@@ -254,6 +258,11 @@ const HomeProductsView = () => {
             <CardContent>
               <Typography className={classes.bundleSizeText}>8</Typography>
               <Typography className={classes.productCardTitle}>MBPS</Typography>
+              <Typography className={classes.additionalFeatures}>
+                5GB Mobile Data <br />
+                400 Minutes across networks <br />
+                Unlimited SMS across networks
+              </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.bronze.map((packageCapability) => (
@@ -309,6 +318,11 @@ const HomeProductsView = () => {
             <CardContent>
               <Typography className={classes.bundleSizeText}>20</Typography>
               <Typography className={classes.productCardTitle}>MBPS</Typography>
+              <Typography className={classes.additionalFeatures}>
+                5GB Mobile Data <br />
+                400 Minutes across networks <br />
+                Unlimited SMS across networks
+              </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.silver.map((packageCapability) => (
@@ -362,6 +376,11 @@ const HomeProductsView = () => {
             <CardContent>
               <Typography className={classes.bundleSizeText}>40</Typography>
               <Typography className={classes.productCardTitle}>MBPS</Typography>
+              <Typography className={classes.additionalFeatures}>
+                5GB Mobile Data <br />
+                400 Minutes across networks <br />
+                Unlimited SMS across networks
+              </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.gold.map((packageCapability) => (
@@ -417,6 +436,11 @@ const HomeProductsView = () => {
             <CardContent>
               <Typography className={classes.bundleSizeText}>100</Typography>
               <Typography className={classes.productCardTitle}>MBPS</Typography>
+              <Typography className={classes.additionalFeatures}>
+                5GB Mobile Data <br />
+                400 Minutes across networks <br />
+                Unlimited SMS across networks
+              </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.diamond.map((packageCapability) => (
@@ -467,4 +491,4 @@ const HomeProductsView = () => {
   );
 };
 
-export default React.memo(HomeProductsView);
+export default React.memo(HomePlusPackages);

@@ -3,6 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import { Container, Hidden, Tab, Tabs } from "@material-ui/core";
+import { NavHashLink } from "react-router-hash-link";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -54,6 +55,10 @@ const useStyles = makeStyles((theme) => ({
   Tab: {
     fontWeight: 700,
     textTransform: "none",
+    color: theme.palette.black,
+    // [theme.breakpoints.up("sm")]: {
+    //   marginLeft: theme.spacing(2),
+    // },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -89,28 +94,28 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  TabItems: {
+    overflowX: "auto",
+    marginBottom: theme.spacing(0),
+  },
 }));
 
 const siteLinks = [
   {
-    label: "Voice",
-    url: "https://www.safaricom.co.ke/personal/index.php",
+    label: "Explore Packages",
+    url: "/home#packages",
   },
   {
-    label: "Data",
-    url: "https://www.safaricom.co.ke/personal/index.php",
+    label: "Addons",
+    url: "/home#addons",
   },
   {
-    label: "M-PESA",
-    url: "https://www.safaricom.co.ke/personal/m-pesa/m-pesa-home",
+    label: "FAQs",
+    url: "/faqs",
   },
   {
-    label: "Fixed Internet",
-    url: "/",
-  },
-  {
-    label: "Value Added Services",
-    url: "https://www.safaricom.co.ke/personal/get-more",
+    label: "Contact Us",
+    url: "/home",
   },
 ];
 
@@ -118,10 +123,6 @@ const SearchAppBar = () => {
   const classes = useStyles();
 
   const [value, setValue] = React.useState(0);
-
-  const handleRouteChange = (path) => {
-    window.location.href = path;
-  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -153,12 +154,13 @@ const SearchAppBar = () => {
               }}
             >
               {siteLinks.map((siteLink) => (
-                <Tab
-                  key={siteLink.label}
-                  className={classes.Tab}
-                  label={siteLink.label}
-                  onClick={() => handleRouteChange(siteLink.url)}
-                />
+                <NavHashLink to={siteLink.url} className={classes.Tab} smooth>
+                  <Tab
+                    key={siteLink.label}
+                    className={classes.Tab}
+                    label={siteLink.label}
+                  />
+                </NavHashLink>
               ))}
             </Tabs>
           </Toolbar>
@@ -177,6 +179,8 @@ const SearchAppBar = () => {
               onChange={handleChange}
               aria-label="icon label tabs example-2"
               className={classes.TabItems}
+              variant="scrollable"
+              scrollButtons="on"
               TabIndicatorProps={{
                 style: {
                   display: "none",
@@ -187,8 +191,15 @@ const SearchAppBar = () => {
                 <Tab
                   className={classes.Tab}
                   key={siteLink.label}
-                  label={siteLink.label}
-                  onClick={() => handleRouteChange(siteLink.url)}
+                  label={
+                    <NavHashLink
+                      className={classes.Tab}
+                      to={siteLink.url}
+                      smooth
+                    >
+                      {siteLink.label}
+                    </NavHashLink>
+                  }
                 />
               ))}
             </Tabs>

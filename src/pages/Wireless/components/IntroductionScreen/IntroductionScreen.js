@@ -12,7 +12,6 @@ import Typography from "@material-ui/core/Typography";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { HashLink } from "react-router-hash-link";
 import IntroImage from "../../../../assets/images/LandingPageImg.png";
-import WirelessRequestForm from "../../forms";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,19 +90,20 @@ const IntroductionScreen = () => {
                   className={classes.cardImage}
                 />
               </Grid>
-              <Grid item lg={5} xl={5} sm={12} xs={12}>
-                <div className={classes.IntroText}>
+              <Grid item lg={7} xl={7} sm={12} xs={12}>
+                <Typography className={classes.IntroText}>
                   <span className={classes.textInitial}>
                     Never Miss A Moment With The 4G WIFI <br />
                     Router
                   </span>
-                  <Typography className={classes.sloganText}>
-                    Enjoy seamless and fast WIFI internet at home. Get yours
-                    today at Safaricom shops Countrywide
-                  </Typography>
-                </div>
+                </Typography>
+                <Typography className={classes.sloganText}>
+                  Enjoy seamless and fast WIFI internet at home. Get yours today
+                  at Safaricom shops Countrywide
+                </Typography>
+
                 <div className={classes.actionButtons}>
-                  <HashLink to="#wireless-pricing">
+                  <HashLink to="#wireless-pricing" smooth>
                     <Button
                       variant="contained"
                       color="primary"
@@ -113,14 +113,6 @@ const IntroductionScreen = () => {
                     </Button>
                   </HashLink>
                 </div>
-              </Grid>
-              <Grid item lg={3} xl={3} sm={12} xs={12}>
-                <div className={classes.IntroText}>
-                  <span className={classes.textInitial}>
-                    Get 4G WiFi Router.
-                  </span>
-                </div>
-                <WirelessRequestForm />
               </Grid>
             </Grid>
           </Container>

@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
   textInitial: {
     fontSize: 30,
-    fontWeight: 500,
+    fontWeight: "lighter",
   },
   textTrailing: {
     fontSize: 30,
-    fontWeight: 700,
+    fontWeight: "bolder",
   },
   IntroText: {
     marginTop: theme.spacing(5),
@@ -59,17 +59,22 @@ const IntroductionScreen = () => {
         <Container>
           <Grid container spacing={3} className={classes.introContainer}>
             <Grid item lg={6} xl={6} md={6} sm={12} xs={12}>
-              <div className={classes.IntroText}>
-                <span className={classes.textInitial}>Fast, Reliable & </span>
-                <span className={classes.textTrailing}>
-                  Unlimited Internet Access
+              <span className={classes.IntroText}>
+                <span>
+                  <Typography className={classes.textInitial}>
+                    Fast, Reliable &{" "}
+                  </Typography>
+                  <Typography className={classes.textTrailing}>
+                    Unlimited Internet Access
+                  </Typography>
                 </span>
-                <Typography className={classes.sloganText}>
-                  Stay connected with Safaricom <br /> Internet
-                </Typography>
-              </div>
+              </span>
+              <Typography className={classes.sloganText}>
+                Stay connected with Safaricom <br /> Internet
+              </Typography>
+
               <div className={classes.actionButtons}>
-                <HashLink to="#checkStatus">
+                <HashLink to="#checkStatus" smooth>
                   <Button
                     variant="contained"
                     color="primary"
@@ -78,7 +83,7 @@ const IntroductionScreen = () => {
                     Get Connected
                   </Button>
                 </HashLink>
-                <HashLink to="#packages">
+                <HashLink to="#packages" smooth>
                   <Button
                     variant="contained"
                     className={classes.explorePackages}

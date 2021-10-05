@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Divider, makeStyles } from "@material-ui/core";
 import List from "@material-ui/core/List";
 import NavBarItem from "./NavBarItem";
+import ExternalNavBarItem from "./ExternalNavBarItem";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -11,39 +12,9 @@ const useStyles = makeStyles(() => ({
 
 const pages = [
   {
-    title: "Voice",
-    href: "https://www.safaricom.co.ke/personal/index.php",
+    title: "Get Connected",
+    href: "/home",
   },
-  {
-    title: "Data",
-    href: "https://www.safaricom.co.ke/personal/index.php",
-  },
-  {
-    title: "M-PESA",
-    href: "https://www.safaricom.co.ke/personal/m-pesa/m-pesa-home",
-  },
-  {
-    title: "Fixed Internet",
-    href: "/",
-  },
-  {
-    title: "Value Added Services",
-    href: "https://www.safaricom.co.ke/personal/get-more",
-  },
-];
-
-const externalLinks = [
-  {
-    title: "PERSONAL",
-    href: "https://www.safaricom.co.ke/personal/index.php",
-  },
-  {
-    title: "BUSINESS",
-    href: "https://www.safaricom.co.ke/business",
-  },
-];
-
-const secondaryLinks = [
   {
     title: "Fiber Addons",
     href: "/",
@@ -67,6 +38,28 @@ const secondaryLinks = [
     ],
   },
   {
+    title: "4G Router",
+    href: "/4g-wifi-router",
+  },
+  {
+    title: "FAQs",
+    href: "/faqs",
+  },
+];
+
+const externalLinks = [
+  {
+    title: "PERSONAL",
+    href: "https://www.safaricom.co.ke/personal/index.php",
+  },
+  {
+    title: "BUSINESS",
+    href: "https://www.safaricom.co.ke/business",
+  },
+];
+
+const secondaryLinks = [
+  {
     title: "About Us",
     href: "https://www.safaricom.co.ke/about/about-safaricom/who-we-are/our-story",
   },
@@ -82,10 +75,10 @@ const secondaryLinks = [
     title: "Terms & Conditions",
     href: "https://www.safaricom.co.ke/about/media-center/publications/terms-and-conditions",
   },
-  {
-    title: "FAQs",
-    href: "hhttps://www.safaricom.co.ke/careers/",
-  },
+  // {
+  //   title: "FAQs",
+  //   href: "hhttps://www.safaricom.co.ke/careers/",
+  // },
   {
     title: "Careers",
     href: "hhttps://www.safaricom.co.ke/careers/",
@@ -124,7 +117,7 @@ const SidebarNav = (props) => {
       </List>
       <List className={clsx(classes.root, className)}>
         {secondaryLinks.map((secondaryLink) => (
-          <NavBarItem
+          <ExternalNavBarItem
             onClose={onClose}
             key={secondaryLink.title}
             subNav={secondaryLink.items ? secondaryLink.items : false}

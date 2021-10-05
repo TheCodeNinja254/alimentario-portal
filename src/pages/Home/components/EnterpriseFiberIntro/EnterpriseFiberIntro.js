@@ -307,9 +307,11 @@ const EnterpriseFiberIntro = () => {
                 {/* <RegisterCustomerMinimalForm /> */}
               </CardContent>
               <CardActions>
-                <Button size="small" className={classes.submitButton}>
-                  Find out more <NavigateNextIcon />
-                </Button>
+                <a href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions">
+                  <Button size="small" className={classes.buttonAction}>
+                    Find out more <NavigateNextIcon />
+                  </Button>
+                </a>
               </CardActions>
             </Card>
           </Grid>
@@ -336,9 +338,11 @@ const EnterpriseFiberIntro = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" className={classes.buttonAction}>
-                  Find out more <NavigateNextIcon />
-                </Button>
+                <a href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions">
+                  <Button size="small" className={classes.buttonAction}>
+                    Find out more <NavigateNextIcon />
+                  </Button>
+                </a>
               </CardActions>
             </Card>
           </Grid>
@@ -365,9 +369,11 @@ const EnterpriseFiberIntro = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" className={classes.buttonAction}>
-                  Find out more <NavigateNextIcon />
-                </Button>
+                <a href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions">
+                  <Button size="small" className={classes.buttonAction}>
+                    Find out more <NavigateNextIcon />
+                  </Button>
+                </a>
               </CardActions>
             </Card>
           </Grid>

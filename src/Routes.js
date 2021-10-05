@@ -41,6 +41,12 @@ const AppRoutes = () => {
         path="/"
       />
       <RouteWithLayout
+        component={HomeView}
+        layout={MainLayout}
+        exact
+        path="/home"
+      />
+      <RouteWithLayout
         component={RegisterCustomerView}
         layout={MainLayout}
         exact

@@ -6,12 +6,12 @@ import {
   CardContent,
   Container,
   Grid,
-  Link,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { HashLink } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 import IntroImage from "../../../../assets/images/HomeInsuranceImg.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.error.dark,
   },
   anchorLink: {
-    color: theme.palette.black,
+    color: theme.palette.primary.main,
     textDecoration: "underline",
     fontSize: 22,
     fontWeight: "300",
@@ -92,17 +92,18 @@ const IntroductionScreen = () => {
                 />
               </Grid>
               <Grid item lg={6} xl={6} sm={12} xs={12}>
-                <div className={classes.IntroText}>
+                <Typography className={classes.IntroText}>
                   <span className={classes.textInitial}>
                     H<span className={classes.OHome}>O</span>ME Insurance
                   </span>
-                  <Typography className={classes.sloganText}>
-                    Welcome to the good life, where everything you own is
-                    protected and your peace of mind remains intact.
-                  </Typography>
-                </div>
+                </Typography>
+                <Typography className={classes.sloganText}>
+                  Welcome to the good life, where everything you own is
+                  protected and your peace of mind remains intact.
+                </Typography>
+
                 <div className={classes.actionButtons}>
-                  <HashLink to="#home-insurance-packages">
+                  <HashLink to="#home-insurance-packages" smooth>
                     <Button
                       variant="contained"
                       color="primary"
@@ -112,8 +113,7 @@ const IntroductionScreen = () => {
                     </Button>
                   </HashLink>
                   <span className={classes.sloganText}>or </span>
-                  <Link to="#link" className={classes.anchorLink}>
-                    {" "}
+                  <Link to="faqs" className={classes.anchorLink}>
                     Read FAQs
                   </Link>
                 </div>

@@ -85,7 +85,7 @@ const TicketStatusCheckForm = () => {
   return (
     <>
       <Typography variant="h3" className={classes.formHeader}>
-        Have a ticket number, check the status of your request here
+        Use your mobile number to confirm your request status
       </Typography>
       <Formik
         initialValues={{

@@ -265,7 +265,7 @@ const SecureNetIntro = () => {
               </Grid>
             </Grid>
             <div align="center">
-              <HashLink to="#join-secure-net">
+              <HashLink to="#join-secure-net" smooth>
                 <Button
                   small
                   variant="outlined"

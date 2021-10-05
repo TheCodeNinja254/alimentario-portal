@@ -81,18 +81,19 @@ const IntroductionScreen = () => {
                 />
               </Grid>
               <Grid item lg={6} xl={6} sm={12} xs={12}>
-                <div className={classes.IntroText}>
+                <Typography className={classes.IntroText}>
                   <span className={classes.textInitial}>
                     Safaricom Secure Net
                   </span>
-                  <Typography className={classes.sloganText}>
-                    Keep your loved ones safe and secure online. Sign up and
-                    enjoy a <span className={classes.sloganBold}>FREE</span>{" "}
-                    trial for one month.
-                  </Typography>
-                </div>
+                </Typography>
+                <Typography className={classes.sloganText}>
+                  Keep your loved ones safe and secure online. Sign up and enjoy
+                  a <span className={classes.sloganBold}>FREE</span> trial for
+                  one month.
+                </Typography>
+
                 <div className={classes.actionButtons}>
-                  <HashLink to="#secure-net-features">
+                  <HashLink to="#secure-net-features" smooth>
                     <Button
                       variant="contained"
                       color="primary"

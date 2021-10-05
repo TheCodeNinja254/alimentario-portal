@@ -78,6 +78,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const EstatesList = (props) => {
+  const { className, setInputEstate, setSelectedEstate, inputEstate, estates } =
+    props;
+  return (
+    <Autocomplete
+      className={className}
+      id="combo-box-demo"
+      options={estates}
+      onChange={(event, selectedValue) =>
+        setSelectedEstate(selectedValue.estateId || 0, true)
+      }
+      getOptionLabel={(estate) => estate.estateName}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          required
+          name="estateName"
+          className={className}
+          variant="standard"
+        />
+      )}
+      freeSolo
+      // onChange={(event, selectedValue) => setSelectedEstate(selectedValue)}
+      inputValue={inputEstate}
+      onInputChange={(event, newInputValue) => {
+        setInputEstate(newInputValue);
+        setSelectedEstate(0);
+        // setSelectedEstate("null_selection");
+      }}
+      // options={getEstates.estates.map((estate) => estate.estateName)}
+      openOnFocus
+    />
+  );
+};
+
 const FiberAvailabilityForm = () => {
   const classes = useStyles();
 
@@ -107,13 +142,15 @@ const FiberAvailabilityForm = () => {
 
   let estateName = selectedEstate;
   let estateId;
-  const passedEstateName = selectedEstate.split("-");
+  // const passedEstateName = selectedEstate.split("-");
   // eslint-disable-next-line prefer-destructuring
-  estateId = passedEstateName[0];
-  const placeholderOnEstateInput = "null_selection";
-  if (selectedEstate === placeholderOnEstateInput) {
+  // estateId = passedEstateName[0];
+  // const placeholderOnEstateInput = "null_selection";
+  if (selectedEstate === 0) {
     estateName = inputEstate;
-    estateId = "0";
+    estateId = 0;
+  } else {
+    estateId = selectedEstate;
   }
 
   return (
@@ -182,31 +219,38 @@ const FiberAvailabilityForm = () => {
                   {({ getEstates }) => (
                     <>
                       {getEstates.getEstatesStatus > 0 ? (
-                        <Autocomplete
-                          freeSolo
-                          id="free-solo-demo"
+                        // <Autocomplete
+                        //   freeSolo
+                        //   id="free-solo-demo"
+                        //   className={classes.textFieldWithLable}
+                        //   onChange={(event, selectedValue) =>
+                        //     setSelectedEstate(selectedValue)
+                        //   }
+                        //   inputValue={inputEstate}
+                        //   onInputChange={(event, newInputValue) => {
+                        //     setInputEstate(newInputValue);
+                        //     setSelectedEstate("null_selection");
+                        //   }}
+                        //   options={getEstates.estates.map(
+                        //     (estate) => estate.estateName
+                        //   )}
+                        //   openOnFocus
+                        //   renderInput={(params) => (
+                        //     <TextField
+                        //       {...params}
+                        //       required
+                        //       className={classes.textFieldWithLable}
+                        //       name="estateName"
+                        //       variant="standard"
+                        //     />
+                        //   )}
+                        // />
+                        <EstatesList
                           className={classes.textFieldWithLable}
-                          onChange={(event, selectedValue) =>
-                            setSelectedEstate(selectedValue)
-                          }
+                          setSelectedEstate={setSelectedEstate}
+                          estates={getEstates.estates}
                           inputValue={inputEstate}
-                          onInputChange={(event, newInputValue) => {
-                            setInputEstate(newInputValue);
-                            setSelectedEstate("null_selection");
-                          }}
-                          options={getEstates.estates.map(
-                            (estate) => estate.estateName
-                          )}
-                          openOnFocus
-                          renderInput={(params) => (
-                            <TextField
-                              {...params}
-                              required
-                              className={classes.textFieldWithLable}
-                              name="estateName"
-                              variant="standard"
-                            />
-                          )}
+                          setInputEstate={setInputEstate}
                         />
                       ) : (
                         <Alert severity="warning">

@@ -235,7 +235,7 @@ const HowToJoin = () => {
               />
             </Grid>
             <div align="center">
-              <HashLink to="#secure-net-payment">
+              <HashLink to="#secure-net-payment" smooth>
                 <Button
                   small
                   variant="outlined"

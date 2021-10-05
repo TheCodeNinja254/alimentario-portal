@@ -180,7 +180,7 @@ const Features = () => {
               </Grid>
             </Grid>
             <div align="center">
-              <HashLink to="#get-home-cctv">
+              <HashLink to="#get-home-cctv" smooth>
                 <Button
                   small
                   variant="outlined"

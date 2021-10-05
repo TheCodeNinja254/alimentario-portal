@@ -91,17 +91,17 @@ const IntroductionScreen = () => {
                 />
               </Grid>
               <Grid item lg={6} xl={6} sm={12} xs={12}>
-                <div className={classes.IntroText}>
+                <Typography className={classes.IntroText}>
                   <span className={classes.textInitial}>
                     H<span className={classes.OHome}>O</span>ME CCTV
                   </span>
-                  <Typography className={classes.sloganText}>
-                    Maintain safety in your home and manage basic home utilities
-                    at all times.
-                  </Typography>
-                </div>
+                </Typography>
+                <Typography className={classes.sloganText}>
+                  Maintain safety in your home and manage basic home utilities
+                  at all times.
+                </Typography>
                 <div className={classes.actionButtons}>
-                  <HashLink to="#home-cctv-features">
+                  <HashLink to="#home-cctv-features" smooth>
                     <Button
                       variant="contained"
                       color="primary"

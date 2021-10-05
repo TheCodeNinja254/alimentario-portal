@@ -129,7 +129,7 @@ const Home = () => {
   return (
     <Page title="Home" className={classes.root}>
       <IntroductionScreen />
-      <Box justifyContent="center">
+      <Box justifyContent="center" id="checkStatus">
         <Container>
           <Grid container spacing={0}>
             <Grid item lg={12} xl={12} sm={12} xs={12}>
@@ -192,7 +192,6 @@ const Home = () => {
               sm={12}
               xs={12}
               className={classes.checkCoverageArea}
-              id="checkStatus"
             >
               <Typography variant="h1" className={classes.pageSubHeading}>
                 Get connected to Safaricom Fibre

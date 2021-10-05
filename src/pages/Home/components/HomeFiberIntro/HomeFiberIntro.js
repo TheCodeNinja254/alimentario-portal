@@ -1,11 +1,20 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardContent, Container, Grid } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import EntertainmentIcon from "../../../../assets/images/Icons/HomeFiberIcons/Entertainment.svg";
-import GamingIcon from "../../../../assets/images/Icons/HomeFiberIcons/Gaming.svg";
-import LearningIcon from "../../../../assets/images/Icons/HomeFiberIcons/Learning.svg";
-import SafetyIcon from "../../../../assets/images/Icons/HomeFiberIcons/Safety.svg";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { Link } from "react-router-dom";
+import SecureNetIcon from "../../../../assets/images/Icons/NavIcons/SecureNet.png";
+import Entertainment from "../../../../assets/images/Icons/NavIcons/Entertainment.png";
+import HomeCCTV from "../../../../assets/images/Icons/NavIcons/HomeCCTV.png";
+import HomeInsurance from "../../../../assets/images/Icons/NavIcons/HomeInsurance.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,17 +50,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   infoIcons: {
-    backgroundColor: theme.palette.white.main,
-    height: "104px",
-    width: "104px",
+    backgroundColor: theme.palette.primary.main,
+    height: "65px",
+    width: "65px",
     borderRadius: "52px",
   },
   requirementsIcons: {
     marginTop: theme.spacing(5),
   },
   infoIconImage: {
-    height: "71px",
-    width: "72px",
+    height: 30,
   },
   infoCard: {
     backgroundColor: theme.palette.background.dark,
@@ -75,22 +83,21 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.black,
   },
+  actionButtons: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const HomeFiberIntro = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="addons">
       <Card elevation={0} className={classes.infoCard}>
         <CardContent>
           <Container className={classes.contentWrapper}>
             <Typography variant="h2" className={classes.heading}>
-              Home Fiber
-            </Typography>
-            <Typography className={classes.subHeading}>
-              Access limitless possibilities from the <br /> comfort of your
-              home
+              Home Fiber Addons
             </Typography>
             <Grid container justify="center" spacing={5}>
               <Grid
@@ -103,11 +110,68 @@ const HomeFiberIntro = () => {
                 className={classes.requirementsIcons}
               >
                 <div align="center">
-                  <img
-                    src={EntertainmentIcon}
-                    alt="info icon"
-                    className={classes.infoIconImage}
-                  />
+                  <Box
+                    className={classes.infoIcons}
+                    justifyContent="center"
+                    alignItems="center"
+                    display="flex"
+                  >
+                    <img
+                      src={SecureNetIcon}
+                      alt="Secure Net Icon"
+                      className={classes.infoIconImage}
+                    />
+                  </Box>
+                  <Typography
+                    variant="h3"
+                    align="center"
+                    className={classes.featureTitle}
+                  >
+                    SECURE-NET
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    align="center"
+                    className={classes.featureDescription}
+                  >
+                    Keep your loved ones safe and secure online. Sign up and
+                    enjoy a FREE trial for one month.
+                  </Typography>
+                  <div align="center">
+                    <Link to="/secure-net">
+                      <Button
+                        small
+                        variant="outlined"
+                        className={classes.actionButtons}
+                      >
+                        Find out more <ArrowForwardIcon />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </Grid>
+              <Grid
+                item
+                lg={3}
+                md={3}
+                xl={3}
+                xs={6}
+                sm={6}
+                className={classes.requirementsIcons}
+              >
+                <div align="center">
+                  <Box
+                    className={classes.infoIcons}
+                    justifyContent="center"
+                    alignItems="center"
+                    display="flex"
+                  >
+                    <img
+                      src={Entertainment}
+                      alt="Secure Net Icon"
+                      className={classes.infoIconImage}
+                    />
+                  </Box>
                   <Typography
                     variant="h3"
                     align="center"
@@ -120,9 +184,20 @@ const HomeFiberIntro = () => {
                     align="center"
                     className={classes.featureDescription}
                   >
-                    Stream videos and music in record time and enjoy the latest
-                    content from Kwese, Iflix and Showmax.
+                    Enjoyment ni kutramsform your TV into a Smart TV. Get a
+                    Smart Android Box and upgrade to Casting.
                   </Typography>
+                  <div align="center">
+                    <Link to="/entertainment">
+                      <Button
+                        small
+                        variant="outlined"
+                        className={classes.actionButtons}
+                      >
+                        Find out more <ArrowForwardIcon />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </Grid>
               <Grid
@@ -135,26 +210,44 @@ const HomeFiberIntro = () => {
                 className={classes.requirementsIcons}
               >
                 <div align="center">
-                  <img
-                    src={GamingIcon}
-                    alt="info icon"
-                    className={classes.infoIconImage}
-                  />
+                  <Box
+                    className={classes.infoIcons}
+                    justifyContent="center"
+                    alignItems="center"
+                    display="flex"
+                  >
+                    <img
+                      src={HomeCCTV}
+                      alt="Secure Net Icon"
+                      className={classes.infoIconImage}
+                    />
+                  </Box>
                   <Typography
                     variant="h3"
                     align="center"
                     className={classes.featureTitle}
                   >
-                    GAMING
+                    HOME CCTV
                   </Typography>
                   <Typography
                     variant="body2"
                     align="center"
                     className={classes.featureDescription}
                   >
-                    Push your online gaming skills to the next level with Home
-                    Fibre.
+                    Safatey is paramount. Maintain safety in your home and
+                    manage basic home utilities at all times.
                   </Typography>
+                  <div align="center">
+                    <Link to="/home-cctv">
+                      <Button
+                        small
+                        variant="outlined"
+                        className={classes.actionButtons}
+                      >
+                        Find out more <ArrowForwardIcon />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </Grid>
               <Grid
@@ -167,57 +260,44 @@ const HomeFiberIntro = () => {
                 className={classes.requirementsIcons}
               >
                 <div align="center">
-                  <img
-                    src={LearningIcon}
-                    alt="info icon"
-                    className={classes.infoIconImage}
-                  />
+                  <Box
+                    className={classes.infoIcons}
+                    justifyContent="center"
+                    alignItems="center"
+                    display="flex"
+                  >
+                    <img
+                      src={HomeInsurance}
+                      alt="Secure Net Icon"
+                      className={classes.infoIconImage}
+                    />
+                  </Box>
                   <Typography
                     variant="h3"
                     align="center"
                     className={classes.featureTitle}
                   >
-                    LEARNING
+                    HOME INSURANCE
                   </Typography>
                   <Typography
                     variant="body2"
                     align="center"
                     className={classes.featureDescription}
                   >
-                    Access a vast library of information and content anytime.
+                    Welcome to the good life, where everything you own is
+                    protected and your peace of mind remains intact.
                   </Typography>
-                </div>
-              </Grid>
-              <Grid
-                item
-                lg={3}
-                md={3}
-                xl={3}
-                xs={6}
-                sm={6}
-                className={classes.requirementsIcons}
-              >
-                <div align="center">
-                  <img
-                    src={SafetyIcon}
-                    alt="info icon"
-                    className={classes.infoIconImage}
-                  />
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.featureTitle}
-                  >
-                    SAFETY
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    align="center"
-                    className={classes.featureDescription}
-                  >
-                    Enjoy 24-hour security video surveillance and manage how
-                    internet is accessed in your home.
-                  </Typography>
+                  <div align="center">
+                    <Link to="/home-insurance">
+                      <Button
+                        small
+                        variant="outlined"
+                        className={classes.actionButtons}
+                      >
+                        Find out more <ArrowForwardIcon />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </Grid>
             </Grid>

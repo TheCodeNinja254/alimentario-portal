@@ -64,7 +64,7 @@ const CustomRouterLink = forwardRef((props, ref) => (
   </div>
 ));
 
-const NavBarItem = ({ page, subNav, location: { pathname } }) => {
+const ExternalNavBarItem = ({ page, subNav, location: { pathname } }) => {
   const classes = useStyles();
   let open = false;
   if (page.items) {
@@ -77,6 +77,10 @@ const NavBarItem = ({ page, subNav, location: { pathname } }) => {
 
   const handleClick = () => {
     setOpen(!openValue);
+  };
+
+  const handleRouteChange = (path) => {
+    window.location.href = path;
   };
 
   return (
@@ -124,10 +128,10 @@ const NavBarItem = ({ page, subNav, location: { pathname } }) => {
         <ListItem className={classes.item} disableGutters>
           <Button
             activeClassName={classes.active}
-            exact
             className={classes.button}
-            component={CustomRouterLink}
-            to={page.href}
+            // component={CustomRouterLink}
+            // to={page.href}
+            onClick={() => handleRouteChange(page.href)}
           >
             <div className={classes.icon}>{page.icon}</div>
             {page.title}
@@ -138,4 +142,4 @@ const NavBarItem = ({ page, subNav, location: { pathname } }) => {
   );
 };
 
-export default React.memo(withRouter(NavBarItem));
+export default React.memo(withRouter(ExternalNavBarItem));

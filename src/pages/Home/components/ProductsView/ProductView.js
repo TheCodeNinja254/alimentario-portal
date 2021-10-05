@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import HomeProducts from "./HomeProducts";
 import EnterpriseProducts from "./EnterpriseProducts";
+import HomePlusPackages from "./HomePusProducts";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   exploreHomeButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   getConnectedButton: {
     marginTop: theme.spacing(8),
@@ -78,6 +79,8 @@ const ProductView = () => {
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"
+          variant="scrollable"
+          scrollButtons="on"
           TabIndicatorProps={{
             style: {
               display: "none",
@@ -101,11 +104,23 @@ const ProductView = () => {
               <Button
                 variant="contained"
                 color={value === 1 ? "primary" : "default"}
+                className={classes.exploreHomeButton}
+              >
+                Explore Home Plus
+              </Button>
+            }
+            {...a11yProps(1)}
+          />
+          <Tab
+            label={
+              <Button
+                variant="contained"
+                color={value === 2 ? "primary" : "default"}
               >
                 Explore Business
               </Button>
             }
-            {...a11yProps(1)}
+            {...a11yProps(2)}
           />
         </Tabs>
       </Box>
@@ -113,6 +128,9 @@ const ProductView = () => {
         <HomeProducts />
       </TabPanel>
       <TabPanel value={value} index={1}>
+        <HomePlusPackages />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
         <EnterpriseProducts />
       </TabPanel>
     </div>

@@ -11,19 +11,6 @@ export const GET_ESTATES = gql`
         estateId
         estateName
         regionId
-        status
-        contractorAgencyId
-        oltName
-        noOfHouses
-        occupancy
-        coordinates
-        houseNumbers
-        zoneId
-        tierNumber
-        createdBy
-        createdAt
-        updatedAt
-        deletedAt
       }
     }
   }

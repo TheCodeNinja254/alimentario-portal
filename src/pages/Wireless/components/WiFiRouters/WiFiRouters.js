@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Router1 from "../../../../assets/images/Routers/Router1.png";
 import Router2 from "../../../../assets/images/Routers/Router2.png";
-import Router3 from "../../../../assets/images/Routers/Router3.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,11 +62,6 @@ const rows = [
     routerName: "Adrian 3300 1",
     routerPrice: "Ksh. 9,999",
     routerImage: Router2,
-  },
-  {
-    routerName: "Adrian 3300 2",
-    routerPrice: "Ksh. 9,999",
-    routerImage: Router3,
   },
 ];
 

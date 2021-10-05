@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.error.dark,
   },
   anchorLink: {
-    color: theme.palette.black,
+    color: theme.palette.primary.main,
     textDecoration: "underline",
     fontSize: 22,
     fontWeight: "300",
@@ -93,14 +93,16 @@ const IntroductionScreen = () => {
               </Grid>
               <Grid item lg={6} xl={6} sm={12} xs={12}>
                 <div className={classes.IntroText}>
-                  <span className={classes.textInitial}>Ematic Box</span>
+                  <Typography className={classes.textInitial}>
+                    TV Smart Box
+                  </Typography>
                   <Typography className={classes.sloganText}>
-                    Enjoyment ni kutramsform your TV into a Smart TV. Get the
-                    Ematic Android Box and upgrade to Casting.
+                    Enjoyment ni kutramsform your TV into a Smart TV. Get a
+                    Smart Android Box and upgrade to Casting.
                   </Typography>
                 </div>
                 <div className={classes.actionButtons}>
-                  <HashLink to="#ematic-features">
+                  <HashLink to="#ematic-features" smooth>
                     <Button
                       variant="contained"
                       color="primary"

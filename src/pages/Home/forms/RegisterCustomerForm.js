@@ -19,6 +19,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useMutation } from "@apollo/client";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
+import moment from "moment";
 import { CREATE_CUSTOMER } from "../../../api/Mutations/Customers";
 import ErrorHandler from "../../../utils/errorHandler";
 import Dialog from "../../../components/Dialog";
@@ -110,7 +111,7 @@ const homePackages = [
   },
   {
     productId: 4,
-    packageName: "Gold",
+    packageName: "Diamond",
     packagePrice: "Kshs 12,499",
     packageBandwidth: "100 MBPS",
   },
@@ -181,11 +182,14 @@ const RegisterCustomerForm = (props) => {
   });
 
   const [selectedProductType, setSelectedProductType] = React.useState("Home");
+  const [hideAddonView, setHideAddonView] = React.useState(false);
 
   const mappedProducts = (productTypeSelection) => {
     if (productTypeSelection === "Home") {
+      setHideAddonView(false);
       return homePackages;
     }
+    setHideAddonView(true);
     return businessPackages;
   };
 
@@ -417,9 +421,17 @@ const RegisterCustomerForm = (props) => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={12}
+                xl={12}
+                hidden={hideAddonView}
+              >
                 <Typography variant="subtitle2" gutterBottom>
-                  Package Interested in
+                  Addons
                 </Typography>
                 <FormControl variant="standard" fullWidth>
                   <Select
@@ -441,6 +453,7 @@ const RegisterCustomerForm = (props) => {
                     <MenuItem value="CCTV">CCTV</MenuItem>
                     <MenuItem value="Home Insurance">Home Insurance</MenuItem>
                     <MenuItem value="Entertainment">Entertainment</MenuItem>
+                    <MenuItem value="WiFi Extender">WiFi Extender</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -456,6 +469,7 @@ const RegisterCustomerForm = (props) => {
                     value={values.preferredDate}
                     error={!!errors.preferredDate}
                     animateYearScrolling
+                    minDate={moment().add(1, "day").format("YYYY-MM-DD")}
                     format="dd/MM/yyyy"
                     onChange={(dateValue) =>
                       setFieldValue("preferredDate", dateValue)
@@ -506,7 +520,7 @@ const RegisterCustomerForm = (props) => {
 };
 
 RegisterCustomerForm.propTypes = {
-  estateId: PropTypes.string.isRequired,
+  estateId: PropTypes.number.isRequired,
   areaName: PropTypes.string.isRequired,
   streetName: PropTypes.string.isRequired,
   inputEstate: PropTypes.string.isRequired,

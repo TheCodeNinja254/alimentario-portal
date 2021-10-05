@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Page from "../../components/Page";
 import IntroductionScreen from "./components/IntroductionScreen/IntroductionScreen";
 import FeaturesAndSpecs from "./components/FeaturesAndSpecs/FeaturesAndSpecs";
-import GigaBoxComp from "./components/GigaBox";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -16,7 +15,6 @@ const HomeCCTV = () => {
     <Page title="Entertainment" className={classes.root}>
       <IntroductionScreen />
       <FeaturesAndSpecs />
-      <GigaBoxComp />
     </Page>
   );
 };

@@ -31,6 +31,10 @@ const EntertainmentView = lazy(() =>
   import(/* webpackChunkName: "EntertainmentView" */ "./pages/Entertainment")
 );
 
+const FAQsView = lazy(() =>
+  import(/* webpackChunkName: "FAQsView" */ "./pages/FAQs")
+);
+
 const AppRoutes = () => {
   return (
     <Switch>
@@ -87,6 +91,13 @@ const AppRoutes = () => {
         layout={MainLayout}
         exact
         path="/entertainment"
+      />
+
+      <RouteWithLayout
+        component={FAQsView}
+        layout={MainLayout}
+        exact
+        path="/faqs"
       />
       <RouteWithLayout component={NotFoundView} layout={MainLayout} />
     </Switch>

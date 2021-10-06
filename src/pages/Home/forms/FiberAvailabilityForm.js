@@ -79,16 +79,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EstatesList = (props) => {
-  const { className, setInputEstate, setSelectedEstate, inputEstate, estates } =
-    props;
+  const {
+    className,
+    setInputEstate,
+    setSelectedEstate,
+    inputEstate,
+    estates,
+    setEstateName,
+    setEstateStatus,
+    setReadyEstate,
+  } = props;
+
   return (
     <Autocomplete
       className={className}
       id="combo-box-demo"
       options={estates}
-      onChange={(event, selectedValue) =>
-        setSelectedEstate(selectedValue.estateId || 0, true)
-      }
+      onChange={(event, selectedValue) => {
+        setSelectedEstate(selectedValue.estateId || 0, true);
+        setEstateName(selectedValue.estateName || 0, true);
+        setEstateStatus(true);
+        setReadyEstate(true);
+      }}
       getOptionLabel={(estate) => estate.estateName}
       renderInput={(params) => (
         <TextField
@@ -105,7 +117,8 @@ const EstatesList = (props) => {
       onInputChange={(event, newInputValue) => {
         setInputEstate(newInputValue);
         setSelectedEstate(0);
-        // setSelectedEstate("null_selection");
+        setEstateName(newInputValue, true);
+        setReadyEstate(false);
       }}
       // options={getEstates.estates.map((estate) => estate.estateName)}
       openOnFocus
@@ -113,8 +126,9 @@ const EstatesList = (props) => {
   );
 };
 
-const FiberAvailabilityForm = () => {
+const FiberAvailabilityForm = (props) => {
   const classes = useStyles();
+  const { setEstateStatus, setReadyEstate, setEstateName } = props;
 
   const [regionId, setRegionId] = React.useState(3);
   const [formOneCollapsed, setFormOneCollapsed] = React.useState(true);
@@ -166,7 +180,7 @@ const FiberAvailabilityForm = () => {
               gutterBottom
               className={classes.regionsTextareaLabel}
             >
-              Select Region
+              Select your general area
             </Typography>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -207,7 +221,7 @@ const FiberAvailabilityForm = () => {
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <Typography variant="subtitle2" gutterBottom>
-                  Enter Estate Name/Road
+                  Enter Estate/Building name
                 </Typography>
                 <GetEstatesQuery
                   variables={{
@@ -251,6 +265,9 @@ const FiberAvailabilityForm = () => {
                           estates={getEstates.estates}
                           inputValue={inputEstate}
                           setInputEstate={setInputEstate}
+                          setEstateName={setEstateName}
+                          setEstateStatus={setEstateStatus}
+                          setReadyEstate={setReadyEstate}
                         />
                       ) : (
                         <Alert severity="warning">

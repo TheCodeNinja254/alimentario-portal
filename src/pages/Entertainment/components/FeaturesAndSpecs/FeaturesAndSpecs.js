@@ -174,7 +174,7 @@ const FeaturesAndSpecs = () => {
               </Grid>
               <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
                 <div align="center">
-                  <a href="https://www.safaricom.co.ke/find-our-shops">
+                  <a href="https://www.masoko.com/4k-andriod-tv-ott-ematic-box-dv8235-1">
                     <Button
                       small
                       variant="contained"

@@ -70,6 +70,12 @@ const useStyles = makeStyles((theme) => ({
       width: "80%",
     },
   },
+  selectedEstate: {
+    color: theme.palette.primary.main,
+    fontWeight: 700,
+    fontSize: 22,
+    marginTop: theme.spacing(3),
+  },
   onMapCardTop: {
     backgroundColor: "transparent",
     boxShadow: "none",
@@ -125,6 +131,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
+  const [estateStatus, setEstateStatus] = React.useState(false);
+  const [readyEstate, setReadyEstate] = React.useState(false);
+  const [estateName, setEstateName] = React.useState("New Estate");
 
   return (
     <Page title="Home" className={classes.root}>
@@ -157,31 +166,63 @@ const Home = () => {
                       <LocationOnIcon className={classes.locationIcon} />
                     </Typography>
                   </Paper>
-                  <Card elevation={2} className={classes.onMapInnerCard}>
-                    <CardContent>
-                      <Typography
-                        gutterBottom
-                        className={classes.onMapCardTitle}
-                      >
-                        Check Your Coverage
-                      </Typography>
-                      <Divider
-                        variant="middle"
-                        className={classes.onMapDivider}
-                      />
-                      <Typography
-                        gutterBottom
-                        className={classes.onMapCardContent}
-                      >
-                        Find out if your area is Fibre Ready
-                      </Typography>
-                      <Link to="4g-wifi-router">
-                        <Button variant="contained" color="primary">
-                          Explore 4G for Home
-                        </Button>
-                      </Link>
-                    </CardContent>
-                  </Card>
+                  {/* eslint-disable-next-line no-nested-ternary */}
+                  {estateStatus ? (
+                    readyEstate ? (
+                      <Card elevation={2} className={classes.onMapInnerCard}>
+                        <CardContent>
+                          <Typography
+                            gutterBottom
+                            className={classes.selectedEstate}
+                          >
+                            {estateName} is covered
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    ) : (
+                      <Card elevation={2} className={classes.onMapInnerCard}>
+                        <CardContent>
+                          <Typography
+                            gutterBottom
+                            className={classes.selectedEstate}
+                          >
+                            {estateName} is not covered
+                          </Typography>
+                          <Link to="4g-wifi-router">
+                            <Button variant="contained" color="primary">
+                              Explore 4G for Home
+                            </Button>
+                          </Link>
+                        </CardContent>
+                      </Card>
+                    )
+                  ) : (
+                    <Card elevation={2} className={classes.onMapInnerCard}>
+                      <CardContent>
+                        <Typography
+                          gutterBottom
+                          className={classes.onMapCardTitle}
+                        >
+                          Check Your Coverage
+                        </Typography>
+                        <Divider
+                          variant="middle"
+                          className={classes.onMapDivider}
+                        />
+                        <Typography
+                          gutterBottom
+                          className={classes.onMapCardContent}
+                        >
+                          Find out if your area is Fibre Ready
+                        </Typography>
+                        <Link to="4g-wifi-router">
+                          <Button variant="contained" color="primary">
+                            Explore 4G for Home
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  )}
                 </Card>
               </Card>
             </Grid>
@@ -201,7 +242,11 @@ const Home = () => {
                   <TicketStatusCheckForm />
                 </CardContent>
               </Card>
-              <FiberAvailabilityForm />
+              <FiberAvailabilityForm
+                setEstateStatus={setEstateStatus}
+                setReadyEstate={setReadyEstate}
+                setEstateName={setEstateName}
+              />
             </Grid>
           </Grid>
           <Grid container spacing={3} id="packages">

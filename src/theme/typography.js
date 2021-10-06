@@ -1,5 +1,5 @@
 const typography = {
-  fontFamily: ["Futura Std Heavy", "Futura Std Medium Oblique"].join(","),
+  fontFamily: ["Futura Std Book", "Futura Std Medium Oblique"].join(","),
   h1: {
     fontWeight: 600,
     fontSize: 55,

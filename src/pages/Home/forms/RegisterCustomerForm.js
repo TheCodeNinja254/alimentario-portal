@@ -524,7 +524,7 @@ const RegisterCustomerForm = (props) => {
               {loading ? "Please wait..." : "Submit Request"}
             </Button>
             <Button
-              color="secondary"
+              color="default"
               onClick={() => returnToCheckAvailability()}
               className={classes.getConnectedButton}
               size="small"

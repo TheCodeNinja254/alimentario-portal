@@ -4,6 +4,7 @@ import { HashLink } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import IntroImage from "../../../../assets/images/Intro.png";
+import TicketStatusCheckForm from "../../forms/TicketStatusCheckForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -100,6 +101,9 @@ const IntroductionScreen = () => {
               >
                 Already made a request, Check Status
               </HashLink>
+              <Card elevation={0}>
+                <TicketStatusCheckForm />
+              </Card>
             </Grid>
             <Grid item lg={6} xl={6} md={6} sm={12} xs={12}>
               <img

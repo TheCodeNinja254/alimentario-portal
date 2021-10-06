@@ -178,7 +178,7 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus">
+              <HashLink to="#checkStatus" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
@@ -279,7 +279,7 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus">
+              <HashLink to="#checkStatus" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
@@ -380,7 +380,7 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus">
+              <HashLink to="#checkStatus" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>

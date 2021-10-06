@@ -17,7 +17,7 @@ import Page from "../../components/Page";
 import ProductView from "./components/ProductsView/ProductView";
 import FiberAvailabilityForm from "./forms/FiberAvailabilityForm";
 import coverBackgroundImage from "../../assets/images/img_3.png";
-import TicketStatusCheckForm from "./forms/TicketStatusCheckForm";
+// import TicketStatusCheckForm from "./forms/TicketStatusCheckForm";
 import HomeFiberIntro from "./components/HomeFiberIntro";
 import EnterpriseFiberIntro from "./components/EnterpriseFiberIntro";
 import InformationTab from "./components/InformationTab/InformationTab";
@@ -115,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: theme.palette.black,
     margin: theme.spacing(2),
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(3),
   },
   onMapInnerCard: {
     borderRadius: 23,
@@ -167,7 +167,7 @@ const Home = () => {
                     </Typography>
                   </Paper>
                   {/* eslint-disable-next-line no-nested-ternary */}
-                  {estateStatus ? (
+                  {estateStatus && estateName !== "" ? (
                     readyEstate ? (
                       <Card elevation={2} className={classes.onMapInnerCard}>
                         <CardContent>
@@ -234,14 +234,6 @@ const Home = () => {
               xs={12}
               className={classes.checkCoverageArea}
             >
-              <Typography variant="h1" className={classes.pageSubHeading}>
-                Get connected to Safaricom Fibre
-              </Typography>
-              <Card elevation={0}>
-                <CardContent>
-                  <TicketStatusCheckForm />
-                </CardContent>
-              </Card>
               <FiberAvailabilityForm
                 setEstateStatus={setEstateStatus}
                 setReadyEstate={setReadyEstate}

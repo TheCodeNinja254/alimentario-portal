@@ -7,7 +7,6 @@ import {
   CardActions,
   CardContent,
   Collapse,
-  Container,
   FormControl,
   Grid,
   List,
@@ -20,14 +19,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Autocomplete } from "@material-ui/lab";
 import moment from "moment";
 import StopIcon from "@material-ui/icons/Stop";
+import { Link } from "react-router-dom";
 import Alert from "../../../components/Alert";
 import GetRegionsQuery from "../../../api/Queries/Locations/GetRegionsQuery";
 import GetEstatesQuery from "../../../api/Queries/Locations/GetEstates";
 import RegisterCustomerForm from "./RegisterCustomerForm";
 
-const buttonDisabledStatus = (streetName) => {
+const buttonDisabledStatus = (streetName, estateId) => {
   let buttonStatus = false;
-  if (streetName === "") {
+  if (streetName === "" || estateId === "") {
     buttonStatus = true;
   }
   return buttonStatus;
@@ -35,12 +35,14 @@ const buttonDisabledStatus = (streetName) => {
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  wrapper: {
-    padding: theme.spacing(2),
+  pageSubHeading: {
+    fontSize: 36,
+    fontWeight: 700,
   },
   formHeader: {
     fontWeight: 500,
     marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
     textDecoration: "bold",
   },
   textFieldWithLable: {
@@ -65,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
   },
   confirmationCard: {
-    marginTop: theme.spacing(6),
-    padding: theme.spacing(2),
+    marginTop: theme.spacing(4),
+    // padding: theme.spacing(2),
   },
   cardSubtitle: {
     fontSize: 18,
@@ -146,6 +148,13 @@ const FiberAvailabilityForm = (props) => {
   const redirectToRegistration = () => {
     setFormOneCollapsed(false);
     setFormTwoCollapsed(true);
+    setSuccessfulRegistration(false);
+  };
+
+  const returnToCheckAvailability = () => {
+    setFormOneCollapsed(true);
+    setFormTwoCollapsed(false);
+    setSuccessfulRegistration(false);
   };
 
   // State Data
@@ -172,17 +181,22 @@ const FiberAvailabilityForm = (props) => {
       <CardContent>
         <Box className={classes.wrapper}>
           <Collapse in={formOneCollapsed}>
-            <Typography variant="h3" className={classes.formHeader}>
-              Find out if your area is fibre ready
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              gutterBottom
-              className={classes.regionsTextareaLabel}
-            >
-              Select your general area
-            </Typography>
             <Grid container spacing={3}>
+              <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                <Typography variant="h1" className={classes.pageSubHeading}>
+                  Get connected to Safaricom Fibre
+                </Typography>
+                <Typography variant="h3" className={classes.formHeader}>
+                  Find out if your area is fibre ready
+                </Typography>
+                <Typography
+                  variant="subtitle2"
+                  gutterBottom
+                  className={classes.regionsTextareaLabel}
+                >
+                  Select your general area
+                </Typography>
+              </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <GetRegionsQuery>
                   {({ getRegions }) => (
@@ -233,32 +247,6 @@ const FiberAvailabilityForm = (props) => {
                   {({ getEstates }) => (
                     <>
                       {getEstates.getEstatesStatus > 0 ? (
-                        // <Autocomplete
-                        //   freeSolo
-                        //   id="free-solo-demo"
-                        //   className={classes.textFieldWithLable}
-                        //   onChange={(event, selectedValue) =>
-                        //     setSelectedEstate(selectedValue)
-                        //   }
-                        //   inputValue={inputEstate}
-                        //   onInputChange={(event, newInputValue) => {
-                        //     setInputEstate(newInputValue);
-                        //     setSelectedEstate("null_selection");
-                        //   }}
-                        //   options={getEstates.estates.map(
-                        //     (estate) => estate.estateName
-                        //   )}
-                        //   openOnFocus
-                        //   renderInput={(params) => (
-                        //     <TextField
-                        //       {...params}
-                        //       required
-                        //       className={classes.textFieldWithLable}
-                        //       name="estateName"
-                        //       variant="standard"
-                        //     />
-                        //   )}
-                        // />
                         <EstatesList
                           className={classes.textFieldWithLable}
                           setSelectedEstate={setSelectedEstate}
@@ -314,7 +302,7 @@ const FiberAvailabilityForm = (props) => {
             <Button
               variant="contained"
               size="small"
-              disabled={buttonDisabledStatus(streetName)}
+              disabled={buttonDisabledStatus(streetName, estateId)}
               color="primary"
               onClick={() => redirectToRegistration()}
               className={classes.getConnectedButton}
@@ -323,6 +311,11 @@ const FiberAvailabilityForm = (props) => {
             </Button>
           </Collapse>
           <Collapse in={formTwoCollapsed}>
+            <div>
+              <Typography variant="h1" className={classes.pageSubHeading}>
+                Get connected to Safaricom Fibre
+              </Typography>
+            </div>
             <RegisterCustomerForm
               estateId={estateId}
               areaName={closeLandmark}
@@ -330,77 +323,75 @@ const FiberAvailabilityForm = (props) => {
               inputEstate={inputEstate || estateName}
               setSuccessfulRegistration={setSuccessfulRegistration}
               setLeadDetails={setLeadDetails}
+              setFormTwoCollapsed={setFormTwoCollapsed}
+              setFormOneCollapsed={setFormOneCollapsed}
             />
           </Collapse>
           <Collapse in={successfulRegistration}>
-            <Container maxWidth="lg">
-              <Grid container spacing={3}>
-                <Grid item lg={5} xl={5} sm={12} xs={12}>
-                  <Card elevation={0} className={classes.confirmationCard}>
-                    <CardContent>
-                      <Typography className={classes.confirmationCardTitle}>
-                        We have received your request for fibre connection
-                      </Typography>
-                      <br />
+            <Grid container spacing={3}>
+              <Grid item lg={12} xl={12} sm={12} xs={12}>
+                <Typography className={classes.confirmationCardTitle}>
+                  We have received your request for fibre connection
+                </Typography>
+                <br />
+                <Typography className={classes.cardSubtitle}>
+                  We will call you on{" "}
+                  {moment(preferredDate).format("MMMM Do YYYY")} between{" "}
+                  {preferredTimePeriod}. You can check the status of your
+                  request using your mobile number.
+                </Typography>
+                <List dense className={classes.cardSubtitle}>
+                  <ListItemText
+                    primary={
                       <Typography className={classes.cardSubtitle}>
-                        We will call you on{" "}
-                        {moment(preferredDate).format("MMMM Do YYYY")} between{" "}
-                        {preferredTimePeriod}. You can check the status of your
-                        request using your mobile number.
+                        <StopIcon />
+                        Find your position in the queue
                       </Typography>
-                      <List dense className={classes.cardSubtitle}>
-                        <ListItemText
-                          primary={
-                            <Typography className={classes.cardSubtitle}>
-                              <StopIcon />
-                              Find your position in the queue
-                            </Typography>
-                          }
-                        />
-                        <ListItemText
-                          primary={
-                            <Typography className={classes.cardSubtitle}>
-                              <StopIcon />
-                              Get your questions answered and updates
-                            </Typography>
-                          }
-                        />
-                        <ListItemText
-                          primary={
-                            <Typography className={classes.cardSubtitle}>
-                              <StopIcon />
-                              Reach one of our representatives{" "}
-                            </Typography>
-                          }
-                        />
-                        <ListItemText
-                          primary={
-                            <Typography className={classes.cardSubtitle}>
-                              <StopIcon />
-                              Know the status of your request.{" "}
-                            </Typography>
-                          }
-                        />
-                      </List>
+                    }
+                  />
+                  <ListItemText
+                    primary={
                       <Typography className={classes.cardSubtitle}>
-                        using your mobile number
+                        <StopIcon />
+                        Get your questions answered and updates
                       </Typography>
-                    </CardContent>
-                    <CardActions className={classes.cardAction}>
-                      <Button
-                        color="primary"
-                        size="large"
-                        type="submit"
-                        variant="contained"
-                      >
-                        Done
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-                <Grid item lg={4} xl={4} />
+                    }
+                  />
+                  <ListItemText
+                    primary={
+                      <Typography className={classes.cardSubtitle}>
+                        <StopIcon />
+                        Reach one of our representatives{" "}
+                      </Typography>
+                    }
+                  />
+                  <ListItemText
+                    primary={
+                      <Typography className={classes.cardSubtitle}>
+                        <StopIcon />
+                        Know the status of your request.{" "}
+                      </Typography>
+                    }
+                  />
+                </List>
+                <Typography className={classes.cardSubtitle}>
+                  using your mobile number
+                </Typography>
+                <CardActions className={classes.cardAction}>
+                  <Link to="/">
+                    <Button
+                      color="primary"
+                      size="large"
+                      variant="contained"
+                      onClick={() => returnToCheckAvailability()}
+                    >
+                      Done
+                    </Button>
+                  </Link>
+                </CardActions>
               </Grid>
-            </Container>
+              <Grid item lg={4} xl={4} />
+            </Grid>
           </Collapse>
         </Box>
       </CardContent>

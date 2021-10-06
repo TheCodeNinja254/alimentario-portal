@@ -33,7 +33,9 @@ const useStyles = makeStyles((theme) => ({
     opacity: "90%",
   },
   wrapper: {
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    maxWidth: 450,
   },
   formHeader: {
     fontWeight: 500,
@@ -47,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     margin: theme.spacing(1),
+    marginLeft: theme.spacing(0),
   },
   dialogContent: {
     textAlign: "center",
@@ -84,9 +87,9 @@ const TicketStatusCheckForm = () => {
 
   return (
     <>
-      <Typography variant="h3" className={classes.formHeader}>
-        Use your mobile number to confirm your request status
-      </Typography>
+      {/* <Typography variant="h3" className={classes.formHeader}> */}
+      {/*  Use your mobile number to confirm your request status */}
+      {/* </Typography> */}
       <Formik
         initialValues={{
           uniqueIdentity: "",
@@ -173,7 +176,7 @@ const TicketStatusCheckForm = () => {
             />
             <Box className={classes.wrapper}>
               <Typography variant="subtitle2" gutterBottom>
-                Enter Mobile Number
+                Use your mobile number to confirm your request status
               </Typography>
               <FormControl
                 fullWidth

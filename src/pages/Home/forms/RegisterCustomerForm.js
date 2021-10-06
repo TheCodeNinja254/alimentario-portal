@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
   getConnectedButton: {
     marginTop: theme.spacing(3),
+    marginRight: theme.spacing(3),
     height: "30px",
     width: 150,
   },
@@ -147,15 +148,17 @@ const RegisterCustomerForm = (props) => {
     inputEstate,
     setSuccessfulRegistration,
     setLeadDetails,
+    setFormTwoCollapsed,
+    setFormOneCollapsed,
   } = props;
 
   const chipData = [
     { key: 0, label: "Morning: 8 - 10am" },
-    { key: 1, label: "Afternoon: 12 - 3 pm" },
+    { key: 1, label: "Afternoon: 12 - 1 pm" },
     { key: 2, label: "Evening: 3 -5 pm" },
     { key: 3, label: "Morning: 10 -12 pm" },
     { key: 4, label: "Afternoon: 1 - 3 pm" },
-    { key: 5, label: "Night: 5 - 8 pm" },
+    { key: 5, label: "Night: 5 - 7 pm" },
   ];
 
   const buttonDisabledStatus = (errors, values, loading) => {
@@ -200,6 +203,12 @@ const RegisterCustomerForm = (props) => {
   const { open, status, message } = registerLeadDetails;
   const closeDialog = () => {
     setRegisterLeadDetails({ open: false, status: false, message: "" });
+  };
+
+  const returnToCheckAvailability = () => {
+    setFormOneCollapsed(true);
+    setFormTwoCollapsed(false);
+    setSuccessfulRegistration(false);
   };
 
   return (
@@ -259,6 +268,8 @@ const RegisterCustomerForm = (props) => {
               } = response;
               if (customerStatus) {
                 setSuccessfulRegistration(true);
+                setFormTwoCollapsed(false);
+                setFormOneCollapsed(false);
                 setLeadDetails({
                   preferredDate,
                   preferredTimePeriod,
@@ -452,7 +463,7 @@ const RegisterCustomerForm = (props) => {
                     <MenuItem value="Secure Net">Secure Net</MenuItem>
                     <MenuItem value="CCTV">CCTV</MenuItem>
                     <MenuItem value="Home Insurance">Home Insurance</MenuItem>
-                    <MenuItem value="Entertainment">Entertainment</MenuItem>
+                    <MenuItem value="Smart TV Box">Smart TV Box</MenuItem>
                     <MenuItem value="WiFi Extender">WiFi Extender</MenuItem>
                   </Select>
                 </FormControl>
@@ -469,7 +480,7 @@ const RegisterCustomerForm = (props) => {
                     value={values.preferredDate}
                     error={!!errors.preferredDate}
                     animateYearScrolling
-                    minDate={moment().add(1, "day").format("YYYY-MM-DD")}
+                    minDate={moment().format("YYYY-MM-DD")}
                     format="dd/MM/yyyy"
                     onChange={(dateValue) =>
                       setFieldValue("preferredDate", dateValue)
@@ -512,6 +523,15 @@ const RegisterCustomerForm = (props) => {
             >
               {loading ? "Please wait..." : "Submit Request"}
             </Button>
+            <Button
+              color="secondary"
+              onClick={() => returnToCheckAvailability()}
+              className={classes.getConnectedButton}
+              size="small"
+              variant="contained"
+            >
+              Cancel
+            </Button>
           </FormikForm>
         )}
       </Formik>
@@ -525,6 +545,8 @@ RegisterCustomerForm.propTypes = {
   streetName: PropTypes.string.isRequired,
   inputEstate: PropTypes.string.isRequired,
   setSuccessfulRegistration: PropTypes.func,
+  setFormTwoCollapsed: PropTypes.func,
+  setFormOneCollapsed: PropTypes.func,
 };
 
 export default React.memo(RegisterCustomerForm);

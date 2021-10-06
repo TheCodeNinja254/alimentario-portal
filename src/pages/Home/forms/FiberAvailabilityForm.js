@@ -114,7 +114,6 @@ const EstatesList = (props) => {
         />
       )}
       freeSolo
-      // onChange={(event, selectedValue) => setSelectedEstate(selectedValue)}
       inputValue={inputEstate}
       onInputChange={(event, newInputValue) => {
         setInputEstate(newInputValue);
@@ -122,7 +121,6 @@ const EstatesList = (props) => {
         setEstateName(newInputValue, true);
         setReadyEstate(false);
       }}
-      // options={getEstates.estates.map((estate) => estate.estateName)}
       openOnFocus
     />
   );
@@ -165,10 +163,6 @@ const FiberAvailabilityForm = (props) => {
 
   let estateName = selectedEstate;
   let estateId;
-  // const passedEstateName = selectedEstate.split("-");
-  // eslint-disable-next-line prefer-destructuring
-  // estateId = passedEstateName[0];
-  // const placeholderOnEstateInput = "null_selection";
   if (selectedEstate === 0) {
     estateName = inputEstate;
     estateId = 0;

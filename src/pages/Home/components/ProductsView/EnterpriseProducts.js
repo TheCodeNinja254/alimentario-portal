@@ -14,7 +14,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
-import { HashLink } from "react-router-hash-link";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -178,11 +177,15 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <a
+                href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions/internet-for-business"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
-              </HashLink>
+              </a>
             </CardActions>
           </Card>
         </Grid>
@@ -199,7 +202,7 @@ const EnterpriseProductsView = () => {
                 component="p"
                 className={classes.productCardSubtitle}
               >
-                Median offices of 10-20 users
+                Medium offices of 10-20 users
               </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
@@ -279,11 +282,15 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <a
+                href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions/internet-for-business"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
-              </HashLink>
+              </a>
             </CardActions>
           </Card>
         </Grid>
@@ -380,11 +387,15 @@ const EnterpriseProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <a
+                href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions/internet-for-business"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
-              </HashLink>
+              </a>
             </CardActions>
           </Card>
         </Grid>

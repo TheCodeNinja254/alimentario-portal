@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
   actionButtons: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.white.main,
+    },
   },
   infoIconImage: {
     height: "71px",
@@ -136,7 +140,11 @@ const Features = () => {
         </CardContent>
       </Card>
       <div align="center">
-        <a href="https://www.safaricom.co.ke/find-our-shops">
+        <a
+          href="https://www.safaricom.co.ke/find-our-shops"
+          target="_blank"
+          rel="noreferrer"
+        >
           <Button
             small
             variant="outlined"

@@ -2,7 +2,7 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import { Container, Hidden, Tab, Tabs } from "@material-ui/core";
+import { Button, Container, Hidden, Tab, Tabs } from "@material-ui/core";
 import { NavHashLink } from "react-router-hash-link";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,9 +56,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     textTransform: "none",
     color: theme.palette.black,
-    // [theme.breakpoints.up("sm")]: {
-    //   marginLeft: theme.spacing(2),
-    // },
+    "&:hover": {
+      backgroundColor: theme.palette.white.main,
+    },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -75,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: 27,
     marginLeft: theme.spacing(36),
+    marginRight: theme.spacing(18),
   },
   secondAppBar: {
     marginTop: theme.spacing(5),
@@ -98,6 +99,10 @@ const useStyles = makeStyles((theme) => ({
     overflowX: "auto",
     marginBottom: theme.spacing(0),
   },
+  menuItems: {
+    display: "flex",
+    justifyContent: "right",
+  },
 }));
 
 const siteLinks = [
@@ -106,7 +111,7 @@ const siteLinks = [
     url: "/home#packages",
   },
   {
-    label: "Addons",
+    label: "Add-ons",
     url: "/home#addons",
   },
   {
@@ -145,22 +150,31 @@ const SearchAppBar = () => {
             />
             <Tabs
               value={value}
+              className={classes.menuItems}
               onChange={handleChange}
               aria-label="icon label tabs example"
               TabIndicatorProps={{
                 style: {
-                  display: "none",
+                  height: "3px",
+                  backgroundColor: "#2cb34a",
                 },
               }}
             >
               {siteLinks.map((siteLink) => (
-                <NavHashLink to={siteLink.url} className={classes.Tab} smooth>
-                  <Tab
-                    key={siteLink.label}
-                    className={classes.Tab}
-                    label={siteLink.label}
-                  />
-                </NavHashLink>
+                <Tab
+                  key={siteLink.label}
+                  className={classes.Tab}
+                  label={
+                    <NavHashLink
+                      to={siteLink.url}
+                      key={siteLink.label}
+                      className={classes.Tab}
+                      smooth
+                    >
+                      <Button className={classes.Tab}>{siteLink.label}</Button>
+                    </NavHashLink>
+                  }
+                />
               ))}
             </Tabs>
           </Toolbar>
@@ -183,21 +197,23 @@ const SearchAppBar = () => {
               scrollButtons="on"
               TabIndicatorProps={{
                 style: {
-                  display: "none",
+                  height: "3px",
+                  backgroundColor: "#2cb34a",
                 },
               }}
             >
               {siteLinks.map((siteLink) => (
                 <Tab
-                  className={classes.Tab}
                   key={siteLink.label}
+                  className={classes.Tab}
                   label={
                     <NavHashLink
-                      className={classes.Tab}
                       to={siteLink.url}
+                      key={siteLink.label}
+                      className={classes.Tab}
                       smooth
                     >
-                      {siteLink.label}
+                      <Button className={classes.Tab}>{siteLink.label}</Button>
                     </NavHashLink>
                   }
                 />

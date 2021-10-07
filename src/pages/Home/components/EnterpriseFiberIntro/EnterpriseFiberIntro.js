@@ -10,13 +10,14 @@ import {
   Container,
   Grid,
 } from "@material-ui/core";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import Typography from "@material-ui/core/Typography";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import Offers from "../../../../assets/images/Icons/BusinessFiberIcons/Offers.svg";
 import Network from "../../../../assets/images/Icons/BusinessFiberIcons/Network.svg";
 import Services from "../../../../assets/images/Icons/BusinessFiberIcons/Services.svg";
 import Support from "../../../../assets/images/Icons/BusinessFiberIcons/Support.svg";
 import maleImg from "../../../../assets/images/Male.png";
+import fiberForBusiness from "../../../../assets/images/fiberForBusiness.jpeg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -283,7 +284,7 @@ const EnterpriseFiberIntro = () => {
         </CardContent>
       </Card>
       <Container className={classes.featureCardContainer}>
-        <Grid container justify="center" spacing={2}>
+        <Grid container justify="space-evenly" spacing={2}>
           <Grid item lg={4} md={4} xl={4} xs={12} sm={12}>
             <Card className={classes.featureCard} elevation={0}>
               <CardMedia
@@ -307,7 +308,11 @@ const EnterpriseFiberIntro = () => {
                 {/* <RegisterCustomerMinimalForm /> */}
               </CardContent>
               <CardActions>
-                <a href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions">
+                <a
+                  href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions/internet-for-business"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <Button size="small" className={classes.buttonAction}>
                     Find out more <NavigateNextIcon />
                   </Button>
@@ -320,7 +325,7 @@ const EnterpriseFiberIntro = () => {
               <CardMedia
                 component="img"
                 height="210"
-                image={maleImg}
+                image={fiberForBusiness}
                 alt="green iguana"
               />
               <CardContent>
@@ -338,38 +343,11 @@ const EnterpriseFiberIntro = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <a href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions">
-                  <Button size="small" className={classes.buttonAction}>
-                    Find out more <NavigateNextIcon />
-                  </Button>
-                </a>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item lg={4} md={4} xl={4} xs={12} sm={12}>
-            <Card className={classes.featureCard} elevation={0}>
-              <CardMedia
-                component="img"
-                height="210"
-                image={maleImg}
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                  className={classes.cardHeader}
+                <a
+                  href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions/internet-for-business"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  Voice For Business
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Get affordable internet and calling rates for your small or
-                  medium sized business
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <a href="https://www.safaricom.co.ke/business/sme/fixed-line-solutions">
                   <Button size="small" className={classes.buttonAction}>
                     Find out more <NavigateNextIcon />
                   </Button>

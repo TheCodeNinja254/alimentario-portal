@@ -30,8 +30,8 @@ const LeadRegistrationSchema = Yup.object().shape({
     .required("Name is required, luckily.")
     .min(3, "Please enter a valid name"),
   sponsorMsisdn: Yup.string()
-    .min(9)
-    .max(12)
+    .min(9, "The entered phone number is too short")
+    .max(12, "The entered phone number is too long")
     .required("Mobile number is required"),
   productId: Yup.string().required("Which package are you interested in?"),
   preferredDate: Yup.string().required("When can we call you?"),
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
   chips: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "left",
     flexWrap: "wrap",
     listStyle: "none",
     margin: 0,
@@ -73,7 +73,8 @@ const useStyles = makeStyles((theme) => ({
     width: 150,
   },
   chip: {
-    margin: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     borderRadius: "8px",
     height: "25px",
     width: "133px",
@@ -87,7 +88,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   packageName: {
-    fontWeight: 500,
+    fontWeight: 700,
+  },
+  productListing: {
+    wordWrap: "break-word",
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -116,6 +121,30 @@ const homePackages = [
     packagePrice: "Kshs 12,499",
     packageBandwidth: "100 MBPS",
   },
+  {
+    productId: 5,
+    packageName: "Bronze Plus",
+    packagePrice: "Kshs 4,049",
+    packageBandwidth: "8 MBPS",
+  },
+  {
+    productId: 6,
+    packageName: "Silver Plus",
+    packagePrice: "Kshs 5,349",
+    packageBandwidth: "20 MBPS",
+  },
+  {
+    productId: 7,
+    packageName: "Gold Plus",
+    packagePrice: "Kshs 7,349",
+    packageBandwidth: "40 MBPS",
+  },
+  {
+    productId: 8,
+    packageName: "Diamond Plus",
+    packagePrice: "Kshs 13,549",
+    packageBandwidth: "100 MBPS",
+  },
 ];
 
 const businessPackages = [
@@ -127,7 +156,7 @@ const businessPackages = [
   },
   {
     productId: 6,
-    packageName: "Median offices of 10-20 users",
+    packageName: "Medium offices of 10-20 users",
     packagePrice: "Ksh 5,799",
     packageBandwidth: "5 MBPS",
   },
@@ -138,6 +167,79 @@ const businessPackages = [
     packageBandwidth: "10 MBPS",
   },
 ];
+
+const DisplayChips = (props) => {
+  const { setPreferredTime, preferredTime, chipData, className, selectedDate } =
+    props;
+  const timeNow = new Date();
+  const currentHour = Number(timeNow.getHours());
+
+  const userSelectedDate = moment(selectedDate).format("YYYY-DD-MM");
+  const formatedDateToday = moment().format("YYYY-DD-MM");
+
+  if (userSelectedDate === formatedDateToday) {
+    if (currentHour > 17) {
+      let i = 0;
+      const n = 5;
+      while (i < n) {
+        delete chipData[i];
+        // eslint-disable-next-line no-plusplus
+        i++;
+      }
+    }
+
+    if (currentHour > 15) {
+      let i = 0;
+      const n = 4;
+      while (i < n) {
+        delete chipData[i];
+        // eslint-disable-next-line no-plusplus
+        i++;
+      }
+    }
+
+    if (currentHour > 13) {
+      let i = 0;
+      const n = 3;
+      while (i < n) {
+        delete chipData[i];
+        // eslint-disable-next-line no-plusplus
+        i++;
+      }
+    }
+
+    if (currentHour > 12) {
+      let i = 0;
+      const n = 2;
+      while (i < n) {
+        delete chipData[i];
+        // eslint-disable-next-line no-plusplus
+        i++;
+      }
+    }
+
+    if (currentHour > 10) {
+      let i = 0;
+      const n = 1;
+      while (i < n) {
+        delete chipData[i];
+        // eslint-disable-next-line no-plusplus
+        i++;
+      }
+    }
+  }
+
+  return chipData.map((data) => (
+    <li key={data.key}>
+      <Chip
+        label={data.label}
+        color={data.label === preferredTime ? "primary" : "default"}
+        className={className}
+        onClick={() => setPreferredTime(data.label)}
+      />
+    </li>
+  ));
+};
 
 const RegisterCustomerForm = (props) => {
   const classes = useStyles();
@@ -154,12 +256,14 @@ const RegisterCustomerForm = (props) => {
 
   const chipData = [
     { key: 0, label: "Morning: 8 - 10am" },
-    { key: 1, label: "Afternoon: 12 - 1 pm" },
-    { key: 2, label: "Evening: 3 -5 pm" },
-    { key: 3, label: "Morning: 10 -12 pm" },
-    { key: 4, label: "Afternoon: 1 - 3 pm" },
-    { key: 5, label: "Night: 5 - 7 pm" },
+    { key: 1, label: "Morning: 10 -12 pm" },
+    { key: 2, label: "Afternoon: 12 - 1 pm" },
+    { key: 3, label: "Afternoon: 1 - 3 pm" },
+    { key: 4, label: "Evening: 3 -5 pm" },
+    { key: 5, label: "Evening: 5 - 7 pm" },
   ];
+
+  // const chipsFinal = displayChips();
 
   const buttonDisabledStatus = (errors, values, loading) => {
     let buttonStatus = true;
@@ -186,6 +290,9 @@ const RegisterCustomerForm = (props) => {
 
   const [selectedProductType, setSelectedProductType] = React.useState("Home");
   const [hideAddonView, setHideAddonView] = React.useState(false);
+  const [selectedDate, setSelectedDate] = React.useState(
+    moment().format("YYYY-MM-DD")
+  );
 
   const mappedProducts = (productTypeSelection) => {
     if (productTypeSelection === "Home") {
@@ -225,6 +332,7 @@ const RegisterCustomerForm = (props) => {
           productType: "Home",
           productId: "3",
           addOns: "",
+          preferredDate: moment().format("YYYY-MM-DD"),
         }}
         validationSchema={LeadRegistrationSchema}
         onSubmit={(values) => {
@@ -233,9 +341,8 @@ const RegisterCustomerForm = (props) => {
               input: {
                 firstName: values.fullName.split(" ")[0],
                 middleName:
-                  values.fullName.split(" ")[1] === ""
-                    ? values.fullName.split(" ")[1]
-                    : values.fullName.split(" ")[2],
+                  values.fullName.split(" ")[1] ||
+                  values.fullName.split(" ")[2],
                 lastName: values.fullName.split(" ")[2] || "",
                 sponsorMsisdn: values.sponsorMsisdn,
                 sponsorAlternativeMsisdn: "",
@@ -275,7 +382,6 @@ const RegisterCustomerForm = (props) => {
                   preferredTimePeriod,
                 });
               } else {
-                // registration error
                 setRegisterLeadDetails({
                   open: true,
                   status: customerStatus,
@@ -284,7 +390,6 @@ const RegisterCustomerForm = (props) => {
               }
             })
             .catch((res) => {
-              // error
               setRegisterLeadDetails({
                 open: true,
                 status: false,
@@ -418,7 +523,7 @@ const RegisterCustomerForm = (props) => {
                         value={product.productId}
                         key={product.productId}
                       >
-                        <Typography>
+                        <Typography className={classes.productListing}>
                           <span className={classes.packageName}>
                             {product.packageName}
                           </span>
@@ -442,7 +547,7 @@ const RegisterCustomerForm = (props) => {
                 hidden={hideAddonView}
               >
                 <Typography variant="subtitle2" gutterBottom>
-                  Addons
+                  Add-ons
                 </Typography>
                 <FormControl variant="standard" fullWidth>
                   <Select
@@ -482,12 +587,14 @@ const RegisterCustomerForm = (props) => {
                     animateYearScrolling
                     minDate={moment().format("YYYY-MM-DD")}
                     format="dd/MM/yyyy"
-                    onChange={(dateValue) =>
-                      setFieldValue("preferredDate", dateValue)
-                    }
+                    onChange={(dateValue) => {
+                      setFieldValue("preferredDate", dateValue);
+                      setSelectedDate(dateValue);
+                    }}
                     renderInput={(params) => (
                       <TextField
                         {...params}
+                        defaultValue={moment().format("YYYY-MM-DD")}
                         helperText={params?.inputProps?.placeholder}
                       />
                     )}
@@ -496,20 +603,13 @@ const RegisterCustomerForm = (props) => {
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Box component="ul" className={classes.chips}>
-                  {chipData.map((data) => {
-                    return (
-                      <li key={data.key}>
-                        <Chip
-                          label={data.label}
-                          color={
-                            data.label === preferredTime ? "primary" : "default"
-                          }
-                          className={classes.chip}
-                          onClick={() => setPreferredTime(data.label)}
-                        />
-                      </li>
-                    );
-                  })}
+                  <DisplayChips
+                    setPreferredTime={setPreferredTime}
+                    preferredTime={preferredTime}
+                    chipData={chipData}
+                    className={classes.chip}
+                    selectedDate={selectedDate}
+                  />
                 </Box>
               </Grid>
             </Grid>

@@ -41,7 +41,7 @@ const errorLink = onError(
       if (networkError.message === "Failed to fetch") {
         // eslint-disable-next-line no-param-reassign
         networkError.message =
-          "Sorry, we encountered a connection error. Please check your internet connection and retry again. If the problem persists, please contact @Safaricom_Care on Twitter.";
+          "Sorry, we encountered a connection error. Please check your internet connection and retry again. If the problem persists, please send an email to Fibersalesgroup@safaricom.co.ke";
       }
     }
   }

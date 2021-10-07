@@ -9,8 +9,6 @@ import {
   Collapse,
   FormControl,
   Grid,
-  List,
-  ListItemText,
   MenuItem,
   Select,
   Typography,
@@ -18,7 +16,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { Autocomplete } from "@material-ui/lab";
 import moment from "moment";
-import StopIcon from "@material-ui/icons/Stop";
 import { Link } from "react-router-dom";
 import Alert from "../../../components/Alert";
 import GetRegionsQuery from "../../../api/Queries/Locations/GetRegionsQuery";
@@ -48,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   textFieldWithLable: {
     marginTop: theme.spacing(0),
     backgroundColor: theme.palette.white.main,
+  },
+  alerts: {
+    marginTop: theme.spacing(1),
   },
   regionsTextarea: {
     marginTop: theme.spacing(4),
@@ -91,6 +91,14 @@ const EstatesList = (props) => {
     setEstateStatus,
     setReadyEstate,
   } = props;
+
+  // const { loading, error, data } = useQuery(GET_DOG_PHOTO, {
+  //   variables: { breed },
+  //   pollInterval: 500,
+  // });
+  //
+  // if (loading) return null;
+  // if (error) return `Error! ${error}`;
 
   return (
     <Autocomplete
@@ -173,7 +181,7 @@ const FiberAvailabilityForm = (props) => {
   return (
     <Card elevation={0} className={classes.root}>
       <CardContent>
-        <Box className={classes.wrapper}>
+        <Box>
           <Collapse in={formOneCollapsed}>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
@@ -188,7 +196,7 @@ const FiberAvailabilityForm = (props) => {
                   gutterBottom
                   className={classes.regionsTextareaLabel}
                 >
-                  Select your general area
+                  Select your town/area
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -218,10 +226,24 @@ const FiberAvailabilityForm = (props) => {
                           </Select>
                         </FormControl>
                       ) : (
-                        <Alert severity="warning">
-                          An error was encountered trying to load the list of
-                          available regions
-                        </Alert>
+                        <>
+                          <FormControl variant="standard" fullWidth>
+                            <Select
+                              labelId="demo-simple-select-standard-label-products"
+                              className={classes.regionsTextarea}
+                              id="demo-simple-select-standard-products-21"
+                              fullWidth
+                            >
+                              <MenuItem value="">
+                                <em>None</em>
+                              </MenuItem>
+                            </Select>
+                          </FormControl>
+                          <Alert severity="warning" className={classes.alerts}>
+                            An error was encountered trying to load the list of
+                            available regions
+                          </Alert>
+                        </>
                       )}
                     </>
                   )}
@@ -252,10 +274,24 @@ const FiberAvailabilityForm = (props) => {
                           setReadyEstate={setReadyEstate}
                         />
                       ) : (
-                        <Alert severity="warning">
-                          The selected region/town does not have any covered
-                          estates.
-                        </Alert>
+                        <>
+                          <FormControl variant="standard" fullWidth>
+                            <Select
+                              labelId="demo-simple-select-standard-label-products"
+                              className={classes.textFieldWithLable}
+                              id="demo-simple-select-standard-products-1"
+                              fullWidth
+                            >
+                              <MenuItem value="">
+                                <em>None</em>
+                              </MenuItem>
+                            </Select>
+                          </FormControl>
+                          <Alert severity="warning" className={classes.alerts}>
+                            The selected region/town does not have any covered
+                            estates.
+                          </Alert>
+                        </>
                       )}
                     </>
                   )}
@@ -279,7 +315,7 @@ const FiberAvailabilityForm = (props) => {
 
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <Typography variant="subtitle2" gutterBottom>
-                  Enter Address
+                  Enter your general area
                 </Typography>
                 <TextField
                   fullWidth
@@ -330,46 +366,8 @@ const FiberAvailabilityForm = (props) => {
                 <br />
                 <Typography className={classes.cardSubtitle}>
                   We will call you on{" "}
-                  {moment(preferredDate).format("MMMM Do YYYY")} between{" "}
-                  {preferredTimePeriod}. You can check the status of your
-                  request using your mobile number.
-                </Typography>
-                <List dense className={classes.cardSubtitle}>
-                  <ListItemText
-                    primary={
-                      <Typography className={classes.cardSubtitle}>
-                        <StopIcon />
-                        Find your position in the queue
-                      </Typography>
-                    }
-                  />
-                  <ListItemText
-                    primary={
-                      <Typography className={classes.cardSubtitle}>
-                        <StopIcon />
-                        Get your questions answered and updates
-                      </Typography>
-                    }
-                  />
-                  <ListItemText
-                    primary={
-                      <Typography className={classes.cardSubtitle}>
-                        <StopIcon />
-                        Reach one of our representatives{" "}
-                      </Typography>
-                    }
-                  />
-                  <ListItemText
-                    primary={
-                      <Typography className={classes.cardSubtitle}>
-                        <StopIcon />
-                        Know the status of your request.{" "}
-                      </Typography>
-                    }
-                  />
-                </List>
-                <Typography className={classes.cardSubtitle}>
-                  using your mobile number
+                  {moment(preferredDate).format("MMMM Do YYYY")} at you
+                  preferred time: {preferredTimePeriod}.
                 </Typography>
                 <CardActions className={classes.cardAction}>
                   <Link to="/">

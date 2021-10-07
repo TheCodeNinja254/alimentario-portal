@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
   },
   cardImage: {
-    marginLeft: "27%",
+    marginLeft: "20%",
     marginTop: theme.spacing(2),
   },
   featureDescription: {
@@ -123,7 +123,15 @@ const FeaturesAndSpecs = () => {
             </Typography>
             <Grid container spacing={1} className={classes.contentBody}>
               {rows.map((feature) => (
-                <Grid item xl={3} lg={3} md={3} sm={6} xs={6}>
+                <Grid
+                  item
+                  xl={3}
+                  lg={3}
+                  md={3}
+                  sm={6}
+                  xs={6}
+                  key={feature.featureDescription}
+                >
                   <Card elevation={0} className={classes.root}>
                     <CardContent>
                       <img

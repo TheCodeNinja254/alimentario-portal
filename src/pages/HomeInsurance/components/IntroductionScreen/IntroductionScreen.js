@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   anchorLink: {
     color: theme.palette.primary.main,
     textDecoration: "underline",
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
   },
@@ -103,19 +103,21 @@ const IntroductionScreen = () => {
                 </Typography>
 
                 <div className={classes.actionButtons}>
-                  <HashLink to="#home-insurance-packages" smooth>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={classes.exploreHomeButton}
-                    >
-                      See Plans <ArrowForwardIcon />
-                    </Button>
-                  </HashLink>
-                  <span className={classes.sloganText}>or </span>
-                  <Link to="faqs" className={classes.anchorLink}>
-                    Read FAQs
-                  </Link>
+                  <Typography variant="body1">
+                    <HashLink to="#home-insurance-packages" smooth>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.exploreHomeButton}
+                      >
+                        See Plans <ArrowForwardIcon />
+                      </Button>
+                    </HashLink>
+                    <span className={classes.sloganText}>or </span>
+                    <Link to="/faqs" className={classes.anchorLink}>
+                      Read FAQs
+                    </Link>
+                  </Typography>
                 </div>
               </Grid>
             </Grid>

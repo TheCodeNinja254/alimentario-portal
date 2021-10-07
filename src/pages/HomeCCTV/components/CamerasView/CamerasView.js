@@ -3,6 +3,7 @@ import { Box, Button, Tab, Tabs, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { Link } from "react-router-dom";
 import IndoorCameras from "./IndoorCameras";
 import OutdoorCameras from "./OutdoorCameras";
 
@@ -63,6 +64,10 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtons: {
     marginTop: theme.spacing(5),
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.white.main,
+    },
   },
   exploreButtons: {
     marginTop: theme.spacing(6),
@@ -132,9 +137,11 @@ const CamerasView = () => {
         <OutdoorCameras />
       </TabPanel>
       <div align="center">
-        <Button small variant="outlined" className={classes.actionButtons}>
-          FAQs <ArrowForwardIcon />
-        </Button>
+        <Link to="/faqs">
+          <Button small variant="outlined" className={classes.actionButtons}>
+            FAQs <ArrowForwardIcon />
+          </Button>
+        </Link>
       </div>
       <br />
     </div>

@@ -176,13 +176,12 @@ const TicketStatusCheckForm = () => {
             />
             <Box className={classes.wrapper}>
               <Typography variant="subtitle2" gutterBottom>
-                Use your mobile number to confirm your request status
+                Use your mobile number to check the status of your request
               </Typography>
               <FormControl
                 fullWidth
                 className={classes.margin}
                 variant="standard"
-                placeholder="0722 000 000"
                 name="uniqueIdentity"
                 onChange={(e) => {
                   setFieldValue("uniqueIdentity", e.target.value, true);
@@ -191,6 +190,7 @@ const TicketStatusCheckForm = () => {
               >
                 <Input
                   id="input-with-icon-adornment"
+                  placeholder="Enter phone number"
                   error={!!errors.sponsorMsisdn}
                   endAdornment={
                     <InputAdornment position="start">

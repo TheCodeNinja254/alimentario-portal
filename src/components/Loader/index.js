@@ -4,14 +4,14 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    // height: "100vh",
     width: "100%",
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "right",
+    // alignItems: "r",
   },
   progress: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(0),
+    height: 12,
     color: theme.palette.primary.main,
   },
 }));

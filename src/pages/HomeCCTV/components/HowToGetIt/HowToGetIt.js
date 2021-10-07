@@ -67,6 +67,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     textDecoration: "underline",
   },
+  anchorLink: {
+    color: theme.palette.primary.main,
+    textDecoration: "underline",
+  },
   cardTitleBold: {
     fontSize: 38,
     fontWeight: "700",
@@ -80,6 +84,10 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtons: {
     marginTop: theme.spacing(5),
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.white.main,
+    },
   },
 }));
 
@@ -115,7 +123,14 @@ const HowToGetIt = () => {
                   Buy a CCTV camera of your choice from your nearest Safaricom
                   Shop.{" "}
                   <span className={classes.cardDescriptionLink}>
-                    Find A Shop
+                    <a
+                      href="https://www.masoko.com/4k-andriod-tv-ott-ematic-box-dv8235-1"
+                      className={classes.anchorLink}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Find A Shop
+                    </a>
                   </span>
                 </Typography>
                 <div align="center">

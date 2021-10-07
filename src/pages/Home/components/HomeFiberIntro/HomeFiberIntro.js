@@ -9,8 +9,8 @@ import {
   Grid,
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { Link } from "react-router-dom";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import SecureNetIcon from "../../../../assets/images/Icons/NavIcons/SecureNet.png";
 import Entertainment from "../../../../assets/images/Icons/NavIcons/Entertainment.png";
 import HomeCCTV from "../../../../assets/images/Icons/NavIcons/HomeCCTV.png";
@@ -85,6 +85,11 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtons: {
     marginTop: theme.spacing(2),
+    fontSize: 15,
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.white.main,
+    },
   },
 }));
 
@@ -177,7 +182,7 @@ const HomeFiberIntro = () => {
                     align="center"
                     className={classes.featureTitle}
                   >
-                    ENTERTAINMENT
+                    SMART TV BOX
                   </Typography>
                   <Typography
                     variant="body2"

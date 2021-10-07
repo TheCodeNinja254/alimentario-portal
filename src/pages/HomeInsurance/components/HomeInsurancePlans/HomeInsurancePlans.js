@@ -112,6 +112,10 @@ const useStyles = makeStyles((theme) => ({
   actionButtons: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(10),
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.white.main,
+    },
   },
 }));
 

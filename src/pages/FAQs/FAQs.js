@@ -1,8 +1,14 @@
 import React from "react";
-import { Box, Button, Tab, Tabs, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Container,
+  Tab,
+  Tabs,
+  Typography,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import SecureNet from "./components/SecureNet";
 
 function TabPanel(props) {
@@ -59,6 +65,8 @@ const useStyles = makeStyles((theme) => ({
   },
   tabButton: {
     textTransform: "capitalize",
+    fontSize: 18,
+    fontWeight: "bold",
   },
   actionButtons: {
     marginTop: theme.spacing(5),
@@ -79,7 +87,7 @@ const FAQsView = () => {
   };
 
   return (
-    <div id="home-cctv-cameras">
+    <Container id="home-cctv-cameras">
       <Typography variant="h2" className={classes.heading}>
         Frequently Asked Questions
       </Typography>
@@ -92,6 +100,8 @@ const FAQsView = () => {
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"
+          variant="scrollable"
+          scrollButtons="on"
           TabIndicatorProps={{
             style: {
               display: "none",
@@ -105,7 +115,43 @@ const FAQsView = () => {
                 color="primary"
                 className={classes.tabButton}
               >
+                Home Fiber
+              </Button>
+            }
+            {...a11yProps(0)}
+          />
+          <Tab
+            label={
+              <Button
+                variant={value === 0 ? "outlined" : ""}
+                color="primary"
+                className={classes.tabButton}
+              >
                 Secure Net
+              </Button>
+            }
+            {...a11yProps(0)}
+          />
+          <Tab
+            label={
+              <Button
+                variant={value === 0 ? "outlined" : ""}
+                color="primary"
+                className={classes.tabButton}
+              >
+                4G WiFi Router
+              </Button>
+            }
+            {...a11yProps(0)}
+          />
+          <Tab
+            label={
+              <Button
+                variant={value === 0 ? "outlined" : ""}
+                color="primary"
+                className={classes.tabButton}
+              >
+                Home CCTV
               </Button>
             }
             {...a11yProps(0)}
@@ -130,13 +176,9 @@ const FAQsView = () => {
       <TabPanel value={value} index={1}>
         <SecureNet />
       </TabPanel>
-      <div align="center">
-        <Button small variant="outlined" className={classes.actionButtons}>
-          FAQs <ArrowForwardIcon />
-        </Button>
-      </div>
+
       <br />
-    </div>
+    </Container>
   );
 };
 

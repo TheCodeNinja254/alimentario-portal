@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Card, CardContent, Container } from "@material-ui/core";
+import { Card, CardContent, Container } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
   actionButtons: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.white.main,
+    },
   },
 }));
 
@@ -49,16 +53,16 @@ const PaymentTab = () => {
               you will be required to renew the service at KSH 200 per month as
               part of your Home Fibre subscription.
             </Typography>
-            <div align="center">
-              <Button
-                small
-                variant="contained"
-                className={classes.actionButtons}
-                color="primary"
-              >
-                Subscribe
-              </Button>
-            </div>
+            {/* <div align="center"> */}
+            {/*  <Button */}
+            {/*    small */}
+            {/*    variant="contained" */}
+            {/*    className={classes.actionButtons} */}
+            {/*    color="primary" */}
+            {/*  > */}
+            {/*    Subscribe */}
+            {/*  </Button> */}
+            {/* </div> */}
           </Container>
         </CardContent>
       </Card>

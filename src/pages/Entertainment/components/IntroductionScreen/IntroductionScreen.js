@@ -6,7 +6,6 @@ import {
   CardContent,
   Container,
   Grid,
-  Link,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -71,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   anchorLink: {
     color: theme.palette.primary.main,
     textDecoration: "underline",
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: "300",
     fontStyle: "normal",
   },
@@ -102,23 +101,27 @@ const IntroductionScreen = () => {
                   </Typography>
                 </div>
                 <div className={classes.actionButtons}>
-                  <HashLink to="#ematic-features" smooth>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={classes.exploreHomeButton}
+                  <Typography>
+                    <HashLink to="#ematic-features" smooth>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.exploreHomeButton}
+                      >
+                        Features <ArrowForwardIcon />
+                      </Button>
+                    </HashLink>
+                    <span className={classes.sloganText}>or </span>
+                    <a
+                      href="https://www.masoko.com/4k-andriod-tv-ott-ematic-box-dv8235-1"
+                      className={classes.anchorLink}
+                      target="_blank"
+                      rel="noreferrer"
                     >
-                      Features <ArrowForwardIcon />
-                    </Button>
-                  </HashLink>
-                  <span className={classes.sloganText}>or </span>
-                  <Link
-                    href="https://www.masoko.com/4k-andriod-tv-ott-ematic-box-dv8235-1"
-                    className={classes.anchorLink}
-                  >
-                    {" "}
-                    Buy Now
-                  </Link>
+                      {" "}
+                      Buy Now
+                    </a>
+                  </Typography>
                 </div>
               </Grid>
             </Grid>

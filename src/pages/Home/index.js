@@ -17,7 +17,6 @@ import Page from "../../components/Page";
 import ProductView from "./components/ProductsView/ProductView";
 import FiberAvailabilityForm from "./forms/FiberAvailabilityForm";
 import coverBackgroundImage from "../../assets/images/img_3.png";
-// import TicketStatusCheckForm from "./forms/TicketStatusCheckForm";
 import HomeFiberIntro from "./components/HomeFiberIntro";
 import EnterpriseFiberIntro from "./components/EnterpriseFiberIntro";
 import InformationTab from "./components/InformationTab/InformationTab";
@@ -138,7 +137,7 @@ const Home = () => {
   return (
     <Page title="Home" className={classes.root}>
       <IntroductionScreen />
-      <Box justifyContent="center" id="checkStatus">
+      <Box justifyContent="center">
         <Container>
           <Grid container spacing={0}>
             <Grid item lg={12} xl={12} sm={12} xs={12}>

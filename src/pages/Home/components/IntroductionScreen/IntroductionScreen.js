@@ -1,8 +1,16 @@
 import React from "react";
-import { Button, Card, CardContent, Container, Grid } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  CardContent,
+  Collapse,
+  Container,
+  Grid,
+} from "@material-ui/core";
 import { HashLink } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import IntroImage from "../../../../assets/images/Intro.png";
 import TicketStatusCheckForm from "../../forms/TicketStatusCheckForm";
 
@@ -35,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     marginTop: theme.spacing(4),
   },
+  NavigateNextIcon: {
+    marginTop: theme.spacing(2),
+  },
   exploreHomeButton: {
     marginRight: theme.spacing(2),
   },
@@ -48,12 +59,18 @@ const useStyles = makeStyles((theme) => ({
   anchorLink: {
     marginTop: theme.spacing(2),
     paddingTop: theme.spacing(2),
+  },
+  anchorButton: {
     textDecoration: "underline",
     color: theme.palette.primary.main,
+    textTransform: "none",
+    fontSize: 15,
   },
 }));
 const IntroductionScreen = () => {
   const classes = useStyles();
+  const [checkStatus, setCheckStatus] = React.useState(false);
+
   return (
     <Card elevation={0} className={classes.root}>
       <CardContent>
@@ -97,13 +114,18 @@ const IntroductionScreen = () => {
               <HashLink
                 to="#checkStatus"
                 variant="body2"
+                onClick={() => setCheckStatus(!checkStatus)}
                 className={classes.anchorLink}
               >
-                Already made a request, Check Status
+                <Button small className={classes.anchorButton}>
+                  Already made a request, Check Status <NavigateNextIcon />
+                </Button>
               </HashLink>
-              <Card elevation={0}>
-                <TicketStatusCheckForm />
-              </Card>
+              <Collapse in={checkStatus}>
+                <Card elevation={0}>
+                  <TicketStatusCheckForm />
+                </Card>
+              </Collapse>
             </Grid>
             <Grid item lg={6} xl={6} md={6} sm={12} xs={12}>
               <img

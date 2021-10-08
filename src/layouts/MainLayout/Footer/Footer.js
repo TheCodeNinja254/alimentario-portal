@@ -2,6 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Container, Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import FeedbackComponent from "./components/FeedbackComponent";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#37474f",
     height: 90,
   },
+  faqsLinkText: {
+    color: theme.palette.white.main,
+  },
 }));
 
 const Footer = () => {
@@ -45,7 +49,12 @@ const Footer = () => {
                   variant="subtitle2"
                   className={classes.feedbackText}
                 >
-                  © Safaricom PLC 2021 | All Rights Reserved | FAQs
+                  © Safaricom PLC 2021 | All Rights Reserved |{" "}
+                  <span>
+                    <Link to="/faqs" className={classes.faqsLinkText}>
+                      FAQs
+                    </Link>
+                  </span>
                 </Typography>
               </Grid>
             </Grid>

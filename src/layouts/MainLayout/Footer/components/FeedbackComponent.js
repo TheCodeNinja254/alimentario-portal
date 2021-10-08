@@ -45,7 +45,10 @@ const Footer = () => {
           >
             <Typography variant="subtitle2" className={classes.feedbackText}>
               Was this information helpful?{" "}
-              <a href="/feedback" className={classes.footerLink}>
+              <a
+                href="mailto:fibersalesgroup@safaricom.co.ke.com?subject=Customer Feedback"
+                className={classes.footerLink}
+              >
                 If not tell us how we can improve.{" "}
                 <img
                   src={feedbackImage}

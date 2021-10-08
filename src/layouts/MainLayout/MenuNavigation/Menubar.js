@@ -118,10 +118,10 @@ const siteLinks = [
     label: "FAQs",
     url: "/faqs",
   },
-  {
-    label: "Contact Us",
-    url: "/home",
-  },
+  // {
+  //   label: "Contact Us",
+  //   url: "/home",
+  // },
 ];
 
 const SearchAppBar = () => {

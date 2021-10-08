@@ -21,46 +21,65 @@ const useStyles = makeStyles((theme) => ({
 
 const faqs = [
   {
-    question: "What is Internet For Business?",
+    question: "What is Jubilee Home Insurance powered by Safaricom Home?",
     answer:
-      "Sample answer provided here. More information to be populated on availability.",
+      "This is a product designed to give you an annual home insurance package with the option of being able to pay for your premiums monthly.",
   },
   {
-    question: "What packages can I subscribe to?",
+    question: "Who is eligible for this product?",
     answer:
-      "Sample answer provided here. More information to be populated on availability.",
+      "This product can be accessed by any Safaricom Home customer while on any of the Fibre packages. Customers will only be allowed to purchase one package with each Safaricom Home account number.",
   },
   {
-    question:
-      "WWhat do I require to sign up for Internet for Business service?",
+    question: "When am I expected to pay the premium?",
     answer:
-      "Sample answer provided here. More information to be populated on availability.",
-  },
-  {
-    question: "Where can I get this service?",
-    answer:
-      "Sample answer provided here. More information to be populated on availability.",
-  },
-  {
-    question: "What equipment is installed at the customer premise?",
-    answer:
-      "Sample answer provided here. More information to be populated on availability.",
+      "Customers will be required to pay for the service each month via USSD *400# or any other availed channel using their M-PESA accounts.",
   },
   {
     question:
-      "How long will it take before Internet for Business service is installed at my premise?",
+      "Why should I purchase a Jubilee Home insurance package powered by Safaricom?",
     answer:
-      "Sample answer provided here. More information to be populated on availability.",
+      "The package ensures that your home and household items are insured from damage and theft that may be caused by your domestic servants, fire, floods, electrical faults, natural perils etc. Customers also have the advantage of paying for their packages in monthly instalments.",
   },
   {
-    question: "Is there any installation fees?",
+    question:
+      "How do I know which is appropriate home insurance package for my home?",
     answer:
-      "Sample answer provided here. More information to be populated on availability.",
+      'You should pick the cover that covers the value of Home contents in your home under "Home Content - Sum Insured".',
   },
   {
-    question: "What do I do when I need support for my Connectivity service?",
+    question: "What househod goods are covered in this cover?",
     answer:
-      "Sample answer provided here. More information to be populated on availability.",
+      "All contents in the house e.g. furniture, fixtures, fittings, clothing, cutlery, crockery, kitchen equipment, entertainment equipment, refrigerators & televisions. You are however only covered within the limit of your package.\n" +
+      "\n" +
+      "The ALL RISK (high risk) Items covered are;\n" +
+      "\n" +
+      "Jewelry – subject to maximum of 10% of the total value of ALL RISKS sum insured.\n" +
+      "Laptops & computers, cameras, wrist watches, mobile phones and all other portable electronic items,\n" +
+      "Bicycles",
+  },
+  {
+    question: "Who can I reach out to incase of any issue?",
+    answer:
+      "Call the 24-hour Jubilee Contact Center on 0709 949000 or email callcenter@jubileekenya.com.\n" +
+      "Visit any Jubilee branch.",
+  },
+  {
+    question: "If I need to make a clain, what is the process?",
+    answer:
+      "Report the claim to Jubilee Insurance within 7 days via any of the following:\n" +
+      "Phone call to Jubilee Contact Center – 0709 949000\n" +
+      "Email - callcenter@jubileekenya.com\n" +
+      "Walk-in to any Jubilee branch.\n" +
+      "Notify the police within 24 hours of any loss or damage due to theft, malice, riot and strikes.\n" +
+      "Your claim will be registered and a claim reference number acknowledged within 24 hours.\n" +
+      "When all the documentation required by Jubilee is provided, the claim will be reviewed within 7 working days and communication sent out.\n" +
+      "Once the communication is actioned, claim processing will be done within 5 working days.",
+  },
+  {
+    question: "What do i need to register for Home Insurance product?",
+    answer:
+      "The customer will be required to submit their full names, ID number, KRA PIN and area of residence on the Jubilee Insurance Website through the link sent by Safaricom.",
   },
 ];
 

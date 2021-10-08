@@ -107,6 +107,10 @@ const useStyles = makeStyles((theme) => ({
 
 const siteLinks = [
   {
+    label: "Get Connected",
+    url: "/home#get-connected",
+  },
+  {
     label: "Explore Packages",
     url: "/home#packages",
   },

@@ -9,7 +9,13 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import SecureNet from "./components/SecureNet";
+import {
+  HomeCCTV,
+  HomeFiber,
+  HomeInsurance,
+  SecureNet,
+  Wireless,
+} from "./components";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -22,11 +28,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
 }
@@ -53,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(2),
-    fontSize: 45,
+    fontSize: 32,
     fontWeight: "bold",
     fontStyle: "normal",
     letterSpacing: 0,
@@ -65,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tabButton: {
     textTransform: "capitalize",
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "bold",
   },
   actionButtons: {
@@ -123,58 +125,67 @@ const FAQsView = () => {
           <Tab
             label={
               <Button
-                variant={value === 0 ? "outlined" : ""}
+                variant={value === 1 ? "outlined" : ""}
                 color="primary"
                 className={classes.tabButton}
               >
                 Secure Net
               </Button>
             }
-            {...a11yProps(0)}
+            {...a11yProps(1)}
           />
           <Tab
             label={
               <Button
-                variant={value === 0 ? "outlined" : ""}
+                variant={value === 2 ? "outlined" : ""}
                 color="primary"
                 className={classes.tabButton}
               >
                 4G WiFi Router
               </Button>
             }
-            {...a11yProps(0)}
+            {...a11yProps(2)}
           />
           <Tab
             label={
               <Button
-                variant={value === 0 ? "outlined" : ""}
+                variant={value === 3 ? "outlined" : ""}
                 color="primary"
                 className={classes.tabButton}
               >
                 Home CCTV
               </Button>
             }
-            {...a11yProps(0)}
+            {...a11yProps(3)}
           />
           <Tab
             label={
               <Button
                 className={classes.tabButton}
                 color="primary"
-                variant={value === 1 ? "outlined" : ""}
+                variant={value === 4 ? "outlined" : ""}
               >
                 Home Insurance
               </Button>
             }
-            {...a11yProps(1)}
+            {...a11yProps(4)}
           />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <SecureNet />
+        <HomeFiber />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <SecureNet />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Wireless />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <HomeCCTV />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <HomeInsurance />
       </TabPanel>
 
       <br />

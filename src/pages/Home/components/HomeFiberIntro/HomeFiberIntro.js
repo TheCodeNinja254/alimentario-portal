@@ -189,7 +189,7 @@ const HomeFiberIntro = () => {
                     align="center"
                     className={classes.featureDescription}
                   >
-                    Enjoyment ni kutramsform your TV into a Smart TV. Get a
+                    Enjoyment ni ku-transform your TV into a Smart TV. Get a
                     Smart Android Box and upgrade to Casting.
                   </Typography>
                   <div align="center">
@@ -239,8 +239,8 @@ const HomeFiberIntro = () => {
                     align="center"
                     className={classes.featureDescription}
                   >
-                    Safatey is paramount. Maintain safety in your home and
-                    manage basic home utilities at all times.
+                    Safety is paramount. Maintain safety in your home and manage
+                    basic home utilities at all times.
                   </Typography>
                   <div align="center">
                     <Link to="/home-cctv">

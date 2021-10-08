@@ -92,7 +92,7 @@ const IntroductionScreen = () => {
               </Typography>
 
               <div className={classes.actionButtons}>
-                <HashLink to="#checkStatus" smooth>
+                <HashLink to="#get-connected" smooth>
                   <Button
                     variant="contained"
                     color="primary"

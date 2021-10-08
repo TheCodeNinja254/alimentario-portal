@@ -232,6 +232,7 @@ const Home = () => {
               sm={12}
               xs={12}
               className={classes.checkCoverageArea}
+              id="get-connected"
             >
               <FiberAvailabilityForm
                 setEstateStatus={setEstateStatus}

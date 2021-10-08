@@ -96,7 +96,7 @@ const IntroductionScreen = () => {
                     TV Smart Box
                   </Typography>
                   <Typography className={classes.sloganText}>
-                    Enjoyment ni kutramsform your TV into a Smart TV. Get a
+                    Enjoyment ni ku-transform your TV into a Smart TV. Get a
                     Smart Android Box and upgrade to Casting.
                   </Typography>
                 </div>

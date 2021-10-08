@@ -291,7 +291,7 @@ const HomeProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <HashLink to="#get-connected" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
@@ -346,7 +346,7 @@ const HomeProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <HashLink to="#get-connected" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
@@ -399,7 +399,7 @@ const HomeProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <HashLink to="#get-connected" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
@@ -454,7 +454,7 @@ const HomeProductsView = () => {
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <HashLink to="#get-connected" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>

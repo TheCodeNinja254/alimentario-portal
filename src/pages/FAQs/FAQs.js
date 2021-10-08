@@ -89,7 +89,7 @@ const FAQsView = () => {
   };
 
   return (
-    <Container id="home-cctv-cameras">
+    <Container id="faqs">
       <Typography variant="h2" className={classes.heading}>
         Frequently Asked Questions
       </Typography>

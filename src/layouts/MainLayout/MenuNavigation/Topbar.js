@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: theme.spacing(0),
     },
     padding: theme.spacing(1),
+    textTransform: "uppercase",
   },
   denseTopBar: {
     height: "35px",
@@ -81,6 +82,10 @@ const TopAppBar = () => {
     setOpenSidebar(false);
   };
 
+  const externalNavigator = (path) => {
+    window.open(path, "_blank");
+  };
+
   return (
     <div className={classes.root}>
       <Hidden mdDown>
@@ -93,6 +98,9 @@ const TopAppBar = () => {
                 className={classes.topMenuItem}
                 color="inherit"
                 underline="none"
+                onClick={() =>
+                  externalNavigator("https://www.safaricom.co.ke/personal")
+                }
               >
                 Personal
               </Link>
@@ -102,6 +110,9 @@ const TopAppBar = () => {
                 className={classes.topMenuItem}
                 color="inherit"
                 underline="none"
+                onClick={() =>
+                  externalNavigator("https://www.safaricom.co.ke/business")
+                }
               >
                 Business
               </Link>
@@ -111,6 +122,9 @@ const TopAppBar = () => {
                 className={classes.topMenuItem}
                 color="inherit"
                 underline="none"
+                onClick={() =>
+                  externalNavigator("https://www.safaricom.co.ke/about")
+                }
               >
                 About Us
               </Link>
@@ -120,6 +134,11 @@ const TopAppBar = () => {
                 className={classes.topMenuItem}
                 color="inherit"
                 underline="none"
+                onClick={() =>
+                  externalNavigator(
+                    "https://www.safaricom.co.ke/personal/index.php/shop"
+                  )
+                }
               >
                 Shop
               </Link>
@@ -129,6 +148,11 @@ const TopAppBar = () => {
                 className={classes.topMenuItem}
                 color="inherit"
                 underline="none"
+                onClick={() =>
+                  externalNavigator(
+                    "https://www.safaricom.co.ke/investor-relations"
+                  )
+                }
               >
                 Investor Relations
               </Link>
@@ -138,6 +162,11 @@ const TopAppBar = () => {
                 className={classes.topMenuItem}
                 color="inherit"
                 underline="none"
+                onClick={() =>
+                  externalNavigator(
+                    "https://www.safaricom.co.ke/about/media-center/publications/terms-and-conditions"
+                  )
+                }
               >
                 Terms & Conditions
               </Link>
@@ -147,6 +176,9 @@ const TopAppBar = () => {
                 className={classes.topMenuItem}
                 color="inherit"
                 underline="none"
+                onClick={() =>
+                  externalNavigator("https://www.safaricom.co.ke/careers/")
+                }
               >
                 Careers
               </Link>

@@ -102,7 +102,7 @@ const HomeFiberIntro = () => {
         <CardContent>
           <Container className={classes.contentWrapper}>
             <Typography variant="h2" className={classes.heading}>
-              Home Fiber Addons
+              Home Fiber Add-ons
             </Typography>
             <Grid container justify="center" spacing={5}>
               <Grid
@@ -143,7 +143,7 @@ const HomeFiberIntro = () => {
                     enjoy a FREE trial for one month.
                   </Typography>
                   <div align="center">
-                    <Link to="/secure-net">
+                    <Link to="/secure-net" target="_blank">
                       <Button
                         small
                         variant="outlined"
@@ -193,7 +193,7 @@ const HomeFiberIntro = () => {
                     Smart Android Box and upgrade to Casting.
                   </Typography>
                   <div align="center">
-                    <Link to="/entertainment">
+                    <Link to="/entertainment" target="_blank">
                       <Button
                         small
                         variant="outlined"
@@ -243,7 +243,7 @@ const HomeFiberIntro = () => {
                     basic home utilities at all times.
                   </Typography>
                   <div align="center">
-                    <Link to="/home-cctv">
+                    <Link to="/home-cctv" target="_blank">
                       <Button
                         small
                         variant="outlined"
@@ -293,7 +293,7 @@ const HomeFiberIntro = () => {
                     protected and your peace of mind remains intact.
                   </Typography>
                   <div align="center">
-                    <Link to="/home-insurance">
+                    <Link to="/home-insurance" target="_blank">
                       <Button
                         small
                         variant="outlined"

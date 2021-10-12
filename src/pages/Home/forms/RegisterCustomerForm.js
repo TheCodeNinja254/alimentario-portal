@@ -20,7 +20,9 @@ import { useMutation } from "@apollo/client";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import { CREATE_CUSTOMER } from "../../../api/Mutations/Customers";
+import trimNonNumbers from "../../../utils/trimNonNumbers";
 import ErrorHandler from "../../../utils/errorHandler";
 import Dialog from "../../../components/Dialog";
 import StatusIcon from "../../../components/StatusIcon";
@@ -93,6 +95,9 @@ const useStyles = makeStyles((theme) => ({
   productListing: {
     wordWrap: "break-word",
     whiteSpace: "nowrap",
+  },
+  helperLink: {
+    color: theme.palette.primary.main,
   },
 }));
 
@@ -178,7 +183,7 @@ const DisplayChips = (props) => {
   const formatedDateToday = moment().format("YYYY-DD-MM");
 
   if (userSelectedDate === formatedDateToday) {
-    if (currentHour > 17) {
+    if (currentHour >= 17) {
       let i = 0;
       const n = 5;
       while (i < n) {
@@ -188,7 +193,7 @@ const DisplayChips = (props) => {
       }
     }
 
-    if (currentHour > 15) {
+    if (currentHour >= 15) {
       let i = 0;
       const n = 4;
       while (i < n) {
@@ -198,7 +203,7 @@ const DisplayChips = (props) => {
       }
     }
 
-    if (currentHour > 13) {
+    if (currentHour >= 13) {
       let i = 0;
       const n = 3;
       while (i < n) {
@@ -208,7 +213,7 @@ const DisplayChips = (props) => {
       }
     }
 
-    if (currentHour > 12) {
+    if (currentHour >= 12) {
       let i = 0;
       const n = 2;
       while (i < n) {
@@ -218,14 +223,8 @@ const DisplayChips = (props) => {
       }
     }
 
-    if (currentHour > 10) {
-      let i = 0;
-      const n = 1;
-      while (i < n) {
-        delete chipData[i];
-        // eslint-disable-next-line no-plusplus
-        i++;
-      }
+    if (currentHour >= 10) {
+      delete chipData[0];
     }
   }
 
@@ -293,6 +292,43 @@ const RegisterCustomerForm = (props) => {
   const [selectedDate, setSelectedDate] = React.useState(
     moment().format("YYYY-MM-DD")
   );
+
+  const [selectedAddon, setSelectedAddon] = React.useState(false);
+
+  let addOnLink;
+  let addOnPrompt;
+  let addonLinkPrompt;
+  switch (String(selectedAddon).valueOf()) {
+    case String("Secure Net").valueOf():
+      addOnLink = "/secure-net";
+      addOnPrompt = "What is Secure Net? ";
+      addonLinkPrompt = "Find out.";
+      break;
+    case String("CCTV").valueOf():
+      addOnLink = "/home-cctv";
+      addOnPrompt = "How does Home CCTV work? ";
+      addonLinkPrompt = "Read here";
+      break;
+    case String("Home Insurance").valueOf():
+      addOnLink = "/home-insurance";
+      addOnPrompt = "What is Home Insurance? ";
+      addonLinkPrompt = "Find out";
+      break;
+    case String("Smart TV Box").valueOf():
+      addOnLink = "/entertainment";
+      addOnPrompt = "Smart TV? How does it work? ";
+      addonLinkPrompt = "Find out.";
+      break;
+    case String("WiFi Extender").valueOf():
+      addOnLink = "/4g-wifi-router";
+      addOnPrompt = "Is this for me? ";
+      addonLinkPrompt = "Find out.";
+      break;
+    default:
+      addOnLink = "";
+      addOnPrompt = "";
+      addonLinkPrompt = "";
+  }
 
   const mappedProducts = (productTypeSelection) => {
     if (productTypeSelection === "Home") {
@@ -454,7 +490,8 @@ const RegisterCustomerForm = (props) => {
                   error={!!errors.sponsorMsisdn}
                   helperText={errors.sponsorMsisdn || null}
                   onChange={(e) => {
-                    setFieldValue("sponsorMsisdn", e.target.value, true);
+                    const clean = trimNonNumbers(e.target.value);
+                    setFieldValue("sponsorMsisdn", clean, true);
                   }}
                   value={values.sponsorMsisdn}
                   variant="standard"
@@ -558,6 +595,7 @@ const RegisterCustomerForm = (props) => {
                     helperText={errors.addOns || null}
                     onChange={(e) => {
                       setFieldValue("addOns", e.target.value, true);
+                      setSelectedAddon(e.target.value);
                     }}
                     value={values.addOns}
                     label="Age"
@@ -572,6 +610,16 @@ const RegisterCustomerForm = (props) => {
                     <MenuItem value="WiFi Extender">WiFi Extender</MenuItem>
                   </Select>
                 </FormControl>
+                <Typography variant="body2">
+                  {addOnPrompt}
+                  <Link
+                    to={addOnLink}
+                    target="_blank"
+                    className={classes.helperLink}
+                  >
+                    {addonLinkPrompt}
+                  </Link>
+                </Typography>
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Typography variant="subtitle2" gutterBottom>

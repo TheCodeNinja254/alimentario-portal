@@ -7,13 +7,10 @@ import {
   CardContent,
   Container,
   Grid,
-  List,
-  ListItemText,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import Typography from "@material-ui/core/Typography";
-import StopIcon from "@material-ui/icons/Stop";
 import { Link } from "react-router-dom";
 import Page from "../../components/Page";
 import GoogleMapsContainer from "./components/ProductsView/GoogleMap";
@@ -158,43 +155,6 @@ const ProgressCheckPage = (props) => {
                       {moment(preferredDate).format("MMMM Do YYYY")} between{" "}
                       {preferredTimePeriod} Your ticket number is {crqNumber}
                     </Typography>
-                    <List dense className={classes.cardSubtitle}>
-                      <ListItemText
-                        primary={
-                          <Typography className={classes.cardSubtitle}>
-                            <StopIcon />
-                            Find your position in the queue
-                          </Typography>
-                        }
-                      />
-                      <ListItemText
-                        primary={
-                          <Typography className={classes.cardSubtitle}>
-                            <StopIcon />
-                            Get your questions answered and updates
-                          </Typography>
-                        }
-                      />
-                      <ListItemText
-                        primary={
-                          <Typography className={classes.cardSubtitle}>
-                            <StopIcon />
-                            Reach one of our representatives{" "}
-                          </Typography>
-                        }
-                      />
-                      <ListItemText
-                        primary={
-                          <Typography className={classes.cardSubtitle}>
-                            <StopIcon />
-                            Know the status of your request.{" "}
-                          </Typography>
-                        }
-                      />
-                    </List>
-                    <Typography className={classes.cardSubtitle}>
-                      by viewing your ticket {crqNumber}
-                    </Typography>
                   </CardContent>
                   <CardActions className={classes.cardAction}>
                     <Button
@@ -239,44 +199,6 @@ const ProgressCheckPage = (props) => {
                             between {preferredTimePeriod}
                           </Typography>
                           <br />
-                          <Typography className={classes.cardSubtitle}>
-                            Internet connection process:
-                          </Typography>
-                          <br />
-                          <List dense className={classes.cardSubtitle}>
-                            <ListItemText
-                              primary={
-                                <Typography className={classes.cardSubtitle}>
-                                  <StopIcon />
-                                  Coverage confirmation
-                                </Typography>
-                              }
-                            />
-                            <ListItemText
-                              primary={
-                                <Typography className={classes.cardSubtitle}>
-                                  <StopIcon />
-                                  Account creation & on-boarding process
-                                </Typography>
-                              }
-                            />
-                            <ListItemText
-                              primary={
-                                <Typography className={classes.cardSubtitle}>
-                                  <StopIcon />
-                                  Installation date set
-                                </Typography>
-                              }
-                            />
-                            <ListItemText
-                              primary={
-                                <Typography className={classes.cardSubtitle}>
-                                  <StopIcon />
-                                  Physical installation and activation
-                                </Typography>
-                              }
-                            />
-                          </List>
                         </CardContent>
                         <CardActions className={classes.cardAction}>
                           <Link to="/">

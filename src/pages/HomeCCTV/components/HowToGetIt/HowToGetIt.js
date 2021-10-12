@@ -124,7 +124,7 @@ const HowToGetIt = () => {
                   Shop.{" "}
                   <span className={classes.cardDescriptionLink}>
                     <a
-                      href="https://www.masoko.com/4k-andriod-tv-ott-ematic-box-dv8235-1"
+                      href="https://www.safaricom.co.ke/personal/store"
                       className={classes.anchorLink}
                       target="_blank"
                       rel="noreferrer"

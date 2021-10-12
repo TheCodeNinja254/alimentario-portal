@@ -62,7 +62,7 @@ const PackagePrices = () => {
                     <TableCell align="center">4G Package</TableCell>
                     <TableCell align="center">Price (Kes)</TableCell>
                     <TableCell align="center">Volume Full Speed</TableCell>
-                    <TableCell align="center">Voloume (1Mbps)</TableCell>
+                    <TableCell align="center">Volume (1 Mbps)</TableCell>
                     <TableCell align="center">Validity</TableCell>
                   </TableRow>
                 </TableHead>

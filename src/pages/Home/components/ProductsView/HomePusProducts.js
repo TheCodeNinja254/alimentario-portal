@@ -133,6 +133,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
     fontSize: 14,
   },
+  plusPackageNotation: {
+    marginLeft: theme.spacing(2),
+    fontSize: 15,
+    fontWeight: 700,
+  },
 }));
 
 const packageCapabilities = {
@@ -258,11 +263,6 @@ const HomePlusPackages = () => {
             <CardContent>
               <Typography className={classes.bundleSizeText}>8</Typography>
               <Typography className={classes.productCardTitle}>MBPS</Typography>
-              <Typography className={classes.additionalFeatures}>
-                5GB Mobile Data <br />
-                400 Minutes across networks <br />
-                Unlimited SMS across networks
-              </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.bronze.map((packageCapability) => (
@@ -294,13 +294,21 @@ const HomePlusPackages = () => {
                   ))}
                 </List>
               </div>
+              <Typography className={classes.plusPackageNotation}>
+                PLUS
+              </Typography>
+              <Typography className={classes.additionalFeatures}>
+                5GB Mobile Data <br />
+                400 Minutes across networks <br />
+                Unlimited SMS across networks
+              </Typography>
               <Typography className={classes.amountText}>Ksh 2,999</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <HashLink to="#get-connected" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
@@ -318,11 +326,6 @@ const HomePlusPackages = () => {
             <CardContent>
               <Typography className={classes.bundleSizeText}>20</Typography>
               <Typography className={classes.productCardTitle}>MBPS</Typography>
-              <Typography className={classes.additionalFeatures}>
-                5GB Mobile Data <br />
-                400 Minutes across networks <br />
-                Unlimited SMS across networks
-              </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.silver.map((packageCapability) => (
@@ -354,13 +357,21 @@ const HomePlusPackages = () => {
                   ))}
                 </List>
               </div>
+              <Typography className={classes.plusPackageNotation}>
+                PLUS
+              </Typography>
+              <Typography className={classes.additionalFeatures}>
+                5GB Mobile Data <br />
+                400 Minutes across networks <br />
+                Unlimited SMS across networks
+              </Typography>
               <Typography className={classes.amountText}>Ksh 4,100</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <HashLink to="#get-connected" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
@@ -376,11 +387,6 @@ const HomePlusPackages = () => {
             <CardContent>
               <Typography className={classes.bundleSizeText}>40</Typography>
               <Typography className={classes.productCardTitle}>MBPS</Typography>
-              <Typography className={classes.additionalFeatures}>
-                5GB Mobile Data <br />
-                400 Minutes across networks <br />
-                Unlimited SMS across networks
-              </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.gold.map((packageCapability) => (
@@ -412,13 +418,21 @@ const HomePlusPackages = () => {
                   ))}
                 </List>
               </div>
+              <Typography className={classes.plusPackageNotation}>
+                PLUS
+              </Typography>
+              <Typography className={classes.additionalFeatures}>
+                5GB Mobile Data <br />
+                400 Minutes across networks <br />
+                Unlimited SMS across networks
+              </Typography>
               <Typography className={classes.amountText}>Ksh 6,299</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <HashLink to="#get-connected" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>
@@ -436,11 +450,6 @@ const HomePlusPackages = () => {
             <CardContent>
               <Typography className={classes.bundleSizeText}>100</Typography>
               <Typography className={classes.productCardTitle}>MBPS</Typography>
-              <Typography className={classes.additionalFeatures}>
-                5GB Mobile Data <br />
-                400 Minutes across networks <br />
-                Unlimited SMS across networks
-              </Typography>
               <div>
                 <List component="nav" aria-label="main mailbox folders">
                   {packageCapabilities.diamond.map((packageCapability) => (
@@ -472,13 +481,21 @@ const HomePlusPackages = () => {
                   ))}
                 </List>
               </div>
+              <Typography className={classes.plusPackageNotation}>
+                PLUS
+              </Typography>
+              <Typography className={classes.additionalFeatures}>
+                5GB Mobile Data <br />
+                400 Minutes across networks <br />
+                Unlimited SMS across networks
+              </Typography>
               <Typography className={classes.amountText}>Ksh 12,499</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
             </CardContent>
             <CardActions className={classes.getConnectedButton}>
-              <HashLink to="#checkStatus" smooth>
+              <HashLink to="#get-connected" smooth>
                 <Button variant="contained" color="primary">
                   Get Connected
                 </Button>

@@ -5,10 +5,10 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.white.main,
+    backgroundColor: theme.palette.background.dark,
   },
   heading: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
     fontSize: 45,
     fontWeight: "bold",
@@ -42,7 +42,7 @@ const PaymentTab = () => {
 
   return (
     <div className={classes.root} id="secure-net-payment">
-      <Card elevation={0}>
+      <Card elevation={0} className={classes.root}>
         <CardContent>
           <Container className={classes.contentWrapper}>
             <Typography variant="h2" className={classes.heading}>
@@ -53,16 +53,6 @@ const PaymentTab = () => {
               you will be required to renew the service at KSH 200 per month as
               part of your Home Fibre subscription.
             </Typography>
-            {/* <div align="center"> */}
-            {/*  <Button */}
-            {/*    small */}
-            {/*    variant="contained" */}
-            {/*    className={classes.actionButtons} */}
-            {/*    color="primary" */}
-            {/*  > */}
-            {/*    Subscribe */}
-            {/*  </Button> */}
-            {/* </div> */}
           </Container>
         </CardContent>
       </Card>

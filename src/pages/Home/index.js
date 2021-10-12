@@ -141,7 +141,7 @@ const Home = () => {
         <Container>
           <Grid container spacing={0}>
             <Grid item lg={12} xl={12} sm={12} xs={12}>
-              <Typography variant="h1" className={classes.pageHeading}>
+              <Typography variant="h2" className={classes.pageHeading}>
                 Check Coverage
               </Typography>
             </Grid>
@@ -243,7 +243,7 @@ const Home = () => {
           </Grid>
           <Grid container spacing={3} id="packages">
             <Grid item lg={12} xl={12} sm={12} xs={12}>
-              <Typography variant="h1" className={classes.pageHeading}>
+              <Typography variant="h2" className={classes.pageHeading}>
                 Fiber Packages
               </Typography>
               <ProductView />

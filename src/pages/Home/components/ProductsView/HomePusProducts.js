@@ -4,6 +4,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  Divider,
   Grid,
   List,
   ListItem,
@@ -107,6 +108,7 @@ const useStyles = makeStyles((theme) => ({
   },
   amountText: {
     height: 59,
+    marginTop: theme.spacing(1),
     fontSize: 30,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -131,11 +133,14 @@ const useStyles = makeStyles((theme) => ({
   },
   additionalFeatures: {
     marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     fontSize: 14,
   },
   plusPackageNotation: {
-    marginLeft: theme.spacing(2),
+    textAlign: "center",
     fontSize: 15,
+    marginTop: theme.spacing(1),
     fontWeight: 700,
   },
 }));
@@ -297,11 +302,13 @@ const HomePlusPackages = () => {
               <Typography className={classes.plusPackageNotation}>
                 PLUS
               </Typography>
+              <Divider />
               <Typography className={classes.additionalFeatures}>
                 5GB Mobile Data <br />
                 400 Minutes across networks <br />
                 Unlimited SMS across networks
               </Typography>
+              <Divider />
               <Typography className={classes.amountText}>Ksh 2,999</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
@@ -360,11 +367,13 @@ const HomePlusPackages = () => {
               <Typography className={classes.plusPackageNotation}>
                 PLUS
               </Typography>
+              <Divider />
               <Typography className={classes.additionalFeatures}>
                 5GB Mobile Data <br />
                 400 Minutes across networks <br />
                 Unlimited SMS across networks
               </Typography>
+              <Divider />
               <Typography className={classes.amountText}>Ksh 4,100</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
@@ -421,11 +430,13 @@ const HomePlusPackages = () => {
               <Typography className={classes.plusPackageNotation}>
                 PLUS
               </Typography>
+              <Divider />
               <Typography className={classes.additionalFeatures}>
                 5GB Mobile Data <br />
                 400 Minutes across networks <br />
                 Unlimited SMS across networks
               </Typography>
+              <Divider />
               <Typography className={classes.amountText}>Ksh 6,299</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
@@ -484,11 +495,13 @@ const HomePlusPackages = () => {
               <Typography className={classes.plusPackageNotation}>
                 PLUS
               </Typography>
+              <Divider />
               <Typography className={classes.additionalFeatures}>
                 5GB Mobile Data <br />
                 400 Minutes across networks <br />
                 Unlimited SMS across networks
               </Typography>
+              <Divider />
               <Typography className={classes.amountText}>Ksh 12,499</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days

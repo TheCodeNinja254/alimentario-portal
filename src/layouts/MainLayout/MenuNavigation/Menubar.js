@@ -2,7 +2,7 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import { Button, Container, Hidden, Tab, Tabs } from "@material-ui/core";
+import { Button, Container, Grid, Hidden, Tab, Tabs } from "@material-ui/core";
 import { NavHashLink } from "react-router-hash-link";
 
 const useStyles = makeStyles((theme) => ({
@@ -74,8 +74,9 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: 27,
-    marginLeft: theme.spacing(36),
-    marginRight: theme.spacing(18),
+    display: "flex",
+    marginTop: theme.spacing(1),
+    // marginRight: theme.spacing(18),
   },
   secondAppBar: {
     marginTop: theme.spacing(5),
@@ -147,40 +148,50 @@ const SearchAppBar = () => {
           className={classes.secondAppBar}
         >
           <Toolbar>
-            <img
-              alt="Logo"
-              className={classes.logo}
-              src="/favicons/saf-logo.png"
-            />
-            <Tabs
-              value={value}
-              className={classes.menuItems}
-              onChange={handleChange}
-              aria-label="icon label tabs example"
-              TabIndicatorProps={{
-                style: {
-                  height: "3px",
-                  backgroundColor: "#2cb34a",
-                },
-              }}
-            >
-              {siteLinks.map((siteLink) => (
-                <Tab
-                  key={siteLink.label}
-                  className={classes.Tab}
-                  label={
-                    <NavHashLink
-                      to={siteLink.url}
-                      key={siteLink.label}
-                      className={classes.Tab}
-                      smooth
-                    >
-                      <Button className={classes.Tab}>{siteLink.label}</Button>
-                    </NavHashLink>
-                  }
-                />
-              ))}
-            </Tabs>
+            <Container>
+              <Grid container spacing={5}>
+                <Grid item>
+                  <img
+                    alt="Logo"
+                    className={classes.logo}
+                    src="/favicons/saf-logo.png"
+                  />
+                </Grid>
+                <Grid item>
+                  <Tabs
+                    value={value}
+                    className={classes.menuItems}
+                    onChange={handleChange}
+                    aria-label="icon label tabs example"
+                    TabIndicatorProps={{
+                      style: {
+                        height: "3px",
+                        backgroundColor: "#2cb34a",
+                      },
+                    }}
+                  >
+                    {siteLinks.map((siteLink) => (
+                      <Tab
+                        key={siteLink.label}
+                        className={classes.Tab}
+                        label={
+                          <NavHashLink
+                            to={siteLink.url}
+                            key={siteLink.label}
+                            className={classes.Tab}
+                            smooth
+                          >
+                            <Button className={classes.Tab}>
+                              {siteLink.label}
+                            </Button>
+                          </NavHashLink>
+                        }
+                      />
+                    ))}
+                  </Tabs>
+                </Grid>
+              </Grid>
+            </Container>
           </Toolbar>
         </AppBar>
       </Hidden>

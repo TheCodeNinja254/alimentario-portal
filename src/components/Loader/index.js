@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
   progress: {
     margin: theme.spacing(0),
-    height: 12,
+    height: 5,
     color: theme.palette.primary.main,
   },
 }));

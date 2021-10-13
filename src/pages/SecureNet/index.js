@@ -17,8 +17,8 @@ const SecureNet = () => {
     <Page title="Secure Net" className={classes.root}>
       <IntroductionScreen />
       <SecureNetIntro />
-      <PaymentTab />
       <HowToJoin />
+      <PaymentTab />
     </Page>
   );
 };

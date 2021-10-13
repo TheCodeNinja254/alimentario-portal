@@ -2,6 +2,7 @@ import React from "react";
 import {
   Box,
   Button,
+  Divider,
   FormControl,
   Input,
   InputAdornment,
@@ -12,10 +13,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import isEmpty from "lodash.isempty";
 import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import moment from "moment";
+import { InfoRounded } from "@material-ui/icons";
 import ErrorHandler from "../../../utils/errorHandler";
 import Dialog from "../../../components/Dialog";
-import StatusIcon from "../../../components/StatusIcon";
 import { CHECK_TICKET_STATUS } from "../../../api/Mutations/Customers";
 
 const LeadStatusSchema = Yup.object().shape({
@@ -47,12 +49,45 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(0),
     backgroundColor: theme.palette.white.main,
   },
+  dialogListBody: {
+    height: 100,
+  },
   margin: {
     margin: theme.spacing(1),
     marginLeft: theme.spacing(0),
   },
   dialogContent: {
     textAlign: "center",
+  },
+  ListDialogContent: {
+    textAlign: "center",
+    margin: theme.spacing(2),
+    height: 500,
+  },
+  dialogIcon: {
+    textAlign: "center",
+  },
+  salutation: {
+    fontWeight: 700,
+  },
+  checkIcon: {
+    fontSize: 72,
+    color: theme.palette.primary.main,
+  },
+  modalText: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+  modal: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
   },
   submitButton: {
     marginBottom: theme.spacing(2),
@@ -61,7 +96,6 @@ const useStyles = makeStyles((theme) => ({
 
 const TicketStatusCheckForm = () => {
   const classes = useStyles();
-  const history = useHistory();
 
   const buttonDisabledStatus = (errors, values, loading) => {
     let buttonStatus = true;
@@ -80,16 +114,26 @@ const TicketStatusCheckForm = () => {
     message: "",
   });
 
-  const { open, status, message } = registerLeadDetails;
+  const { open, message } = registerLeadDetails;
+
+  const [leadListModal, setLeadListModal] = React.useState({
+    listModalOpen: false,
+    leadsList: [],
+  });
+
+  const { listModalOpen, leadsList } = leadListModal;
+
+  const firstName = leadsList.length > 0 ? leadsList[0].firstName : " ";
+
   const closeDialog = () => {
     setRegisterLeadDetails({ open: false, status: false, message: "" });
   };
 
+  const handleClose = () =>
+    setLeadListModal({ listModalOpen: false, leadsList: [] });
+
   return (
     <>
-      {/* <Typography variant="h3" className={classes.formHeader}> */}
-      {/*  Use your mobile number to confirm your request status */}
-      {/* </Typography> */}
       <Formik
         initialValues={{
           uniqueIdentity: "",
@@ -109,27 +153,15 @@ const TicketStatusCheckForm = () => {
                   checkLeadDetails: {
                     getLeadStatus: customerStatus,
                     message: customerMessage,
-                    estateName,
-                    preferredDate,
-                    preferredTimePeriod,
-                    uniqueIdentity,
-                    firstName,
-                    lastName,
+                    leads,
                   },
                 },
               } = response;
               if (customerStatus) {
-                history.push({
-                  pathname: "/confirmation",
-                  state: {
-                    returnType: "statusCheck",
-                    estateName,
-                    preferredDate,
-                    preferredTimePeriod,
-                    uniqueIdentity,
-                    firstName,
-                    lastName,
-                  },
+                setLeadListModal({
+                  listModalOpen: true,
+                  leadsList: leads,
+                  message: customerMessage,
                 });
               } else {
                 // registration error
@@ -158,7 +190,9 @@ const TicketStatusCheckForm = () => {
               open={open}
               modalContent={
                 <Box className={classes.dialogContent}>
-                  <StatusIcon status={status ? "success" : "error"} />
+                  <Box className={classes.dialogIcon}>
+                    <InfoRounded className={classes.checkIcon} />
+                  </Box>
                   <Typography variant="body1"> {message}</Typography>
                 </Box>
               }
@@ -173,6 +207,46 @@ const TicketStatusCheckForm = () => {
                 </Button>
               }
               handleClose={closeDialog}
+            />
+
+            <Dialog
+              open={listModalOpen}
+              modalContent={
+                <>
+                  <Box className={classes.dialogIcon}>
+                    <CheckCircleIcon className={classes.checkIcon} />
+                  </Box>
+                  <Typography className={classes.salutation}>
+                    Hello {firstName}
+                  </Typography>
+                  <Box className={classes.ListDialogContent}>
+                    {leadsList.map((record) => (
+                      <div>
+                        <Divider />
+                        <Typography
+                          variant="body1"
+                          className={classes.modalText}
+                        >
+                          Your fiber coverage confirmation request for your
+                          residence at {record.estateName} was scheduled for{" "}
+                          {moment(record.preferredDate).format("MMMM Do YYYY")}{" "}
+                          between {record.preferredTimePeriod}
+                        </Typography>
+                      </div>
+                    ))}
+                  </Box>
+                </>
+              }
+              modalActions={
+                <Button
+                  variant="contained"
+                  onClick={() => handleClose()}
+                  color="primary"
+                >
+                  Done
+                </Button>
+              }
+              handleClose={handleClose}
             />
             <Box className={classes.wrapper}>
               <Typography variant="subtitle2" gutterBottom>

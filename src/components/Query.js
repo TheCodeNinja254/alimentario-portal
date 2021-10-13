@@ -20,7 +20,7 @@ const printErrorMessage = (error) => {
 const useStyles = makeStyles((theme) => ({
   root: {},
   placeholderTextArea: {
-    marginTop: theme.spacing(2),
+    // marginTop: theme.spacing(2),
   },
   alerts: {
     marginTop: theme.spacing(1),

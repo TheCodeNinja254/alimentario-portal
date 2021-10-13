@@ -43,14 +43,13 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "bold",
   },
   textFieldWithLable: {
-    marginTop: theme.spacing(0),
     backgroundColor: theme.palette.white.main,
   },
   alerts: {
     marginTop: theme.spacing(1),
   },
   regionsTextarea: {
-    marginTop: theme.spacing(4),
+    // marginTop: theme.spacing(4),
   },
   regionsTextareaLabel: {
     marginTop: theme.spacing(4),
@@ -91,14 +90,6 @@ const EstatesList = (props) => {
     setEstateStatus,
     setReadyEstate,
   } = props;
-
-  // const { loading, error, data } = useQuery(GET_DOG_PHOTO, {
-  //   variables: { breed },
-  //   pollInterval: 500,
-  // });
-  //
-  // if (loading) return null;
-  // if (error) return `Error! ${error}`;
 
   return (
     <Autocomplete
@@ -191,15 +182,11 @@ const FiberAvailabilityForm = (props) => {
                 <Typography variant="h3" className={classes.formHeader}>
                   Find out if your area is fibre ready
                 </Typography>
-                <Typography
-                  variant="subtitle2"
-                  gutterBottom
-                  className={classes.regionsTextareaLabel}
-                >
-                  Select your town/area
-                </Typography>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                <Typography variant="subtitle2" gutterBottom>
+                  Select your town/area
+                </Typography>
                 <GetRegionsQuery>
                   {({ getRegions }) => (
                     <>

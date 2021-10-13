@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Container, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -49,7 +50,8 @@ const Footer = () => {
                   variant="subtitle2"
                   className={classes.feedbackText}
                 >
-                  © Safaricom PLC 2021 | All Rights Reserved |{" "}
+                  © Safaricom PLC {moment().format("YYYY")} | All Rights
+                  Reserved |{" "}
                   <span>
                     <Link to="/faqs" className={classes.faqsLinkText}>
                       FAQs

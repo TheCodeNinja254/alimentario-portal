@@ -27,11 +27,13 @@ export const CHECK_TICKET_STATUS = gql`
     checkLeadDetails(input: $input) {
       getLeadStatus
       message
-      estateName
-      preferredDate
-      preferredTimePeriod
-      firstName
-      lastName
+      leads {
+        preferredDate
+        preferredTimePeriod
+        firstName
+        lastName
+        estateName
+      }
     }
   }
 `;

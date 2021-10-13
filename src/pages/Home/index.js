@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
   },
   mapContainer: {
     position: "relative",
-    width: 650,
-    height: 890,
+    width: 600,
+    height: 600,
     borderRadius: 10,
     borderStyle: "solid",
     borderWidth: 4,
@@ -46,19 +46,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   coverageImage: {
-    height: 950,
+    height: 600,
     [theme.breakpoints.down("sm")]: {
       maxHeight: 400,
     },
   },
-  backgroundImage: {
-    width: 650,
-    height: 890,
-    position: "relative",
-  },
   mapOverlayCard: {
     position: "absolute",
-    top: "68%",
+    top: "40%",
     left: "27%",
     width: "45%",
     textAlign: "center",

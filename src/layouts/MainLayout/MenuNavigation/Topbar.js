@@ -4,6 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import {
+  Container,
   Divider,
   Hidden,
   Link,
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   topMenu: {
-    paddingLeft: theme.spacing(36),
+    // paddingLeft: theme.spacing(36),
     flexGrow: 1,
   },
   topMenuItem: {
@@ -91,98 +92,100 @@ const TopAppBar = () => {
       <Hidden mdDown>
         <AppBar elevation={1} position="fixed">
           <Toolbar variant="dense" className={classes.denseTopBar}>
-            <Typography className={classes.topMenu} variant="h6" noWrap>
-              <Link
-                href="/some"
-                component="button"
-                className={classes.topMenuItem}
-                color="inherit"
-                underline="none"
-                onClick={() =>
-                  externalNavigator("https://www.safaricom.co.ke/personal")
-                }
-              >
-                Personal
-              </Link>
-              <Link
-                href="/some"
-                component="button"
-                className={classes.topMenuItem}
-                color="inherit"
-                underline="none"
-                onClick={() =>
-                  externalNavigator("https://www.safaricom.co.ke/business")
-                }
-              >
-                Business
-              </Link>
-              <Link
-                href="/some"
-                component="button"
-                className={classes.topMenuItem}
-                color="inherit"
-                underline="none"
-                onClick={() =>
-                  externalNavigator("https://www.safaricom.co.ke/about")
-                }
-              >
-                About Us
-              </Link>
-              <Link
-                href="/some"
-                component="button"
-                className={classes.topMenuItem}
-                color="inherit"
-                underline="none"
-                onClick={() =>
-                  externalNavigator(
-                    "https://www.safaricom.co.ke/personal/index.php/shop"
-                  )
-                }
-              >
-                Shop
-              </Link>
-              <Link
-                href="/some"
-                component="button"
-                className={classes.topMenuItem}
-                color="inherit"
-                underline="none"
-                onClick={() =>
-                  externalNavigator(
-                    "https://www.safaricom.co.ke/investor-relations"
-                  )
-                }
-              >
-                Investor Relations
-              </Link>
-              <Link
-                href="/some"
-                component="button"
-                className={classes.topMenuItem}
-                color="inherit"
-                underline="none"
-                onClick={() =>
-                  externalNavigator(
-                    "https://www.safaricom.co.ke/about/media-center/publications/terms-and-conditions"
-                  )
-                }
-              >
-                Terms & Conditions
-              </Link>
-              <Link
-                href="/some"
-                component="button"
-                className={classes.topMenuItem}
-                color="inherit"
-                underline="none"
-                onClick={() =>
-                  externalNavigator("https://www.safaricom.co.ke/careers/")
-                }
-              >
-                Careers
-              </Link>
-            </Typography>
+            <Container>
+              <Typography className={classes.topMenu} variant="h6" noWrap>
+                <Link
+                  href="/some"
+                  component="button"
+                  className={classes.topMenuItem}
+                  color="inherit"
+                  underline="none"
+                  onClick={() =>
+                    externalNavigator("https://www.safaricom.co.ke/personal")
+                  }
+                >
+                  Personal
+                </Link>
+                <Link
+                  href="/some"
+                  component="button"
+                  className={classes.topMenuItem}
+                  color="inherit"
+                  underline="none"
+                  onClick={() =>
+                    externalNavigator("https://www.safaricom.co.ke/business")
+                  }
+                >
+                  Business
+                </Link>
+                <Link
+                  href="/some"
+                  component="button"
+                  className={classes.topMenuItem}
+                  color="inherit"
+                  underline="none"
+                  onClick={() =>
+                    externalNavigator("https://www.safaricom.co.ke/about")
+                  }
+                >
+                  About Us
+                </Link>
+                <Link
+                  href="/some"
+                  component="button"
+                  className={classes.topMenuItem}
+                  color="inherit"
+                  underline="none"
+                  onClick={() =>
+                    externalNavigator(
+                      "https://www.safaricom.co.ke/personal/index.php/shop"
+                    )
+                  }
+                >
+                  Shop
+                </Link>
+                <Link
+                  href="/some"
+                  component="button"
+                  className={classes.topMenuItem}
+                  color="inherit"
+                  underline="none"
+                  onClick={() =>
+                    externalNavigator(
+                      "https://www.safaricom.co.ke/investor-relations"
+                    )
+                  }
+                >
+                  Investor Relations
+                </Link>
+                <Link
+                  href="/some"
+                  component="button"
+                  className={classes.topMenuItem}
+                  color="inherit"
+                  underline="none"
+                  onClick={() =>
+                    externalNavigator(
+                      "https://www.safaricom.co.ke/about/media-center/publications/terms-and-conditions"
+                    )
+                  }
+                >
+                  Terms & Conditions
+                </Link>
+                <Link
+                  href="/some"
+                  component="button"
+                  className={classes.topMenuItem}
+                  color="inherit"
+                  underline="none"
+                  onClick={() =>
+                    externalNavigator("https://www.safaricom.co.ke/careers/")
+                  }
+                >
+                  Careers
+                </Link>
+              </Typography>
+            </Container>
           </Toolbar>
         </AppBar>
       </Hidden>

@@ -16,8 +16,8 @@ import Offers from "../../../../assets/images/Icons/BusinessFiberIcons/Offers.sv
 import Network from "../../../../assets/images/Icons/BusinessFiberIcons/Network.svg";
 import Services from "../../../../assets/images/Icons/BusinessFiberIcons/Services.svg";
 import Support from "../../../../assets/images/Icons/BusinessFiberIcons/Support.svg";
-import maleImg from "../../../../assets/images/Male.png";
-import fiberForBusiness from "../../../../assets/images/fiberForBusiness.jpeg";
+import MaleImg from "../../../../assets/images/MaleImg.png";
+import LadyImg from "../../../../assets/images/LadyImg.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -285,12 +285,12 @@ const EnterpriseFiberIntro = () => {
       </Card>
       <Container className={classes.featureCardContainer}>
         <Grid container justify="space-evenly" spacing={2}>
-          <Grid item lg={4} md={4} xl={4} xs={12} sm={12}>
+          <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
             <Card className={classes.featureCard} elevation={0}>
               <CardMedia
                 component="img"
                 height="210"
-                image={maleImg}
+                image={MaleImg}
                 alt="green iguana"
               />
               <CardContent>
@@ -320,12 +320,12 @@ const EnterpriseFiberIntro = () => {
               </CardActions>
             </Card>
           </Grid>
-          <Grid item lg={4} md={4} xl={4} xs={12} sm={12}>
+          <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
             <Card className={classes.featureCard} elevation={0}>
               <CardMedia
                 component="img"
                 height="210"
-                image={fiberForBusiness}
+                image={LadyImg}
                 alt="green iguana"
               />
               <CardContent>

@@ -105,7 +105,7 @@ const SidebarNav = (props) => {
       <List className={clsx(classes.root, className)}>
         {externalLinks.map((externalLink) => (
           <div key={externalLink.title}>
-            <NavBarItem
+            <ExternalNavBarItem
               onClose={onClose}
               key={externalLink.title}
               subNav={externalLink.items ? externalLink.items : false}

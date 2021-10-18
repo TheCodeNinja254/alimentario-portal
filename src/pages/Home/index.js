@@ -34,12 +34,10 @@ const useStyles = makeStyles((theme) => ({
     width: 600,
     height: 600,
     borderRadius: 10,
-    borderStyle: "solid",
-    borderWidth: 4,
     marginTop: 20,
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    borderColor: "#d2d2d2",
+    marginBottom: theme.spacing(2),
     [theme.breakpoints.down("sm")]: {
       height: 400,
       width: "auto",
@@ -97,6 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
   pageHeading: {
     marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(3),
     fontWeight: 700,
     textAlign: "center",
     alignContent: "center",
@@ -113,11 +112,6 @@ const useStyles = makeStyles((theme) => ({
   },
   onMapInnerCard: {
     borderRadius: 23,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 14,
-    },
     shadowRadius: 30,
     shadowOpacity: 1,
   },

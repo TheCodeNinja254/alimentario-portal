@@ -26,6 +26,7 @@ import trimNonNumbers from "../../../utils/trimNonNumbers";
 import ErrorHandler from "../../../utils/errorHandler";
 import Dialog from "../../../components/Dialog";
 import StatusIcon from "../../../components/StatusIcon";
+import { encrypt } from "../../../utils/encryptDecrypt";
 
 const LeadRegistrationSchema = Yup.object().shape({
   fullName: Yup.string()
@@ -375,21 +376,21 @@ const RegisterCustomerForm = (props) => {
           CreateCustomerMutation({
             variables: {
               input: {
-                firstName: values.fullName.split(" ")[0],
+                firstName: encrypt(values.fullName.split(" ")[0]),
                 middleName:
                   values.fullName.split(" ")[1] ||
                   values.fullName.split(" ")[2],
                 lastName: values.fullName.split(" ")[2] || "",
-                sponsorMsisdn: values.sponsorMsisdn,
+                sponsorMsisdn: encrypt(values.sponsorMsisdn),
                 sponsorAlternativeMsisdn: "",
-                emailAddress: values.emailAddress,
+                emailAddress: encrypt(values.emailAddress),
                 productId: Number(values.productId),
                 preferredDate: values.preferredDate,
                 preferredTimePeriod: preferredTime,
                 passedEstateId: estateId,
                 areaName,
                 streetName,
-                nonCoveredEstateName: inputEstate,
+                newEstateName: inputEstate,
                 houseNumber: "",
                 doctypeId: "",
                 documentNumber: "",

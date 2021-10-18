@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   secondAppBar: {
     marginTop: theme.spacing(5),
+    height: 55,
   },
   mobileSecondAppBar: {
     marginTop: theme.spacing(5),

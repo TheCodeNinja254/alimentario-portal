@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.white,
   },
   wrapper: {
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(9),
     flex: "1 1 auto",
     overflow: "hidden",
     backgroundColor: theme.palette.white.dark,

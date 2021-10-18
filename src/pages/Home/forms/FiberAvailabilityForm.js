@@ -116,7 +116,7 @@ const EstatesList = (props) => {
       inputValue={inputEstate}
       onInputChange={(event, newInputValue) => {
         setInputEstate(newInputValue);
-        setSelectedEstate(0);
+        setSelectedEstate(1);
         setEstateName(newInputValue, true);
         setReadyEstate(false);
       }}
@@ -162,9 +162,9 @@ const FiberAvailabilityForm = (props) => {
 
   let estateName = selectedEstate;
   let estateId;
-  if (selectedEstate === 0) {
+  if (selectedEstate === 1) {
     estateName = inputEstate;
-    estateId = 0;
+    estateId = 1;
   } else {
     estateId = selectedEstate;
   }

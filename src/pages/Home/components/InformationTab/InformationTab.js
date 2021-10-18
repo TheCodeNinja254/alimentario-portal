@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
   },
   inCardHeading: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(8),
     marginBottom: theme.spacing(3),
-    fontSize: 24,
-    fontWeight: "350",
+    fontSize: 32,
+    fontWeight: "500",
     letterSpacing: 0,
     textAlign: "left",
   },
@@ -44,13 +44,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),
-    marginLeft: theme.spacing(2),
   },
   contentWrapper: {
     marginTop: theme.spacing(6),
   },
   cardWithImageText: {
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(0),
   },
   infoIcons: {
     backgroundColor: theme.palette.white.main,
@@ -69,7 +68,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.dark,
   },
   cardImage: {
-    height: 410,
+    height: 450,
+    width: 500,
     borderRadius: 10,
     [theme.breakpoints.down("sm")]: {
       height: 250,
@@ -121,11 +121,12 @@ const InformationTab = () => {
                   <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
                     <div className={classes.cardWithImageText}>
                       <Typography className={classes.inCardHeading}>
-                        Never Miss a Moment With The 4G WIFI Router
+                        Never Miss a Moment With The <br />
+                        4G WIFI Router
                       </Typography>
                       <Typography variant="body1">
-                        Enjoy seamless and fast WIFI internet at home. Get yours
-                        today at Safaricom shops Countrywide
+                        Enjoy seamless and fast WIFI internet at home. <br />
+                        Get yours today at Safaricom shops Countrywide
                       </Typography>
                     </div>
                     <Link to="/4g-wifi-router">
@@ -212,8 +213,8 @@ const InformationTab = () => {
                   <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
                     <div className={classes.cardWithImageText}>
                       <Typography className={classes.inCardHeading}>
-                        Welcome to the good life, everything you own is
-                        protected
+                        Welcome to the good life, <br />
+                        everything you own is protected
                       </Typography>
                       <Typography variant="body1">
                         Welcome to the good life, where everything you own is

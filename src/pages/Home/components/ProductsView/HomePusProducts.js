@@ -21,7 +21,7 @@ import { HashLink } from "react-router-hash-link";
 const useStyles = makeStyles((theme) => ({
   root: {},
   productCard: {
-    height: 710,
+    height: 750,
     borderRadius: 10,
     backgroundColor: theme.palette.white.main,
     marginTop: theme.spacing(0),

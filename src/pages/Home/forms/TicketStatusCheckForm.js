@@ -60,15 +60,17 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   ListDialogContent: {
-    textAlign: "center",
+    textAlign: "left",
     margin: theme.spacing(2),
-    height: 500,
+    maxHeight: 500,
+    height: "auto",
   },
   dialogIcon: {
     textAlign: "center",
   },
   salutation: {
     fontWeight: 700,
+    marginLeft: theme.spacing(2),
   },
   checkIcon: {
     fontSize: 72,
@@ -77,17 +79,6 @@ const useStyles = makeStyles((theme) => ({
   modalText: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-  },
-  modal: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
   },
   submitButton: {
     marginBottom: theme.spacing(2),

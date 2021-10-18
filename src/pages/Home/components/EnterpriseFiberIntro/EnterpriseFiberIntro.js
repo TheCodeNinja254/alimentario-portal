@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "capitalize",
     color: theme.palette.primary.main,
     marginBottom: theme.spacing(2),
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(-1),
   },
   submitButton: {
     textTransform: "capitalize",
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   featureCard: {
-    height: 450,
+    height: 360,
     borderRadius: 10,
   },
 }));

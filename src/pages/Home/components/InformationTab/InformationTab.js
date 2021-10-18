@@ -154,9 +154,9 @@ const InformationTab = () => {
                       <Grid item lg={7} md={7} xl={7} xs={12} sm={12}>
                         <div className={classes.cardWithImageText}>
                           <Typography className={classes.inCardHeading}>
-                            Smart TV Box
+                            Enjoyment ni ku-transform your TV into a Smart TV
                           </Typography>
-                          <Hidden lgUp>
+                          <Hidden mdDown>
                             <Link to="/entertainment">
                               <Button
                                 size="small"
@@ -174,7 +174,7 @@ const InformationTab = () => {
                           alt="info icon"
                           className={classes.smallCardImage}
                         />
-                        <Hidden mdDown>
+                        <Hidden lgUp>
                           <Link to="/entertainment">
                             <Button
                               size="small"
@@ -198,7 +198,7 @@ const InformationTab = () => {
                           <Typography className={classes.inCardHeading}>
                             Maintain safety in your home with CCTV
                           </Typography>
-                          <Hidden lgUp>
+                          <Hidden mdDown>
                             <Link to="/home-cctv">
                               <Button
                                 size="small"
@@ -216,7 +216,7 @@ const InformationTab = () => {
                           alt="info icon"
                           className={classes.smallCardImage}
                         />
-                        <Hidden mdDown>
+                        <Hidden lgUp>
                           <Link to="/home-cctv">
                             <Button
                               size="small"

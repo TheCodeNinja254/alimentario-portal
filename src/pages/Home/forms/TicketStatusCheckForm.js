@@ -19,6 +19,7 @@ import { InfoRounded } from "@material-ui/icons";
 import ErrorHandler from "../../../utils/errorHandler";
 import Dialog from "../../../components/Dialog";
 import { CHECK_TICKET_STATUS } from "../../../api/Mutations/Customers";
+import { decrypt, encrypt } from "../../../utils/encryptDecrypt";
 
 const LeadStatusSchema = Yup.object().shape({
   uniqueIdentity: Yup.string()
@@ -114,7 +115,8 @@ const TicketStatusCheckForm = () => {
 
   const { listModalOpen, leadsList } = leadListModal;
 
-  const firstName = leadsList.length > 0 ? leadsList[0].firstName : " ";
+  const firstName =
+    leadsList.length > 0 ? decrypt(leadsList[0].firstName) : " ";
 
   const closeDialog = () => {
     setRegisterLeadDetails({ open: false, status: false, message: "" });
@@ -134,7 +136,7 @@ const TicketStatusCheckForm = () => {
           CheckLeadDetailsMutation({
             variables: {
               input: {
-                uniqueIdentity: values.uniqueIdentity,
+                uniqueIdentity: encrypt(values.uniqueIdentity),
               },
             },
           })

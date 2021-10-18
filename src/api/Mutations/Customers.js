@@ -31,7 +31,6 @@ export const CHECK_TICKET_STATUS = gql`
         preferredDate
         preferredTimePeriod
         firstName
-        lastName
         estateName
       }
     }

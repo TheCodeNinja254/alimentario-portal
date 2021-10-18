@@ -1,6 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Card, CardContent, Container, Grid } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Hidden,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
@@ -149,6 +156,16 @@ const InformationTab = () => {
                           <Typography className={classes.inCardHeading}>
                             Smart TV Box
                           </Typography>
+                          <Hidden lgUp>
+                            <Link to="/entertainment">
+                              <Button
+                                size="small"
+                                className={classes.buttonAction}
+                              >
+                                Find out more <NavigateNextIcon />
+                              </Button>
+                            </Link>
+                          </Hidden>
                         </div>
                       </Grid>
                       <Grid item lg={5} md={5} xl={5} xs={12} sm={12}>
@@ -157,11 +174,16 @@ const InformationTab = () => {
                           alt="info icon"
                           className={classes.smallCardImage}
                         />
-                        <Link to="/entertainment">
-                          <Button size="small" className={classes.buttonAction}>
-                            Find out more <NavigateNextIcon />
-                          </Button>
-                        </Link>
+                        <Hidden mdDown>
+                          <Link to="/entertainment">
+                            <Button
+                              size="small"
+                              className={classes.buttonAction}
+                            >
+                              Find out more <NavigateNextIcon />
+                            </Button>
+                          </Link>
+                        </Hidden>
                       </Grid>
                     </Grid>
                   </CardContent>
@@ -176,6 +198,16 @@ const InformationTab = () => {
                           <Typography className={classes.inCardHeading}>
                             Maintain safety in your home with CCTV
                           </Typography>
+                          <Hidden lgUp>
+                            <Link to="/home-cctv">
+                              <Button
+                                size="small"
+                                className={classes.buttonAction}
+                              >
+                                Find out more <NavigateNextIcon />
+                              </Button>
+                            </Link>
+                          </Hidden>
                         </div>
                       </Grid>
                       <Grid item lg={5} md={5} xl={5} xs={12} sm={12}>
@@ -184,11 +216,16 @@ const InformationTab = () => {
                           alt="info icon"
                           className={classes.smallCardImage}
                         />
-                        <Link to="/home-cctv">
-                          <Button size="small" className={classes.buttonAction}>
-                            Find out more <NavigateNextIcon />
-                          </Button>
-                        </Link>
+                        <Hidden mdDown>
+                          <Link to="/home-cctv">
+                            <Button
+                              size="small"
+                              className={classes.buttonAction}
+                            >
+                              Find out more <NavigateNextIcon />
+                            </Button>
+                          </Link>
+                        </Hidden>
                       </Grid>
                     </Grid>
                   </CardContent>

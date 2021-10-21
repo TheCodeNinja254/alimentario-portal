@@ -6,16 +6,16 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     width: "100%",
     display: "flex",
-    justifyContent: "right",
+    justifyContent: "center",
   },
   progress: {
-    margin: theme.spacing(0),
+    margin: theme.spacing(20),
     height: 5,
     color: theme.palette.primary.main,
   },
 }));
 
-export default function CircularIndeterminate() {
+export default function SuspenseLoader() {
   const classes = useStyles();
 
   return (

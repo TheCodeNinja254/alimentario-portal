@@ -154,7 +154,7 @@ const InformationTab = () => {
                       <Grid item lg={7} md={7} xl={7} xs={12} sm={12}>
                         <div className={classes.cardWithImageText}>
                           <Typography className={classes.inCardHeading}>
-                            Enjoyment ni ku-transform your TV into a Smart TV
+                            Transform your TV into a Smart TV
                           </Typography>
                           <Hidden mdDown>
                             <Link to="/entertainment">

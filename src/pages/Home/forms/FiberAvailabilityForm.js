@@ -129,7 +129,9 @@ const FiberAvailabilityForm = (props) => {
   const classes = useStyles();
   const { setEstateStatus, setReadyEstate, setEstateName } = props;
 
-  const [regionId, setRegionId] = React.useState(3);
+  const [regionId, setRegionId] = React.useState(
+    process.env.REACT_APP_DEFAULT_REGION
+  );
   const [formOneCollapsed, setFormOneCollapsed] = React.useState(true);
   const [formTwoCollapsed, setFormTwoCollapsed] = React.useState(false);
   const [successfulRegistration, setSuccessfulRegistration] =

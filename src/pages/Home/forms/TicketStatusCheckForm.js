@@ -220,8 +220,8 @@ const TicketStatusCheckForm = () => {
                           variant="body1"
                           className={classes.modalText}
                         >
-                          Your fiber coverage confirmation request for your
-                          residence at {record.estateName} was scheduled for{" "}
+                          Your fiber coverage confirmation request at{" "}
+                          {record.estateName} was scheduled for{" "}
                           {moment(record.preferredDate).format("MMMM Do YYYY")}{" "}
                           between {record.preferredTimePeriod}
                         </Typography>

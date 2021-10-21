@@ -7,6 +7,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import { loadingStatus } from "../../Apollo/ReactiveVariables";
 import { Menubar, Topbar } from "./MenuNavigation";
 import Footer from "./Footer/Footer";
+import CookieTextSnackbar from "./Footer/components/CookiePolicy";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +48,7 @@ const MainLayout = ({ children }) => {
           <div className={classes.content}>{children}</div>
         </div>
       </div>
+      <CookieTextSnackbar />
       <Footer />
     </div>
   );

@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "underline",
   },
   denseTopBar: {
-    height: "35px",
+    height: "40px",
   },
   search: {
     position: "relative",
@@ -60,6 +60,15 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.white.main,
     },
   },
+  TabButton: {
+    fontWeight: 700,
+    // height: "35px",
+    textTransform: "none",
+    color: theme.palette.black,
+    "&:hover": {
+      backgroundColor: theme.palette.white.main,
+    },
+  },
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: "100%",
@@ -76,11 +85,10 @@ const useStyles = makeStyles((theme) => ({
     height: 27,
     display: "flex",
     marginTop: theme.spacing(1),
-    // marginRight: theme.spacing(18),
   },
   secondAppBar: {
     marginTop: theme.spacing(5),
-    height: 55,
+    height: 60,
   },
   mobileSecondAppBar: {
     marginTop: theme.spacing(5),
@@ -179,15 +187,30 @@ const SearchAppBar = () => {
                           <NavHashLink
                             to={siteLink.url}
                             key={siteLink.label}
-                            className={classes.Tab}
+                            // className={classes.Tab}
                             smooth
                           >
-                            <Button className={classes.Tab}>
-                              {siteLink.label}
-                            </Button>
+                            <Tab
+                              key={siteLink.label}
+                              className={classes.TabButton}
+                              label={siteLink.label}
+                            />
+                            {/* </Tab> */}
                           </NavHashLink>
                         }
                       />
+                      // <Tab
+                      //   key={siteLink.label}
+                      //   className={classes.Tab}
+                      //   label={siteLink.label}
+                      // >
+                      //   <NavHashLink
+                      //     to={siteLink.url}
+                      //     key={siteLink.label}
+                      //     className={classes.Tab}
+                      //     smooth
+                      //   />
+                      // </Tab>
                     ))}
                   </Tabs>
                 </Grid>

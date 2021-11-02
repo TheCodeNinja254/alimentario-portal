@@ -247,6 +247,7 @@ const RegisterCustomerForm = (props) => {
     estateId,
     areaName,
     streetName,
+    regionId,
     inputEstate,
     setSuccessfulRegistration,
     setLeadDetails,
@@ -262,8 +263,6 @@ const RegisterCustomerForm = (props) => {
     { key: 4, label: "Evening: 3 -5 pm" },
     { key: 5, label: "Evening: 5 - 7 pm" },
   ];
-
-  // const chipsFinal = displayChips();
 
   const buttonDisabledStatus = (errors, values, loading) => {
     let buttonStatus = true;
@@ -389,6 +388,7 @@ const RegisterCustomerForm = (props) => {
                 preferredTimePeriod: preferredTime,
                 passedEstateId: estateId,
                 areaName,
+                regionId: Number(regionId),
                 streetName,
                 newEstateName: inputEstate,
                 houseNumber: "",
@@ -690,6 +690,7 @@ const RegisterCustomerForm = (props) => {
 
 RegisterCustomerForm.propTypes = {
   estateId: PropTypes.number.isRequired,
+  regionId: PropTypes.number.isRequired,
   areaName: PropTypes.string.isRequired,
   streetName: PropTypes.string.isRequired,
   inputEstate: PropTypes.string.isRequired,

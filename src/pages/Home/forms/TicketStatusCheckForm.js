@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     opacity: "90%",
   },
   wrapper: {
-    // padding: theme.spacing(2),
     marginTop: theme.spacing(2),
     maxWidth: 450,
   },

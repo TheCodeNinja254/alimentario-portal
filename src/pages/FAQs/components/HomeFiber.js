@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
   tableHead: {
     fontWeight: 700,
   },
+  inner: {
+    [theme.breakpoints.down("sm")]: {
+      width: 260,
+      overflowX: "scroll",
+    },
+  },
   linkText: {
     color: theme.palette.primary.main,
   },
@@ -165,8 +171,8 @@ const HomeFiber = () => {
             <Typography className={classes.answerText}>
               Available Packages are as below:
             </Typography>
-            <Paper>
-              <TableContainer>
+            <TableContainer className={classes.inner}>
+              <Paper>
                 <Table aria-label="simple table-1">
                   <TableHead>
                     <TableRow>
@@ -210,58 +216,62 @@ const HomeFiber = () => {
                     ))}
                   </TableBody>
                 </Table>
-              </TableContainer>
-            </Paper>
+              </Paper>
+            </TableContainer>
 
             <br />
-            <TableContainer>
-              <Table aria-label="simple table-1">
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={classes.tableHead} align="left">
-                      PACKAGE
-                    </TableCell>
-                    <TableCell className={classes.tableHead} align="left">
-                      FIRBE SPEEDS
-                    </TableCell>
-                    <TableCell className={classes.tableHead} align="left">
-                      MOBILE RESOURCES
-                    </TableCell>
-                    <TableCell className={classes.tableHead} align="left">
-                      MONTHLY COST
-                    </TableCell>
-                    <TableCell className={classes.tableHead} align="left">
-                      FAIR USAGE POLICY (FUP) LIMIT
-                    </TableCell>
-                    <TableCell className={classes.tableHead} align="left">
-                      SPEEDS AFTER FAIR USAGE
-                    </TableCell>
-                    <TableCell className={classes.tableHead} align="left">
-                      SECURE NET (AT NO COST)
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {plusRows.map((row) => (
-                    <TableRow
-                      key={row.packageName}
-                      sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
-                      }}
-                    >
-                      <TableCell component="th" scope="row" align="center">
-                        {row.packageName}
+            <TableContainer className={classes.inner}>
+              <Paper>
+                <Table aria-label="simple table-1">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell className={classes.tableHead} align="left">
+                        PACKAGE
                       </TableCell>
-                      <TableCell align="left">{row.speed}</TableCell>
-                      <TableCell align="left">{row.mobileResources}</TableCell>
-                      <TableCell align="left">{row.cost}</TableCell>
-                      <TableCell align="left">{row.fup}</TableCell>
-                      <TableCell align="left">{row.speedPostFup}</TableCell>
-                      <TableCell align="left">{row.freeSecureNet}</TableCell>
+                      <TableCell className={classes.tableHead} align="left">
+                        FIRBE SPEEDS
+                      </TableCell>
+                      <TableCell className={classes.tableHead} align="left">
+                        MOBILE RESOURCES
+                      </TableCell>
+                      <TableCell className={classes.tableHead} align="left">
+                        MONTHLY COST
+                      </TableCell>
+                      <TableCell className={classes.tableHead} align="left">
+                        FAIR USAGE POLICY (FUP) LIMIT
+                      </TableCell>
+                      <TableCell className={classes.tableHead} align="left">
+                        SPEEDS AFTER FAIR USAGE
+                      </TableCell>
+                      <TableCell className={classes.tableHead} align="left">
+                        SECURE NET (AT NO COST)
+                      </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHead>
+                  <TableBody>
+                    {plusRows.map((row) => (
+                      <TableRow
+                        key={row.packageName}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row" align="center">
+                          {row.packageName}
+                        </TableCell>
+                        <TableCell align="left">{row.speed}</TableCell>
+                        <TableCell align="left">
+                          {row.mobileResources}
+                        </TableCell>
+                        <TableCell align="left">{row.cost}</TableCell>
+                        <TableCell align="left">{row.fup}</TableCell>
+                        <TableCell align="left">{row.speedPostFup}</TableCell>
+                        <TableCell align="left">{row.freeSecureNet}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Paper>
             </TableContainer>
           </Box>
         </AccordionDetails>

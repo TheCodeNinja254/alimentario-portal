@@ -23,24 +23,25 @@ const authLink = setContext(() => {
 const errorLink = onError(
   // eslint-disable-next-line consistent-return
   ({ networkError }) => {
-    let networkErrorMessage = "";
-    if (
-      networkError &&
-      networkError.statusCode &&
-      networkError.statusCode !== 200
-    ) {
-      networkErrorMessage = ` Error Code: ${networkError.statusCode}`;
-    }
+    // let networkErrorMessage = "";
+    // if (
+    //   networkError &&
+    //   networkError.statusCode &&
+    //   networkError.statusCode !== 200
+    // ) {
+    //   networkErrorMessage = ` Error Code: ${networkError.statusCode}`;
+    // }
     if (networkError && networkError.message) {
       // eslint-disable-next-line no-param-reassign
       networkError.message =
         networkError.message.indexOf("JSON") !== -1
-          ? `Sorry, we experienced a technical error. Please refresh this page or try again later.${networkErrorMessage}`
+          ? `Sorry, we experienced a technical error. Please refresh this page or try again later.`
           : networkError.message;
       if (networkError.message === "Failed to fetch") {
         // eslint-disable-next-line no-param-reassign
         networkError.message =
-          "Sorry, we encountered a connection error. Please check your internet connection and retry again. If the problem persists, please send an email to Fibersalesgroup@safaricom.co.ke";
+          "Sorry! We encountered a network error. Please refresh this page or " +
+          "send email to fibersalesgroup@safaricom.co.ke";
       }
     }
   }

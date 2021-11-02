@@ -309,7 +309,7 @@ const HomePlusPackages = () => {
                 Unlimited SMS across networks
               </Typography>
               <Divider />
-              <Typography className={classes.amountText}>Ksh 2,999</Typography>
+              <Typography className={classes.amountText}>Ksh 4,049</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
@@ -374,7 +374,7 @@ const HomePlusPackages = () => {
                 Unlimited SMS across networks
               </Typography>
               <Divider />
-              <Typography className={classes.amountText}>Ksh 4,100</Typography>
+              <Typography className={classes.amountText}>Ksh 5,349</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
@@ -437,7 +437,7 @@ const HomePlusPackages = () => {
                 Unlimited SMS across networks
               </Typography>
               <Divider />
-              <Typography className={classes.amountText}>Ksh 6,299</Typography>
+              <Typography className={classes.amountText}>Ksh 7,349</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>
@@ -502,7 +502,7 @@ const HomePlusPackages = () => {
                 Unlimited SMS across networks
               </Typography>
               <Divider />
-              <Typography className={classes.amountText}>Ksh 12,499</Typography>
+              <Typography className={classes.amountText}>Ksh 13,549</Typography>
               <Typography className={classes.validityCardTitle}>
                 Valid for 30 days
               </Typography>

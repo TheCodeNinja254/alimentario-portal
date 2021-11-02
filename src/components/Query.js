@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { FormControl, MenuItem, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import Loader from "./Loader";
 import ErrorHandler from "../utils/errorHandler";
 import Alert from "./Alert";
@@ -12,7 +13,7 @@ const printErrorMessage = (error) => {
     "Looks like we are experiencing a technical difficulty. Our team is working to resolve the issue. Please try again later.";
   if (error.message === "Network error: Failed to fetch") {
     message =
-      "Sorry! We encountered a network error. Please refresh this page. If the problem persists, please send an email to fibersalesgroup@safaricom.co.ke";
+      "Sorry! We encountered a network error. Please refresh this page or send email to fibersalesgroup@safaricom.co.ke";
   }
   return ErrorHandler(message);
 };
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   alerts: {
     marginTop: theme.spacing(1),
+    overflowWrap: "inherit",
   },
 }));
 
@@ -69,7 +71,9 @@ const Query = ({
           </Select>
         </FormControl>
         <Alert severity="warning" className={classes.alerts}>
-          {ErrorHandler(message)}
+          <div>
+            <Typography variant="body2">{ErrorHandler(message)}</Typography>
+          </div>
         </Alert>
       </>
     );

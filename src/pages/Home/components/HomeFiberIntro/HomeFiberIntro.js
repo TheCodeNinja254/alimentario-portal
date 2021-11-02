@@ -140,7 +140,7 @@ const HomeFiberIntro = () => {
                     className={classes.featureDescription}
                   >
                     Keep your loved ones safe and secure online. Sign up and
-                    enjoy a FREE trial for one month.
+                    enjoy a FREE trial for one month. Stay safe & connected
                   </Typography>
                   <div align="center">
                     <Link to="/secure-net" target="_blank">
@@ -239,8 +239,8 @@ const HomeFiberIntro = () => {
                     align="center"
                     className={classes.featureDescription}
                   >
-                    Safety is paramount. Maintain safety in your home and manage
-                    basic home utilities at all times.
+                    Safety is paramount, so is peace of mind. Maintain safety in
+                    your home and manage basic home utilities at all times.
                   </Typography>
                   <div align="center">
                     <Link to="/home-cctv" target="_blank">

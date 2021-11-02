@@ -13,9 +13,9 @@ app.use(
 
 app.get("/*", function (req, res) {
     console.log(
-        `🚀 Client ready at http://localhost:${configValues.PORT || 3000}`
+        `🚀 Client ready at https://internet.safaricom.co.ke:${configValues.PORT || 8000}`
     );
     res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.listen(configValues.PORT || 3000);
+app.listen(configValues.PORT || 8000);

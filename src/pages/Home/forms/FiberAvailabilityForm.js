@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import Alert from "../../../components/Alert";
 import GetRegionsQuery from "../../../api/Queries/Locations/GetRegionsQuery";
 import GetEstatesQuery from "../../../api/Queries/Locations/GetEstates";
+
 import RegisterCustomerForm from "./RegisterCustomerForm";
 
 const buttonDisabledStatus = (streetName, estateId) => {
@@ -337,6 +338,7 @@ const FiberAvailabilityForm = (props) => {
             </div>
             <RegisterCustomerForm
               estateId={estateId}
+              regionId={regionId}
               areaName={closeLandmark}
               streetName={streetName}
               inputEstate={inputEstate || estateName}

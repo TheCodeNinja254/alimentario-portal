@@ -371,7 +371,7 @@ const HomeFiber = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Dial *400# and select “Other Services” then the “Change Password”
+            Call 400 for assistance from one of our support team members.
             option.
           </Typography>
         </AccordionDetails>

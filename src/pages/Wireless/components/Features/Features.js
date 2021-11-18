@@ -140,18 +140,14 @@ const Features = () => {
         </CardContent>
       </Card>
       <div align="center">
-        <a
-          href="https://www.safaricom.co.ke/find-our-shops"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href="tel://*400*49#">
           <Button
             small
             variant="outlined"
             className={classes.actionButtons}
             color="default"
           >
-            Buy NOW From Our Shops <ArrowForwardIcon />
+            Dial *400*49# <ArrowForwardIcon />
           </Button>
         </a>
       </div>

@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { HashLink } from "react-router-hash-link";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import IntroImage from "../../../../assets/images/LandingPageImg.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +49,12 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     textAlign: "left",
     marginTop: theme.spacing(3),
+  },
+  nineStyling: {
+    fontSize: 16,
+  },
+  aroundNineStyling: {
+    fontSize: 20,
   },
   sloganBold: {
     fontSize: 22,
@@ -99,7 +106,12 @@ const IntroductionScreen = () => {
                 </Typography>
                 <Typography className={classes.sloganText}>
                   Enjoy seamless and fast WIFI internet at home. Get yours today
-                  at Safaricom shops Countrywide
+                  at Safaricom shops Countrywide.{" "}
+                  <span className={classes.aroundNineStyling}>Dial *400*4</span>
+                  <span className={classes.nineStyling}>9</span>
+                  <span className={classes.aroundNineStyling}>
+                    # to get connected.
+                  </span>
                 </Typography>
 
                 <div className={classes.actionButtons}>
@@ -112,6 +124,16 @@ const IntroductionScreen = () => {
                       View Pricing <ArrowDownwardIcon />
                     </Button>
                   </HashLink>
+                  <a href="tel://*400*49#">
+                    <Button
+                      small
+                      variant="outlined"
+                      className={classes.exploreHomeButton}
+                      color="default"
+                    >
+                      Dial *400*49# to request <ArrowForwardIcon />
+                    </Button>
+                  </a>
                 </div>
               </Grid>
             </Grid>

@@ -110,7 +110,7 @@ const WiFiRouters = () => {
       </Card>
       <div align="center">
         <a
-          href="https://www.safaricom.co.ke/find-our-shops"
+          href="https://www.safaricom.co.ke/personal/store"
           target="_blank"
           rel="noreferrer"
         >

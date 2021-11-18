@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Link } from "react-router-dom";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Page from "../../components/Page";
 import ProductView from "./components/ProductsView/ProductView";
 import FiberAvailabilityForm from "./forms/FiberAvailabilityForm";
@@ -89,6 +90,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "normal",
     marginTop: theme.spacing(2),
     color: theme.palette.black,
+  },
+  exploreHomeButton: {
+    marginTop: theme.spacing(2),
   },
   onMapDivider: {
     color: theme.palette.black,
@@ -208,6 +212,16 @@ const Home = () => {
                             Explore 4G for Home
                           </Button>
                         </Link>
+                        <a href="tel://*400*49#">
+                          <Button
+                            small
+                            variant="outlined"
+                            className={classes.exploreHomeButton}
+                            color="default"
+                          >
+                            Dial *400*49# to request <ArrowForwardIcon />
+                          </Button>
+                        </a>
                       </CardContent>
                     </Card>
                   )}

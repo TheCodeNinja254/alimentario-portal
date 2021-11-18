@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subHeading: {
     marginTop: theme.spacing(2),
-    fontSize: 31,
+    fontSize: 25,
     fontWeight: "350",
     fontStyle: "normal",
     letterSpacing: 0,
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(2),
-    fontSize: 45,
+    fontSize: 35,
     fontWeight: "bold",
     fontStyle: "normal",
     letterSpacing: 0,
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
   },
   ematicDesc: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: "500",
     fontStyle: "normal",
     textAlign: "center",

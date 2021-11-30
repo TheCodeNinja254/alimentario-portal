@@ -29,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+      fontSize: 25,
+    },
   },
   subHeading: {
     marginTop: theme.spacing(2),
@@ -37,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 18,
+    },
   },
   contentWrapper: {
     marginTop: theme.spacing(6),
@@ -84,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.white.main,
+      borderColor: theme.palette.primary.main,
     },
   },
 }));
@@ -108,8 +118,8 @@ const HowToJoin = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <Typography className={classes.cardTitle}>
@@ -141,8 +151,8 @@ const HowToJoin = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <Typography className={classes.cardTitle}>
@@ -175,8 +185,8 @@ const HowToJoin = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <Typography className={classes.cardTitle}>
@@ -208,8 +218,8 @@ const HowToJoin = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <Typography className={classes.cardTitle}>

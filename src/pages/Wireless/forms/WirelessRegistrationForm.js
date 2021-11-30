@@ -19,7 +19,6 @@ import { useMutation } from "@apollo/client";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import { CREATE_CUSTOMER } from "../../../api/Mutations/Customers";
 import trimNonNumbers from "../../../utils/trimNonNumbers";
 import ErrorHandler from "../../../utils/errorHandler";
@@ -28,10 +27,11 @@ import StatusIcon from "../../../components/StatusIcon";
 import { encrypt } from "../../../utils/encryptDecrypt";
 import TimeSlotChips from "../../../components/TimeSlotChips";
 
-const LeadRegistrationSchema = Yup.object().shape({
+const WirelessLeadRegistrationSchema = Yup.object().shape({
   fullName: Yup.string()
     .required("Name is required, luckily.")
-    .min(3, "Please enter a valid name"),
+    .min(3, "Please enter a valid name")
+    .max(32, "Please enter a valid name"),
   sponsorMsisdn: Yup.string()
     .min(9, "The entered phone number is too short")
     .max(12, "The entered phone number is too long")
@@ -39,7 +39,7 @@ const LeadRegistrationSchema = Yup.object().shape({
   productId: Yup.string().required("Which package are you interested in?"),
   preferredDate: Yup.string().required("When can we call you?"),
   productType: Yup.string().required(
-    "Where do you wish to have the connection? Home or Business"
+    "Where do you wish to use the router? Home or Business"
   ),
   addOns: Yup.string().nullable(),
   emailAddress: Yup.string()
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   textFieldWithLable: {
     marginTop: theme.spacing(0),
     marginBottom: theme.spacing(3),
-    backgroundColor: theme.palette.white.main,
+    backgroundColor: theme.palette.white.dark,
   },
   getConnectedButton: {
     marginTop: theme.spacing(3),
@@ -82,10 +82,6 @@ const useStyles = makeStyles((theme) => ({
     height: "25px",
     width: "133px",
     fontSize: "12px",
-  },
-  formSubtitle: {
-    fontSize: 13,
-    fontWeight: 500,
   },
   dialogContent: {
     textAlign: "center",
@@ -104,77 +100,35 @@ const useStyles = makeStyles((theme) => ({
 
 const homePackages = [
   {
-    productId: 1,
-    packageName: "Bronze",
-    packagePrice: "Kshs 2,999",
-    packageBandwidth: "8 MBPS",
+    productId: 20191710,
+    packageName: "4G For Home",
+    packagePrice: "Kshs 5,299",
+    packageBandwidth: "5 MBPS",
   },
   {
-    productId: 2,
-    packageName: "Silver",
-    packagePrice: "Kshs 4,100",
-    packageBandwidth: "20 MBPS",
-  },
-  {
-    productId: 3,
-    packageName: "Gold",
-    packagePrice: "Kshs 6,299",
-    packageBandwidth: "40 MBPS",
-  },
-  {
-    productId: 4,
-    packageName: "Diamond",
-    packagePrice: "Kshs 12,499",
-    packageBandwidth: "100 MBPS",
-  },
-  {
-    productId: 5,
-    packageName: "Bronze Plus",
-    packagePrice: "Kshs 4,049",
-    packageBandwidth: "8 MBPS",
-  },
-  {
-    productId: 6,
-    packageName: "Silver Plus",
-    packagePrice: "Kshs 5,349",
-    packageBandwidth: "20 MBPS",
-  },
-  {
-    productId: 7,
-    packageName: "Gold Plus",
-    packagePrice: "Kshs 7,349",
-    packageBandwidth: "40 MBPS",
-  },
-  {
-    productId: 8,
-    packageName: "Diamond Plus",
-    packagePrice: "Kshs 13,549",
-    packageBandwidth: "100 MBPS",
+    productId: 20191909,
+    packageName: "4G For Home",
+    packagePrice: "Kshs 3, 699",
+    packageBandwidth: "3 MBPS",
   },
 ];
 
 const businessPackages = [
   {
-    productId: 5,
-    packageName: "Small offices of 1-10 users",
+    productId: 28032867,
+    packageName: "IFB 3Mbps LTE Postpaid",
     packagePrice: "Ksh 4,100",
     packageBandwidth: "3 MBPS",
   },
   {
-    productId: 6,
-    packageName: "Medium offices of 10-20 users",
+    productId: 28032869,
+    packageName: "IFB 5Mbps LTE Postpaid",
     packagePrice: "Ksh 5,799",
     packageBandwidth: "5 MBPS",
   },
-  {
-    productId: 7,
-    packageName: "Medium offices of 20-30 users",
-    packagePrice: "Ksh 15,699",
-    packageBandwidth: "10 MBPS",
-  },
 ];
 
-const RegisterCustomerForm = (props) => {
+const WirelessRegistrationForm = (props) => {
   const classes = useStyles();
   const {
     estateId,
@@ -221,54 +175,17 @@ const RegisterCustomerForm = (props) => {
   });
 
   const [selectedProductType, setSelectedProductType] = React.useState("Home");
-  const [hideAddonView, setHideAddonView] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(
     moment().format("YYYY-MM-DD")
   );
 
-  const [selectedAddon, setSelectedAddon] = React.useState(false);
-
-  let addOnLink;
-  let addOnPrompt;
-  let addonLinkPrompt;
-  switch (String(selectedAddon).valueOf()) {
-    case String("Secure Net").valueOf():
-      addOnLink = "/secure-net";
-      addOnPrompt = "What is Secure Net? ";
-      addonLinkPrompt = "Find out.";
-      break;
-    case String("CCTV").valueOf():
-      addOnLink = "/home-cctv";
-      addOnPrompt = "How does Home CCTV work? ";
-      addonLinkPrompt = "Read here";
-      break;
-    case String("Home Insurance").valueOf():
-      addOnLink = "/home-insurance";
-      addOnPrompt = "What is Home Insurance? ";
-      addonLinkPrompt = "Find out";
-      break;
-    case String("Smart TV Box").valueOf():
-      addOnLink = "/entertainment";
-      addOnPrompt = "Smart TV? How does it work? ";
-      addonLinkPrompt = "Find out.";
-      break;
-    case String("WiFi Extender").valueOf():
-      addOnLink = "/4g-wifi-router";
-      addOnPrompt = "Is this for me? ";
-      addonLinkPrompt = "Find out.";
-      break;
-    default:
-      addOnLink = "";
-      addOnPrompt = "";
-      addonLinkPrompt = "";
-  }
-
   const mappedProducts = (productTypeSelection) => {
-    if (productTypeSelection === "Home") {
-      setHideAddonView(false);
+    if (
+      productTypeSelection === "4G for Home" ||
+      productTypeSelection === "Home"
+    ) {
       return homePackages;
     }
-    setHideAddonView(true);
     return businessPackages;
   };
 
@@ -289,10 +206,6 @@ const RegisterCustomerForm = (props) => {
 
   return (
     <div>
-      <Typography className={classes.formSubtitle} gutterBottom>
-        Please fill out the form below and we will be in touch with you within
-        24 hours
-      </Typography>
       <Formik
         initialValues={{
           fullName: "",
@@ -303,32 +216,32 @@ const RegisterCustomerForm = (props) => {
           addOns: "",
           preferredDate: moment().format("YYYY-MM-DD"),
         }}
-        validationSchema={LeadRegistrationSchema}
+        validationSchema={WirelessLeadRegistrationSchema}
         onSubmit={(values) => {
           CreateCustomerMutation({
             variables: {
               input: {
-                firstName: encrypt(values.fullName.split(" ")[0]),
+                firstName: encrypt(values.fullName.split(" ")[0]), // Non Nullable
                 middleName:
                   values.fullName.split(" ")[1] ||
                   values.fullName.split(" ")[2],
                 lastName: values.fullName.split(" ")[2] || "",
-                sponsorMsisdn: encrypt(values.sponsorMsisdn),
+                sponsorMsisdn: encrypt(values.sponsorMsisdn), // Non Nullable
                 sponsorAlternativeMsisdn: "",
-                emailAddress: encrypt(values.emailAddress),
-                productId: Number(values.productId),
-                preferredDate: values.preferredDate,
-                preferredTimePeriod: preferredTime,
-                passedEstateId: estateId,
+                emailAddress: encrypt(values.emailAddress), // Non Nullable
+                productId: Number(values.productId), // Non Nullable
+                preferredDate: values.preferredDate, // Non Nullable
+                preferredTimePeriod: preferredTime, // Non Nullable
+                passedEstateId: estateId, // Non Nullable
                 areaName,
-                regionId: Number(regionId),
+                regionId: Number(regionId), // Non Nullable
                 streetName,
                 newEstateName: inputEstate,
                 houseNumber: "",
                 doctypeId: "",
                 documentNumber: "",
-                productType: values.productType,
-                addOns: values.addOns,
+                productType: values.productType, // Non Nullable
+                addOns: "",
               },
             },
           })
@@ -453,7 +366,7 @@ const RegisterCustomerForm = (props) => {
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <Typography variant="subtitle2" gutterBottom>
-                  Connection for Business/Home
+                  Connect Business/Home
                 </Typography>
                 <FormControl variant="standard" fullWidth>
                   <Select
@@ -468,8 +381,8 @@ const RegisterCustomerForm = (props) => {
                     }}
                     value={values.productType}
                   >
-                    <MenuItem value="Home">Home</MenuItem>
-                    <MenuItem value="Business">Business</MenuItem>
+                    <MenuItem value="4G for Home">4G for Home</MenuItem>
+                    <MenuItem value="4G for Business">4G for Business</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -507,53 +420,6 @@ const RegisterCustomerForm = (props) => {
                     ))}
                   </Select>
                 </FormControl>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={12}
-                xl={12}
-                hidden={hideAddonView}
-              >
-                <Typography variant="subtitle2" gutterBottom>
-                  Add-ons
-                </Typography>
-                <FormControl variant="standard" fullWidth>
-                  <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    fullWidth
-                    error={!!errors.addOns}
-                    helperText={errors.addOns || null}
-                    onChange={(e) => {
-                      setFieldValue("addOns", e.target.value, true);
-                      setSelectedAddon(e.target.value);
-                    }}
-                    value={values.addOns}
-                    label="Age"
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value="Secure Net">Secure Net</MenuItem>
-                    <MenuItem value="CCTV">CCTV</MenuItem>
-                    <MenuItem value="Home Insurance">Home Insurance</MenuItem>
-                    <MenuItem value="Smart TV Box">Smart TV Box</MenuItem>
-                    <MenuItem value="WiFi Extender">WiFi Extender</MenuItem>
-                  </Select>
-                </FormControl>
-                <Typography variant="body2">
-                  {addOnPrompt}
-                  <Link
-                    to={addOnLink}
-                    target="_blank"
-                    className={classes.helperLink}
-                  >
-                    {addonLinkPrompt}
-                  </Link>
-                </Typography>
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Typography variant="subtitle2" gutterBottom>
@@ -612,7 +478,7 @@ const RegisterCustomerForm = (props) => {
               size="small"
               variant="contained"
             >
-              <Typography color="error">Cancel</Typography>
+              Cancel
             </Button>
           </FormikForm>
         )}
@@ -621,7 +487,7 @@ const RegisterCustomerForm = (props) => {
   );
 };
 
-RegisterCustomerForm.propTypes = {
+WirelessRegistrationForm.propTypes = {
   estateId: PropTypes.number.isRequired,
   regionId: PropTypes.number.isRequired,
   areaName: PropTypes.string.isRequired,
@@ -632,4 +498,4 @@ RegisterCustomerForm.propTypes = {
   setFormOneCollapsed: PropTypes.func,
 };
 
-export default React.memo(RegisterCustomerForm);
+export default React.memo(WirelessRegistrationForm);

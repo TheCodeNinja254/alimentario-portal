@@ -16,13 +16,20 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.dark,
   },
   heading: {
-    marginTop: theme.spacing(3),
     marginBottom: theme.spacing(2),
     fontSize: 45,
     fontWeight: "bold",
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 25,
+      fontWeight: "bold",
+      fontStyle: "normal",
+      letterSpacing: 0,
+      textAlign: "center",
+    },
   },
   subHeading: {
     marginTop: theme.spacing(2),
@@ -31,6 +38,14 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 18,
+      fontWeight: "350",
+      fontStyle: "normal",
+      letterSpacing: 0,
+      textAlign: "center",
+    },
   },
   contentWrapper: {
     marginTop: theme.spacing(6),
@@ -58,6 +73,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     fontWeight: "bolder",
     color: theme.palette.primary.main,
+    [theme.breakpoints.down("sm")]: {
+      textTransform: "uppercase",
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
+      fontSize: 18,
+      fontWeight: "bolder",
+      color: theme.palette.primary.main,
+    },
   },
   featureDescription: {
     fontSize: 16,
@@ -66,11 +89,20 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: 0,
     textAlign: "center",
     color: theme.palette.black,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 14,
+      fontWeight: "500",
+      fontStyle: "normal",
+      letterSpacing: 0,
+      textAlign: "center",
+      color: theme.palette.black,
+    },
   },
   actionButtons: {
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(5),
     "&:hover": {
+      borderColor: theme.palette.primary.main,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.white.main,
     },
@@ -122,7 +154,6 @@ const SecureNetIntro = () => {
                   </Typography>
                   <Typography
                     variant="body2"
-                    align="center"
                     className={classes.featureDescription}
                   >
                     Protect your family from harmful online content by managing
@@ -135,8 +166,8 @@ const SecureNetIntro = () => {
                 lg={2}
                 md={2}
                 xl={2}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -170,8 +201,8 @@ const SecureNetIntro = () => {
                 lg={2}
                 md={2}
                 xl={2}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -205,8 +236,8 @@ const SecureNetIntro = () => {
                 lg={2}
                 md={2}
                 xl={2}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -237,8 +268,8 @@ const SecureNetIntro = () => {
                 lg={2}
                 md={2}
                 xl={2}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">

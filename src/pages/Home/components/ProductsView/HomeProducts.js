@@ -142,7 +142,7 @@ const packageCapabilities = {
       capabilityAvailability: true,
     },
     {
-      capabilityName: "SD TV programming",
+      capabilityName: "Internet surfing, social media & email",
       capabilityAvailability: true,
     },
     {
@@ -160,19 +160,19 @@ const packageCapabilities = {
   ],
   silver: [
     {
-      capabilityName: "Fast web browsing",
+      capabilityName: "Fast web browsing & Video calls",
       capabilityAvailability: true,
     },
     {
-      capabilityName: "SD Movie & music streaming",
+      capabilityName: "HD TV shows and movies upto 3 connected devices",
       capabilityAvailability: true,
     },
     {
-      capabilityName: "SD TV programming",
+      capabilityName: "Internet surfing, social media & email",
       capabilityAvailability: true,
     },
     {
-      capabilityName: "Multiple device streaming",
+      capabilityName: "Moderate streaming",
       capabilityAvailability: true,
     },
     {
@@ -190,15 +190,15 @@ const packageCapabilities = {
       capabilityAvailability: true,
     },
     {
-      capabilityName: "SD Movie & music streaming",
+      capabilityName: "4K Movies & TV Shows",
       capabilityAvailability: true,
     },
     {
-      capabilityName: "SD TV programming",
+      capabilityName: "Online gaming and downloading",
       capabilityAvailability: true,
     },
     {
-      capabilityName: "Multiple device streaming",
+      capabilityName: "Multiple device music streaming",
       capabilityAvailability: true,
     },
     {
@@ -216,11 +216,11 @@ const packageCapabilities = {
       capabilityAvailability: true,
     },
     {
-      capabilityName: "SD Movie & music streaming",
+      capabilityName: "4K Movie & TV Shows",
       capabilityAvailability: true,
     },
     {
-      capabilityName: "SD TV programming",
+      capabilityName: "Heavy online gaming and downloading ",
       capabilityAvailability: true,
     },
     {
@@ -228,13 +228,13 @@ const packageCapabilities = {
       capabilityAvailability: true,
     },
     {
-      capabilityName: "Superfast video downloads",
+      capabilityName: "Superfast video downloads & music streaming",
       capabilityAvailability: true,
     },
     {
       capabilityName: "CCTV devices Capability",
       capabilityAvailability: true,
-    },
+    }, // 4k movies and video streaming, heavy online gaming and downloading .
   ],
 };
 

@@ -26,6 +26,14 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 25,
+      fontWeight: "bold",
+      fontStyle: "normal",
+      letterSpacing: 0,
+      textAlign: "center",
+    },
   },
   contentWrapper: {
     marginTop: theme.spacing(6),

@@ -29,14 +29,10 @@ const LeadStatusSchema = Yup.object().shape({
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(5),
-    paddingTop: theme.spacing(2),
-    height: "100%",
-    backgroundColor: "#E5E5E5",
-    opacity: "90%",
+    padding: theme.spacing(2),
   },
   wrapper: {
-    marginTop: theme.spacing(2),
+    borderRadius: 25,
     maxWidth: 450,
   },
   formHeader: {
@@ -44,10 +40,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     textDecoration: "bold",
     fontSize: 18,
-  },
-  textFieldWithLable: {
-    marginTop: theme.spacing(0),
-    backgroundColor: theme.palette.white.main,
   },
   dialogListBody: {
     height: 100,
@@ -125,7 +117,7 @@ const TicketStatusCheckForm = () => {
     setLeadListModal({ listModalOpen: false, leadsList: [] });
 
   return (
-    <>
+    <div className={classes.root}>
       <Formik
         initialValues={{
           uniqueIdentity: "",
@@ -219,7 +211,7 @@ const TicketStatusCheckForm = () => {
                           variant="body1"
                           className={classes.modalText}
                         >
-                          Your fiber coverage confirmation request at{" "}
+                          Your internet connectivity confirmation request at{" "}
                           {record.estateName} was scheduled for{" "}
                           {moment(record.preferredDate).format("MMMM Do YYYY")}{" "}
                           between {record.preferredTimePeriod}
@@ -277,7 +269,7 @@ const TicketStatusCheckForm = () => {
           </FormikForm>
         )}
       </Formik>
-    </>
+    </div>
   );
 };
 

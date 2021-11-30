@@ -11,8 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { HashLink } from "react-router-hash-link";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import IntroImage from "../../../../assets/images/LandingPageImg.png";
+import WirelessRequestForm from "../../forms";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,17 +31,20 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
   },
   textInitial: {
-    fontSize: 44,
+    fontSize: 32,
     fontWeight: "bold",
     fontStyle: "normal",
     textAlign: "left",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+      fontWeight: "bold",
+      fontStyle: "normal",
+      textAlign: "left",
+    },
   },
   textTrailing: {
     fontSize: 36,
     fontWeight: 700,
-  },
-  IntroText: {
-    marginTop: theme.spacing(3),
   },
   sloganText: {
     fontSize: 16,
@@ -97,21 +100,14 @@ const IntroductionScreen = () => {
                   className={classes.cardImage}
                 />
               </Grid>
-              <Grid item lg={7} xl={7} sm={12} xs={12}>
-                <Typography className={classes.IntroText}>
-                  <span className={classes.textInitial}>
-                    Never Miss A Moment With The 4G WIFI <br />
-                    Router
-                  </span>
+              <Grid item lg={4} xl={4} sm={12} xs={12}>
+                <Typography className={classes.textInitial}>
+                  Never Miss A Moment With The 4G WIFI <br />
+                  Router
                 </Typography>
                 <Typography className={classes.sloganText}>
                   Enjoy seamless and fast WIFI internet at home. Get yours today
-                  at Safaricom shops Countrywide.{" "}
-                  <span className={classes.aroundNineStyling}>Dial *400*4</span>
-                  <span className={classes.nineStyling}>9</span>
-                  <span className={classes.aroundNineStyling}>
-                    # to get connected.
-                  </span>
+                  at Safaricom shops Countrywide.
                 </Typography>
 
                 <div className={classes.actionButtons}>
@@ -124,17 +120,20 @@ const IntroductionScreen = () => {
                       View Pricing <ArrowDownwardIcon />
                     </Button>
                   </HashLink>
-                  <a href="tel://*400*49#">
-                    <Button
-                      small
-                      variant="outlined"
-                      className={classes.exploreHomeButton}
-                      color="default"
-                    >
-                      Dial *400*49# to request <ArrowForwardIcon />
-                    </Button>
-                  </a>
+                  {/* <a href="tel://*400*49#"> */}
+                  {/*  <Button */}
+                  {/*    small */}
+                  {/*    variant="outlined" */}
+                  {/*    className={classes.exploreHomeButton} */}
+                  {/*    color="default" */}
+                  {/*  > */}
+                  {/*    Dial *400*49# to request <ArrowForwardIcon /> */}
+                  {/*  </Button> */}
+                  {/* </a> */}
                 </div>
+              </Grid>
+              <Grid item lg={4} xl={4} sm={12} xs={12} id="getWireless">
+                <WirelessRequestForm />
               </Grid>
             </Grid>
           </Container>

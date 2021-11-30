@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 1.76,
     textAlign: "left",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+    },
   },
   textTrailing: {
     fontSize: 36,
@@ -50,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     textAlign: "left",
     marginTop: theme.spacing(3),
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 16,
+    },
   },
   sloganBold: {
     fontSize: 22,

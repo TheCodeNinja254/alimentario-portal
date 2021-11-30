@@ -124,8 +124,8 @@ const EnterpriseFiberIntro = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -165,8 +165,8 @@ const EnterpriseFiberIntro = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -205,8 +205,8 @@ const EnterpriseFiberIntro = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -245,8 +245,8 @@ const EnterpriseFiberIntro = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">

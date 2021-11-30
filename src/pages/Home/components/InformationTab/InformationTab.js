@@ -1,13 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Button,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  Hidden,
-} from "@material-ui/core";
+import { Button, Card, CardContent, Grid, Hidden } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
@@ -53,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   contentWrapper: {
-    marginTop: theme.spacing(6),
+    // marginTop: theme.spacing(6),
   },
   cardWithImageText: {
     marginLeft: theme.spacing(0),
@@ -111,70 +104,50 @@ const InformationTab = () => {
     <div className={classes.root}>
       <Card elevation={0} className={classes.infoCard}>
         <CardContent>
-          <Container className={classes.contentWrapper}>
-            <Typography className={classes.heading}>
-              Routers And More
-            </Typography>
-            <Card elevation={0} className={classes.billingCards}>
-              <CardContent>
-                <Grid container>
-                  <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
-                    <img
-                      src={DisplayImage}
-                      alt="info icon"
-                      className={classes.cardImage}
-                    />
-                  </Grid>
-                  <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
-                    <div className={classes.cardWithImageText}>
-                      <Typography className={classes.inCardHeading}>
-                        Never Miss a Moment With The <br />
-                        4G WIFI Router
-                      </Typography>
-                      <Typography variant="body1">
-                        Enjoy seamless and fast WIFI internet at home. <br />
-                        Get yours today at Safaricom shops Countrywide
-                      </Typography>
-                    </div>
-                    <Link to="/4g-wifi-router">
-                      <Button size="small" className={classes.buttonAction}>
-                        Find out more <NavigateNextIcon />
-                      </Button>
-                    </Link>
-                  </Grid>
+          {/* <Container className={classes.contentWrapper}> */}
+          <Typography className={classes.heading}>Routers And More</Typography>
+          <Card elevation={0} className={classes.billingCards}>
+            <CardContent>
+              <Grid container>
+                <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
+                  <img
+                    src={DisplayImage}
+                    alt="info icon"
+                    className={classes.cardImage}
+                  />
                 </Grid>
-              </CardContent>
-            </Card>
+                <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
+                  <div className={classes.cardWithImageText}>
+                    <Typography className={classes.inCardHeading}>
+                      Never Miss a Moment With The <br />
+                      4G WIFI Router
+                    </Typography>
+                    <Typography variant="body1">
+                      Enjoy seamless and fast WIFI internet at home. <br />
+                      Get yours today at Safaricom shops Countrywide
+                    </Typography>
+                  </div>
+                  <Link to="/4g-wifi-router">
+                    <Button size="small" className={classes.buttonAction}>
+                      Find out more <NavigateNextIcon />
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
 
-            <Grid container spacing={2}>
-              <Grid item lg={6} md={6} xl={6} xs={12} sm={12} spacing={3}>
-                <Card elevation={0}>
-                  <CardContent>
-                    <Grid container>
-                      <Grid item lg={7} md={7} xl={7} xs={12} sm={12}>
-                        <div className={classes.cardWithImageText}>
-                          <Typography className={classes.inCardHeading}>
-                            Transform your TV into a Smart TV
-                          </Typography>
-                          <Hidden mdDown>
-                            <Link to="/entertainment">
-                              <Button
-                                size="small"
-                                className={classes.buttonAction}
-                              >
-                                Find out more <NavigateNextIcon />
-                              </Button>
-                            </Link>
-                          </Hidden>
-                        </div>
-                      </Grid>
-                      <Grid item lg={5} md={5} xl={5} xs={12} sm={12}>
-                        <img
-                          src={GigaBox}
-                          alt="info icon"
-                          className={classes.smallCardImage}
-                        />
-                        <Hidden lgUp>
+          <Grid container spacing={2}>
+            <Grid item lg={6} md={6} xl={6} xs={12} sm={12} spacing={3}>
+              <Card elevation={0}>
+                <CardContent>
+                  <Grid container>
+                    <Grid item lg={7} md={7} xl={7} xs={12} sm={12}>
+                      <div className={classes.cardWithImageText}>
+                        <Typography className={classes.inCardHeading}>
+                          Transform your TV into a Smart TV
+                        </Typography>
+                        <Hidden mdDown>
                           <Link to="/entertainment">
                             <Button
                               size="small"
@@ -184,39 +157,36 @@ const InformationTab = () => {
                             </Button>
                           </Link>
                         </Hidden>
-                      </Grid>
+                      </div>
                     </Grid>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item lg={6} md={6} xl={6} xs={12} sm={12} spacing={3}>
-                <Card elevation={0}>
-                  <CardContent>
-                    <Grid container>
-                      <Grid item lg={7} md={7} xl={7} xs={12} sm={12}>
-                        <div className={classes.cardWithImageText}>
-                          <Typography className={classes.inCardHeading}>
-                            Maintain safety in your home with CCTV
-                          </Typography>
-                          <Hidden mdDown>
-                            <Link to="/home-cctv">
-                              <Button
-                                size="small"
-                                className={classes.buttonAction}
-                              >
-                                Find out more <NavigateNextIcon />
-                              </Button>
-                            </Link>
-                          </Hidden>
-                        </div>
-                      </Grid>
-                      <Grid item lg={5} md={5} xl={5} xs={12} sm={12}>
-                        <img
-                          src={OutdoorCamera}
-                          alt="info icon"
-                          className={classes.smallCardImage}
-                        />
-                        <Hidden lgUp>
+                    <Grid item lg={5} md={5} xl={5} xs={12} sm={12}>
+                      <img
+                        src={GigaBox}
+                        alt="info icon"
+                        className={classes.smallCardImage}
+                      />
+                      <Hidden lgUp>
+                        <Link to="/entertainment">
+                          <Button size="small" className={classes.buttonAction}>
+                            Find out more <NavigateNextIcon />
+                          </Button>
+                        </Link>
+                      </Hidden>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item lg={6} md={6} xl={6} xs={12} sm={12} spacing={3}>
+              <Card elevation={0}>
+                <CardContent>
+                  <Grid container>
+                    <Grid item lg={7} md={7} xl={7} xs={12} sm={12}>
+                      <div className={classes.cardWithImageText}>
+                        <Typography className={classes.inCardHeading}>
+                          Maintain safety in your home with CCTV
+                        </Typography>
+                        <Hidden mdDown>
                           <Link to="/home-cctv">
                             <Button
                               size="small"
@@ -226,48 +196,63 @@ const InformationTab = () => {
                             </Button>
                           </Link>
                         </Hidden>
-                      </Grid>
+                      </div>
                     </Grid>
-                  </CardContent>
-                </Card>
-              </Grid>
+                    <Grid item lg={5} md={5} xl={5} xs={12} sm={12}>
+                      <img
+                        src={OutdoorCamera}
+                        alt="info icon"
+                        className={classes.smallCardImage}
+                      />
+                      <Hidden lgUp>
+                        <Link to="/home-cctv">
+                          <Button size="small" className={classes.buttonAction}>
+                            Find out more <NavigateNextIcon />
+                          </Button>
+                        </Link>
+                      </Hidden>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
             </Grid>
+          </Grid>
 
-            <Typography className={classes.insuranceHeader}>
-              Home Insurance
-            </Typography>
+          <Typography className={classes.insuranceHeader}>
+            Home Insurance
+          </Typography>
 
-            <Card elevation={0} className={classes.billingCards}>
-              <CardContent>
-                <Grid container>
-                  <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
-                    <img
-                      src={HomeInsuranceImg}
-                      alt="info icon"
-                      className={classes.cardImage}
-                    />
-                  </Grid>
-                  <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
-                    <div className={classes.cardWithImageText}>
-                      <Typography className={classes.inCardHeading}>
-                        Welcome to the good life, <br />
-                        everything you own is protected
-                      </Typography>
-                      <Typography variant="body1">
-                        Welcome to the good life, where everything you own is
-                        protected and your peace of mind remains intact.
-                      </Typography>
-                    </div>
-                    <Link to="/home-insurance">
-                      <Button size="small" className={classes.buttonAction}>
-                        Find out more <NavigateNextIcon />
-                      </Button>
-                    </Link>
-                  </Grid>
+          <Card elevation={0} className={classes.billingCards}>
+            <CardContent>
+              <Grid container>
+                <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
+                  <img
+                    src={HomeInsuranceImg}
+                    alt="info icon"
+                    className={classes.cardImage}
+                  />
                 </Grid>
-              </CardContent>
-            </Card>
-          </Container>
+                <Grid item lg={6} md={6} xl={6} xs={12} sm={12}>
+                  <div className={classes.cardWithImageText}>
+                    <Typography className={classes.inCardHeading}>
+                      Welcome to the good life, <br />
+                      everything you own is protected
+                    </Typography>
+                    <Typography variant="body1">
+                      Welcome to the good life, where everything you own is
+                      protected and your peace of mind remains intact.
+                    </Typography>
+                  </div>
+                  <Link to="/home-insurance">
+                    <Button size="small" className={classes.buttonAction}>
+                      Find out more <NavigateNextIcon />
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+          {/* </Container> */}
         </CardContent>
       </Card>
     </div>

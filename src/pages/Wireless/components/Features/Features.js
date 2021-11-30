@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Card, CardContent, Container, Grid } from "@material-ui/core";
+import { Card, CardContent, Container, Grid } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import wifiHotspot from "../../../../assets/images/Icons/wifi-hotspot 1.svg";
 import Entertainment from "../../../../assets/images/Icons/Entertainment.svg";
 
@@ -25,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: 0,
     textAlign: "center",
     textTransform: "capitalize",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 21,
+      fontWeight: "bold",
+      fontStyle: "normal",
+      letterSpacing: 0,
+      textAlign: "center",
+    },
   },
   requirementsIcons: {
     marginTop: theme.spacing(5),
@@ -140,16 +147,16 @@ const Features = () => {
         </CardContent>
       </Card>
       <div align="center">
-        <a href="tel://*400*49#">
-          <Button
-            small
-            variant="outlined"
-            className={classes.actionButtons}
-            color="default"
-          >
-            Dial *400*49# <ArrowForwardIcon />
-          </Button>
-        </a>
+        {/* <HashLink to="#getWireless" smooth> */}
+        {/*  <Button */}
+        {/*    small */}
+        {/*    variant="outlined" */}
+        {/*    className={classes.actionButtons} */}
+        {/*    color="default" */}
+        {/*  > */}
+        {/*    Dial *400*49# <ArrowForwardIcon /> */}
+        {/*  </Button> */}
+        {/* </HashLink> */}
       </div>
     </div>
   );

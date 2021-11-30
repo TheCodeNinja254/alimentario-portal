@@ -32,16 +32,18 @@ const buttonDisabledStatus = (streetName, estateId) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    borderRadius: 10,
+  },
   pageSubHeading: {
-    fontSize: 36,
-    fontWeight: 700,
+    fontSize: 25,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    textAlign: "left",
   },
   formHeader: {
+    fontSize: 15,
     fontWeight: 500,
-    marginBottom: theme.spacing(2),
-    marginTop: theme.spacing(2),
-    textDecoration: "bold",
   },
   textFieldWithLable: {
     backgroundColor: theme.palette.white.main,
@@ -79,6 +81,34 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
 }));
+
+const AreasList = (props) => {
+  const { className, setRegionId, regions } = props;
+
+  return (
+    <Autocomplete
+      className={className}
+      id="combo-box-demo"
+      options={regions}
+      disableClearable
+      noOptionsText="Area not found, you can pick 'Other'"
+      onChange={(event, selectedValue) => {
+        setRegionId(selectedValue.regionId || 0, true);
+      }}
+      getOptionLabel={(region) => region.regionName}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          required
+          name="estateName"
+          className={className}
+          variant="standard"
+        />
+      )}
+      openOnFocus
+    />
+  );
+};
 
 const EstatesList = (props) => {
   const {
@@ -194,27 +224,11 @@ const FiberAvailabilityForm = (props) => {
                   {({ getRegions }) => (
                     <>
                       {getRegions.getRegionsStatus ? (
-                        <FormControl variant="standard" fullWidth>
-                          <Select
-                            labelId="demo-simple-select-standard-label-products"
-                            className={classes.regionsTextarea}
-                            id="demo-simple-select-standard-products"
-                            fullWidth
-                            onChange={(e) => {
-                              setRegionId(e.target.value);
-                            }}
-                          >
-                            {getRegions.regions.map((regions) => (
-                              <MenuItem
-                                value={regions.regionId}
-                                key={regions.regionId}
-                              >
-                                {" "}
-                                {regions.regionName}
-                              </MenuItem>
-                            ))}
-                          </Select>
-                        </FormControl>
+                        <AreasList
+                          className={classes.textFieldWithLable}
+                          setRegionId={setRegionId}
+                          regions={getRegions.regions}
+                        />
                       ) : (
                         <>
                           <FormControl variant="standard" fullWidth>

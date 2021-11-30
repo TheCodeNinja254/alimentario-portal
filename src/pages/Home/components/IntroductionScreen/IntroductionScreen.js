@@ -48,9 +48,12 @@ const useStyles = makeStyles((theme) => ({
   },
   exploreHomeButton: {
     marginRight: theme.spacing(2),
+    color: theme.palette.white.main,
+    fontWeight: "bold",
   },
   explorePackages: {
-    backgroundColor: theme.palette.white.dark,
+    color: theme.palette.primary.main,
+    fontWeight: "bold",
   },
   actionButtons: {
     marginTop: theme.spacing(7),
@@ -106,13 +109,16 @@ const IntroductionScreen = () => {
                     variant="contained"
                     className={classes.explorePackages}
                   >
-                    Explore Packages
+                    <Typography className={classes.explorePackages}>
+                      Explore Packages
+                    </Typography>
                   </Button>
                 </HashLink>
                 <br />
               </div>
               <HashLink
                 to="#checkStatus"
+                smooth
                 variant="body2"
                 onClick={() => setCheckStatus(!checkStatus)}
                 className={classes.anchorLink}

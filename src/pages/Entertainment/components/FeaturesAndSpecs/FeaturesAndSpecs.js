@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "left",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 13,
+    },
   },
   contentBody: {
     marginTop: theme.spacing(6),
@@ -38,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "left",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 21,
+    },
   },
   cardImage: {
     marginLeft: "20%",
@@ -58,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
   },
   ematicDesc: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "500",
     fontStyle: "normal",
     textAlign: "center",
@@ -128,8 +136,8 @@ const FeaturesAndSpecs = () => {
                   xl={3}
                   lg={3}
                   md={3}
-                  sm={6}
-                  xs={6}
+                  sm={12}
+                  xs={12}
                   key={feature.featureDescription}
                 >
                   <Card elevation={0} className={classes.root}>

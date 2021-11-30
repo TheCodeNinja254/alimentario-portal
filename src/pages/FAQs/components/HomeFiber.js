@@ -19,7 +19,7 @@ import { NavHashLink } from "react-router-hash-link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    // width: "100%",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

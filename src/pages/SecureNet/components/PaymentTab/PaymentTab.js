@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+      fontSize: 25,
+    },
   },
   subHeading: {
     marginTop: theme.spacing(2),
@@ -23,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 18,
+    },
   },
   contentWrapper: {
     marginTop: theme.spacing(6),

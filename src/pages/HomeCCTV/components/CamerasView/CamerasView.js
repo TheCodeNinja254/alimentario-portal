@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: 0,
     textAlign: "center",
     textTransform: "capitalize",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+    },
   },
   exploreHomeButton: {
     marginRight: theme.spacing(2),
@@ -67,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.white.main,
+      borderColor: theme.palette.primary.main,
     },
   },
   exploreButtons: {

@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: 0,
     textAlign: "center",
     textTransform: "capitalize",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+      marginBottom: theme.spacing(0),
+    },
   },
   contentWrapper: {
     marginTop: theme.spacing(6),
@@ -65,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
+      borderColor: theme.palette.primary.main,
       color: theme.palette.white.main,
     },
   },
@@ -87,8 +92,8 @@ const Features = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -112,8 +117,8 @@ const Features = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -137,8 +142,8 @@ const Features = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -162,8 +167,8 @@ const Features = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">

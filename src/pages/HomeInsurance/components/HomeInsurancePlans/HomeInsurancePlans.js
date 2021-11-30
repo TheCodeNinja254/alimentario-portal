@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     letterSpacing: 0,
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+    },
   },
   plansContainer: {
     marginTop: theme.spacing(4),
@@ -49,12 +52,18 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 18,
     fontWeight: "500",
     fontStyle: "normal",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 14,
+    },
   },
   disclaimerTextLink: {
     fontSize: 18,
     fontWeight: "500",
     fontStyle: "normal",
     color: theme.palette.primary.main,
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 14,
   },
   cardDivider: {
     backgroundColor: theme.palette.black,
@@ -115,6 +124,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.white.main,
+      borderColor: theme.palette.primary.main,
     },
   },
 }));

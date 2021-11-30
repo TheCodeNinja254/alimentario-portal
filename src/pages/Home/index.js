@@ -13,7 +13,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Link } from "react-router-dom";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Page from "../../components/Page";
 import ProductView from "./components/ProductsView/ProductView";
 import FiberAvailabilityForm from "./forms/FiberAvailabilityForm";
@@ -28,14 +27,15 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(3),
   },
   checkCoverageArea: {
-    backgroundColor: theme.palette.white.main,
+    backgroundColor: theme.palette.background.dark,
   },
   mapContainer: {
+    backgroundColor: theme.palette.background.default,
     position: "relative",
     width: 600,
     height: 600,
     borderRadius: 10,
-    marginTop: 20,
+    // marginTop: 20,
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     marginBottom: theme.spacing(2),
@@ -68,6 +68,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     fontSize: 22,
     marginTop: theme.spacing(3),
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16,
+    },
   },
   onMapCardTop: {
     backgroundColor: "transparent",
@@ -90,6 +93,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "normal",
     marginTop: theme.spacing(2),
     color: theme.palette.black,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16,
+    },
   },
   exploreHomeButton: {
     marginTop: theme.spacing(2),
@@ -212,16 +218,6 @@ const Home = () => {
                             Explore 4G for Home
                           </Button>
                         </Link>
-                        <a href="tel://*400*49#">
-                          <Button
-                            small
-                            variant="outlined"
-                            className={classes.exploreHomeButton}
-                            color="default"
-                          >
-                            Dial *400*49# to request <ArrowForwardIcon />
-                          </Button>
-                        </a>
                       </CardContent>
                     </Card>
                   )}
@@ -252,22 +248,18 @@ const Home = () => {
               <ProductView />
             </Grid>
           </Grid>
+          <Grid container spacing={3}>
+            <Grid item lg={12} xl={12} sm={12} xs={12}>
+              <HomeFiberIntro />
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item lg={12} xl={12} sm={12} xs={12}>
+              <EnterpriseFiberIntro />
+            </Grid>
+          </Grid>
+          <InformationTab />
         </Container>
-        <Grid container spacing={3}>
-          <Grid item lg={12} xl={12} sm={12} xs={12}>
-            <HomeFiberIntro />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item lg={12} xl={12} sm={12} xs={12}>
-            <EnterpriseFiberIntro />
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item lg={12} xl={12} sm={12} xs={12}>
-            <InformationTab />
-          </Grid>
-        </Grid>
       </Box>
     </Page>
   );

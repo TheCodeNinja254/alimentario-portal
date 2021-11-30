@@ -89,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.white.main,
+      borderColor: theme.palette.primary.main,
     },
   },
 }));
@@ -110,8 +111,8 @@ const HomeFiberIntro = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -160,8 +161,8 @@ const HomeFiberIntro = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -210,8 +211,8 @@ const HomeFiberIntro = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">
@@ -260,8 +261,8 @@ const HomeFiberIntro = () => {
                 lg={3}
                 md={3}
                 xl={3}
-                xs={6}
-                sm={6}
+                xs={12}
+                sm={12}
                 className={classes.requirementsIcons}
               >
                 <div align="center">

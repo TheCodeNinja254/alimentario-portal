@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: 0,
     textAlign: "center",
     textTransform: "capitalize",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 25,
+      marginBottom: theme.spacing(0),
+    },
   },
   contentWrapper: {
     marginTop: theme.spacing(6),
@@ -52,9 +56,12 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     textAlign: "center",
     color: theme.palette.primary.main,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 18,
+    },
   },
   cardDescription: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "500",
     fontStyle: "normal",
     textAlign: "center",
@@ -86,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
+      borderColor: theme.palette.primary.main,
       color: theme.palette.white.main,
     },
   },

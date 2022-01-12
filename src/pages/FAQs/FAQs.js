@@ -119,7 +119,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  Home Fiber
+                  50% off on Fiber
                 </Button>
               }
               {...a11yProps(0)}
@@ -131,7 +131,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  Secure Net
+                  Home Fiber
                 </Button>
               }
               {...a11yProps(1)}
@@ -143,7 +143,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  4G WiFi Router
+                  Secure Net
                 </Button>
               }
               {...a11yProps(2)}
@@ -155,7 +155,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  Home CCTV
+                  4G WiFi Router
                 </Button>
               }
               {...a11yProps(3)}
@@ -163,30 +163,45 @@ const FAQsView = () => {
             <Tab
               label={
                 <Button
-                  className={classes.tabButton}
-                  color="primary"
                   variant={value === 4 ? "outlined" : ""}
+                  color="primary"
+                  className={classes.tabButton}
                 >
-                  Home Insurance
+                  Home CCTV
                 </Button>
               }
               {...a11yProps(4)}
             />
+            <Tab
+              label={
+                <Button
+                  className={classes.tabButton}
+                  color="primary"
+                  variant={value === 5 ? "outlined" : ""}
+                >
+                  Home Insurance
+                </Button>
+              }
+              {...a11yProps(5)}
+            />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <HomeFiber />
+          <HomeInsurance />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <SecureNet />
+          <HomeFiber />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Wireless />
+          <SecureNet />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <HomeCCTV />
+          <Wireless />
         </TabPanel>
         <TabPanel value={value} index={4}>
+          <HomeCCTV />
+        </TabPanel>
+        <TabPanel value={value} index={5}>
           <HomeInsurance />
         </TabPanel>
 

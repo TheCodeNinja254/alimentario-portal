@@ -17,6 +17,7 @@ import {
   Wireless,
 } from "./components";
 import Page from "../../components/Page";
+import OfferFAQs from "./components/OfferFAQs";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -187,7 +188,7 @@ const FAQsView = () => {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <HomeInsurance />
+          <OfferFAQs />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <HomeFiber />

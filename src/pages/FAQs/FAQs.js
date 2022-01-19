@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 const FAQsView = () => {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(-1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -113,6 +113,18 @@ const FAQsView = () => {
               },
             }}
           >
+            <Tab
+              label={
+                <Button
+                  variant={value === -1 ? "outlined" : ""}
+                  color="primary"
+                  className={classes.tabButton}
+                >
+                  Home Plus
+                </Button>
+              }
+              {...a11yProps(-1)}
+            />
             <Tab
               label={
                 <Button
@@ -187,6 +199,9 @@ const FAQsView = () => {
             />
           </Tabs>
         </Box>
+        <TabPanel value={value} index={-1}>
+          <OfferFAQs />
+        </TabPanel>
         <TabPanel value={value} index={0}>
           <OfferFAQs />
         </TabPanel>
@@ -205,7 +220,6 @@ const FAQsView = () => {
         <TabPanel value={value} index={5}>
           <HomeInsurance />
         </TabPanel>
-
         <br />
       </Container>
     </Page>

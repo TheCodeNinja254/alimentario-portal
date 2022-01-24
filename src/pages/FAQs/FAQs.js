@@ -10,6 +10,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import {
+  FMCFaqs,
   HomeCCTV,
   HomeFiber,
   HomeInsurance,
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 const FAQsView = () => {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(-1);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -116,23 +117,11 @@ const FAQsView = () => {
             <Tab
               label={
                 <Button
-                  variant={value === -1 ? "outlined" : ""}
-                  color="primary"
-                  className={classes.tabButton}
-                >
-                  Home Plus
-                </Button>
-              }
-              {...a11yProps(-1)}
-            />
-            <Tab
-              label={
-                <Button
                   variant={value === 0 ? "outlined" : ""}
                   color="primary"
                   className={classes.tabButton}
                 >
-                  50% off on Fiber
+                  Home Plus
                 </Button>
               }
               {...a11yProps(0)}
@@ -144,7 +133,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  Home Fiber
+                  50% off on Fiber
                 </Button>
               }
               {...a11yProps(1)}
@@ -156,7 +145,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  Secure Net
+                  Home Fiber
                 </Button>
               }
               {...a11yProps(2)}
@@ -168,7 +157,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  4G WiFi Router
+                  Secure Net
                 </Button>
               }
               {...a11yProps(3)}
@@ -180,7 +169,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  Home CCTV
+                  4G WiFi Router
                 </Button>
               }
               {...a11yProps(4)}
@@ -188,36 +177,48 @@ const FAQsView = () => {
             <Tab
               label={
                 <Button
-                  className={classes.tabButton}
-                  color="primary"
                   variant={value === 5 ? "outlined" : ""}
+                  color="primary"
+                  className={classes.tabButton}
                 >
-                  Home Insurance
+                  Home CCTV
                 </Button>
               }
               {...a11yProps(5)}
             />
+            <Tab
+              label={
+                <Button
+                  className={classes.tabButton}
+                  color="primary"
+                  variant={value === 6 ? "outlined" : ""}
+                >
+                  Home Insurance
+                </Button>
+              }
+              {...a11yProps(6)}
+            />
           </Tabs>
         </Box>
-        <TabPanel value={value} index={-1}>
-          <OfferFAQs />
-        </TabPanel>
         <TabPanel value={value} index={0}>
-          <OfferFAQs />
+          <FMCFaqs />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <HomeFiber />
+          <OfferFAQs />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <SecureNet />
+          <HomeFiber />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <Wireless />
+          <SecureNet />
         </TabPanel>
         <TabPanel value={value} index={4}>
-          <HomeCCTV />
+          <Wireless />
         </TabPanel>
         <TabPanel value={value} index={5}>
+          <HomeCCTV />
+        </TabPanel>
+        <TabPanel value={value} index={6}>
           <HomeInsurance />
         </TabPanel>
         <br />

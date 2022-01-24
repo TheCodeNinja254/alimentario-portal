@@ -41,7 +41,7 @@ const errorLink = onError(
         // eslint-disable-next-line no-param-reassign
         networkError.message =
           "Sorry! We encountered a network error. Please refresh this page or " +
-          "send email to fibersalesgroup@safaricom.co.ke";
+          "send email to fibersalesgroup @safaricom.co.ke";
       }
     }
   }

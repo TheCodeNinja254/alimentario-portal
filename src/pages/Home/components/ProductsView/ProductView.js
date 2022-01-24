@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import HomeProducts from "./HomeProducts";
 import EnterpriseProducts from "./EnterpriseProducts";
-import HomePlusPackages from "./HomePusProducts";
+import HomePlusPackages from "./HomePlusProducts";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

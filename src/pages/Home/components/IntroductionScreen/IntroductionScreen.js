@@ -11,14 +11,16 @@ import { HashLink } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import IntroImage from "../../../../assets/images/Intro.png";
+// import IntroImage from "../../../../assets/images/IntroV2.jpg";
 import TicketStatusCheckForm from "../../forms/TicketStatusCheckForm";
+import ImagesCarousel from "../ImagesCarousel";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   cardImage: {
     maxHeight: "400px",
     marginLeft: theme.spacing(0),
+    borderRadius: 30,
     [theme.breakpoints.down("sm")]: {
       maxHeight: "250px",
     },
@@ -29,19 +31,33 @@ const useStyles = makeStyles((theme) => ({
   textInitial: {
     fontSize: 30,
     fontWeight: "lighter",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+    },
   },
   textTrailing: {
     fontSize: 30,
     fontWeight: "bolder",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+    },
   },
   IntroText: {
     marginTop: theme.spacing(5),
     overflowX: "inherit",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(2),
+    },
   },
   sloganText: {
     fontSize: 26,
     fontWeight: 500,
     marginTop: theme.spacing(4),
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16,
+      fontWeight: 300,
+    },
   },
   NavigateNextIcon: {
     marginTop: theme.spacing(2),
@@ -52,8 +68,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
   },
   explorePackages: {
-    color: theme.palette.primary.main,
-    fontWeight: "bold",
+    color: theme.palette.black,
+    fontWeight: "lighter",
   },
   actionButtons: {
     marginTop: theme.spacing(7),
@@ -79,6 +95,9 @@ const IntroductionScreen = () => {
       <CardContent>
         <Container>
           <Grid container spacing={3} className={classes.introContainer}>
+            <Grid item lg={6} xl={6} md={6} sm={12} xs={12}>
+              <ImagesCarousel />
+            </Grid>
             <Grid item lg={6} xl={6} md={6} sm={12} xs={12}>
               <span className={classes.IntroText}>
                 <span>
@@ -132,13 +151,6 @@ const IntroductionScreen = () => {
                   <TicketStatusCheckForm />
                 </Card>
               </Collapse>
-            </Grid>
-            <Grid item lg={6} xl={6} md={6} sm={12} xs={12}>
-              <img
-                src={IntroImage}
-                alt="info icon"
-                className={classes.cardImage}
-              />
             </Grid>
           </Grid>
         </Container>

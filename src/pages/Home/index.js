@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import Page from "../../components/Page";
 import ProductView from "./components/ProductsView/ProductView";
 import FiberAvailabilityForm from "./forms/FiberAvailabilityForm";
-import coverBackgroundImage from "../../assets/images/img_3.png";
+import coverBackgroundImage from "../../assets/images/IntroV2.jpg";
 import HomeFiberIntro from "./components/HomeFiberIntro";
 import EnterpriseFiberIntro from "./components/EnterpriseFiberIntro";
 import InformationTab from "./components/InformationTab/InformationTab";
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mapOverlayCard: {
     position: "absolute",
-    top: "40%",
+    top: "50%",
     left: "27%",
     width: "45%",
     textAlign: "center",
@@ -121,9 +121,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(3),
   },
   onMapInnerCard: {
-    borderRadius: 23,
-    shadowRadius: 30,
-    shadowOpacity: 1,
+    borderRadius: 15,
+    opacity: 0.9,
   },
 }));
 

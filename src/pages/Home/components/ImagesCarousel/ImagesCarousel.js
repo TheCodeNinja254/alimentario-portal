@@ -59,14 +59,15 @@ const images = [
 const useStyles = makeStyles((theme) => ({
   root: {},
   carouselImages: {
-    // height: 400,
+    height: 428,
     display: "block",
     maxWidth: 600,
-    maxHeight: 400,
+    maxHeight: 428,
     overflow: "hidden",
     borderRadius: 10,
     [theme.breakpoints.down("sm")]: {
       maxWidth: "100%",
+      height: 214,
     },
   },
   tagLine: {

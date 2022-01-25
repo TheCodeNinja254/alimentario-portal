@@ -44,10 +44,12 @@ const useStyles = makeStyles((theme) => ({
   },
   IntroText: {
     marginTop: theme.spacing(5),
+    marginLeft: theme.spacing(3),
     overflowX: "inherit",
     [theme.breakpoints.down("sm")]: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(2),
+      marginLeft: theme.spacing(0),
     },
   },
   sloganText: {
@@ -65,11 +67,12 @@ const useStyles = makeStyles((theme) => ({
   exploreHomeButton: {
     marginRight: theme.spacing(2),
     color: theme.palette.white.main,
-    fontWeight: "bold",
+    fontWeight: "lighter",
   },
   explorePackages: {
-    color: theme.palette.black,
+    color: theme.palette.primary.main,
     fontWeight: "lighter",
+    borderColor: theme.palette.primary.main,
   },
   actionButtons: {
     marginTop: theme.spacing(7),
@@ -125,12 +128,10 @@ const IntroductionScreen = () => {
                 </HashLink>
                 <HashLink to="#packages" smooth>
                   <Button
-                    variant="contained"
+                    variant="outlined"
                     className={classes.explorePackages}
                   >
-                    <Typography className={classes.explorePackages}>
-                      Explore Packages
-                    </Typography>
+                    Explore Packages
                   </Button>
                 </HashLink>
                 <br />

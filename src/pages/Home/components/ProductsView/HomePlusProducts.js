@@ -2,6 +2,7 @@ import React from "react";
 import {
   Accordion,
   AccordionDetails,
+  Button,
   Card,
   CardContent,
   Divider,
@@ -26,6 +27,8 @@ import Typography from "@material-ui/core/Typography";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import { Link } from "react-router-dom";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -78,6 +81,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     textAlign: "center",
     alignContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: theme.spacing(0),
+    },
   },
   subText: {
     marginTop: theme.spacing(1),
@@ -91,6 +97,16 @@ const useStyles = makeStyles((theme) => ({
       overflowX: "scroll",
     },
     marginBottom: theme.spacing(2),
+  },
+  buttonAction: {
+    textTransform: "capitalize",
+    color: theme.palette.primary.main,
+    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    borderColor: theme.palette.primary.main,
+  },
+  actionSpace: {
+    justifyItems: "center",
   },
   productCardTitle: {
     fontSize: 18,
@@ -228,24 +244,28 @@ const homePackages = [
 
 const homePlusPackages = [
   {
-    productId: 1,
+    id: 1,
     packageName: "Home Plus 1000",
     priceInt: 1000,
+    plusBundle: "5GB + 400Min + 1000SMS",
   },
   {
-    productId: 2,
+    id: 2,
     packageName: "Home Plus 2000",
     priceInt: 2000,
+    plusBundle: "15GB + 1000Min + 2000SMS",
   },
   {
-    productId: 3,
+    id: 3,
     packageName: "Home Plus 3000",
     priceInt: 3000,
+    plusBundle: "25GB + 1500Min + 3000SMS",
   },
   {
-    productId: 4,
+    id: 4,
     packageName: "Home Plus 5000",
     priceInt: 5000,
+    plusBundle: "35GB + 2500Min + 5000SMS",
   },
 ];
 
@@ -253,10 +273,14 @@ const HomePlusPackages = () => {
   const classes = useStyles();
 
   const [expanded, setExpanded] = React.useState(true);
+  const [fiberProductId, setFiberProductId] = React.useState(1);
+  const [plusProductId, setPlusProductId] = React.useState(1);
 
   const handleChange = () => {
     setExpanded(!expanded);
   };
+
+  const numberFormat = new Intl.NumberFormat("en-US");
 
   return (
     <div>
@@ -339,6 +363,16 @@ const HomePlusPackages = () => {
                         Customers will be able to share the bundle resources
                         with members of their household
                       </Typography>
+                      <div align="center">
+                        <Link to="/faqs" target="_blank">
+                          <Button
+                            variant="outlined"
+                            className={classes.buttonAction}
+                          >
+                            Find out more <NavigateNextIcon />
+                          </Button>
+                        </Link>
+                      </div>
                     </Grid>
                   </Grid>
                 </AccordionDetails>
@@ -368,11 +402,11 @@ const HomePlusPackages = () => {
                       id="demo-simple-select-standard-products"
                       variant="outlined"
                       fullWidth
+                      onChange={(e) => {
+                        setFiberProductId(e.target.value);
+                      }}
                       className={classes.filterFields}
-                      // onChange={(e) => {
-                      //   setFieldValue("productId", e.target.value, true);
-                      // }}
-                      value={1}
+                      value={fiberProductId}
                     >
                       {homePackages.map((product) => (
                         <MenuItem
@@ -409,24 +443,21 @@ const HomePlusPackages = () => {
                       variant="outlined"
                       fullWidth
                       className={classes.filterFields}
-                      // onChange={(e) => {
-                      //   setFieldValue("productId", e.target.value, true);
-                      // }}
-                      value={1}
+                      onChange={(e) => {
+                        setPlusProductId(e.target.value);
+                      }}
+                      value={plusProductId}
                     >
-                      {homePlusPackages.map((product) => (
-                        <MenuItem
-                          value={product.productId}
-                          key={product.productId}
-                        >
+                      {homePlusPackages.map((item) => (
+                        <MenuItem value={item.id} key={item.id}>
                           <Typography className={classes.productListing}>
                             <span className={classes.packageName}>
-                              {product.packageName}
+                              {item.packageName}
                             </span>
                             <span>
                               {" "}
-                              {product.packageBandwidth} |{" Ksh. "}
-                              {product.priceInt}
+                              {item.packageBandwidth} |{" Ksh. "}
+                              {item.priceInt}
                             </span>
                           </Typography>
                         </MenuItem>
@@ -442,13 +473,15 @@ const HomePlusPackages = () => {
                 className={classes.selectedProductView}
                 variant="outlined"
                 elevation={0}
+                hidden={!fiberProductId > 0 && !plusProductId > 0}
               >
                 <Paper
                   elevation={1}
                   className={classes.bronzeProductColorHeader}
                 >
                   <Typography className={classes.productColorName}>
-                    BRONZE + HOME PLUS 1000
+                    {homePackages[fiberProductId - 1].packageName} +{" "}
+                    {homePlusPackages[plusProductId - 1].packageName}
                   </Typography>
                 </Paper>
                 <CardContent>
@@ -465,7 +498,17 @@ const HomePlusPackages = () => {
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <Typography variant="body2">5GB Data</Typography>
+                              <Typography className={classes.productListing}>
+                                <span className={classes.packageName}>
+                                  {homePackages[fiberProductId - 1].packageName}{" "}
+                                </span>
+                                <span>
+                                  {
+                                    homePackages[fiberProductId - 1]
+                                      .packageBandwidth
+                                  }
+                                </span>
+                              </Typography>
                             }
                           />
                         </ListItem>
@@ -475,7 +518,9 @@ const HomePlusPackages = () => {
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <Typography variant="body2">500 Data</Typography>
+                              <Typography variant="body2">
+                                {homePlusPackages[plusProductId - 1].plusBundle}
+                              </Typography>
                             }
                           />
                         </ListItem>
@@ -486,7 +531,10 @@ const HomePlusPackages = () => {
                         KSH.
                       </Typography>
                       <Typography className={classes.bundleSizeText}>
-                        20,000
+                        {numberFormat.format(
+                          homePackages[fiberProductId - 1].priceInt +
+                            homePlusPackages[plusProductId - 1].priceInt
+                        )}
                       </Typography>
                     </Grid>
                   </Grid>

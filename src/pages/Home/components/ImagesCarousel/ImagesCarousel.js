@@ -5,44 +5,54 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Box, Button, MobileStepper, Paper } from "@material-ui/core";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 /*
  * Preferred Image dimensions: w=400, h=250 (Ratio 1.4:1)
  * */
+
 const images = [
   {
     label: "50% off on Home Fiber",
     imgPath: "/images/features/promo1.jpg",
+    action: "Get it now",
   },
   {
     label: "50% off on Home Fiber",
     imgPath: "/images/features/promo2.jpg",
+    action: "Get it now",
   },
   {
     label: "Welcome Home",
     imgPath: "/images/features/IntroV2.jpg",
+    action: "Get connected",
   },
   {
     label: "Welcome Home",
     imgPath: "/images/features/Intro.png",
+    action: "Get connected",
   },
   {
     label: "Stay connected and secure",
     imgPath: "/images/features/SecureNet.png",
+    action: "Get SecureNet",
   },
   {
     label: "Safety for your connected Home",
     imgPath: "/images/features/HomeCCTV.png",
+    action: "Get Home Surveillance",
   },
   {
     label: "The Insured Home",
     imgPath: "/images/features/HomeInsuranceImg.png",
+    action: "Get Home Insurance",
   },
   {
     label: "Smart TV Solutions",
     imgPath: "/images/features/EmaticBox.svg",
+    action: "See Smart TV Options",
   },
 ];
 
@@ -64,10 +74,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     fontSize: 20,
     marginBottom: theme.spacing(2),
-    // textDecorationStyle: "solid",
-    // textDecoration: "underline",
-    // textDecorationThickness: "30%",
-    // textDecorationColor: theme.palette.error.main,
+    maxWidth: 350,
+    overflow: "hidden",
   },
 }));
 
@@ -102,9 +110,19 @@ const SwipeableTextMobileStepper = () => {
           bgcolor: "background.default",
         }}
       >
-        <Typography className={classes.tagLine}>
-          {images[activeStep].label}
-        </Typography>
+        <Grid container>
+          <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
+            <Typography className={classes.tagLine}>
+              {images[activeStep].label}
+            </Typography>
+          </Grid>
+          {/* <Grid item lg={5} xl={5} md={5} sm={5} xs={5}> */}
+          {/*  <Button size="small" variant="outlined"> */}
+          {/*    {images[activeStep].action} */}
+          {/*    <KeyboardArrowRight /> */}
+          {/*  </Button> */}
+          {/* </Grid> */}
+        </Grid>
       </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -119,14 +137,6 @@ const SwipeableTextMobileStepper = () => {
               <Box
                 component="img"
                 className={classes.carouselImages}
-                // sx={{
-                //   height: 400,
-                //   display: "block",
-                //   maxWidth: 400,
-                //   maxHeight: 400,
-                //   overflow: "hidden",
-                //   // width: "100%",
-                // }}
                 src={step.imgPath}
                 alt={step.label}
               />
@@ -141,6 +151,7 @@ const SwipeableTextMobileStepper = () => {
         nextButton={
           <Button
             size="small"
+            variant="outlined"
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
@@ -153,7 +164,12 @@ const SwipeableTextMobileStepper = () => {
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button
+            size="small"
+            variant="outlined"
+            onClick={handleBack}
+            disabled={activeStep === 0}
+          >
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (

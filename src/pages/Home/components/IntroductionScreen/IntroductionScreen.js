@@ -143,7 +143,7 @@ const IntroductionScreen = () => {
                 className={classes.anchorLink}
               >
                 <Button small className={classes.anchorButton}>
-                  Already made a request, Check Status <NavigateNextIcon />
+                  Already made a request? Check Status <NavigateNextIcon />
                 </Button>
               </HashLink>
               <Collapse in={checkStatus}>

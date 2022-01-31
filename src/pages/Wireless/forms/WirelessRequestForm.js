@@ -398,7 +398,7 @@ const WirelessRequestForm = () => {
           <Grid container spacing={3}>
             <Grid item lg={12} xl={12} sm={12} xs={12}>
               <Typography className={classes.confirmationCardTitle}>
-                We have received your request 4G Wireless internet
+                We have received your request for 4G Wireless internet
               </Typography>
               <br />
               <Typography className={classes.cardSubtitle}>

@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(3),
     overflowX: "inherit",
     [theme.breakpoints.down("sm")]: {
-      marginTop: theme.spacing(3),
-      marginBottom: theme.spacing(2),
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
       marginLeft: theme.spacing(0),
     },
   },
@@ -77,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
   actionButtons: {
     marginTop: theme.spacing(7),
     marginBottom: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(2),
+    },
   },
   anchorLink: {
     marginTop: theme.spacing(2),

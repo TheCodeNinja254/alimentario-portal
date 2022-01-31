@@ -205,10 +205,10 @@ function createData(packageName, price, bundle) {
 }
 
 const rows = [
-  createData("BRONZE PLUS 1000", "Ksh. 1,000", "5GB + 400Min + 1000SMS"),
-  createData("SILVER PLUS 2000", "Ksh. 2,000", "15GB + 1000Min + 2000SMS"),
-  createData("GOLD PLUS 3000", "Ksh. 3,000", "25GB + 1500Min + 3000SMS"),
-  createData("DIAMOND PLUS 5000", "Ksh. 5,000", "35GB + 2500Min + 5000SMS"),
+  createData("HOME PLUS 1000", "Ksh. 1,000", "5GB + 400Min + 1000SMS"),
+  createData("HOME PLUS 2000", "Ksh. 2,000", "15GB + 1000Min + 2000SMS"),
+  createData("HOME PLUS 3000", "Ksh. 3,000", "25GB + 1500Min + 3000SMS"),
+  createData("HOME PLUS 5000", "Ksh. 5,000", "35GB + 2500Min + 5000SMS"),
 ];
 
 const homePackages = [
@@ -536,6 +536,16 @@ const HomePlusPackages = () => {
                             homePlusPackages[plusProductId - 1].priceInt
                         )}
                       </Typography>
+                      <div align="center">
+                        <Link to="/faqs" target="_blank">
+                          <Button
+                            variant="outlined"
+                            className={classes.buttonAction}
+                          >
+                            Find out more <NavigateNextIcon />
+                          </Button>
+                        </Link>
+                      </div>
                     </Grid>
                   </Grid>
                 </CardContent>

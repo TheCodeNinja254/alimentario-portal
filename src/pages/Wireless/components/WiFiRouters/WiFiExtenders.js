@@ -96,7 +96,7 @@ const WiFiExtenders = () => {
             >
               {rows.map((row) => (
                 <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                  <Card elevation={5}>
+                  <Card elevation={0} variant="outlined">
                     <CardContent>
                       <img
                         height={200}

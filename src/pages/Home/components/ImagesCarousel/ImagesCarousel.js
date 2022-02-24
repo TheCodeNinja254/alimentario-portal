@@ -14,50 +14,56 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
  * */
 
 const images = [
+  // {
+  //   id: 1,
+  //   label: "50% off on Home Fiber",
+  //   imgPath: "/images/features/promo1.jpg",
+  //   action: "Get it now",
+  // },
+  // {
+  //   id: 2,
+  //   label: "50% off on Home Fiber",
+  //   imgPath: "/images/features/promo2.jpg",
+  //   action: "Get it now",
+  // },
   {
     id: 1,
-    label: "50% off on Home Fiber",
-    imgPath: "/images/features/promo1.jpg",
-    action: "Get it now",
+    label: "Home Plus",
+    imgPath: "/images/features/homePlusBanner.jpg",
+    action: "Get connected",
   },
   {
     id: 2,
-    label: "50% off on Home Fiber",
-    imgPath: "/images/features/promo2.jpg",
-    action: "Get it now",
-  },
-  {
-    id: 3,
     label: "Welcome Home",
     imgPath: "/images/features/IntroV2.jpg",
     action: "Get connected",
   },
   {
-    id: 4,
+    id: 3,
     label: "Welcome Home",
     imgPath: "/images/features/Intro.png",
     action: "Get connected",
   },
   {
-    id: 5,
+    id: 4,
     label: "Stay connected and secure",
     imgPath: "/images/features/SecureNet.png",
     action: "Get SecureNet",
   },
   {
-    id: 6,
+    id: 5,
     label: "Safety for your connected Home",
     imgPath: "/images/features/HomeCCTV.png",
     action: "Get Home Surveillance",
   },
   {
-    id: 7,
+    id: 6,
     label: "The Insured Home",
     imgPath: "/images/features/HomeInsuranceImg.png",
     action: "Get Home Insurance",
   },
   {
-    id: 8,
+    id: 7,
     label: "Smart TV Solutions",
     imgPath: "/images/features/EmaticBox.svg",
     action: "See Smart TV Options",

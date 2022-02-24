@@ -11,7 +11,6 @@ import { HashLink } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-// import IntroImage from "../../../../assets/images/IntroV2.jpg";
 import TicketStatusCheckForm from "../../forms/TicketStatusCheckForm";
 import ImagesCarousel from "../ImagesCarousel";
 

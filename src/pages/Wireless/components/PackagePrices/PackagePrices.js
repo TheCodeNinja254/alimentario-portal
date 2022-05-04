@@ -35,6 +35,23 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",
     },
   },
+  subHeading: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
+    fontSize: 30,
+    fontWeight: "lighter",
+    fontStyle: "normal",
+    letterSpacing: 0,
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(1),
+      fontSize: 15,
+      fontWeight: "bold",
+      fontStyle: "normal",
+      letterSpacing: 0,
+      textAlign: "center",
+    },
+  },
   contentWrapper: {
     marginTop: theme.spacing(6),
   },
@@ -43,13 +60,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(packageName, price, preThrottle, postThrottle, validity) {
-  return { packageName, price, preThrottle, postThrottle, validity };
+function createData(packageName, price, validity) {
+  return { packageName, price, validity };
 }
 
 const rows = [
-  createData("3 Mbps", "3,699", "200 GB", "200 GB", "30 days"),
-  createData("5 Mbps", "5,299", "400 GB", "400 GB", "30 days"),
+  createData("Bronze 4G Wireless", "2,999", "30 days"),
+  createData("Silver 4G Wireless", "4,100", "30 days"),
+  createData("Gold 4G Wireless", "6,299", "30 days"),
+  createData("Diamond 4G Wireless", "12,499", "30 days"),
+];
+
+const businessPackages = [
+  createData("Fixed  Wireless 3Mbps", "32,997", "30 days"),
+  createData("Fixed  Wireless 5Mbps", "54,995", "30 days"),
 ];
 
 const PackagePrices = () => {
@@ -63,14 +87,15 @@ const PackagePrices = () => {
             <Typography variant="h2" className={classes.heading}>
               4G Packages
             </Typography>
+            <Typography variant="h2" className={classes.subHeading}>
+              For Home
+            </Typography>
             <TableContainer>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="center">4G Package</TableCell>
                     <TableCell align="center">Price (Kes)</TableCell>
-                    <TableCell align="center">Volume Full Speed</TableCell>
-                    <TableCell align="center">Volume (1 Mbps)</TableCell>
                     <TableCell align="center">Validity</TableCell>
                   </TableRow>
                 </TableHead>
@@ -84,8 +109,34 @@ const PackagePrices = () => {
                         {row.packageName}
                       </TableCell>
                       <TableCell align="center">{row.price}</TableCell>
-                      <TableCell align="center">{row.preThrottle}</TableCell>
-                      <TableCell align="center">{row.postThrottle}</TableCell>
+                      <TableCell align="center">{row.validity}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <Typography variant="h2" className={classes.subHeading}>
+              For Business
+            </Typography>
+            <TableContainer>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">4G Package</TableCell>
+                    <TableCell align="center">Price (Kes)</TableCell>
+                    <TableCell align="center">Validity</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {businessPackages.map((row) => (
+                    <TableRow
+                      key={row.packageName}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row" align="center">
+                        {row.packageName}
+                      </TableCell>
+                      <TableCell align="center">{row.price}</TableCell>
                       <TableCell align="center">{row.validity}</TableCell>
                     </TableRow>
                   ))}

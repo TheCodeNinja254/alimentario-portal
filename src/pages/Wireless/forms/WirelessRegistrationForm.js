@@ -98,34 +98,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// {
-//   productId: 9300001,
-//       productName: 'Bronze 4G Wireless @Ksh. 2,999',
-//     technology: '4G'
-// },
-// {
-//   productId: 9300002,
-//       productName: 'Silver 4G Wireless @Ksh. 4,100',
-//     technology: '4G'
-// },
-// {
-//   productId: 9300003,
-//       productName: 'Gold 4G Wireless @Ksh. 6,299',
-//     technology: '4G'
-// },
-// {
-//   productId: 9300004,
-//       productName: 'Diamond 4G Wireless @Ksh. 12,499',
-//     technology: '4G'
-// },
-// {
-//   productId: 93001003,
-//       productName: 'Fixed  Wireless 3Mbps @Ksh. 32,997'
-// },
-// {
-//   productId: 93005005,
-//       productName: 'Fixed  Wireless 5Mbps @Ksh. 54,995'
-// },
 const homePackages = [
   {
     productId: 9300001,

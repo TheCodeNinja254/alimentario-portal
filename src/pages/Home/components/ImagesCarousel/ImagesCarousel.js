@@ -28,7 +28,7 @@ const images = [
   // },
   {
     id: 1,
-    label: "Home Plus",
+    label: "Introducing Home Plus",
     imgPath: "/images/features/homePlusBanner.jpg",
     action: "Get connected",
   },

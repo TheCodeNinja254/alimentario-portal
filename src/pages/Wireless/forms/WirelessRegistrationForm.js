@@ -98,32 +98,72 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// {
+//   productId: 9300001,
+//       productName: 'Bronze 4G Wireless @Ksh. 2,999',
+//     technology: '4G'
+// },
+// {
+//   productId: 9300002,
+//       productName: 'Silver 4G Wireless @Ksh. 4,100',
+//     technology: '4G'
+// },
+// {
+//   productId: 9300003,
+//       productName: 'Gold 4G Wireless @Ksh. 6,299',
+//     technology: '4G'
+// },
+// {
+//   productId: 9300004,
+//       productName: 'Diamond 4G Wireless @Ksh. 12,499',
+//     technology: '4G'
+// },
+// {
+//   productId: 93001003,
+//       productName: 'Fixed  Wireless 3Mbps @Ksh. 32,997'
+// },
+// {
+//   productId: 93005005,
+//       productName: 'Fixed  Wireless 5Mbps @Ksh. 54,995'
+// },
 const homePackages = [
   {
-    productId: 20191710,
-    packageName: "4G For Home",
-    packagePrice: "Kshs 5,299",
-    packageBandwidth: "5 MBPS",
+    productId: 9300001,
+    packageName: "4G Wireless",
+    packagePrice: "Ksh. 2,999",
+    packageBandwidth: "Bronze",
   },
   {
-    productId: 20191909,
-    packageName: "4G For Home",
-    packagePrice: "Kshs 3, 699",
-    packageBandwidth: "3 MBPS",
+    productId: 9300002,
+    packageName: "4G Wireless",
+    packagePrice: "Ksh. 4,100",
+    packageBandwidth: "Silver",
+  },
+  {
+    productId: 9300003,
+    packageName: "4G Wireless",
+    packagePrice: "Ksh. 6,299",
+    packageBandwidth: "Gold",
+  },
+  {
+    productId: 9300004,
+    packageName: "4G Wireless",
+    packagePrice: "Ksh. 12,499",
+    packageBandwidth: "Diamond",
   },
 ];
 
 const businessPackages = [
   {
-    productId: 28032867,
-    packageName: "IFB 3Mbps LTE Postpaid",
-    packagePrice: "Ksh 4,100",
+    productId: 93001003,
+    packageName: "Fixed  Wireless",
+    packagePrice: "Ksh 32,997",
     packageBandwidth: "3 MBPS",
   },
   {
-    productId: 28032869,
-    packageName: "IFB 5Mbps LTE Postpaid",
-    packagePrice: "Ksh 5,799",
+    productId: 93005005,
+    packageName: "Fixed  Wireless",
+    packagePrice: "Ksh 54,995",
     packageBandwidth: "5 MBPS",
   },
 ];
@@ -212,7 +252,7 @@ const WirelessRegistrationForm = (props) => {
           sponsorMsisdn: "",
           emailAddress: "",
           productType: "Home",
-          productId: "3",
+          productId: 9300001,
           addOns: "",
           preferredDate: moment().format("YYYY-MM-DD"),
         }}

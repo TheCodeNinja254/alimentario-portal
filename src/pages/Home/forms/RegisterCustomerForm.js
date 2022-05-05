@@ -127,30 +127,6 @@ const homePackages = [
     packagePrice: "Kshs 12,499",
     packageBandwidth: "100 MBPS",
   },
-  {
-    productId: 5,
-    packageName: "Bronze Plus",
-    packagePrice: "Kshs 4,049",
-    packageBandwidth: "8 MBPS",
-  },
-  {
-    productId: 6,
-    packageName: "Silver Plus",
-    packagePrice: "Kshs 5,349",
-    packageBandwidth: "20 MBPS",
-  },
-  {
-    productId: 7,
-    packageName: "Gold Plus",
-    packagePrice: "Kshs 7,349",
-    packageBandwidth: "40 MBPS",
-  },
-  {
-    productId: 8,
-    packageName: "Diamond Plus",
-    packagePrice: "Kshs 13,549",
-    packageBandwidth: "100 MBPS",
-  },
 ];
 
 const businessPackages = [

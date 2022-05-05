@@ -59,26 +59,6 @@ function createData(
   return { packageName, speed, cost, fup, speedPostFup, freeSecureNet };
 }
 
-function createPlusData(
-  packageName,
-  speed,
-  mobileResources,
-  cost,
-  fup,
-  speedPostFup,
-  freeSecureNet
-) {
-  return {
-    packageName,
-    speed,
-    mobileResources,
-    cost,
-    fup,
-    speedPostFup,
-    freeSecureNet,
-  };
-}
-
 const rows = [
   createData("Bronze", "8mbps", "Ksh. 2,999", "500GB", "1mbps", "N/A"),
   createData("Silver", "20Mbps", "Ksh. 4,100", "1000GB", "3Mbps", "N/A"),
@@ -86,45 +66,6 @@ const rows = [
   createData(
     "Diamond",
     "100Mbps",
-    "Ksh. 12,499",
-    "1000GB",
-    "3Mbps",
-    "Included"
-  ),
-];
-
-const plusRows = [
-  createPlusData(
-    "Bronze",
-    "8mbps",
-    "5GB + 400 Minutes + Unlimited SMS",
-    "Ksh. 2,999",
-    "500GB",
-    "1mbps",
-    "N/A"
-  ),
-  createPlusData(
-    "Silver",
-    "20Mbps",
-    "5GB + 400 Minutes + Unlimited SMS",
-    "Ksh. 4,100",
-    "1000GB",
-    "3Mbps",
-    "N/A"
-  ),
-  createPlusData(
-    "Gold",
-    "20Mbps",
-    "5GB + 400 Minutes + Unlimited SMS",
-    "Ksh. 6,299",
-    "1000GB",
-    "3Mbps",
-    "Included"
-  ),
-  createPlusData(
-    "Diamond",
-    "100Mbps",
-    "5GB + 400 Minutes + Unlimited SMS",
     "Ksh. 12,499",
     "1000GB",
     "3Mbps",
@@ -208,61 +149,6 @@ const HomeFiber = () => {
                           {row.packageName}
                         </TableCell>
                         <TableCell align="left">{row.speed}</TableCell>
-                        <TableCell align="left">{row.cost}</TableCell>
-                        <TableCell align="left">{row.fup}</TableCell>
-                        <TableCell align="left">{row.speedPostFup}</TableCell>
-                        <TableCell align="left">{row.freeSecureNet}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Paper>
-            </TableContainer>
-
-            <br />
-            <TableContainer className={classes.inner}>
-              <Paper>
-                <Table aria-label="simple table-1">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={classes.tableHead} align="left">
-                        PACKAGE
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="left">
-                        FIRBE SPEEDS
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="left">
-                        MOBILE RESOURCES
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="left">
-                        MONTHLY COST
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="left">
-                        FAIR USAGE POLICY (FUP) LIMIT
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="left">
-                        SPEEDS AFTER FAIR USAGE
-                      </TableCell>
-                      <TableCell className={classes.tableHead} align="left">
-                        SECURE NET (AT NO COST)
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {plusRows.map((row) => (
-                      <TableRow
-                        key={row.packageName}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row" align="center">
-                          {row.packageName}
-                        </TableCell>
-                        <TableCell align="left">{row.speed}</TableCell>
-                        <TableCell align="left">
-                          {row.mobileResources}
-                        </TableCell>
                         <TableCell align="left">{row.cost}</TableCell>
                         <TableCell align="left">{row.fup}</TableCell>
                         <TableCell align="left">{row.speedPostFup}</TableCell>

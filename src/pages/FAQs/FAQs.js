@@ -18,7 +18,6 @@ import {
   Wireless,
 } from "./components";
 import Page from "../../components/Page";
-import OfferFAQs from "./components/OfferFAQs";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -133,7 +132,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  50% off on Fiber
+                  Home Fiber
                 </Button>
               }
               {...a11yProps(1)}
@@ -145,7 +144,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  Home Fiber
+                  Secure Net
                 </Button>
               }
               {...a11yProps(2)}
@@ -157,7 +156,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  Secure Net
+                  4G WiFi Router
                 </Button>
               }
               {...a11yProps(3)}
@@ -169,7 +168,7 @@ const FAQsView = () => {
                   color="primary"
                   className={classes.tabButton}
                 >
-                  4G WiFi Router
+                  Home CCTV
                 </Button>
               }
               {...a11yProps(4)}
@@ -177,26 +176,14 @@ const FAQsView = () => {
             <Tab
               label={
                 <Button
+                  className={classes.tabButton}
+                  color="primary"
                   variant={value === 5 ? "outlined" : ""}
-                  color="primary"
-                  className={classes.tabButton}
-                >
-                  Home CCTV
-                </Button>
-              }
-              {...a11yProps(5)}
-            />
-            <Tab
-              label={
-                <Button
-                  className={classes.tabButton}
-                  color="primary"
-                  variant={value === 6 ? "outlined" : ""}
                 >
                   Home Insurance
                 </Button>
               }
-              {...a11yProps(6)}
+              {...a11yProps(5)}
             />
           </Tabs>
         </Box>
@@ -204,21 +191,18 @@ const FAQsView = () => {
           <FMCFaqs />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <OfferFAQs />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
           <HomeFiber />
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        <TabPanel value={value} index={2}>
           <SecureNet />
         </TabPanel>
-        <TabPanel value={value} index={4}>
+        <TabPanel value={value} index={3}>
           <Wireless />
         </TabPanel>
-        <TabPanel value={value} index={5}>
+        <TabPanel value={value} index={4}>
           <HomeCCTV />
         </TabPanel>
-        <TabPanel value={value} index={6}>
+        <TabPanel value={value} index={5}>
           <HomeInsurance />
         </TabPanel>
         <br />

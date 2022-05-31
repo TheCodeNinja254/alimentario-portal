@@ -24,10 +24,14 @@ const CookieTextSnackbar = () => {
 
   const handleClose = () => {
     setState({ ...state, open: false });
+
+    const expiryDate = new Date();
+    expiryDate.setTime(expiryDate.getTime() + 120 * 24 * 60 * 60 * 1000);
+
     setCookie("isCpAccepted", true, {
       path: "/",
       sameSite: true,
-      expires: false,
+      expires: expiryDate,
     });
   };
 

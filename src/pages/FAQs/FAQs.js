@@ -86,7 +86,6 @@ const FAQsView = () => {
   const classes = useStyles();
   const { id } = useParams();
   const history = useHistory();
-  console.log(id);
 
   const routerMapping = {
     home: {

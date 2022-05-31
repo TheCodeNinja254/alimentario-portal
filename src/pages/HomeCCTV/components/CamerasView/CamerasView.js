@@ -141,7 +141,7 @@ const CamerasView = () => {
         <OutdoorCameras />
       </TabPanel>
       <div align="center">
-        <Link to="/faqs">
+        <Link to="/faqs/homeCCTV">
           <Button small variant="outlined" className={classes.actionButtons}>
             FAQs <ArrowForwardIcon />
           </Button>

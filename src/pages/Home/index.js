@@ -212,11 +212,11 @@ const Home = () => {
                         >
                           Find out if your area is Fibre Ready
                         </Typography>
-                        <Link to="4g-wifi-router">
-                          <Button variant="contained" color="primary">
-                            Explore 4G for Home
-                          </Button>
-                        </Link>
+                        {/* <Link to="4g-wifi-router"> */}
+                        {/*  <Button variant="contained" color="primary"> */}
+                        {/*    Explore 4G for Home */}
+                        {/*  </Button> */}
+                        {/* </Link> */}
                       </CardContent>
                     </Card>
                   )}

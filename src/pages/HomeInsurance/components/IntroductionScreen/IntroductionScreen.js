@@ -121,7 +121,10 @@ const IntroductionScreen = () => {
                       </Button>
                     </HashLink>
                     <span className={classes.sloganText}>or </span>
-                    <Link to="/faqs" className={classes.anchorLink}>
+                    <Link
+                      to="/faqs/homeInsurance"
+                      className={classes.anchorLink}
+                    >
                       Read FAQs
                     </Link>
                   </Typography>

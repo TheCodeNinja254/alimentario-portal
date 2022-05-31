@@ -97,7 +97,7 @@ const AppRoutes = () => {
         component={FAQsView}
         layout={MainLayout}
         exact
-        path="/faqs"
+        path="/faqs/:id"
       />
       <RouteWithLayout component={NotFoundView} layout={MainLayout} />
     </Switch>

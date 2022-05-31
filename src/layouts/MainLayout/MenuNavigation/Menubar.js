@@ -130,12 +130,8 @@ const siteLinks = [
   },
   {
     label: "FAQs",
-    url: "/faqs",
+    url: "/faqs/home",
   },
-  // {
-  //   label: "Contact Us",
-  //   url: "/home",
-  // },
 ];
 
 const SearchAppBar = () => {
@@ -199,18 +195,6 @@ const SearchAppBar = () => {
                           </NavHashLink>
                         }
                       />
-                      // <Tab
-                      //   key={siteLink.label}
-                      //   className={classes.Tab}
-                      //   label={siteLink.label}
-                      // >
-                      //   <NavHashLink
-                      //     to={siteLink.url}
-                      //     key={siteLink.label}
-                      //     className={classes.Tab}
-                      //     smooth
-                      //   />
-                      // </Tab>
                     ))}
                   </Tabs>
                 </Grid>

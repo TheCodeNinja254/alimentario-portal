@@ -53,7 +53,7 @@ const Footer = () => {
                   © Safaricom PLC {moment().format("YYYY")} | All Rights
                   Reserved |{" "}
                   <span>
-                    <Link to="/faqs" className={classes.faqsLinkText}>
+                    <Link to="/faqs/home" className={classes.faqsLinkText}>
                       FAQs
                     </Link>
                   </span>

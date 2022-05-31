@@ -27,6 +27,7 @@ const CookieTextSnackbar = () => {
     setCookie("isCpAccepted", true, {
       path: "/",
       sameSite: true,
+      expires: false,
     });
   };
 

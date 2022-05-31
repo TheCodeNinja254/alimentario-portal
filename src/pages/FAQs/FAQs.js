@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
+import { useParams, useHistory } from "react-router-dom";
 import {
   FMCFaqs,
   HomeCCTV,
@@ -83,10 +84,59 @@ const useStyles = makeStyles((theme) => ({
 
 const FAQsView = () => {
   const classes = useStyles();
+  const { id } = useParams();
+  const history = useHistory();
+  console.log(id);
 
-  const [value, setValue] = React.useState(0);
+  const routerMapping = {
+    home: {
+      pageValue: 0,
+    },
+    homePlus: {
+      pageValue: 0,
+    },
+    homeFiber: {
+      pageValue: 1,
+    },
+    secureNet: {
+      pageValue: 2,
+    },
+    wireless: {
+      pageValue: 3,
+    },
+    homeCCTV: {
+      pageValue: 4,
+    },
+    homeInsurance: {
+      pageValue: 5,
+    },
+  };
+
+  const tabMapping = [
+    {
+      routerValue: "homePlus",
+    },
+    {
+      routerValue: "homeFiber",
+    },
+    {
+      routerValue: "secureNet",
+    },
+    {
+      routerValue: "wireless",
+    },
+    {
+      routerValue: "homeCCTV",
+    },
+    {
+      routerValue: "homeInsurance",
+    },
+  ];
+
+  const [value, setValue] = React.useState(routerMapping[id]?.pageValue || 0);
 
   const handleChange = (event, newValue) => {
+    history.push(tabMapping[newValue].routerValue);
     setValue(newValue);
   };
 

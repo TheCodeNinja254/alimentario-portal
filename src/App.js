@@ -1,22 +1,32 @@
-import React, { Suspense } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import { ThemeProvider } from "@material-ui/core/styles";
-import { BrowserRouter } from "react-router-dom";
-import "./assets/styles/App.css";
-import DefaultTheme from "./theme";
-import GlobalStyles from "./assets/styles/GlobalStyles";
-import Routes from "./Routes";
-import SuspenseLoader from "./components/Loader/SuspenseLoader";
+import { CssBaseline, StyledEngineProvider } from "@material-ui/core";
+
+// routing
+import Routes from "./routes";
+
+// defaultTheme
+import themes from "./themes";
+
+// project imports
+import NavigationScroll from "./layout/NavigationScroll";
+
+// ===========================|| APP ||=========================== //
 
 const App = () => {
+  const customization = useSelector((state) => state.customization);
+
   return (
-    <ThemeProvider theme={DefaultTheme}>
-      <Suspense fallback={<SuspenseLoader />}>
-        <BrowserRouter basename={process.env.REACT_APP_BASENAME || "/"}>
-          <GlobalStyles />
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={themes(customization)}>
+        <CssBaseline />
+        <NavigationScroll>
           <Routes />
-        </BrowserRouter>
-      </Suspense>
-    </ThemeProvider>
+        </NavigationScroll>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 

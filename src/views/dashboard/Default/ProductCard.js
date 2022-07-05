@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 
 import steak from "../../../assets/images/steak/steak.jpg";
+import { gridSpacing } from "../../../store/constant";
 
 const products = [
   {
@@ -41,7 +42,7 @@ const products = [
 ];
 const ProductCard = () => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={gridSpacing}>
       {products.map((product) => (
         <Grid
           item

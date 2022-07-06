@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 // material-ui
@@ -8,7 +7,6 @@ import {
   Box,
   Button,
   Checkbox,
-  Divider,
   FormControl,
   FormControlLabel,
   FormHelperText,
@@ -30,10 +28,6 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import useScriptRef from "../../../../hooks/useScriptRef";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
-
-// assets
-
-import Google from "../../../../assets/images/icons/social-google.svg";
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -79,14 +73,8 @@ const useStyles = makeStyles((theme) => ({
 const FirebaseLogin = (props, { ...others }) => {
   const classes = useStyles();
 
-  const customization = useSelector((state) => state.customization);
   const scriptedRef = useScriptRef();
   const [checked, setChecked] = React.useState(true);
-
-  const googleHandler = async () => {
-    // eslint-disable-next-line no-console
-    console.error("Login");
-  };
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => {
@@ -100,48 +88,6 @@ const FirebaseLogin = (props, { ...others }) => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              disableElevation
-              fullWidth
-              className={classes.redButton}
-              onClick={googleHandler}
-              size="large"
-              variant="contained"
-            >
-              <img
-                src={Google}
-                alt="google"
-                width="20px"
-                className={classes.loginIcon}
-              />{" "}
-              Sign in with Google
-            </Button>
-          </AnimateButton>
-        </Grid>
-        <Grid item xs={12}>
-          <Box
-            sx={{
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <Divider className={classes.signDivider} orientation="horizontal" />
-            <AnimateButton>
-              <Button
-                variant="outlined"
-                className={classes.signText}
-                sx={{ borderRadius: `${customization.borderRadius}px` }}
-                disableRipple
-                disabled
-              >
-                OR
-              </Button>
-            </AnimateButton>
-            <Divider className={classes.signDivider} orientation="horizontal" />
-          </Box>
-        </Grid>
         <Grid
           item
           xs={12}

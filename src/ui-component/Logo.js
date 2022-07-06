@@ -2,6 +2,7 @@ import React from "react";
 
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import PropTypes from "prop-types";
 import logo from "../assets/images/alimentarioLogo.svg";
 
 // ===========================|| LOGO SVG ||=========================== //
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Logo = () => {
+const Logo = ({ withName }) => {
   const classes = useStyles();
 
   return (
@@ -20,14 +21,22 @@ const Logo = () => {
         src={logo}
         className={classes.logo}
         alt="Desafio Alimentario"
-        width="50"
-        height="50"
+        width="35"
+        height="35"
       />
-      <Typography variant="h3" color="secondary">
-        Desafio Alimentario
-      </Typography>
+      {withName && (
+        <Typography variant="h4" color="secondary">
+          Desafio Alimentario
+        </Typography>
+      )}
     </>
   );
+};
+
+Logo.defaultProps = { withName: true };
+
+Logo.propTypes = {
+  withName: PropTypes.bool,
 };
 
 export default Logo;

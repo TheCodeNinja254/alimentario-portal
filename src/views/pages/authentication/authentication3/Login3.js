@@ -17,6 +17,7 @@ import AuthFooter from "../../../../ui-component/cards/AuthFooter";
 import AuthWrapper1 from "../AuthWrapper1";
 import AuthCardWrapper from "../AuthCardWrapper";
 import FirebaseLogin from "../firebase-forms/FirebaseLogin";
+import { gridSpacing } from "../../../../store/constant";
 
 // assets
 
@@ -45,14 +46,12 @@ const Login = () => {
               <AuthCardWrapper>
                 <Grid
                   container
-                  spacing={2}
+                  spacing={gridSpacing}
                   alignItems="center"
                   justifyContent="center"
                 >
                   <Grid item sx={{ mb: 3 }}>
-                    <RouterLink to="#">
-                      <Logo />
-                    </RouterLink>
+                    <Logo withName={false} />
                   </Grid>
                   <Grid item xs={12}>
                     <Grid

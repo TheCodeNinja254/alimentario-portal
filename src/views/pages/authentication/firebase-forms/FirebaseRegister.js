@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 // material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -8,7 +7,6 @@ import {
   Box,
   Button,
   Checkbox,
-  Divider,
   FormControl,
   FormControlLabel,
   FormHelperText,
@@ -30,7 +28,6 @@ import { Formik } from "formik";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import useScriptRef from "../../../../hooks/useScriptRef";
-import Google from "../../../../assets/images/icons/social-google.svg";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 import {
   strengthColor,
@@ -84,17 +81,11 @@ const FirebaseRegister = ({ ...others }) => {
   const classes = useStyles();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-  const customization = useSelector((state) => state.customization);
   const [showPassword, setShowPassword] = React.useState(false);
   const [checked, setChecked] = React.useState(true);
 
   const [strength, setStrength] = React.useState(0);
   const [level, setLevel] = React.useState("");
-
-  const googleHandler = async () => {
-    // eslint-disable-next-line no-console
-    console.error("Register");
-  };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -117,49 +108,6 @@ const FirebaseRegister = ({ ...others }) => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              disableElevation
-              fullWidth
-              className={classes.redButton}
-              onClick={googleHandler}
-              size="large"
-              variant="contained"
-            >
-              <img
-                src={Google}
-                alt="google"
-                width="20px"
-                sx={{ mr: { xs: 1, sm: 2 } }}
-                className={classes.loginIcon}
-              />{" "}
-              Sign up with Google
-            </Button>
-          </AnimateButton>
-        </Grid>
-        <Grid item xs={12}>
-          <Box
-            sx={{
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <Divider className={classes.signDivider} orientation="horizontal" />
-            <AnimateButton>
-              <Button
-                variant="outlined"
-                className={classes.signText}
-                sx={{ borderRadius: `${customization.borderRadius}px` }}
-                disableRipple
-                disabled
-              >
-                OR
-              </Button>
-            </AnimateButton>
-            <Divider className={classes.signDivider} orientation="horizontal" />
-          </Box>
-        </Grid>
         <Grid
           item
           xs={12}

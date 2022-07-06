@@ -87,7 +87,7 @@ const UpgradePlanCard = () => {
                   variant="contained"
                   className={classes.button}
                 >
-                  Create Account now
+                  Create Account
                 </Button>
               </AnimateButton>
             </Stack>

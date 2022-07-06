@@ -3,7 +3,7 @@ import React from "react";
 
 // material-ui
 import { makeStyles } from "@material-ui/styles";
-import { Avatar, Box, ButtonBase } from "@material-ui/core";
+import { Box, ButtonBase } from "@material-ui/core";
 
 // project imports
 import { IconMenu2 } from "@tabler/icons";
@@ -46,22 +46,14 @@ const Header = ({ handleLeftDrawerToggle }) => {
     <>
       {/* logo & toggler button */}
       <div className={classes.boxContainer}>
-        <Box
-          component="span"
-          sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }}
+        <ButtonBase
+          sx={{ borderRadius: "12px", marginRight: 3, overflow: "hidden" }}
         >
+          <IconMenu2 stroke={2} size="2rem" onClick={handleLeftDrawerToggle} />
+        </ButtonBase>
+        <Box component="span" sx={{ display: { md: "block" }, flexGrow: 1 }}>
           <LogoSection />
         </Box>
-        <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
-          <Avatar
-            variant="rounded"
-            className={classes.headerAvatar}
-            onClick={handleLeftDrawerToggle}
-            color="inherit"
-          >
-            <IconMenu2 stroke={1.5} size="1.3rem" />
-          </Avatar>
-        </ButtonBase>
       </div>
 
       {/* header search */}

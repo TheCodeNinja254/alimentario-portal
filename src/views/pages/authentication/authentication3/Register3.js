@@ -50,9 +50,7 @@ const Register = () => {
                   justifyContent="center"
                 >
                   <Grid item sx={{ mb: 3 }}>
-                    <RouterLink to="#">
-                      <Logo />
-                    </RouterLink>
+                    <Logo withName={false} />
                   </Grid>
                   <Grid item xs={12}>
                     <Grid

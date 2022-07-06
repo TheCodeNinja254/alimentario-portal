@@ -28,10 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: theme.palette.background.default,
+    opacity: "90%",
   },
   appBarWidth: {
     transition: theme.transitions.create("width"),
     backgroundColor: theme.palette.background.default,
+    opacity: "90%",
   },
   content: {
     ...theme.typography.mainContent,

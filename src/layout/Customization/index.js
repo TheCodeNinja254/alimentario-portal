@@ -69,7 +69,7 @@ const Customization = () => {
       break;
     case `'Roboto', sans-serif`:
     default:
-      initialFont = "Roboto";
+      initialFont = "Poppins";
       break;
   }
 
@@ -96,7 +96,7 @@ const Customization = () => {
     <>
       {/* toggle button */}
 
-      <Tooltip title="What are you confortable with? Customize this site to your liking">
+      <Tooltip title="What are you comfortable with? Customize this App to your liking">
         <Fab
           component="div"
           onClick={handleToggle}

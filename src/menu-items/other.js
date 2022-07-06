@@ -16,7 +16,7 @@ const other = {
   children: [
     {
       id: "sample-page",
-      title: "Blog",
+      title: "The Chef's Blog",
       type: "item",
       url: "/sample-page",
       icon: icons.IconBrandChrome,

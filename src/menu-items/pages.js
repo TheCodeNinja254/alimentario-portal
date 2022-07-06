@@ -26,7 +26,7 @@ const pages = {
   children: [
     {
       id: "authentication",
-      title: "Authentication",
+      title: "My Account",
       type: "collapse",
       icon: icons.IconKey,
       children: [

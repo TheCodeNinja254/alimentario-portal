@@ -5,11 +5,12 @@ import { Grid } from "@material-ui/core";
 
 // project imports
 import { gridSpacing } from "../../../store/constant";
-import EarningCard from "./EarningCard";
 import PopularCard from "./PopularCard";
 import TotalOrderLineChartCard from "./TotalOrderLineChartCard";
 import ProductCard from "./ProductCard";
+import ImageCarousel from "./ImageCarousel";
 import MenuCard from "../../../layout/MainLayout/Sidebar/MenuCard";
+import GreetingsCard from "./GreetingsCard";
 
 // ===========================|| DEFAULT DASHBOARD ||=========================== //
 
@@ -21,25 +22,28 @@ const Dashboard = () => {
 
   return (
     <Grid container spacing={gridSpacing}>
-      <Grid item xs={12}>
+      <Grid item lg={8} md={8} sm={12} xs={12}>
         <Grid container spacing={gridSpacing}>
-          <Grid item lg={4} md={6} sm={6} xs={12}>
-            <EarningCard isLoading={isLoading} />
+          <Grid item lg={6} md={6} sm={12} xs={12}>
+            <GreetingsCard />
           </Grid>
-          <Grid item lg={4} md={6} sm={6} xs={12}>
-            <TotalOrderLineChartCard isLoading={isLoading} />
+          <Grid item lg={6} md={6} sm={12} xs={12}>
+            <ImageCarousel />
           </Grid>
-          <Grid item lg={4} md={12} sm={12} xs={12}>
-            <MenuCard />
+          <Grid item xs={12}>
+            <ProductCard />
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item lg={4} md={8} sm={12} xs={12}>
         <Grid container spacing={gridSpacing}>
-          <Grid item xs={12} md={8}>
-            <ProductCard />
+          <Grid item xs={12}>
+            <MenuCard />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12}>
+            <TotalOrderLineChartCard isLoading={isLoading} />
+          </Grid>
+          <Grid item xs={12}>
             <PopularCard isLoading={isLoading} />
           </Grid>
         </Grid>

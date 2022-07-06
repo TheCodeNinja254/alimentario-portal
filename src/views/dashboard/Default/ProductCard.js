@@ -12,32 +12,36 @@ import {
 
 import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
-import steak from "../../../assets/images/steak/steak.jpg";
 import { gridSpacing } from "../../../store/constant";
 
 const products = [
   {
-    productName: "Steak 1",
+    productName: "Costata Fiorentina Steak",
+    imgPath: "/images/Costata_fiorentina.jpg",
     productDescription:
       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
   },
   {
-    productName: "Steak 2",
+    productName: "Crudo Senza Osso Parma Steak",
+    imgPath: "/images/Crudo_senza_osso_Parma.jpg",
     productDescription:
       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
   },
   {
-    productName: "Steak 3",
+    productName: "Filetto Di Bovino Steak",
+    imgPath: "/images/Filetto_Di_Bovino.jpg",
     productDescription:
       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
   },
   {
-    productName: "Steak 4",
+    productName: "Pancetta stagionata Steak",
+    imgPath: "/images/Pancetta_stagionata.jpg",
     productDescription:
       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
   },
   {
-    productName: "Steak 5",
+    productName: "Salame nostrano steak",
+    imgPath: "/images/Salame_nostrano.jpg",
     productDescription:
       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
   },
@@ -76,7 +80,7 @@ const ProductCard = () => {
                 <CardMedia
                   component="img"
                   height="140"
-                  image={steak}
+                  image={product.imgPath}
                   alt="green iguana"
                 />
                 <CardContent>

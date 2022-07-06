@@ -9,6 +9,9 @@ const DashboardDefault = Loadable(
   lazy(() => import("../views/dashboard/Default"))
 );
 
+// Gallery Routing
+const GalleryDefault = Loadable(lazy(() => import("../views/gallery")));
+
 // utilities routing
 const UtilsTypography = Loadable(
   lazy(() => import("../views/utilities/Typography"))
@@ -34,6 +37,10 @@ const MainRoutes = {
     {
       path: "/",
       element: <DashboardDefault />,
+    },
+    {
+      path: "/gallery",
+      element: <GalleryDefault />,
     },
     {
       path: "/dashboard/default",

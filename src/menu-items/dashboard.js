@@ -22,6 +22,14 @@ const dashboard = {
       icon: icons.IconDashboard,
       breadcrumbs: false,
     },
+    {
+      id: "gallery",
+      title: "Chef at work",
+      type: "item",
+      url: "/gallery",
+      icon: icons.IconDeviceAnalytics,
+      breadcrumbs: false,
+    },
   ],
 };
 

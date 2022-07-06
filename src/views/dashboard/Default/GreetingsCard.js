@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   chip: {
     marginRight: theme.spacing(1),
     marginBottom: theme.spacing(1),
+    borderColor: theme.palette.primary.dark,
   },
 }));
 
@@ -75,27 +76,15 @@ const GreetingsCard = () => {
           >
             What do you want to do today?
           </MuiTypography>
+          <Chip variant="outlined" label="Login" className={classes.chip} />
           <Chip
-            variant="filled"
-            color="primary"
-            label="Login"
-            className={classes.chip}
-          />
-          <Chip
-            variant="filled"
-            color="error"
+            variant="outlined"
             label="Create Account"
             className={classes.chip}
           />
+          <Chip variant="outlined" label="Order Now" className={classes.chip} />
           <Chip
-            variant="filled"
-            color="info"
-            label="Order Now"
-            className={classes.chip}
-          />
-          <Chip
-            variant="filled"
-            color="success"
+            variant="outlined"
             label="Make a standing order"
             className={classes.chip}
           />

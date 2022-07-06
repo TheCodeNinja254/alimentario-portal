@@ -11,6 +11,7 @@ import ProductCard from "./ProductCard";
 import ImageCarousel from "./ImageCarousel";
 import MenuCard from "../../../layout/MainLayout/Sidebar/MenuCard";
 import GreetingsCard from "./GreetingsCard";
+import TitlebarImageList from "./ImageGallery";
 
 // ===========================|| DEFAULT DASHBOARD ||=========================== //
 
@@ -32,6 +33,9 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12}>
             <ProductCard />
+          </Grid>
+          <Grid item xs={12}>
+            <TitlebarImageList />
           </Grid>
         </Grid>
       </Grid>

@@ -4,6 +4,9 @@ import ReactDOM from "react-dom";
 // third party
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { CookiesProvider } from "react-cookie";
+import { ApolloProvider } from "@apollo/client";
+import Client from "./Apollo/Client";
 
 // project imports
 import { store } from "./store";
@@ -17,9 +20,13 @@ import "./assets/scss/style.scss";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ApolloProvider client={Client}>
+      <CookiesProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CookiesProvider>
+    </ApolloProvider>
   </Provider>,
   document.getElementById("alimentario_root")
 );

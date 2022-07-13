@@ -1,7 +1,7 @@
 import crypto from "crypto";
 
-const ek = process.env.REACT_APP_EDK;
-const iv = process.env.REACT_APP_IEDV;
+const ek = process.env.REACT_APP_EK;
+const iv = process.env.REACT_APP_IV;
 
 // The CipherIV methods must take the inputs as a binary / buffer values.
 const binaryEncryptionKey = Buffer.from(ek, "base64");

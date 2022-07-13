@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
 
 //= ==========================|| FIREBASE - REGISTER ||===========================//
 
-const FirebaseRegister = ({ ...others }) => {
+const RegistrationForm = ({ ...others }) => {
   const classes = useStyles();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -357,4 +357,4 @@ const FirebaseRegister = ({ ...others }) => {
   );
 };
 
-export default FirebaseRegister;
+export default RegistrationForm;

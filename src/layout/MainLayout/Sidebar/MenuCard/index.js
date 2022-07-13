@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     color: theme.palette.grey[800],
     backgroundColor: theme.palette.warning.main,
+    marginBottom: theme.spacing(2),
     textTransform: "capitalize",
     boxShadow: "none",
     "&:hover": {
@@ -79,7 +80,7 @@ const UpgradePlanCard = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Stack direction="row">
+            <Stack direction="column">
               <AnimateButton>
                 <Button
                   component={Link}
@@ -87,7 +88,17 @@ const UpgradePlanCard = () => {
                   variant="contained"
                   className={classes.button}
                 >
-                  Create Account
+                  Create My Account
+                </Button>
+              </AnimateButton>
+              <AnimateButton>
+                <Button
+                  component={Link}
+                  href="/pages/register/register3"
+                  variant="contained"
+                  className={classes.button}
+                >
+                  Create My Business Account
                 </Button>
               </AnimateButton>
             </Stack>

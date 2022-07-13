@@ -1,8 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-// material-ui
-import { makeStyles } from "@material-ui/styles";
 import {
   Box,
   Button,
@@ -18,16 +15,31 @@ import {
   Stack,
   Typography,
 } from "@material-ui/core";
+import isEmpty from "lodash.isempty";
 
 // third party
 import * as Yup from "yup";
-import { Formik } from "formik";
 
 // project imports
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import useScriptRef from "../../../../hooks/useScriptRef";
+import { Form as FormikForm, Formik } from "formik";
+import { useMutation } from "@apollo/client";
+import { makeStyles } from "@material-ui/styles";
+import { useNavigate } from "react-router";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
+import StatusIcon from "../../../../components/StatusIcon";
+import Dialog from "../../../../components/Dialog";
+import { SIGN_IN } from "../../../../api/Mutations/Customers";
+import { encrypt } from "../../../../utils/encryptDecrypt";
+import ErrorHandler from "../../../../utils/errorHandler";
+
+const SignInSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Please enter a valid email address")
+    .required("Please enter your email address"),
+  password: Yup.string().required("Please enter your password"),
+});
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -66,15 +78,45 @@ const useStyles = makeStyles((theme) => ({
   loginInput: {
     ...theme.typography.customInput,
   },
+  dialogContent: {
+    textAlign: "center",
+  },
 }));
 
-//= ===========================|| FIREBASE - LOGIN ||============================//
+//= ===========================|| LOGIN ||============================//
 
-const FirebaseLogin = (props, { ...others }) => {
+const LoginForm = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
-  const scriptedRef = useScriptRef();
   const [checked, setChecked] = React.useState(true);
+
+  const [signInDetails, setSignInDetails] = React.useState({
+    open: false,
+    status: false,
+    message: "",
+    body: "",
+  });
+
+  const buttonDisabledStatus = (errors, values, loading) => {
+    let status = true;
+    if (
+      isEmpty(errors) &&
+      values.email !== "" &&
+      values.password !== "" &&
+      loading === false
+    ) {
+      status = false;
+    }
+    return status;
+  };
+
+  const { open, status, message, body } = signInDetails;
+  const closeDialog = () => {
+    setSignInDetails({ open: false, status: false, message: "", body });
+  };
+
+  const [SignInMutation, { loading }] = useMutation(SIGN_IN);
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => {
@@ -109,47 +151,77 @@ const FirebaseLogin = (props, { ...others }) => {
 
       <Formik
         initialValues={{
-          email: "info@codedthemes.com",
-          password: "123456",
+          email: "",
+          password: "",
           submit: null,
         }}
-        validationSchema={Yup.object().shape({
-          email: Yup.string()
-            .email("Must be a valid email")
-            .max(255)
-            .required("Email is required"),
-          password: Yup.string().max(255).required("Password is required"),
-        })}
-        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err) {
-            // eslint-disable-next-line no-console
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
-          }
+        validationSchema={SignInSchema}
+        onSubmit={(values, actions) => {
+          SignInMutation({
+            variables: {
+              email: encrypt(values.email),
+              password: encrypt(values.password),
+            },
+          })
+            .then((response) => {
+              const {
+                data: {
+                  userAuthentication: {
+                    status: signInStatus,
+                    message: signInMessage,
+                  },
+                },
+              } = response;
+              if (signInStatus) {
+                actions.resetForm();
+                navigate("/");
+              } else {
+                // login error
+                setSignInDetails({
+                  open: true,
+                  status: false,
+                  message: signInMessage,
+                  body,
+                });
+              }
+            })
+            .catch((res) => {
+              setSignInDetails({
+                open: true,
+                status: false,
+                message: ErrorHandler(
+                  res.message || res.graphQLErrors[0].message
+                ),
+                body,
+              });
+            });
         }}
       >
-        {({
-          errors,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-          isSubmitting,
-          touched,
-          values,
-        }) => (
-          <form noValidate onSubmit={handleSubmit} {...others}>
+        {({ errors, setFieldValue, values }) => (
+          <FormikForm>
+            <Dialog
+              open={open}
+              modalContent={
+                <Box className={classes.dialogContent}>
+                  <StatusIcon status={status ? "success" : "error"} />
+                  <Typography variant="body1"> {message}</Typography>
+                </Box>
+              }
+              modalActions={
+                <Button
+                  variant="contained"
+                  onClick={() => closeDialog()}
+                  color="primary"
+                  autoFocus
+                >
+                  Close
+                </Button>
+              }
+              handleClose={closeDialog}
+            />
             <FormControl
               fullWidth
-              error={Boolean(touched.email && errors.email)}
+              error={Boolean(errors.email)}
               className={classes.loginInput}
             >
               <InputLabel htmlFor="outlined-adornment-email-login">
@@ -160,8 +232,9 @@ const FirebaseLogin = (props, { ...others }) => {
                 type="email"
                 value={values.email}
                 name="email"
-                onBlur={handleBlur}
-                onChange={handleChange}
+                onChange={(e) => {
+                  setFieldValue("email", e.target.value, true);
+                }}
                 label="Email Address / Username"
                 inputProps={{
                   classes: {
@@ -169,7 +242,7 @@ const FirebaseLogin = (props, { ...others }) => {
                   },
                 }}
               />
-              {touched.email && errors.email && (
+              {errors.email && (
                 <FormHelperText
                   error
                   id="standard-weight-helper-text-email-login"
@@ -182,7 +255,7 @@ const FirebaseLogin = (props, { ...others }) => {
 
             <FormControl
               fullWidth
-              error={Boolean(touched.password && errors.password)}
+              error={Boolean(errors.password)}
               className={classes.loginInput}
             >
               <InputLabel htmlFor="outlined-adornment-password-login">
@@ -193,8 +266,9 @@ const FirebaseLogin = (props, { ...others }) => {
                 type={showPassword ? "text" : "password"}
                 value={values.password}
                 name="password"
-                onBlur={handleBlur}
-                onChange={handleChange}
+                onChange={(e) => {
+                  setFieldValue("password", e.target.value, true);
+                }}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -214,7 +288,7 @@ const FirebaseLogin = (props, { ...others }) => {
                   },
                 }}
               />
-              {touched.password && errors.password && (
+              {errors.password && (
                 <FormHelperText
                   error
                   id="standard-weight-helper-text-password-login"
@@ -269,22 +343,22 @@ const FirebaseLogin = (props, { ...others }) => {
               <AnimateButton>
                 <Button
                   disableElevation
-                  disabled={isSubmitting}
+                  disabled={buttonDisabledStatus(errors, values, loading)}
                   fullWidth
                   size="large"
                   type="submit"
                   variant="contained"
                   color="secondary"
                 >
-                  Sign in
+                  {loading ? "Please wait..." : "Sign in"}
                 </Button>
               </AnimateButton>
             </Box>
-          </form>
+          </FormikForm>
         )}
       </Formik>
     </>
   );
 };
 
-export default FirebaseLogin;
+export default LoginForm;

@@ -16,7 +16,7 @@ import Logo from "../../../../ui-component/Logo";
 import AuthFooter from "../../../../ui-component/cards/AuthFooter";
 import AuthWrapper1 from "../AuthWrapper1";
 import AuthCardWrapper from "../AuthCardWrapper";
-import FirebaseRegister from "../firebase-forms/FirebaseRegister";
+import RegistrationForm from "../components/RegistrationForm";
 
 // assets
 
@@ -84,7 +84,7 @@ const Register = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <FirebaseRegister />
+                    <RegistrationForm />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />

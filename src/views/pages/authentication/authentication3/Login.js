@@ -16,7 +16,7 @@ import Logo from "../../../../ui-component/Logo";
 import AuthFooter from "../../../../ui-component/cards/AuthFooter";
 import AuthWrapper1 from "../AuthWrapper1";
 import AuthCardWrapper from "../AuthCardWrapper";
-import FirebaseLogin from "../firebase-forms/FirebaseLogin";
+import LoginForm from "../components/LoginForm";
 import { gridSpacing } from "../../../../store/constant";
 
 // assets
@@ -85,7 +85,7 @@ const Login = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <FirebaseLogin login={3} />
+                    <LoginForm />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />

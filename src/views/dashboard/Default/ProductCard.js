@@ -68,6 +68,15 @@ const useStyles = makeStyles((theme) => ({
   infoTab: {
     marginTop: theme.spacing(2),
   },
+  priceChip: {
+    fontSize: 13,
+    fontWeight: "bolder",
+    color: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.lighter,
+  },
+  productName: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const ProductCard = () => {
@@ -104,9 +113,14 @@ const ProductCard = () => {
                         <Chip
                           variant="filled"
                           label={`Price per ${product?.productUnitOfMeasure}: ${product?.productPrice}`}
-                          className={classes.chip}
+                          className={classes.priceChip}
                         />
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography
+                          gutterBottom
+                          variant="h4"
+                          component="div"
+                          className={classes.productName}
+                        >
                           {product?.productName}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
@@ -136,7 +150,7 @@ const ProductCard = () => {
                     </CardActionArea>
                     <CardActions>
                       <Button size="small" color="primary" variant="contained">
-                        BUY NOW
+                        ORDER NOW
                       </Button>
                     </CardActions>
                   </Card>

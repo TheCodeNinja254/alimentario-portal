@@ -12,7 +12,7 @@ const printErrorMessage = (error) => {
     "Looks like we are experiencing a technical difficulty. Our team is working to resolve the issue. Please try again later.";
   if (error.message === "Network error: Failed to fetch") {
     message =
-      "Sorry! We encountered a network error. Please refresh this page or send email to fibersalesgroup @safaricom.co.ke";
+      "Sorry! We encountered a network error. Please refresh this page or reach out to @Desafio_Alimentario on Twitter.";
   }
   return ErrorHandler(message);
 };

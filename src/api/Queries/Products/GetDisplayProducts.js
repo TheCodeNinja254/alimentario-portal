@@ -7,8 +7,21 @@ export const GET_DISPLAY_PRODUCTS = gql`
     getDisplayProducts {
       status
       message
-      productList {
+      productsList {
+        id
         productName
+        productDescription
+        productPicMain
+        productPicTwo
+        productPicThree
+        productPicFour
+        productUnitOfMeasure
+        productInstructionsLink
+        productVideoLink
+        stockStatus
+        productPrice
+        productStatus
+        expiryDate
       }
     }
   }

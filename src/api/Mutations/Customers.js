@@ -2,10 +2,17 @@ import { gql } from "@apollo/client";
 
 export const SIGN_IN = gql`
   mutation SignIn($email: String!, $password: String!) {
-    userAuthentication(email: $email, password: $password) {
+    customerAuthentication(email: $email, password: $password) {
       status
       message
-      role
+      username
+      firstName
+      lastName
+      msisdn
+      customerStatus
+      businessId
+      emailAddress
+      verificationStatus
     }
   }
 `;

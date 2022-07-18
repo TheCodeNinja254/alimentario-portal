@@ -166,7 +166,7 @@ const LoginForm = () => {
             .then((response) => {
               const {
                 data: {
-                  userAuthentication: {
+                  customerAuthentication: {
                     status: signInStatus,
                     message: signInMessage,
                   },

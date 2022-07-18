@@ -5,10 +5,12 @@ import { useSelector } from "react-redux";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import {
   Avatar,
+  Button,
   CardContent,
   Chip,
   ClickAwayListener,
   Grid,
+  Link,
   List,
   ListItemIcon,
   ListItemText,
@@ -18,10 +20,11 @@ import {
 } from "@material-ui/core";
 import ListItemButton from "@material-ui/core/ListItemButton";
 
-import { IconLogout, IconSettings } from "@tabler/icons";
+import { IconLogin, IconLogout, IconSettings } from "@tabler/icons";
 import User1 from "../../../../assets/images/users/user-round.svg";
 import Transitions from "../../../../ui-component/extended/Transitions";
 import MainCard from "../../../../ui-component/cards/MainCard";
+import GetSignedInCustomerQuery from "../../../../api/Queries/Authentication/GetSignedInCustomer";
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -135,106 +138,140 @@ const ProfileSection = () => {
     prevOpen.current = open;
   }, [open]);
   return (
-    <>
-      <Chip
-        classes={{ label: classes.profileLabel }}
-        className={classes.profileChip}
-        icon={
-          <Avatar
-            src={User1}
-            className={classes.headerAvatar}
-            ref={anchorRef}
-            aria-controls={open ? "menu-list-grow" : undefined}
-            aria-haspopup="true"
-            color="inherit"
-          />
-        }
-        label={
-          <IconSettings
-            stroke={1.5}
-            size="1.5rem"
-            color={theme.palette.primary.main}
-          />
-        }
-        variant="outlined"
-        ref={anchorRef}
-        aria-controls={open ? "menu-list-grow" : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}
-        color="primary"
-      />
-      <Popper
-        placement="bottom-end"
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        popperOptions={{
-          modifiers: [
-            {
-              name: "offset",
-              options: {
-                offset: [0, 14],
-              },
-            },
-          ],
-        }}
-      >
-        {({ TransitionProps }) => (
-          <Transitions in={open} {...TransitionProps}>
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MainCard
-                  border={false}
-                  elevation={16}
-                  content={false}
-                  boxShadow
-                  shadow={theme.shadows[16]}
-                >
-                  <CardContent className={classes.cardContent}>
-                    <Grid container direction="column" spacing={0}>
-                      <Grid item className={classes.flex}>
-                        <Typography variant="h4">Good Morning,</Typography>
-                        <Typography
-                          component="span"
-                          variant="h4"
-                          className={classes.name}
-                        >
-                          John
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography variant="subtitle2">
-                          Stake Shop KE
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                    <List component="nav" className={classes.navContainer}>
-                      <ListItemButton
-                        className={classes.listItem}
-                        sx={{ borderRadius: `${customization.borderRadius}px` }}
-                        selected={selectedIndex === 4}
-                        onClick={handleLogout}
+    <GetSignedInCustomerQuery>
+      {({ getSignedInCustomer: { status, customer } }) =>
+        status ? (
+          <>
+            <Chip
+              classes={{ label: classes.profileLabel }}
+              className={classes.profileChip}
+              icon={
+                <Avatar
+                  src={User1}
+                  className={classes.headerAvatar}
+                  ref={anchorRef}
+                  aria-controls={open ? "menu-list-grow" : undefined}
+                  aria-haspopup="true"
+                  color="inherit"
+                />
+              }
+              label={
+                <IconSettings
+                  stroke={1.5}
+                  size="1.5rem"
+                  color={theme.palette.primary.main}
+                />
+              }
+              variant="outlined"
+              ref={anchorRef}
+              aria-controls={open ? "menu-list-grow" : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+              color="primary"
+            />
+            <Popper
+              placement="bottom-end"
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+              popperOptions={{
+                modifiers: [
+                  {
+                    name: "offset",
+                    options: {
+                      offset: [0, 14],
+                    },
+                  },
+                ],
+              }}
+            >
+              {({ TransitionProps }) => (
+                <Transitions in={open} {...TransitionProps}>
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MainCard
+                        border={false}
+                        elevation={16}
+                        content={false}
+                        boxShadow
+                        shadow={theme.shadows[16]}
                       >
-                        <ListItemIcon>
-                          <IconLogout stroke={1.5} size="1.3rem" />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary={
-                            <Typography variant="body2">Logout</Typography>
-                          }
-                        />
-                      </ListItemButton>
-                    </List>
-                  </CardContent>
-                </MainCard>
-              </ClickAwayListener>
-            </Paper>
-          </Transitions>
-        )}
-      </Popper>
-    </>
+                        <CardContent className={classes.cardContent}>
+                          <Grid container direction="column" spacing={0}>
+                            <Grid item className={classes.flex}>
+                              <Typography variant="h4">
+                                Good Morning,
+                              </Typography>
+                              <Typography
+                                component="span"
+                                variant="h4"
+                                className={classes.name}
+                              >
+                                {customer?.firstName} {customer?.lastName}
+                              </Typography>
+                            </Grid>
+                            <Grid item>
+                              <Typography variant="subtitle2">
+                                Stake Shop KE
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                          <List
+                            component="nav"
+                            className={classes.navContainer}
+                          >
+                            <ListItemButton
+                              className={classes.listItem}
+                              sx={{
+                                borderRadius: `${customization.borderRadius}px`,
+                              }}
+                              selected={selectedIndex === 4}
+                              onClick={handleLogout}
+                            >
+                              <ListItemIcon>
+                                <IconLogout stroke={1.5} size="1.3rem" />
+                              </ListItemIcon>
+                              <ListItemText
+                                primary={
+                                  <Typography variant="body2">
+                                    Logout
+                                  </Typography>
+                                }
+                              />
+                            </ListItemButton>
+                          </List>
+                        </CardContent>
+                      </MainCard>
+                    </ClickAwayListener>
+                  </Paper>
+                </Transitions>
+              )}
+            </Popper>
+          </>
+        ) : (
+          <Button component={Link} href="/pages/login/login3">
+            <Chip
+              classes={{ label: classes.profileLabel }}
+              className={classes.profileChip}
+              label={
+                <IconLogin
+                  stroke={1.5}
+                  size="1.5rem"
+                  color={theme.palette.primary.main}
+                />
+              }
+              variant="filled"
+              ref={anchorRef}
+              aria-controls={undefined}
+              aria-haspopup="false"
+              color="primary"
+            />
+          </Button>
+        )
+      }
+    </GetSignedInCustomerQuery>
   );
 };
 

@@ -5,6 +5,7 @@ import Query from "../../../components/Query";
 export const GET_SIGNED_IN_CUSTOMER = gql`
   query GetSignedInCustomer {
     getSignedInCustomer {
+      status
       customer {
         username
         customerStatus

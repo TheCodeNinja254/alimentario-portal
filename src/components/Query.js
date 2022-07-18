@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery, NetworkStatus } from "@apollo/client";
-import { FormControl, MenuItem, Select } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
 import Loader from "./Loader";
 import ErrorHandler from "../utils/errorHandler";
@@ -57,25 +56,11 @@ const Query = ({
     // const errorCode = getErrorCode(error);
     // TODO: check errorPolicy and if === 'all' then pass thru render props all extracted/formated errors with errorcodes instead of inline error message
     return (
-      <>
-        <FormControl variant="standard" fullWidth>
-          <Select
-            labelId="demo-simple-select-standard-label-products"
-            className={classes.placeholderTextArea}
-            id="demo-simple-select-standard-products-219"
-            fullWidth
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-          </Select>
-        </FormControl>
-        <Alert severity="warning" className={classes.alerts}>
-          <div>
-            <Typography variant="body2">{ErrorHandler(message)}</Typography>
-          </div>
-        </Alert>
-      </>
+      <Alert severity="warning" className={classes.alerts}>
+        <div>
+          <Typography variant="body2">{ErrorHandler(message)}</Typography>
+        </div>
+      </Alert>
     );
   }
 

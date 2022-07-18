@@ -33,6 +33,7 @@ import Dialog from "../../../../components/Dialog";
 import { SIGN_IN } from "../../../../api/Mutations/Customers";
 import { encrypt } from "../../../../utils/encryptDecrypt";
 import ErrorHandler from "../../../../utils/errorHandler";
+import { GET_SIGNED_IN_CUSTOMER } from "../../../../api/Queries/Authentication/GetSignedInCustomer";
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string()
@@ -162,6 +163,11 @@ const LoginForm = () => {
               email: encrypt(values.email),
               password: encrypt(values.password),
             },
+            refetchQueries: [
+              {
+                query: GET_SIGNED_IN_CUSTOMER,
+              },
+            ],
           })
             .then((response) => {
               const {

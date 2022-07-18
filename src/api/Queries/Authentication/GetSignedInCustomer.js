@@ -17,6 +17,16 @@ export const GET_SIGNED_IN_CUSTOMER = gql`
         verificationStatus
         bearerToken
       }
+      business {
+        businessName
+        registeredAddress
+        businessLocationLatitude
+        businessLocationLongitude
+        businessType
+        primaryEmailAddress
+        primaryContact
+        preferredCreditPeriod
+      }
     }
   }
 `;

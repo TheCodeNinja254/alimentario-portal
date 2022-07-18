@@ -1,7 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
-// material-ui
 import { makeStyles, useTheme } from "@material-ui/styles";
 import {
   Avatar,
@@ -20,7 +18,14 @@ import {
 } from "@material-ui/core";
 import ListItemButton from "@material-ui/core/ListItemButton";
 
-import { IconLogin, IconLogout, IconSettings } from "@tabler/icons";
+import {
+  IconBuildingBank,
+  IconLogin,
+  IconLogout,
+  IconSettings,
+  IconShoppingCart,
+  IconUser,
+} from "@tabler/icons";
 import User1 from "../../../../assets/images/users/user-round.svg";
 import Transitions from "../../../../ui-component/extended/Transitions";
 import MainCard from "../../../../ui-component/cards/MainCard";
@@ -103,8 +108,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// ===========================|| PROFILE MENU ||=========================== //
-
 const ProfileSection = () => {
   const classes = useStyles();
   const theme = useTheme();
@@ -116,6 +119,26 @@ const ProfileSection = () => {
   const handleLogout = async () => {
     // eslint-disable-next-line no-console
     console.error("Logout");
+  };
+
+  const hourlyGreeting = () => {
+    let timeOfDay = "Morning";
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+
+    if (currentHour > 0 && currentHour < 12) {
+      timeOfDay = "Morning";
+    }
+
+    if (currentHour >= 12 && currentHour < 16) {
+      timeOfDay = "Morning";
+    }
+
+    if (currentHour >= 16 && currentHour < 23) {
+      timeOfDay = "Evening";
+    }
+
+    return timeOfDay;
   };
 
   const handleToggle = () => {
@@ -202,7 +225,7 @@ const ProfileSection = () => {
                           <Grid container direction="column" spacing={0}>
                             <Grid item className={classes.flex}>
                               <Typography variant="h4">
-                                Good Morning,
+                                Good {hourlyGreeting()},
                               </Typography>
                               <Typography
                                 component="span"
@@ -214,7 +237,10 @@ const ProfileSection = () => {
                             </Grid>
                             <Grid item>
                               <Typography variant="subtitle2">
-                                Stake Shop KE
+                                Mobile: {customer?.msisdn}
+                              </Typography>
+                              <Typography variant="subtitle2">
+                                Email: {customer?.emailAddress}
                               </Typography>
                             </Grid>
                           </Grid>
@@ -222,6 +248,68 @@ const ProfileSection = () => {
                             component="nav"
                             className={classes.navContainer}
                           >
+                            <ListItemButton
+                              className={classes.listItem}
+                              sx={{
+                                borderRadius: `${customization.borderRadius}px`,
+                              }}
+                              selected={selectedIndex === 4}
+                              onClick={handleLogout}
+                            >
+                              <ListItemIcon>
+                                <IconShoppingCart stroke={1.5} size="1.3rem" />
+                              </ListItemIcon>
+                              <ListItemText
+                                primary={
+                                  <Typography variant="body2">
+                                    My Orders
+                                  </Typography>
+                                }
+                              />
+                            </ListItemButton>
+                            {customer?.businessId > 0 && (
+                              <ListItemButton
+                                className={classes.listItem}
+                                sx={{
+                                  borderRadius: `${customization.borderRadius}px`,
+                                }}
+                                selected={selectedIndex === 4}
+                                onClick={handleLogout}
+                              >
+                                <ListItemIcon>
+                                  <IconBuildingBank
+                                    stroke={1.5}
+                                    size="1.3rem"
+                                  />
+                                </ListItemIcon>
+                                <ListItemText
+                                  primary={
+                                    <Typography variant="body2">
+                                      My Business
+                                    </Typography>
+                                  }
+                                />
+                              </ListItemButton>
+                            )}
+                            <ListItemButton
+                              className={classes.listItem}
+                              sx={{
+                                borderRadius: `${customization.borderRadius}px`,
+                              }}
+                              selected={selectedIndex === 4}
+                              onClick={handleLogout}
+                            >
+                              <ListItemIcon>
+                                <IconUser stroke={1.5} size="1.3rem" />
+                              </ListItemIcon>
+                              <ListItemText
+                                primary={
+                                  <Typography variant="body2">
+                                    Manage Account
+                                  </Typography>
+                                }
+                              />
+                            </ListItemButton>
                             <ListItemButton
                               className={classes.listItem}
                               sx={{

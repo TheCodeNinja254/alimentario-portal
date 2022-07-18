@@ -138,11 +138,11 @@ const ProductCard = () => {
                           />
                           <Chip
                             variant="outlined"
-                            label={`Status: ${
+                            label={
                               product?.stockStatus === 1
                                 ? "In Stock"
-                                : "Out Stock"
-                            }`}
+                                : "Out of Stock"
+                            }
                             className={classes.chip}
                           />
                         </Stack>

@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { Chip, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
+import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -45,13 +46,27 @@ const GreetingsCard = () => {
     <Paper square elevation={0} className={classes.paper}>
       <Grid container>
         <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
-          <MuiTypography
-            variant="h1"
-            gutterBottom
-            className={classes.mainGreeting}
-          >
-            Greetings!
-          </MuiTypography>
+          <GetSignedInCustomerQuery>
+            {({ getSignedInCustomer: { status, customer } }) =>
+              status ? (
+                <MuiTypography
+                  variant="h2"
+                  gutterBottom
+                  className={classes.mainGreeting}
+                >
+                  Greetings {customer?.firstName}!
+                </MuiTypography>
+              ) : (
+                <MuiTypography
+                  variant="h2"
+                  gutterBottom
+                  className={classes.mainGreeting}
+                >
+                  Greetings!
+                </MuiTypography>
+              )
+            }
+          </GetSignedInCustomerQuery>
           <MuiTypography variant="h2" gutterBottom>
             Welcome to
           </MuiTypography>

@@ -339,7 +339,7 @@ const ProfileSection = () => {
             </Popper>
           </>
         ) : (
-          <Button component={Link} href="/pages/login/login3">
+          <Button component={Link} href="/account/login/login3">
             <Chip
               classes={{ label: classes.profileLabel }}
               className={classes.profileChip}

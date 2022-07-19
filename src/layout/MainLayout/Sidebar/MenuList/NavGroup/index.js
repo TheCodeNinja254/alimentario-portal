@@ -1,11 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
-
-// material-ui
 import { makeStyles } from "@material-ui/styles";
 import { Divider, List, Typography } from "@material-ui/core";
-
-// project imports
 import NavItem from "../NavItem";
 import NavCollapse from "../NavCollapse";
 

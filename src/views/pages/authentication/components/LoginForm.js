@@ -324,7 +324,7 @@ const LoginForm = () => {
               <Typography
                 variant="subtitle1"
                 component={Link}
-                to="/pages/forgot-password/forgot-password3"
+                to="/account/forgot-password/forgot-password3"
                 color="secondary"
                 sx={{ textDecoration: "none" }}
               >

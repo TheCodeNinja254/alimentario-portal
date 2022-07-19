@@ -133,7 +133,7 @@ const UpgradePlanCard = () => {
                         <AnimateButton>
                           <Button
                             component={Link}
-                            href="/pages/register/register3"
+                            href="/account/register/register3"
                             variant="contained"
                             className={classes.button}
                           >
@@ -152,7 +152,7 @@ const UpgradePlanCard = () => {
                         <AnimateButton>
                           <Button
                             component={Link}
-                            href="/pages/register/register3"
+                            href="/account/register/register3"
                             variant="contained"
                             className={classes.button}
                           >
@@ -179,7 +179,7 @@ const UpgradePlanCard = () => {
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href="/pages/register/register3"
+                        href="/account/register/register3"
                         variant="contained"
                         className={classes.button}
                       >
@@ -189,7 +189,7 @@ const UpgradePlanCard = () => {
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href="/pages/register/register3"
+                        href="/account/register/register3"
                         variant="contained"
                         className={classes.button}
                       >

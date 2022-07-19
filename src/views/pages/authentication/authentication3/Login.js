@@ -1,7 +1,5 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-
-// material-ui
 import { useTheme } from "@material-ui/core/styles";
 import {
   Divider,
@@ -10,16 +8,12 @@ import {
   Typography,
   useMediaQuery,
 } from "@material-ui/core";
-
-// project imports
 import Logo from "../../../../ui-component/Logo";
 import AuthFooter from "../../../../ui-component/cards/AuthFooter";
 import AuthWrapper1 from "../AuthWrapper1";
 import AuthCardWrapper from "../AuthCardWrapper";
 import LoginForm from "../components/LoginForm";
 import { gridSpacing } from "../../../../store/constant";
-
-// assets
 
 //= ===============================|| AUTH3 - LOGIN ||================================//
 
@@ -100,7 +94,7 @@ const Login = () => {
                     >
                       <Typography
                         component={RouterLink}
-                        to="/pages/register/register3"
+                        to="/account/register/register3"
                         variant="subtitle1"
                         sx={{ textDecoration: "none" }}
                       >

@@ -1,4 +1,3 @@
-// assets
 import {
   IconKey,
   IconReceipt2,
@@ -16,10 +15,10 @@ const icons = {
   IconPhoneCall,
 };
 
-// ===========================|| EXTRA PAGES MENU ITEMS ||=========================== //
+// ===========================|| UNAUTHENTICATED PAGES FOR ACCOUNT INFO ||=========================== //
 
-const pages = {
-  id: "pages",
+const account = {
+  id: "account",
   title: "Account",
   caption: "Get to your account",
   type: "group",
@@ -47,4 +46,4 @@ const pages = {
   ],
 };
 
-export default pages;
+export default account;

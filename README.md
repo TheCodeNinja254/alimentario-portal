@@ -5,7 +5,7 @@
 [![GitHub package version](https://img.shields.io/github/package-json/v/codedthemes/berry-free-react-admin-template)](https://github.com/codedthemes/berry-free-react-admin-template/)
 
 
-Berry is a creative free react admin template build using the Material-UI. It is meant to be the best User Experience with highly customizable feature-riched pages. It is a complete game-changer React Dashboard Template with easy and intuitive responsive design as on retina screens or laptopshttps://berrydashboard.io/imp-images/berry-github-free-repo.jpg
+Berry is a creative free react admin template build using the Material-UI. It is meant to be the best User Experience with highly customizable feature-riched account. It is a complete game-changer React Dashboard Template with easy and intuitive responsive design as on retina screens or laptopshttps://berrydashboard.io/imp-images/berry-github-free-repo.jpg
 
 ![IMG_8566.jpg](https://berrydashboard.io/imp-images/berry-github-free-repo.jpg)
 
@@ -14,7 +14,7 @@ Berry is a creative free react admin template build using the Material-UI. It is
 
 | [Berry Free](https://berry-free-react-admin-template-git-v20-codedthemes.vercel.app/)    | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
 | ---------------------------------------------------------------------------------------- | :------------------------------------------------------------------------|
-| **9** Demo pages                                                                         | **45+** demo pages                                                       |
+| **9** Demo account                                                                         | **45+** demo account                                                       |
 | -                                                                                        | ✓ Multi-language                                                         |
 | -                                                                                        | ✓ Dark/Light Mode 🌓                                                    |
 | -                                                                                        | ✓ TypeScript version                                                     |

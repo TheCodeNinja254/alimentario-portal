@@ -8,10 +8,10 @@ import {
   CardContent,
   Divider,
   Grid,
-  Link,
   Stack,
   Typography,
 } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 
 // project imports
 import AnimateButton from "../../ui-component/extended/AnimateButton";
@@ -132,8 +132,8 @@ const UpgradePlanCard = () => {
                       <Stack direction="column">
                         <AnimateButton>
                           <Button
-                            component={Link}
-                            href="/account/register/register3"
+                            component={RouterLink}
+                            to="/create-account"
                             variant="contained"
                             className={classes.button}
                           >
@@ -151,8 +151,8 @@ const UpgradePlanCard = () => {
                       <Stack direction="column">
                         <AnimateButton>
                           <Button
-                            component={Link}
-                            href="/account/register/register3"
+                            component={RouterLink}
+                            to="/account/register/register3"
                             variant="contained"
                             className={classes.button}
                           >
@@ -178,8 +178,8 @@ const UpgradePlanCard = () => {
                   <Stack direction="column">
                     <AnimateButton>
                       <Button
-                        component={Link}
-                        href="/account/login/login3"
+                        component={RouterLink}
+                        to="/auth"
                         variant="contained"
                         className={classes.button}
                       >
@@ -188,8 +188,8 @@ const UpgradePlanCard = () => {
                     </AnimateButton>
                     <AnimateButton>
                       <Button
-                        component={Link}
-                        href="/account/register/register3"
+                        component={RouterLink}
+                        to="/create-account"
                         variant="contained"
                         className={classes.button}
                       >

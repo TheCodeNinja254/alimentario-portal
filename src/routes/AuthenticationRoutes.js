@@ -5,11 +5,11 @@ import Loadable from "../ui-component/Loadable";
 import MinimalLayout from "../layout/MinimalLayout";
 
 // login option 3 routing
-const AuthLogin3 = Loadable(
-  lazy(() => import("../views/account/Authentication/Login"))
+const CustomerAuth = Loadable(
+  lazy(() => import("../views/account/Authentication"))
 );
-const AuthRegister3 = Loadable(
-  lazy(() => import("../views/account/CustomerRegistration/Register3"))
+const CustomerAccountCreation = Loadable(
+  lazy(() => import("../views/account/CustomerRegistration"))
 );
 
 // ===========================|| AUTHENTICATION ROUTING ||=========================== //
@@ -19,12 +19,12 @@ const AuthenticationRoutes = {
   element: <MinimalLayout />,
   children: [
     {
-      path: "/account/login/login3",
-      element: <AuthLogin3 />,
+      path: "/auth",
+      element: <CustomerAuth />,
     },
     {
-      path: "/account/register/register3",
-      element: <AuthRegister3 />,
+      path: "/create-account",
+      element: <CustomerAccountCreation />,
     },
   ],
 };

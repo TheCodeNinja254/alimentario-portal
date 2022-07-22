@@ -91,7 +91,7 @@ const GreetingsCard = () => {
           >
             What do you want to do today?
           </MuiTypography>
-          <Chip variant="outlined" label="Login" className={classes.chip} />
+          <Chip variant="outlined" label="Index" className={classes.chip} />
           <Chip
             variant="outlined"
             label="Create Account"

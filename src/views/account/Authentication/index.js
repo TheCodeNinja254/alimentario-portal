@@ -17,7 +17,7 @@ import { gridSpacing } from "../../../store/constant";
 
 //= ===============================|| AUTH3 - LOGIN ||================================//
 
-const Login = () => {
+const Index = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -115,4 +115,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Index;

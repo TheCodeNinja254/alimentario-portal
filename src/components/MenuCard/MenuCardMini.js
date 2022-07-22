@@ -159,7 +159,7 @@ const MenuCardMini = () => {
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href="/account/register/register3"
+                        href="/create-account"
                         variant="contained"
                         className={classes.button}
                       >
@@ -169,7 +169,7 @@ const MenuCardMini = () => {
                     <AnimateButton>
                       <Button
                         component={Link}
-                        href="/account/register/register3"
+                        href="/create-account"
                         variant="contained"
                         className={classes.button}
                       >

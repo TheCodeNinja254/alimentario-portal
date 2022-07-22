@@ -30,16 +30,16 @@ const account = {
       icon: icons.IconKey,
       children: [
         {
-          id: "login3",
+          id: "auth",
           title: "Login",
           type: "item",
-          url: "/pages/login/login3",
+          url: "/auth",
         },
         {
-          id: "register3",
-          title: "Register",
+          id: "account",
+          title: "Create Account",
           type: "item",
-          url: "/pages/register/register3",
+          url: "/create-account",
         },
       ],
     },

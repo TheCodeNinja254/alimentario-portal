@@ -1,7 +1,5 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-
-// material-ui
 import { useTheme } from "@material-ui/core/styles";
 import {
   Divider,
@@ -10,24 +8,18 @@ import {
   Typography,
   useMediaQuery,
 } from "@material-ui/core";
-
-// project imports
-import Logo from "../../../../ui-component/Logo";
-import AuthFooter from "../../../../ui-component/cards/AuthFooter";
-import AuthWrapper1 from "../AuthWrapper1";
-import AuthCardWrapper from "../AuthCardWrapper";
-import RegistrationForm from "../components/RegistrationForm";
-
-// assets
-
-//= ==============================|| AUTH3 - REGISTER ||===============================//
+import Logo from "../../../ui-component/Logo";
+import AuthFooter from "../../../ui-component/cards/AuthFooter";
+import RegistrationWrapper from "../components/styles/RegistrationWrapper";
+import AuthCardWrapper from "../components/styles/AuthCardWrapper";
+import RegistrationForm from "../components/Forms/RegistrationForm";
 
 const Register = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <AuthWrapper1>
+    <RegistrationWrapper>
       <Grid
         container
         direction="column"
@@ -116,7 +108,7 @@ const Register = () => {
           <AuthFooter />
         </Grid>
       </Grid>
-    </AuthWrapper1>
+    </RegistrationWrapper>
   );
 };
 

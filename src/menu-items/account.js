@@ -24,7 +24,7 @@ const account = {
   type: "group",
   children: [
     {
-      id: "authentication",
+      id: "Authentication",
       title: "My Account",
       type: "collapse",
       icon: icons.IconKey,

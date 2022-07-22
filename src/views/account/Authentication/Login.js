@@ -8,12 +8,12 @@ import {
   Typography,
   useMediaQuery,
 } from "@material-ui/core";
-import Logo from "../../../../ui-component/Logo";
-import AuthFooter from "../../../../ui-component/cards/AuthFooter";
-import AuthWrapper1 from "../AuthWrapper1";
-import AuthCardWrapper from "../AuthCardWrapper";
-import LoginForm from "../components/LoginForm";
-import { gridSpacing } from "../../../../store/constant";
+import Logo from "../../../ui-component/Logo";
+import AuthFooter from "../../../ui-component/cards/AuthFooter";
+import AuthWrapper1 from "../components/styles/RegistrationWrapper";
+import AuthCardWrapper from "../components/styles/AuthCardWrapper";
+import LoginForm from "../components/Forms/LoginForm";
+import { gridSpacing } from "../../../store/constant";
 
 //= ===============================|| AUTH3 - LOGIN ||================================//
 

@@ -5,7 +5,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
 // project import
-import MainCard from "../../../ui-component/cards/MainCard";
+import MainCard from "../../../../ui-component/cards/MainCard";
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -29,8 +29,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-// ===========================|| AUTHENTICATION CARD WRAPPER ||=========================== //
 
 const AuthCardWrapper = ({ children, ...other }) => {
   const classes = useStyles();

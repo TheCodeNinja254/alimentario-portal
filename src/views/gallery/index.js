@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 import { gridSpacing } from "../../store/constant";
 import GreetingsCard from "./components/GreetingsCard";
 import TitlebarImageList from "../dashboard/Default/ImageGallery";
-import MenuCard from "../../layout/MainLayout/Sidebar/MenuCard";
+import MenuCard from "../../components/MenuCard";
 
 // project imports
 

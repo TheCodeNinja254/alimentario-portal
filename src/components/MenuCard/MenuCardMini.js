@@ -1,6 +1,4 @@
 import React from "react";
-
-// material-ui
 import { makeStyles } from "@material-ui/styles";
 import {
   Button,
@@ -12,10 +10,8 @@ import {
   Stack,
   Typography,
 } from "@material-ui/core";
-
-// project imports
-import AnimateButton from "../../../../ui-component/extended/AnimateButton";
-import GetSignedInCustomerQuery from "../../../../api/Queries/Authentication/GetSignedInCustomer";
+import AnimateButton from "../../ui-component/extended/AnimateButton";
+import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -83,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
 
 // ===========================|| PROFILE MENU - CREATE ACCOUNT CARD ||=========================== //
 
-const UpgradePlanCard = () => {
+const MenuCardMini = () => {
   const classes = useStyles();
 
   return (
@@ -94,17 +90,8 @@ const UpgradePlanCard = () => {
             status ? (
               <Grid container direction="column" spacing={2}>
                 <Grid item>
-                  <Typography variant="h4">Hi {customer?.firstName}</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="subtitle2" className={classes.tagLine}>
-                    Below are your recent orders
-                  </Typography>
-                </Grid>
-                <Grid item>
                   {customer?.businessId > 0 ? (
                     <>
-                      <Divider />
                       <Typography variant="h4" className={classes.subTitle}>
                         You can get our products for your business too
                       </Typography>
@@ -121,13 +108,6 @@ const UpgradePlanCard = () => {
                         <span className={classes.boldedText}>
                           {business?.registeredAddress}
                         </span>
-                      </Typography>
-                      <Divider />
-                      <Typography
-                        variant="subtitle2"
-                        className={classes.tagLineAfter}
-                      >
-                        Previous Orders for Business:
                       </Typography>
                       <Stack direction="column">
                         <AnimateButton>
@@ -183,7 +163,7 @@ const UpgradePlanCard = () => {
                         variant="contained"
                         className={classes.button}
                       >
-                        Login
+                        Create My Account
                       </Button>
                     </AnimateButton>
                     <AnimateButton>
@@ -193,7 +173,7 @@ const UpgradePlanCard = () => {
                         variant="contained"
                         className={classes.button}
                       >
-                        Create My Account
+                        Create My Business Account
                       </Button>
                     </AnimateButton>
                   </Stack>
@@ -207,4 +187,4 @@ const UpgradePlanCard = () => {
   );
 };
 
-export default UpgradePlanCard;
+export default MenuCardMini;

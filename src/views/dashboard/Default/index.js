@@ -9,7 +9,7 @@ import PopularCard from "./PopularCard";
 import TotalOrderLineChartCard from "./TotalOrderLineChartCard";
 import ProductCard from "./ProductCard";
 import ImageCarousel from "./ImageCarousel";
-import MenuCard from "../../../layout/MainLayout/Sidebar/MenuCard";
+import MenuCard from "../../../components/MenuCard";
 import GreetingsCard from "./GreetingsCard";
 import TitlebarImageList from "./ImageGallery";
 

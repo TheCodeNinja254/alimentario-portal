@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
-// material-ui
 import { makeStyles } from "@material-ui/styles";
 import {
   Box,
@@ -20,11 +18,8 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 
-// third party
 import * as Yup from "yup";
 import { Formik } from "formik";
-
-// project imports
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import useScriptRef from "../../../../hooks/useScriptRef";
@@ -33,8 +28,6 @@ import {
   strengthColor,
   strengthIndicator,
 } from "../../../../utils/password-strength";
-
-// assets
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -219,6 +212,34 @@ const RegistrationForm = ({ ...others }) => {
                 >
                   {" "}
                   {errors.email}{" "}
+                </FormHelperText>
+              )}
+            </FormControl>
+
+            <FormControl
+              fullWidth
+              error={Boolean(touched.msisdn && errors.msisdn)}
+              className={classes.loginInput}
+            >
+              <InputLabel htmlFor="outlined-adornment-email-msisdn">
+                Mobile Phone Number
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-email-msisdn"
+                type="tel"
+                value={values.msisdn}
+                name="msisdn"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                inputProps={{
+                  classes: {
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
+              {touched.msisdn && errors.msisdn && (
+                <FormHelperText error id="standard-weight-helper-text--msisdn">
+                  {errors.msisdn}
                 </FormHelperText>
               )}
             </FormControl>

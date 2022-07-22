@@ -1,28 +1,15 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Button,
-  Checkbox,
   FormControl,
-  FormControlLabel,
   FormHelperText,
-  Grid,
-  IconButton,
-  InputAdornment,
   InputLabel,
   OutlinedInput,
-  Stack,
   Typography,
 } from "@material-ui/core";
 import isEmpty from "lodash.isempty";
-
-// third party
 import * as Yup from "yup";
-
-// project imports
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Form as FormikForm, Formik } from "formik";
 import { useMutation } from "@apollo/client";
 import { makeStyles } from "@material-ui/styles";
@@ -84,13 +71,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//= ===========================|| LOGIN ||============================//
+//= ===========================|| PASSWORD RESET ||============================//
 
 const LoginForm = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-
-  const [checked, setChecked] = React.useState(true);
 
   const [signInDetails, setSignInDetails] = React.useState({
     open: false,
@@ -119,37 +104,8 @@ const LoginForm = () => {
 
   const [SignInMutation, { loading }] = useMutation(SIGN_IN);
 
-  const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
   return (
     <>
-      <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid
-          item
-          xs={12}
-          container
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Box
-            sx={{
-              mb: 2,
-            }}
-          >
-            <Typography variant="subtitle1">
-              Sign in with Email address
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
-
       <Formik
         initialValues={{
           email: "",
@@ -259,78 +215,6 @@ const LoginForm = () => {
               )}
             </FormControl>
 
-            <FormControl
-              fullWidth
-              error={Boolean(errors.password)}
-              className={classes.loginInput}
-            >
-              <InputLabel htmlFor="outlined-adornment-password-login">
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password-login"
-                type={showPassword ? "text" : "password"}
-                value={values.password}
-                name="password"
-                onChange={(e) => {
-                  setFieldValue("password", e.target.value, true);
-                }}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
-                inputProps={{
-                  classes: {
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
-              />
-              {errors.password && (
-                <FormHelperText
-                  error
-                  id="standard-weight-helper-text-password-login"
-                >
-                  {" "}
-                  {errors.password}{" "}
-                </FormHelperText>
-              )}
-            </FormControl>
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-              spacing={1}
-            >
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={checked}
-                    onChange={(event) => setChecked(event.target.checked)}
-                    name="checked"
-                    color="primary"
-                  />
-                }
-                label="Remember me"
-              />
-              <Typography
-                variant="subtitle1"
-                component={RouterLink}
-                to="/forgot-password"
-                color="secondary"
-                sx={{ textDecoration: "none" }}
-              >
-                Forgot Password?
-              </Typography>
-            </Stack>
             {errors.submit && (
               <Box
                 sx={{
@@ -356,7 +240,7 @@ const LoginForm = () => {
                   variant="contained"
                   color="secondary"
                 >
-                  {loading ? "Please wait..." : "Sign in"}
+                  {loading ? "Please wait..." : "Send Reset Link"}
                 </Button>
               </AnimateButton>
             </Box>

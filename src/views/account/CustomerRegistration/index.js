@@ -14,7 +14,7 @@ import RegistrationWrapper from "../components/styles/RegistrationWrapper";
 import AuthCardWrapper from "../components/styles/AuthCardWrapper";
 import RegistrationForm from "../components/Forms/RegistrationForm";
 
-const Register = () => {
+const CustomerRegistration = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -69,7 +69,7 @@ const Register = () => {
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : ""}
                           >
-                            Enter your credentials to continue
+                            Enter your details to continue
                           </Typography>
                         </Stack>
                       </Grid>
@@ -112,4 +112,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default CustomerRegistration;

@@ -12,12 +12,10 @@ import Logo from "../../../ui-component/Logo";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
 import AuthWrapper1 from "../components/styles/RegistrationWrapper";
 import AuthCardWrapper from "../components/styles/AuthCardWrapper";
-import LoginForm from "../components/Forms/LoginForm";
 import { gridSpacing } from "../../../store/constant";
+import PasswordResetForm from "../components/Forms/PasswordResetForm";
 
-//= ===============================|| AUTH3 - LOGIN ||================================//
-
-const Authentication = () => {
+const PasswordReset = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -72,14 +70,14 @@ const Authentication = () => {
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : ""}
                           >
-                            Enter your credentials to continue
+                            Enter your registered Email address to continue
                           </Typography>
                         </Stack>
                       </Grid>
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <LoginForm />
+                    <PasswordResetForm />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />
@@ -115,4 +113,4 @@ const Authentication = () => {
   );
 };
 
-export default Authentication;
+export default PasswordReset;

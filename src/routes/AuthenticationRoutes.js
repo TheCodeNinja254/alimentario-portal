@@ -11,6 +11,9 @@ const CustomerAuth = Loadable(
 const CustomerAccountCreation = Loadable(
   lazy(() => import("../views/account/CustomerRegistration"))
 );
+const PasswordReset = Loadable(
+  lazy(() => import("../views/account/PasswordReset"))
+);
 
 // ===========================|| AUTHENTICATION ROUTING ||=========================== //
 
@@ -25,6 +28,10 @@ const AuthenticationRoutes = {
     {
       path: "/create-account",
       element: <CustomerAccountCreation />,
+    },
+    {
+      path: "//forgot-password",
+      element: <PasswordReset />,
     },
   ],
 };

@@ -183,7 +183,7 @@ const UpgradePlanCard = () => {
                         variant="contained"
                         className={classes.button}
                       >
-                        Create My Account
+                        Login
                       </Button>
                     </AnimateButton>
                     <AnimateButton>
@@ -193,7 +193,7 @@ const UpgradePlanCard = () => {
                         variant="contained"
                         className={classes.button}
                       >
-                        Create My Business Account
+                        Create My Account
                       </Button>
                     </AnimateButton>
                   </Stack>

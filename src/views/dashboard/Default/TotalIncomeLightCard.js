@@ -1,7 +1,5 @@
 import PropTypes from "prop-types";
 import React from "react";
-
-// material-ui
 import { makeStyles } from "@material-ui/styles";
 import {
   Avatar,
@@ -11,15 +9,10 @@ import {
   ListItemText,
   Typography,
 } from "@material-ui/core";
-
-// project imports
 import StorefrontTwoToneIcon from "@material-ui/icons/StorefrontTwoTone";
 import MainCard from "../../../ui-component/cards/MainCard";
 import TotalIncomeCard from "../../../ui-component/cards/Skeleton/TotalIncomeCard";
 
-// assets
-
-// style constant
 const useStyles = makeStyles((theme) => ({
   card: {
     overflow: "hidden",
@@ -63,8 +56,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0,
   },
 }));
-
-// ===========================|| DASHBOARD - TOTAL INCOME LIGHT CARD ||=========================== //
 
 const TotalIncomeLightCard = ({ isLoading }) => {
   const classes = useStyles();

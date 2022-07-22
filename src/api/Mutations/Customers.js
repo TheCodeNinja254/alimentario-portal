@@ -43,3 +43,12 @@ export const CHECK_TICKET_STATUS = gql`
     }
   }
 `;
+
+export const SIGNOUT = gql`
+  mutation SignOut {
+    signOut {
+      status
+      message
+    }
+  }
+`;

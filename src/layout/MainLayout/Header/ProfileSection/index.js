@@ -26,10 +26,14 @@ import {
   IconShoppingCart,
   IconUser,
 } from "@tabler/icons";
+import { useMutation } from "@apollo/client";
 import User1 from "../../../../assets/images/users/user-round.svg";
 import Transitions from "../../../../ui-component/extended/Transitions";
 import MainCard from "../../../../ui-component/cards/MainCard";
-import GetSignedInCustomerQuery from "../../../../api/Queries/Authentication/GetSignedInCustomer";
+import GetSignedInCustomerQuery, {
+  GET_SIGNED_IN_CUSTOMER,
+} from "../../../../api/Queries/Authentication/GetSignedInCustomer";
+import { SIGNOUT } from "../../../../api/Mutations/Customers";
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -111,14 +115,28 @@ const useStyles = makeStyles((theme) => ({
 const ProfileSection = () => {
   const classes = useStyles();
   const theme = useTheme();
+
   const customization = useSelector((state) => state.customization);
   const [selectedIndex] = React.useState(1);
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+
+  const [SignOutMutation] = useMutation(SIGNOUT);
+
   const handleLogout = async () => {
-    // eslint-disable-next-line no-console
-    console.error("Logout");
+    SignOutMutation({
+      refetchQueries: [
+        {
+          query: GET_SIGNED_IN_CUSTOMER,
+          variables: { awaitRefetchQueries: true },
+        },
+      ],
+    }).then((response) => {
+      if (response) {
+        // window.location.reload(false);
+      }
+    });
   };
 
   const hourlyGreeting = () => {

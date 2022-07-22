@@ -18,39 +18,6 @@ import { gridSpacing } from "../../../store/constant";
 import frownFace from "../../../assets/images/Graphics/frown.jpg";
 import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
 
-// const products = [
-//   {
-//     productName: "Costata Fiorentina Steak",
-//     imgPath: "/images/Costata_fiorentina.jpg",
-//     productDescription:
-//       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
-//   },
-//   {
-//     productName: "Crudo Senza Osso Parma Steak",
-//     imgPath: "/images/Crudo_senza_osso_Parma.jpg",
-//     productDescription:
-//       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
-//   },
-//   {
-//     productName: "Filetto Di Bovino Steak",
-//     imgPath: "/images/Filetto_Di_Bovino.jpg",
-//     productDescription:
-//       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
-//   },
-//   {
-//     productName: "Pancetta stagionata Steak",
-//     imgPath: "/images/Pancetta_stagionata.jpg",
-//     productDescription:
-//       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
-//   },
-//   {
-//     productName: "Salame nostrano steak",
-//     imgPath: "/images/Salame_nostrano.jpg",
-//     productDescription:
-//       "Juicy and tasty. Get your delicious steak from Desafio Alimentario today",
-//   },
-// ];
-
 const useStyles = makeStyles((theme) => ({
   root: {},
   subGreeting: {
@@ -151,6 +118,9 @@ const ProductCard = () => {
                     <CardActions>
                       <Button size="small" color="primary" variant="contained">
                         ORDER NOW
+                      </Button>
+                      <Button size="small" color="secondary" variant="outlined">
+                        REVIEWS
                       </Button>
                     </CardActions>
                   </Card>

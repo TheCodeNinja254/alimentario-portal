@@ -91,7 +91,7 @@ const Register = () => {
                     >
                       <Typography
                         component={RouterLink}
-                        to="/account/login/login3"
+                        to="/auth"
                         variant="subtitle1"
                         sx={{ textDecoration: "none" }}
                       >

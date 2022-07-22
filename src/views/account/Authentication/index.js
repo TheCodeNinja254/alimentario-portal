@@ -94,7 +94,7 @@ const Index = () => {
                     >
                       <Typography
                         component={RouterLink}
-                        to="/account/register/register3"
+                        to="/create-account"
                         variant="subtitle1"
                         sx={{ textDecoration: "none" }}
                       >

@@ -2,11 +2,12 @@ import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { useTheme } from "@material-ui/core/styles";
-import { Box, Button, MobileStepper, Paper } from "@material-ui/core";
+import { Box, MobileStepper, Paper } from "@material-ui/core";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
+import { Button } from "@mui/material";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -45,30 +46,30 @@ const images = [
     imgPath: "/images/Salame_nostrano.jpg",
     action: "Buy Now",
   },
-  {
-    id: 6,
-    label: "Preparing the table",
-    imgPath: "/images/gallery/1.jpg",
-    action: "Buy Now",
-  },
-  {
-    id: 7,
-    label: "Preparing the table",
-    imgPath: "/images/gallery/2.jpg",
-    action: "Buy Now",
-  },
+  // {
+  //   id: 6,
+  //   label: "Preparing the table",
+  //   imgPath: "/images/gallery/1.jpg",
+  //   action: "Buy Now",
+  // },
+  // {
+  //   id: 7,
+  //   label: "Preparing the table",
+  //   imgPath: "/images/gallery/2.jpg",
+  //   action: "Buy Now",
+  // },
   {
     id: 8,
     label: "Preparing the table",
     imgPath: "/images/gallery/3.jpg",
     action: "Buy Now",
   },
-  {
-    id: 9,
-    label: "Preparing the table",
-    imgPath: "/images/gallery/4.jpg",
-    action: "Buy Now",
-  },
+  // {
+  //   id: 9,
+  //   label: "Preparing the table",
+  //   imgPath: "/images/gallery/4.jpg",
+  //   action: "Buy Now",
+  // },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -86,12 +87,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   tagLine: {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.primary.dark,
     fontWeight: 700,
     fontSize: 20,
     marginBottom: theme.spacing(2),
     maxWidth: 350,
     overflow: "hidden",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16,
+      fontWeight: 700,
+    },
   },
   paper: {
     display: "flex",
@@ -99,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     height: 50,
     pl: 2,
     padding: theme.spacing(2),
-    background: theme.palette.secondary.light,
+    background: theme.palette.primary.light,
   },
 }));
 
@@ -137,7 +142,7 @@ const SwipeableTextMobileStepper = () => {
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
-        interval={5000}
+        interval={6000}
       >
         {images.map((step, index) => (
           <div key={step.id}>
@@ -160,11 +165,10 @@ const SwipeableTextMobileStepper = () => {
         nextButton={
           <Button
             size="small"
-            variant="outlined"
+            variant=""
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            Next
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
             ) : (
@@ -175,7 +179,7 @@ const SwipeableTextMobileStepper = () => {
         backButton={
           <Button
             size="small"
-            variant="outlined"
+            variant=""
             onClick={handleBack}
             disabled={activeStep === 0}
           >
@@ -184,7 +188,6 @@ const SwipeableTextMobileStepper = () => {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
           </Button>
         }
       />

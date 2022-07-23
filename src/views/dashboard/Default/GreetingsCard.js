@@ -13,13 +13,35 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     pl: 2,
     padding: theme.spacing(2),
-    background: theme.palette.secondary.light,
+    background: theme.palette.primary.light,
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(0),
+    },
   },
   mainGreeting: {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.primary.dark,
+    fontSize: 23,
+    fontWeight: 700,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+      fontWeight: 500,
+    },
+  },
+  welcomeText: {
+    color: theme.palette.common.black,
+    fontSize: 23,
+    fontWeight: 700,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+      fontWeight: 700,
+    },
   },
   subGreeting: {
     color: theme.palette.primary.dark,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+      fontWeight: 700,
+    },
   },
   slogan: {
     color: theme.palette.primary.main,
@@ -30,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
   actionText: {
     marginTop: theme.spacing(5),
-    color: theme.palette.secondary.dark,
+    color: theme.palette.primary.dark,
   },
   chip: {
     marginRight: theme.spacing(1),
@@ -49,11 +71,7 @@ const GreetingsCard = () => {
           <GetSignedInCustomerQuery>
             {({ getSignedInCustomer: { status, customer } }) =>
               status ? (
-                <MuiTypography
-                  variant="h2"
-                  gutterBottom
-                  className={classes.mainGreeting}
-                >
+                <MuiTypography gutterBottom className={classes.mainGreeting}>
                   Greetings {customer?.firstName}!
                 </MuiTypography>
               ) : (
@@ -67,7 +85,7 @@ const GreetingsCard = () => {
               )
             }
           </GetSignedInCustomerQuery>
-          <MuiTypography variant="h2" gutterBottom>
+          <MuiTypography gutterBottom className={classes.welcomeText}>
             Welcome to
           </MuiTypography>
           <MuiTypography

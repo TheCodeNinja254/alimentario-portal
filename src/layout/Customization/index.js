@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-// material-ui
 import { useTheme } from "@material-ui/styles";
 import {
   Drawer,
@@ -16,25 +14,16 @@ import {
   Tooltip,
   Typography,
 } from "@material-ui/core";
-
-// third-party
 import PerfectScrollbar from "react-perfect-scrollbar";
-
-// project imports
 import { IconSettings } from "@tabler/icons";
 import SubCard from "../../ui-component/cards/SubCard";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from "../../store/actions"; // THEME_RTL
 import { gridSpacing } from "../../store/constant";
 
-// assets
-
-// concat 'px'
 function valueText(value) {
   return `${value}px`;
 }
-
-// ===========================|| LIVE CUSTOMIZATION ||=========================== //
 
 const Customization = () => {
   const theme = useTheme();

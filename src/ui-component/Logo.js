@@ -25,7 +25,7 @@ const Logo = ({ withName }) => {
         height="35"
       />
       {withName && (
-        <Typography variant="h4" color="secondary">
+        <Typography variant="h4" color="primary.dark">
           Desafio Alimentario
         </Typography>
       )}

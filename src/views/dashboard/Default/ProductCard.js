@@ -14,6 +14,7 @@ import {
 
 import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
+import { Divider } from "@mui/material";
 import { gridSpacing } from "../../../store/constant";
 import frownFace from "../../../assets/images/Graphics/frown.jpg";
 import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
@@ -44,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   productName: {
     marginTop: theme.spacing(2),
   },
+  divider: {
+    margin: theme.spacing(2),
+  },
 }));
 
 const ProductCard = () => {
@@ -54,6 +58,10 @@ const ProductCard = () => {
       <MuiTypography variant="h2" gutterBottom className={classes.subGreeting}>
         Chef&apos;s Choice
       </MuiTypography>
+      <MuiTypography variant="h4" gutterBottom className={classes.subGreeting}>
+        Our Products
+      </MuiTypography>
+      <Divider className={classes.divider} />
       <Grid container spacing={gridSpacing}>
         <GetDisplayProductsQuery>
           {({ getDisplayProducts: { status, productsList } }) =>

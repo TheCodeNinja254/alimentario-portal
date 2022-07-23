@@ -83,14 +83,14 @@ export default function themeTypography(theme) {
       },
     },
     mainContent: {
-      backgroundColor: theme.background,
+      backgroundColor: theme.menuBackground,
       width: "100%",
       minHeight: "calc(100vh - 88px)",
       flexGrow: 1,
       padding: "20px",
       marginTop: "88px",
       marginRight: "20px",
-      borderRadius: `${theme.customization.borderRadius}px`,
+      // borderRadius: `${theme.customization.borderRadius}px`,
     },
     menuCaption: {
       fontSize: "0.875rem",

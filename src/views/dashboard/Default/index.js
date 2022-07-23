@@ -26,10 +26,10 @@ const Dashboard = () => {
       <Grid item lg={8} md={8} sm={12} xs={12}>
         <Grid container spacing={gridSpacing}>
           <Grid item lg={6} md={6} sm={12} xs={12}>
-            <GreetingsCard />
+            <ImageCarousel />
           </Grid>
           <Grid item lg={6} md={6} sm={12} xs={12}>
-            <ImageCarousel />
+            <GreetingsCard />
           </Grid>
           <Grid item xs={12}>
             <ProductCard />

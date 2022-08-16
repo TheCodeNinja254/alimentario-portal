@@ -37,6 +37,7 @@ const AuthCardWrapper = ({ children, ...other }) => {
     <MainCard
       className={classes.card}
       contentClass={classes.content}
+      sx={{ opacity: "90%" }}
       {...other}
     >
       {children}

@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-
-// material-ui
 import { Grid } from "@material-ui/core";
-
-// project imports
 import { gridSpacing } from "../../../store/constant";
 import PopularCard from "./PopularCard";
 import TotalOrderLineChartCard from "./TotalOrderLineChartCard";
@@ -12,8 +8,6 @@ import ImageCarousel from "./ImageCarousel";
 import MenuCard from "../../../components/MenuCard";
 import GreetingsCard from "./GreetingsCard";
 import TitlebarImageList from "./ImageGallery";
-
-// ===========================|| DEFAULT DASHBOARD ||=========================== //
 
 const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);

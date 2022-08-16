@@ -16,8 +16,8 @@ import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
 import { Divider } from "@mui/material";
 import { gridSpacing } from "../../../store/constant";
-import frownFace from "../../../assets/images/Graphics/frown.jpg";
 import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
+import NoContentToShow from "../../../components/NoContentToShow";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -125,7 +125,7 @@ const ProductCard = () => {
                     </CardActionArea>
                     <CardActions>
                       <Button size="small" color="primary" variant="contained">
-                        ORDER NOW
+                        ADD TO CART
                       </Button>
                       <Button size="small" color="secondary" variant="outlined">
                         REVIEWS
@@ -135,29 +135,7 @@ const ProductCard = () => {
                 </Grid>
               ))
             ) : (
-              <Grid container spacing={gridSpacing}>
-                <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-                  <Card sx={{ maxWidth: 345 }} className={classes.errorCard}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        height="200"
-                        image={frownFace}
-                        alt="green iguana"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          Oops! Something went wrong
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          We are unable to show any products right here, right
-                          now. Please return soon as we work to resolve this.
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              </Grid>
+              <NoContentToShow />
             )
           }
         </GetDisplayProductsQuery>

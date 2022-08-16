@@ -15,8 +15,6 @@ import AuthCardWrapper from "../components/styles/AuthCardWrapper";
 import LoginForm from "../components/Forms/LoginForm";
 import { gridSpacing } from "../../../store/constant";
 
-//= ===============================|| AUTH3 - LOGIN ||================================//
-
 const Authentication = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -68,7 +66,7 @@ const Authentication = () => {
                             Hi, Welcome Back
                           </Typography>
                           <Typography
-                            variant="caption"
+                            variant="body1"
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : ""}
                           >

@@ -34,6 +34,7 @@ import GetSignedInCustomerQuery, {
   GET_SIGNED_IN_CUSTOMER,
 } from "../../../../api/Queries/Authentication/GetSignedInCustomer";
 import { SIGNOUT } from "../../../../api/Mutations/Customers";
+import { GET_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -131,6 +132,10 @@ const ProfileSection = () => {
           query: GET_SIGNED_IN_CUSTOMER,
           variables: { awaitRefetchQueries: true },
         },
+        {
+          query: GET_CART_ITEMS,
+          variables: { awaitRefetchQueries: true },
+        },
       ],
     }).then((response) => {
       if (response) {
@@ -162,6 +167,7 @@ const ProfileSection = () => {
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
+
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
@@ -357,7 +363,7 @@ const ProfileSection = () => {
             </Popper>
           </>
         ) : (
-          <Button component={Link} href="/account/login/login3">
+          <Button component={Link} href="/auth">
             <Chip
               classes={{ label: classes.profileLabel }}
               className={classes.profileChip}

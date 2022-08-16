@@ -14,8 +14,8 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 
 // project imports
-import AnimateButton from "../../ui-component/extended/AnimateButton";
-import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
+import AnimateButton from "../../../ui-component/extended/AnimateButton";
+import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
 
 // style constant
 const useStyles = makeStyles((theme) => ({

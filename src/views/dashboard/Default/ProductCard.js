@@ -17,7 +17,8 @@ import { makeStyles } from "@material-ui/styles";
 import { Divider } from "@mui/material";
 import { gridSpacing } from "../../../store/constant";
 import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
-import NoContentToShow from "../../../components/NoContentToShow";
+import NoContentToShow from "../../components/NoContentToShow";
+import AddToCartModal from "../../components/AddToCartModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -52,6 +53,14 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductCard = () => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [selectedProduct, setSelectedProduct] = React.useState({});
+
+  const handleAddToCart = (product) => {
+    setOpen(true);
+    setSelectedProduct(product);
+    console.log(product);
+  };
 
   return (
     <>
@@ -124,7 +133,12 @@ const ProductCard = () => {
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
-                      <Button size="small" color="primary" variant="contained">
+                      <Button
+                        size="small"
+                        color="primary"
+                        variant="contained"
+                        onClick={() => handleAddToCart(product)}
+                      >
                         ADD TO CART
                       </Button>
                       <Button size="small" color="secondary" variant="outlined">
@@ -140,6 +154,11 @@ const ProductCard = () => {
           }
         </GetDisplayProductsQuery>
       </Grid>
+      <AddToCartModal
+        open={open}
+        setOpen={setOpen}
+        selectedProduct={selectedProduct}
+      />
     </>
   );
 };

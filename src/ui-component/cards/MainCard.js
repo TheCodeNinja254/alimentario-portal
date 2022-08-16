@@ -14,8 +14,6 @@ const headerSX = {
   "& .MuiCardHeader-action": { mr: 0 },
 };
 
-// ===========================|| CUSTOM MAIN CARD ||=========================== //
-
 const MainCard = React.forwardRef(
   (
     {

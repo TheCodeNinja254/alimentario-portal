@@ -15,7 +15,7 @@ import { Badge, Button } from "@mui/material";
 import Transitions from "../../../../ui-component/extended/Transitions";
 import MainCard from "../../../../ui-component/cards/MainCard";
 import GetCartItemsQuery from "../../../../api/Queries/Cart/GetCartItems";
-import ListedCartItems from "../../../../components/ListedCartItems";
+import ListedCartItems from "../../../../views/components/ListedCartItems";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 
 // style const

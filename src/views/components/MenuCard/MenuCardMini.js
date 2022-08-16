@@ -10,8 +10,8 @@ import {
   Stack,
   Typography,
 } from "@material-ui/core";
-import AnimateButton from "../../ui-component/extended/AnimateButton";
-import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
+import AnimateButton from "../../../ui-component/extended/AnimateButton";
+import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
 
 // style constant
 const useStyles = makeStyles((theme) => ({

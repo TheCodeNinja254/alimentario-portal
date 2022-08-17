@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { useTheme } from "@material-ui/core/styles";
 
-const StatusIcon = ({ status }) => {
+const StatusIcon = ({ status, text }) => {
   const theme = useTheme();
   if (status === "success") {
     return (
@@ -49,7 +49,7 @@ const StatusIcon = ({ status }) => {
                 textAlign: "center",
               }}
             >
-              Success
+              {text || "Success"}
             </p>
           </Grid>
         </Grid>
@@ -59,46 +59,50 @@ const StatusIcon = ({ status }) => {
 
   return (
     <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="66"
-        height="76"
-        viewBox="0 0 66 76"
-      >
-        <g
-          id="Group_6576"
-          data-name="Group 6576"
-          transform="translate(-138 -195)"
-        >
-          <g
-            id="Ellipse_417"
-            data-name="Ellipse 417"
-            transform="translate(138 201)"
-            fill="none"
-            stroke="#e31010"
-            strokeWidth="3px"
-          >
-            <circle cx="33" cy="33" r="33" stroke="none" />
-            <circle cx="33" cy="33" r="31.5" fill="none" />
-          </g>
-          <text
-            id="_"
-            data-name="!"
-            transform="translate(160 256)"
-            fill="#e31010"
-            fontSize="69"
-            fontFamily="MshtakanBold, Mshtakan"
-          >
-            <tspan x="0" y="0">
-              !
-            </tspan>
-          </text>
-        </g>
-      </svg>
       <Grid container justifyContent="center">
-        <p style={{ color: theme.palette.error.main }}>
-          <b>Error</b>
-        </p>
+        <Grid item>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="66"
+            height="76"
+            viewBox="0 0 66 76"
+          >
+            <g
+              id="Group_6576"
+              data-name="Group 6576"
+              transform="translate(-138 -195)"
+            >
+              <g
+                id="Ellipse_417"
+                data-name="Ellipse 417"
+                transform="translate(138 201)"
+                fill="none"
+                stroke="#e31010"
+                strokeWidth="3px"
+              >
+                <circle cx="33" cy="33" r="33" stroke="none" />
+                <circle cx="33" cy="33" r="31.5" fill="none" />
+              </g>
+              <text
+                id="_"
+                data-name="!"
+                transform="translate(160 256)"
+                fill="#e31010"
+                fontSize="69"
+                fontFamily="MshtakanBold, Mshtakan"
+              >
+                <tspan x="0" y="0">
+                  !
+                </tspan>
+              </text>
+            </g>
+          </svg>
+        </Grid>
+        <Grid container justifyContent="center">
+          <p style={{ color: theme.palette.error.main }}>
+            <b>{text || "Error"}</b>
+          </p>
+        </Grid>
       </Grid>
     </>
   );

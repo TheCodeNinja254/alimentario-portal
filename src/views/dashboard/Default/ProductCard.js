@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -19,6 +19,7 @@ import { gridSpacing } from "../../../store/constant";
 import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
 import NoContentToShow from "../../components/NoContentToShow";
 import AddToCartModal from "../../components/AddToCartModal";
+import SignInModal from "../../components/SignInModal/SignInModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -51,15 +52,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductCard = () => {
+const ProductCard = ({ sessionStatus }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [selectedProduct, setSelectedProduct] = React.useState({});
 
+  const [submitDetails, setSubmitDetails] = useState({
+    status: false,
+    quantity: 0,
+    customerSpecification: "",
+  });
+
+  console.log(sessionStatus);
+
   const handleAddToCart = (product) => {
     setOpen(true);
+    setSubmitDetails({
+      status: false,
+      quantity: 0,
+      customerSpecification: "",
+    });
     setSelectedProduct(product);
-    console.log(product);
   };
 
   return (
@@ -154,11 +167,17 @@ const ProductCard = () => {
           }
         </GetDisplayProductsQuery>
       </Grid>
-      <AddToCartModal
-        open={open}
-        setOpen={setOpen}
-        selectedProduct={selectedProduct}
-      />
+      {sessionStatus ? (
+        <AddToCartModal
+          open={open}
+          setOpen={setOpen}
+          selectedProduct={selectedProduct}
+          submitDetails={submitDetails}
+          setSubmitDetails={setSubmitDetails}
+        />
+      ) : (
+        <SignInModal open={open} setOpen={setOpen} />
+      )}
     </>
   );
 };

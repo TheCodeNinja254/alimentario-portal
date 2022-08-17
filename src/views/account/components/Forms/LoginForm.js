@@ -34,6 +34,7 @@ import { SIGN_IN } from "../../../../api/Mutations/Customers";
 import { encrypt } from "../../../../utils/encryptDecrypt";
 import ErrorHandler from "../../../../utils/errorHandler";
 import { GET_SIGNED_IN_CUSTOMER } from "../../../../api/Queries/Authentication/GetSignedInCustomer";
+import { GET_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string()
@@ -166,6 +167,11 @@ const LoginForm = () => {
             refetchQueries: [
               {
                 query: GET_SIGNED_IN_CUSTOMER,
+                variables: { awaitRefetchQueries: true },
+              },
+              {
+                query: GET_CART_ITEMS,
+                variables: { awaitRefetchQueries: true },
               },
             ],
           })

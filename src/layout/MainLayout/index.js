@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: theme.palette.background.default,
-    opacity: "90%",
+    // opacity: "90%",
   },
   appBarWidth: {
     transition: theme.transitions.create("width"),
     backgroundColor: theme.palette.background.default,
-    opacity: "90%",
+    // opacity: "90%",
   },
   content: {
     ...theme.typography.mainContent,
@@ -40,15 +40,15 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
     },
     [theme.breakpoints.down("md")]: {
-      marginLeft: "20px",
+      // marginLeft: "20px",
       width: `calc(100% - ${drawerWidth}px)`,
       padding: "16px",
     },
     [theme.breakpoints.down("sm")]: {
-      marginLeft: "10px",
+      // marginLeft: "10px",
       width: `calc(100% - ${drawerWidth}px)`,
       padding: "16px",
-      marginRight: "10px",
+      // marginRight: "10px",
     },
   },
   contentShift: {

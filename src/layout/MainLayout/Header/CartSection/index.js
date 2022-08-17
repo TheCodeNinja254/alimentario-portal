@@ -1,36 +1,36 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import {
-  CardContent,
   Chip,
   ClickAwayListener,
   Grid,
-  Link,
   Paper,
   Popper,
+  Stack,
   Typography,
 } from "@material-ui/core";
-import { IconShoppingCart } from "@tabler/icons";
-import { Badge, Button } from "@mui/material";
+import { IconShoppingCart, IconX } from "@tabler/icons";
+import {
+  Badge,
+  Button,
+  CardActions,
+  CardContent,
+  Divider,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import PerfectScrollbar from "react-perfect-scrollbar";
 import Transitions from "../../../../ui-component/extended/Transitions";
 import MainCard from "../../../../ui-component/cards/MainCard";
 import GetCartItemsQuery from "../../../../api/Queries/Cart/GetCartItems";
-import ListedCartItems from "../../../../views/components/ListedCartItems";
-import AnimateButton from "../../../../ui-component/extended/AnimateButton";
+import photo from "../../../../assets/images/Graphics/bbq_05.jpg";
+import CartSectionItem from "./CartSectionItem";
+import Image from "../../../../components/Image";
 
 // style const
 const useStyles = makeStyles((theme) => ({
-  navContainer: {
-    width: "100%",
-    maxWidth: "350px",
-    minWidth: "300px",
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: "10px",
-    [theme.breakpoints.down("sm")]: {
-      minWidth: "100%",
-    },
-  },
-  profileChip: {
+  cartChip: {
     height: "48px",
     alignItems: "center",
     borderRadius: "27px",
@@ -51,67 +51,41 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 0,
     padding: "12px",
   },
-  listItem: {
-    marginTop: "5px",
-  },
-  cardContent: {
-    padding: "16px !important",
-  },
   card: {
     backgroundColor: theme.palette.primary.light,
     marginBottom: "16px",
     marginTop: "16px",
   },
-  cartText: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-  },
-  searchControl: {
+  noContentImage: {
+    height: 280,
     width: "100%",
-    paddingRight: "8px",
-    paddingLeft: "16px",
-    marginBottom: "16px",
-    marginTop: "16px",
+    minWidth: 300,
   },
-  startAdornment: {
-    fontSize: "1rem",
-    color: theme.palette.grey[500],
-  },
-  flex: {
-    display: "flex",
-  },
-  name: {
-    marginLeft: "2px",
-    fontWeight: 400,
-  },
-  animateButton: {
-    color: theme.palette.grey[800],
-    backgroundColor: theme.palette.warning.main,
+  noContentText: {
+    color: theme.palette.secondary.main,
+    fontWeight: 700,
+    fontSize: 16,
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
-    marginTop: theme.spacing(2),
-    textTransform: "capitalize",
-    boxShadow: "none",
-    "&:hover": {
-      backgroundColor: theme.palette.warning.dark,
-    },
-    divider: {
-      marginTop: theme.spacing(3),
-    },
+    marginLeft: theme.spacing(3),
   },
-  ScrollHeight: {
-    height: "100%",
-    maxHeight: "calc(100vh - 250px)",
-    overflowX: "hidden",
+  noContentSubText: {
+    marginBottom: theme.spacing(2),
+    marginLeft: theme.spacing(3),
   },
   badgeWarning: {
     backgroundColor: theme.palette.warning.dark,
     color: "#fff",
+  },
+  cartSubText: {
+    marginTop: theme.spacing(3),
   },
 }));
 
 const CartSection = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -143,9 +117,9 @@ const CartSection = () => {
           <>
             <Chip
               classes={{ label: classes.profileLabel }}
-              className={classes.profileChip}
+              className={classes.cartChip}
               label={
-                <Badge badgeContent={cartItemsList?.length} color="primary">
+                <Badge badgeContent={cartItemsList.length || 0} color="primary">
                   <IconShoppingCart
                     stroke={1.5}
                     size="1.5rem"
@@ -179,7 +153,11 @@ const CartSection = () => {
               }}
             >
               {({ TransitionProps }) => (
-                <Transitions in={open} {...TransitionProps}>
+                <Transitions
+                  position={matchesXs ? "top" : "top-right"}
+                  in={open}
+                  {...TransitionProps}
+                >
                   <Paper>
                     <ClickAwayListener onClickAway={handleClose}>
                       <MainCard
@@ -189,43 +167,68 @@ const CartSection = () => {
                         boxShadow
                         shadow={theme.shadows[16]}
                       >
-                        <CardContent className={classes.cardContent}>
-                          <Grid container direction="column" spacing={0}>
-                            <Grid item className={classes.flex}>
-                              <Typography variant="h4">My</Typography>
-                              <Typography
-                                component="span"
-                                variant="h4"
-                                className={classes.name}
-                              >
-                                Cart
-                              </Typography>
-                            </Grid>
-                            <Grid item>
-                              <Typography variant="subtitle2">
-                                You have{" "}
-                                <strong>{cartItemsList?.length}</strong>{" "}
-                                {cartItemsList?.length > 1 ? "items" : "item"}{" "}
-                                in your cart
-                              </Typography>
-                            </Grid>
-                            <Grid item>
-                              <ListedCartItems cartItemsList={cartItemsList} />
-                            </Grid>
-                            <Grid>
-                              <AnimateButton>
-                                <Button
-                                  component={Link}
-                                  href="/cart"
-                                  variant="contained"
-                                  className={classes.animateButton}
+                        <Grid container direction="column" spacing={2}>
+                          <Grid item xs={12}>
+                            <Grid
+                              container
+                              alignItems="center"
+                              justifyContent="space-between"
+                              sx={{ pt: 2, px: 2 }}
+                            >
+                              <Grid item>
+                                <Stack direction="row" spacing={2}>
+                                  <Typography variant="subtitle1">
+                                    My Cart
+                                  </Typography>
+                                  <Chip
+                                    size="small"
+                                    label={cartItemsList?.length}
+                                    sx={{
+                                      color: theme.palette.background.default,
+                                      bgcolor: theme.palette.warning.dark,
+                                    }}
+                                  />
+                                </Stack>
+                              </Grid>
+                              <Grid item>
+                                <IconButton
+                                  edge="end"
+                                  aria-label="delete"
+                                  onClick={handleClose}
                                 >
-                                  Checkout Now
-                                </Button>
-                              </AnimateButton>
+                                  <IconX />
+                                </IconButton>
+                              </Grid>
                             </Grid>
                           </Grid>
-                        </CardContent>
+                          <Grid item xs={12}>
+                            <PerfectScrollbar
+                              style={{
+                                height: "100%",
+                                maxHeight: "calc(100vh - 205px)",
+                                overflowX: "hidden",
+                              }}
+                            >
+                              <Grid container direction="column" spacing={2}>
+                                <Grid item xs={12} p={0}>
+                                  <Divider sx={{ my: 0 }} />
+                                </Grid>
+                              </Grid>
+                              <CartSectionItem cartItemsList={cartItemsList} />
+                            </PerfectScrollbar>
+                          </Grid>
+                        </Grid>
+                        <Divider />
+                        <CardActions sx={{ p: 1.25, justifyContent: "center" }}>
+                          <Button
+                            size="small"
+                            disableElevation
+                            component={RouterLink}
+                            to="/checkout"
+                          >
+                            Checkout Now
+                          </Button>
+                        </CardActions>
                       </MainCard>
                     </ClickAwayListener>
                   </Paper>
@@ -237,7 +240,7 @@ const CartSection = () => {
           <>
             <Chip
               classes={{ label: classes.profileLabel }}
-              className={classes.profileChip}
+              className={classes.cartChip}
               label={
                 <IconShoppingCart
                   stroke={1.5}
@@ -281,30 +284,59 @@ const CartSection = () => {
                         boxShadow
                         shadow={theme.shadows[16]}
                       >
-                        <CardContent className={classes.cardContent}>
-                          <Grid container direction="column" spacing={0}>
-                            <Grid item className={classes.flex}>
-                              <Typography variant="h4">Your Cart</Typography>
-                              <Typography
-                                component="span"
-                                variant="h4"
-                                className={classes.name}
-                              >
-                                is empty
-                              </Typography>
-                            </Grid>
-                            <Grid item>
-                              <Typography
-                                variant="subtitle2"
-                                className={classes.cartText}
-                              >
-                                Items you add to your cart will appear here.
-                                Login to see items you had previously added to
-                                the cart.
-                              </Typography>
+                        <Grid container direction="column" spacing={2}>
+                          <Grid item xs={12}>
+                            <Grid
+                              container
+                              alignItems="center"
+                              justifyContent="space-between"
+                              sx={{ pt: 2, px: 2 }}
+                            >
+                              <Grid item>
+                                <Stack direction="row" spacing={2}>
+                                  <Typography variant="subtitle1">
+                                    My Cart
+                                  </Typography>
+                                  <Chip
+                                    size="small"
+                                    label={0}
+                                    sx={{
+                                      color: theme.palette.background.default,
+                                      bgcolor: theme.palette.warning.dark,
+                                    }}
+                                  />
+                                </Stack>
+                              </Grid>
+                              <Grid item>
+                                <IconButton
+                                  edge="end"
+                                  aria-label="delete"
+                                  onClick={handleClose}
+                                >
+                                  <IconX />
+                                </IconButton>
+                              </Grid>
                             </Grid>
                           </Grid>
-                        </CardContent>
+                          <Grid item xs={12}>
+                            <CardContent>
+                              <Image
+                                alt="Nothing to show"
+                                src={photo}
+                                className={classes.noContentImage}
+                              />
+                              <Typography className={classes.noContentText}>
+                                Your cart is empty.
+                              </Typography>
+                              <Typography
+                                variant="caption"
+                                className={classes.noContentSubText}
+                              >
+                                Items you add to your cart will appear here.
+                              </Typography>
+                            </CardContent>
+                          </Grid>
+                        </Grid>
                       </MainCard>
                     </ClickAwayListener>
                   </Paper>

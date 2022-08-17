@@ -19,7 +19,7 @@ import { GET_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
 import ADD_TO_CART from "../../../../api/Mutations/Cart";
 
 const AddToCartSchema = Yup.object().shape({
-  quantity: Yup.number().required("Please enter the amount you need"),
+  quantity: Yup.number().max(100).required("Please enter the amount you need"),
   customerSpecification: Yup.string()
     .max(255, "Cannot exceed 255 characters")
     .nullable(),
@@ -32,7 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCartForm = ({ productId }) => {
+const AddToCartForm = ({
+  productId,
+  setSubmitDetails,
+  productUnitOfMeasure,
+}) => {
   const classes = useStyles();
 
   const [submitError, setSubmitError] = useState("");
@@ -58,6 +62,11 @@ const AddToCartForm = ({ productId }) => {
         validationSchema={AddToCartSchema}
         onSubmit={(values) => {
           setSubmitError("");
+          setSubmitDetails({
+            status: false,
+            quantity: "",
+            customerSpecification: "",
+          });
           AddToCartMutation({
             variables: {
               input: {
@@ -83,8 +92,11 @@ const AddToCartForm = ({ productId }) => {
                 },
               } = response;
               if (addToCartStatus) {
-                // navigate("/");
-                console.log("success");
+                setSubmitDetails({
+                  status: true,
+                  quantity: values.quantity,
+                  customerSpecification: values.customerSpecification,
+                });
               } else {
                 setSubmitError(addToCartMessage);
               }
@@ -104,7 +116,7 @@ const AddToCartForm = ({ productId }) => {
               className={classes.formInput}
             >
               <InputLabel htmlFor="outlined-adornment-quantity-login">
-                Quantity
+                {`Quantity (${productUnitOfMeasure})`}
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-quantity-login"
@@ -114,7 +126,7 @@ const AddToCartForm = ({ productId }) => {
                 onChange={(e) => {
                   setFieldValue("quantity", e.target.value, true);
                 }}
-                label="Quantity"
+                label={`Quantity (${productUnitOfMeasure})`}
                 inputProps={{
                   classes: {
                     notchedOutline: classes.notchedOutline,
@@ -193,6 +205,8 @@ const AddToCartForm = ({ productId }) => {
 
 AddToCartForm.propTypes = {
   productId: PropTypes.number.isRequired,
+  setSubmitDetails: PropTypes.func.isRequired,
+  productUnitOfMeasure: PropTypes.number.isRequired,
 };
 
 export default AddToCartForm;

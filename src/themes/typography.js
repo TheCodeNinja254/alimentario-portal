@@ -87,9 +87,9 @@ export default function themeTypography(theme) {
       width: "100%",
       minHeight: "calc(100vh - 88px)",
       flexGrow: 1,
-      padding: "20px",
+      padding: "30px",
       marginTop: "88px",
-      marginRight: "20px",
+      // marginRight: "20px",
       // borderRadius: `${theme.customization.borderRadius}px`,
     },
     menuCaption: {

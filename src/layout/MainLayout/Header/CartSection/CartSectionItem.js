@@ -36,8 +36,6 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 const CartSectionItem = ({ cartItemsList }) => {
   const theme = useTheme();
 
-  console.log(cartItemsList);
-
   return (
     <List
       sx={{
@@ -60,7 +58,7 @@ const CartSectionItem = ({ cartItemsList }) => {
       }}
     >
       {cartItemsList.map((cartItem) => (
-        <>
+        <div key={cartItem.id}>
           <ListItemWrapper>
             <ListItem alignItems="center">
               <ListItemAvatar>
@@ -118,7 +116,7 @@ const CartSectionItem = ({ cartItemsList }) => {
             </Grid>
           </ListItemWrapper>
           <Divider />
-        </>
+        </div>
       ))}
     </List>
   );

@@ -113,7 +113,7 @@ const CartSection = () => {
   return (
     <GetCartItemsQuery>
       {({ getCartItems: { status, cartItemsList } }) =>
-        status ? (
+        status && cartItemsList?.length > 0 ? (
           <>
             <Chip
               classes={{ label: classes.profileLabel }}

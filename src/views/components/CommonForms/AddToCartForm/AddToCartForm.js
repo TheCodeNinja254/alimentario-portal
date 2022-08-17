@@ -203,10 +203,15 @@ const AddToCartForm = ({
   );
 };
 
+AddToCartForm.defaultProps = {
+  productId: 0,
+  productUnitOfMeasure: "",
+};
+
 AddToCartForm.propTypes = {
-  productId: PropTypes.number.isRequired,
-  setSubmitDetails: PropTypes.func.isRequired,
-  productUnitOfMeasure: PropTypes.number.isRequired,
+  productId: PropTypes.number,
+  setSubmitDetails: PropTypes.object.isRequired,
+  productUnitOfMeasure: PropTypes.number,
 };
 
 export default AddToCartForm;

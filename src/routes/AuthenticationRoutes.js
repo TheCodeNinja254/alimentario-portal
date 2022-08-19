@@ -9,7 +9,7 @@ const CustomerAuth = Loadable(
   lazy(() => import("../views/account/Authentication"))
 );
 const CustomerAccountCreation = Loadable(
-  lazy(() => import("../views/account/CustomerRegistration"))
+  lazy(() => import("../views/account/CustomerAccountCreation"))
 );
 const PasswordReset = Loadable(
   lazy(() => import("../views/account/PasswordReset"))

@@ -15,7 +15,8 @@ import {
 } from "@mui/material";
 import { IconTrash } from "@tabler/icons";
 import PropTypes from "prop-types";
-import FormatDate from "../../../../utils/formatDate";
+import { makeStyles } from "@material-ui/styles";
+import FormatDate from "../../../utils/formatDate";
 
 // styles
 const ListItemWrapper = styled("div")(() => ({
@@ -30,8 +31,23 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 
-const CartSectionItem = ({ cartItemsList, handleDeleteCartItem }) => {
+const StyledAvatar = styled(Avatar)(() => ({
+  height: 100,
+  width: 100,
+}));
+
+const useStyles = makeStyles((theme) => ({
+  productName: {
+    marginLeft: theme.spacing(2),
+    fontSize: 17,
+    color: theme.palette.primary.dark,
+    fontWeight: 500,
+  },
+}));
+
+const CartItem = ({ cartItemsList, handleDeleteCartItem }) => {
   const theme = useTheme();
+  const classes = useStyles();
 
   return (
     <List
@@ -59,12 +75,18 @@ const CartSectionItem = ({ cartItemsList, handleDeleteCartItem }) => {
           <ListItemWrapper>
             <ListItem alignItems="center">
               <ListItemAvatar>
-                <Avatar
+                <StyledAvatar
                   alt="John Doe"
                   src={`/images/${cartItem?.productPicMain}`}
                 />
               </ListItemAvatar>
-              <ListItemText primary={cartItem.productName} />
+              <ListItemText
+                primary={
+                  <Typography className={classes.productName}>
+                    {cartItem.productName}
+                  </Typography>
+                }
+              />
               <ListItemSecondaryAction>
                 <Grid container justifyContent="flex-end">
                   <Grid item xs={12}>
@@ -124,9 +146,9 @@ const CartSectionItem = ({ cartItemsList, handleDeleteCartItem }) => {
   );
 };
 
-CartSectionItem.propTypes = {
+CartItem.propTypes = {
   cartItemsList: PropTypes.array.isRequired,
   handleDeleteCartItem: PropTypes.func.isRequired,
 };
 
-export default CartSectionItem;
+export default CartItem;

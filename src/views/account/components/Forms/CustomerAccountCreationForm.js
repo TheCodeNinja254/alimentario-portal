@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import {
@@ -17,17 +17,36 @@ import {
   Typography,
   useMediaQuery,
 } from "@material-ui/core";
-
+import { Form as FormikForm, Formik } from "formik";
 import * as Yup from "yup";
-import { Formik } from "formik";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import useScriptRef from "../../../../hooks/useScriptRef";
+import { useNavigate } from "react-router";
+import isEmpty from "lodash.isempty";
+import { useMutation } from "@apollo/client";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 import {
   strengthColor,
   strengthIndicator,
 } from "../../../../utils/password-strength";
+import CUSTOMER_ACCOUNT_CREATION from "../../../../api/Mutations/CustomerAccount";
+import { encrypt } from "../../../../utils/encryptDecrypt";
+import { GET_SIGNED_IN_CUSTOMER } from "../../../../api/Queries/Authentication/GetSignedInCustomer";
+import { GET_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
+import ErrorHandler from "../../../../utils/errorHandler";
+import Dialog from "../../../../components/Dialog";
+import StatusIcon from "../../../../components/StatusIcon";
+import trimNonNumbers from "../../../../utils/trimNonNumbers";
+
+const CustomerAccountCreationSchema = Yup.object().shape({
+  emailAddress: Yup.string()
+    .email("Please enter a valid email address")
+    .required("Please enter your email address"),
+  password: Yup.string().required("Create a password for your account"),
+  firstName: Yup.string().required("Name is required"),
+  lastName: Yup.string().required("Name is required"),
+  msisdn: Yup.string().min(9).max(12).required("Mobile number is required."),
+});
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -68,17 +87,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//= ==========================|| FIREBASE - REGISTER ||===========================//
-
-const RegistrationForm = ({ ...others }) => {
+const CustomerAccountCreationForm = () => {
   const classes = useStyles();
-  const scriptedRef = useScriptRef();
+  const navigate = useNavigate();
   const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const [showPassword, setShowPassword] = React.useState(false);
   const [checked, setChecked] = React.useState(true);
 
   const [strength, setStrength] = React.useState(0);
   const [level, setLevel] = React.useState("");
+
+  const [registerDetails, setRegisterDetails] = React.useState({
+    open: false,
+    status: false,
+    message: "",
+    messageHeader: "Account creation failed",
+    body: "",
+  });
+
+  const buttonDisabledStatus = (errors, values, loading) => {
+    let status = true;
+    if (
+      isEmpty(errors) &&
+      values.emailAddress !== "" &&
+      values.firstName !== "" &&
+      values.lastName !== "" &&
+      values.msisdn !== "" &&
+      values.password !== "" &&
+      loading === false
+    ) {
+      status = false;
+    }
+    return status;
+  };
+
+  const { open, status, message, messageHeader, body } = registerDetails;
+
+  const [AccountCreationMutation, { loading }] = useMutation(
+    CUSTOMER_ACCOUNT_CREATION
+  );
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -94,9 +141,13 @@ const RegistrationForm = ({ ...others }) => {
     setLevel(strengthColor(temp));
   };
 
-  useEffect(() => {
-    changePassword("123456");
-  }, []);
+  const closeDialog = () => {
+    setRegisterDetails({ open: false, status: false, message: "", body });
+  };
+
+  // useEffect(() => {
+  //   changePassword("123456");
+  // }, []);
 
   return (
     <>
@@ -122,103 +173,167 @@ const RegistrationForm = ({ ...others }) => {
 
       <Formik
         initialValues={{
-          email: "info@codedthemes.com",
-          password: "123456",
+          emailAddress: "",
+          firstName: "",
+          lastName: "",
+          msisdn: "",
+          password: "",
           submit: null,
         }}
-        validationSchema={Yup.object().shape({
-          email: Yup.string()
-            .email("Must be a valid email")
-            .max(255)
-            .required("Email is required"),
-          password: Yup.string().max(255).required("Password is required"),
-        })}
-        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err) {
-            // eslint-disable-next-line no-console
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
-          }
+        validationSchema={CustomerAccountCreationSchema}
+        onSubmit={(values, actions) => {
+          AccountCreationMutation({
+            variables: {
+              input: {
+                emailAddress: encrypt(values.emailAddress),
+                firstName: values.firstName,
+                lastName: values.lastName,
+                msisdn: encrypt(values.msisdn),
+                password: encrypt(values.password),
+              },
+            },
+            refetchQueries: [
+              {
+                query: GET_SIGNED_IN_CUSTOMER,
+                variables: { awaitRefetchQueries: true },
+              },
+              {
+                query: GET_CART_ITEMS,
+                variables: { awaitRefetchQueries: true },
+              },
+            ],
+          })
+            .then((response) => {
+              const {
+                data: {
+                  customerAccountCreation: {
+                    status: mutationStatus,
+                    message: customerMessage,
+                  },
+                },
+              } = response;
+              if (mutationStatus) {
+                actions.resetForm();
+                navigate("/", {
+                  state: { newInvite: true, firstName: values.firstName },
+                });
+              } else {
+                // account creation error
+                setRegisterDetails({
+                  open: true,
+                  status: false,
+                  messageHeader: "Account creation failed",
+                  message: customerMessage,
+                  body,
+                });
+              }
+            })
+            .catch((res) => {
+              // account creation error
+              setRegisterDetails({
+                open: true,
+                status: false,
+                messageHeader: "Account creation failed",
+                message: ErrorHandler(
+                  res.message || res.graphQLErrors[0].message
+                ),
+                body,
+              });
+            });
         }}
       >
-        {({
-          errors,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-          isSubmitting,
-          touched,
-          values,
-        }) => (
-          <form noValidate onSubmit={handleSubmit} {...others}>
+        {({ errors, setFieldValue, values }) => (
+          <FormikForm>
+            <Dialog
+              open={open}
+              modalContent={
+                <Box className={classes.dialogContent}>
+                  <StatusIcon
+                    status={status ? "success" : "error"}
+                    text={messageHeader}
+                  />
+                  <Typography variant="body1"> {message}</Typography>
+                </Box>
+              }
+              modalActions={
+                <Button
+                  variant="contained"
+                  onClick={() => closeDialog()}
+                  color="primary"
+                  autoFocus
+                >
+                  Close
+                </Button>
+              }
+              handleClose={closeDialog}
+            />
             <Grid container spacing={matchDownSM ? 0 : 2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
+                  error={Boolean(errors.firstName)}
                   label="First Name"
                   margin="normal"
-                  name="fname"
+                  value={values.firstName}
+                  name="firstName"
+                  onChange={(e) => {
+                    setFieldValue("firstName", e.target.value, true);
+                  }}
                   type="text"
-                  defaultValue="Joseph"
                   className={classes.loginInput}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
+                  error={Boolean(errors.email)}
                   label="Last Name"
                   margin="normal"
-                  name="lname"
+                  value={values.lastName}
+                  name="lastName"
+                  onChange={(e) => {
+                    setFieldValue("lastName", e.target.value, true);
+                  }}
                   type="text"
-                  defaultValue="Doe"
                   className={classes.loginInput}
                 />
               </Grid>
             </Grid>
             <FormControl
               fullWidth
-              error={Boolean(touched.email && errors.email)}
+              error={Boolean(errors.emailAddress)}
               className={classes.loginInput}
             >
               <InputLabel htmlFor="outlined-adornment-email-register">
-                Email Address / Username
+                Email Address
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-email-register"
                 type="email"
-                value={values.email}
-                name="email"
-                onBlur={handleBlur}
-                onChange={handleChange}
+                value={values.emailAddress}
+                name="emailAddress"
+                onChange={(e) => {
+                  setFieldValue("emailAddress", e.target.value, true);
+                }}
                 inputProps={{
                   classes: {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
               />
-              {touched.email && errors.email && (
+              {errors.emailAddress && (
                 <FormHelperText
                   error
                   id="standard-weight-helper-text--register"
                 >
-                  {" "}
-                  {errors.email}{" "}
+                  {errors.emailAddress}
                 </FormHelperText>
               )}
             </FormControl>
 
             <FormControl
               fullWidth
-              error={Boolean(touched.msisdn && errors.msisdn)}
+              error={Boolean(errors.msisdn)}
               className={classes.loginInput}
             >
               <InputLabel htmlFor="outlined-adornment-email-msisdn">
@@ -229,15 +344,17 @@ const RegistrationForm = ({ ...others }) => {
                 type="tel"
                 value={values.msisdn}
                 name="msisdn"
-                onBlur={handleBlur}
-                onChange={handleChange}
+                onChange={(e) => {
+                  const clean = trimNonNumbers(e.target.value);
+                  setFieldValue("msisdn", clean, true);
+                }}
                 inputProps={{
                   classes: {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
               />
-              {touched.msisdn && errors.msisdn && (
+              {errors.msisdn && (
                 <FormHelperText error id="standard-weight-helper-text--msisdn">
                   {errors.msisdn}
                 </FormHelperText>
@@ -246,7 +363,7 @@ const RegistrationForm = ({ ...others }) => {
 
             <FormControl
               fullWidth
-              error={Boolean(touched.password && errors.password)}
+              error={Boolean(errors.password)}
               className={classes.loginInput}
             >
               <InputLabel htmlFor="outlined-adornment-password-register">
@@ -258,9 +375,8 @@ const RegistrationForm = ({ ...others }) => {
                 value={values.password}
                 name="password"
                 label="Password"
-                onBlur={handleBlur}
                 onChange={(e) => {
-                  handleChange(e);
+                  setFieldValue("password", e.target.value, true);
                   changePassword(e.target.value);
                 }}
                 endAdornment={
@@ -281,7 +397,7 @@ const RegistrationForm = ({ ...others }) => {
                   },
                 }}
               />
-              {touched.password && errors.password && (
+              {errors.password && (
                 <FormHelperText
                   error
                   id="standard-weight-helper-text-password-register"
@@ -360,22 +476,22 @@ const RegistrationForm = ({ ...others }) => {
               <AnimateButton>
                 <Button
                   disableElevation
-                  disabled={isSubmitting}
+                  disabled={buttonDisabledStatus(errors, values, loading)}
                   fullWidth
                   size="large"
                   type="submit"
                   variant="contained"
                   color="secondary"
                 >
-                  Sign up
+                  {loading ? "Please wait..." : "Sign up"}
                 </Button>
               </AnimateButton>
             </Box>
-          </form>
+          </FormikForm>
         )}
       </Formik>
     </>
   );
 };
 
-export default RegistrationForm;
+export default CustomerAccountCreationForm;

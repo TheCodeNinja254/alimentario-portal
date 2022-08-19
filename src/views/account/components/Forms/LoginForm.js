@@ -16,11 +16,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import isEmpty from "lodash.isempty";
-
-// third party
 import * as Yup from "yup";
-
-// project imports
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Form as FormikForm, Formik } from "formik";
@@ -84,8 +80,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-
-//= ===========================|| LOGIN ||============================//
 
 const LoginForm = () => {
   const classes = useStyles();

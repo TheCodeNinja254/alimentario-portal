@@ -22,7 +22,6 @@ import {
   IconBuildingBank,
   IconLogin,
   IconLogout,
-  IconSettings,
   IconShoppingCart,
   IconUser,
 } from "@tabler/icons";
@@ -200,13 +199,6 @@ const ProfileSection = () => {
                   aria-controls={open ? "menu-list-grow" : undefined}
                   aria-haspopup="true"
                   color="inherit"
-                />
-              }
-              label={
-                <IconSettings
-                  stroke={1.5}
-                  size="1.5rem"
-                  color={theme.palette.primary.main}
                 />
               }
               variant="outlined"

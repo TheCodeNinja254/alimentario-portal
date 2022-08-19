@@ -12,9 +12,9 @@ import Logo from "../../../ui-component/Logo";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
 import RegistrationWrapper from "../components/styles/RegistrationWrapper";
 import AuthCardWrapper from "../components/styles/AuthCardWrapper";
-import RegistrationForm from "../components/Forms/RegistrationForm";
+import CustomerAccountCreationForm from "../components/Forms/CustomerAccountCreationForm";
 
-const CustomerRegistration = () => {
+const CustomerAccountCreation = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -76,7 +76,7 @@ const CustomerRegistration = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <RegistrationForm />
+                    <CustomerAccountCreationForm />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />
@@ -112,4 +112,4 @@ const CustomerRegistration = () => {
   );
 };
 
-export default CustomerRegistration;
+export default CustomerAccountCreation;

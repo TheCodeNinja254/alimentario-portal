@@ -21,7 +21,7 @@ import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSig
 const useStyles = makeStyles((theme) => ({
   card: {
     background: theme.palette.warning.light,
-    marginTop: "16px",
+    marginTop: theme.spacing(2),
     marginBottom: "16px",
     overflow: "hidden",
     position: "relative",

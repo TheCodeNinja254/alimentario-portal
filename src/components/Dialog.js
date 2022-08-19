@@ -10,9 +10,10 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import Slide from "@material-ui/core/Slide";
 import { Typography } from "@material-ui/core";
 
-const useSyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   dialog: {
     paddingBottom: 16,
+    textAlign: "center",
   },
   dialogTitle: {
     borderBottom: `1px solid ${theme.palette.primary.main}`,
@@ -83,7 +84,7 @@ const DialogModal = ({
   disableBackdropClose = false,
 }) => {
   const theme = useTheme();
-  const classes = useSyles();
+  const classes = useStyles();
   const fullScreenValue = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Dialog

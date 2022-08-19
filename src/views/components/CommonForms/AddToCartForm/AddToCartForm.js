@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 import ErrorHandler from "../../../../utils/errorHandler";
 import { GET_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
-import ADD_TO_CART from "../../../../api/Mutations/Cart";
+import { ADD_TO_CART } from "../../../../api/Mutations/Cart";
 
 const AddToCartSchema = Yup.object().shape({
   quantity: Yup.number().max(100).required("Please enter the amount you need"),
@@ -210,8 +210,8 @@ AddToCartForm.defaultProps = {
 
 AddToCartForm.propTypes = {
   productId: PropTypes.number,
-  setSubmitDetails: PropTypes.object.isRequired,
-  productUnitOfMeasure: PropTypes.number,
+  setSubmitDetails: PropTypes.func.isRequired,
+  productUnitOfMeasure: PropTypes.string,
 };
 
 export default AddToCartForm;

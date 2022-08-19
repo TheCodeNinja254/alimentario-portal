@@ -1,14 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-// third party
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { CookiesProvider } from "react-cookie";
 import { ApolloProvider } from "@apollo/client";
 import Client from "./Apollo/Client";
-
-// project imports
 import { store } from "./store";
 import * as serviceWorker from "./serviceWorker";
 import App from "./App";

@@ -95,14 +95,26 @@ const AddToCartModal = ({
               <Stack direction="row" spacing={1} className={classes.infoTab}>
                 <Chip
                   variant="filled"
-                  label={`Quantity: ${quantity} ${selectedProduct?.productUnitOfMeasure}`}
+                  label={
+                    <Typography>
+                      <strong>
+                        {quantity} {selectedProduct?.productUnitOfMeasure}
+                      </strong>{" "}
+                      @ Ksh. <strong>{selectedProduct?.productPrice}</strong>
+                    </Typography>
+                  }
                   className={classes.priceChip}
                 />
                 <Chip
                   variant="filled"
-                  label={`Ksh. ${
-                    selectedProduct?.productPrice * Number(quantity)
-                  }`}
+                  label={
+                    <Typography>
+                      Ksh.{" "}
+                      <strong>
+                        {selectedProduct?.productPrice * Number(quantity)}
+                      </strong>
+                    </Typography>
+                  }
                   className={classes.priceChip}
                 />
               </Stack>

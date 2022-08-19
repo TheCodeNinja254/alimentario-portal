@@ -63,8 +63,6 @@ const ProductCard = ({ sessionStatus }) => {
     customerSpecification: "",
   });
 
-  console.log(sessionStatus);
-
   const handleAddToCart = (product) => {
     setOpen(true);
     setSubmitDetails({
@@ -109,7 +107,12 @@ const ProductCard = ({ sessionStatus }) => {
                       <CardContent>
                         <Chip
                           variant="filled"
-                          label={`Price per ${product?.productUnitOfMeasure}: ${product?.productPrice}`}
+                          label={
+                            <Typography>
+                              Price per {product?.productUnitOfMeasure}:{" "}
+                              <strong>Ksh. {product?.productPrice}</strong>
+                            </Typography>
+                          }
                           className={classes.priceChip}
                         />
                         <Typography

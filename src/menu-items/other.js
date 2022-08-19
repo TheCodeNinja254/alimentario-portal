@@ -8,19 +8,32 @@ const icons = {
   IconSitemap,
 };
 
-// ===========================|| BLOG PAGE ||=========================== //
-
 const other = {
-  id: "sample-docs-roadmap",
+  id: "terms-conditions-page",
   type: "group",
   children: [
     {
-      id: "sample-page",
-      title: "The Chef's Blog",
-      type: "item",
+      id: "terms-conditions",
+      title: "Terms & Conditions",
+      type: "collapse",
       url: "/sample-page",
       icon: icons.IconBrandChrome,
-      breadcrumbs: false,
+      children: [
+        {
+          id: "terms",
+          title: "Terms & Conditions",
+          type: "item",
+          url: "/terms",
+          breadcrumbs: false,
+        },
+        {
+          id: "cookie-policy",
+          title: "Cookie Policy",
+          type: "item",
+          url: "/cookie-policy",
+          breadcrumbs: false,
+        },
+      ],
     },
   ],
 };

@@ -15,8 +15,6 @@ const icons = {
   IconPhoneCall,
 };
 
-// ===========================|| UNAUTHENTICATED PAGES FOR ACCOUNT INFO ||=========================== //
-
 const account = {
   id: "account",
   title: "Account",

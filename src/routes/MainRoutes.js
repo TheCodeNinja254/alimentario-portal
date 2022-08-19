@@ -11,8 +11,13 @@ const CheckoutView = Loadable(lazy(() => import("../views/checkout")));
 // Gallery Routing
 const GalleryDefault = Loadable(lazy(() => import("../views/gallery")));
 
-// sample page routing
-const SamplePage = Loadable(lazy(() => import("../views/sample-page")));
+const CookiePolicyView = Loadable(
+  lazy(() => import("../views/policy/CookiePolicy"))
+);
+
+const TermsConditions = Loadable(
+  lazy(() => import("../views/policy/TermsConditions"))
+);
 
 const MainRoutes = {
   path: "/",
@@ -35,8 +40,12 @@ const MainRoutes = {
       element: <CheckoutView />,
     },
     {
-      path: "/sample-page",
-      element: <SamplePage />,
+      path: "/terms",
+      element: <TermsConditions />,
+    },
+    {
+      path: "/cookie-policy",
+      element: <CookiePolicyView />,
     },
   ],
 };

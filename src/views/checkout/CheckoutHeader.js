@@ -3,9 +3,13 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@mui/material";
+import Button from "@mui/material/Button";
+import { Link as RouterLink } from "react-router-dom";
+import { Stack } from "@material-ui/core";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import photo from "../../assets/images/Graphics/cart_ready.jpg";
 import Image from "../../components/Image";
+import AnimateButton from "../../ui-component/extended/AnimateButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -66,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     maxHeight: 200,
   },
+  cardActions: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const CheckoutHeader = () => {
@@ -115,6 +122,38 @@ const CheckoutHeader = () => {
                       >
                         Please sign in to your account to access your cart.
                       </MuiTypography>
+                      <Stack
+                        direction="row"
+                        spacing={2}
+                        className={classes.cardActions}
+                      >
+                        <AnimateButton>
+                          <Button
+                            disableElevation
+                            fullWidth
+                            size="small"
+                            variant="contained"
+                            color="secondary"
+                            component={RouterLink}
+                            to="/auth"
+                          >
+                            Sign In
+                          </Button>
+                        </AnimateButton>
+                        <AnimateButton>
+                          <Button
+                            disableElevation
+                            fullWidth
+                            size="small"
+                            variant="outlined"
+                            color="secondary"
+                            component={RouterLink}
+                            to="/create-account"
+                          >
+                            Create Account
+                          </Button>
+                        </AnimateButton>
+                      </Stack>
                     </>
                   )
                 }

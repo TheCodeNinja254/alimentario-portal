@@ -1,14 +1,10 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { Chip, Grid, Paper, Stack, Typography } from "@material-ui/core";
-import { IconX } from "@tabler/icons";
-import {
-  CardContent,
-  CircularProgress,
-  Divider,
-  IconButton,
-} from "@mui/material";
+import { CardContent, CircularProgress, Divider } from "@mui/material";
 import { useMutation } from "@apollo/client";
+import Button from "@mui/material/Button";
+import { Link as RouterLink } from "react-router-dom";
 import GetCartItemsQuery, {
   GET_CART_ITEMS,
 } from "../../../api/Queries/Cart/GetCartItems";
@@ -19,6 +15,7 @@ import { REMOVE_CART_ITEM } from "../../../api/Mutations/Cart";
 import MySnackbar from "../../../components/MySnackbar/MySnackbar";
 import ErrorHandler from "../../../utils/errorHandler";
 import MainCard from "../../../ui-component/cards/MainCard";
+import AnimateButton from "../../../ui-component/extended/AnimateButton";
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
 const Cart = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
   const [submitDetails, setRemoveCartItemDetails] = React.useState({
@@ -89,16 +85,6 @@ const Cart = () => {
   });
 
   const { message, severity } = submitDetails;
-
-  const anchorRef = React.useRef(null);
-
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   const [RemoveCartItemMutation, { loading }] = useMutation(REMOVE_CART_ITEM);
 
@@ -146,14 +132,6 @@ const Cart = () => {
       });
   };
 
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
   return (
     <>
       <GetCartItemsQuery>
@@ -227,7 +205,9 @@ const Cart = () => {
                     >
                       <Grid item>
                         <Stack direction="row" spacing={2}>
-                          <Typography variant="subtitle1">My Cart</Typography>
+                          <Typography variant="subtitle1">
+                            Items In My Cart
+                          </Typography>
                           <Chip
                             size="small"
                             label={0}
@@ -239,13 +219,19 @@ const Cart = () => {
                         </Stack>
                       </Grid>
                       <Grid item>
-                        <IconButton
-                          edge="end"
-                          aria-label="delete"
-                          onClick={handleClose}
-                        >
-                          <IconX />
-                        </IconButton>
+                        <AnimateButton>
+                          <Button
+                            disableElevation
+                            fullWidth
+                            size="small"
+                            variant="contained"
+                            color="secondary"
+                            component={RouterLink}
+                            to="/"
+                          >
+                            Go Shopping
+                          </Button>
+                        </AnimateButton>
                       </Grid>
                     </Grid>
                   </Grid>

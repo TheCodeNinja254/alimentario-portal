@@ -20,7 +20,7 @@ const icons = {
 const accountAuthenticated = {
   id: "accountAuthenticated",
   title: "Account",
-  caption: "Get to your account",
+  caption: "Get to your auth",
   type: "group",
   children: [
     {

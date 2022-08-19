@@ -18,7 +18,7 @@ const icons = {
 const account = {
   id: "account",
   title: "Account",
-  caption: "Get to your account",
+  caption: "Get to your auth",
   type: "group",
   children: [
     {

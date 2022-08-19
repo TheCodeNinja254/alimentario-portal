@@ -6,13 +6,13 @@ import MinimalLayout from "../layout/MinimalLayout";
 
 // login option 3 routing
 const CustomerAuth = Loadable(
-  lazy(() => import("../views/account/Authentication"))
+  lazy(() => import("../views/auth/Authentication"))
 );
 const CustomerAccountCreation = Loadable(
-  lazy(() => import("../views/account/CustomerAccountCreation"))
+  lazy(() => import("../views/auth/CustomerAccountCreation"))
 );
 const PasswordReset = Loadable(
-  lazy(() => import("../views/account/PasswordReset"))
+  lazy(() => import("../views/auth/PasswordReset"))
 );
 
 // ===========================|| AUTHENTICATION ROUTING ||=========================== //
@@ -26,7 +26,7 @@ const AuthenticationRoutes = {
       element: <CustomerAuth />,
     },
     {
-      path: "/create-account",
+      path: "/create-auth",
       element: <CustomerAccountCreation />,
     },
     {

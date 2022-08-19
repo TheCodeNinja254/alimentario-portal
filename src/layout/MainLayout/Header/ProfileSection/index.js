@@ -20,12 +20,14 @@ import ListItemButton from "@material-ui/core/ListItemButton";
 
 import {
   IconBuildingBank,
+  IconLocation,
   IconLogin,
   IconLogout,
   IconShoppingCart,
   IconUser,
 } from "@tabler/icons";
 import { useMutation } from "@apollo/client";
+import { Link as RouterLink } from "react-router-dom";
 import User1 from "../../../../assets/images/users/user-round.svg";
 import Transitions from "../../../../ui-component/extended/Transitions";
 import MainCard from "../../../../ui-component/cards/MainCard";
@@ -270,7 +272,8 @@ const ProfileSection = () => {
                                 borderRadius: `${customization.borderRadius}px`,
                               }}
                               selected={selectedIndex === 4}
-                              onClick={handleLogout}
+                              component={RouterLink}
+                              to="/orders"
                             >
                               <ListItemIcon>
                                 <IconShoppingCart stroke={1.5} size="1.3rem" />
@@ -283,6 +286,26 @@ const ProfileSection = () => {
                                 }
                               />
                             </ListItemButton>
+                            <ListItemButton
+                              className={classes.listItem}
+                              sx={{
+                                borderRadius: `${customization.borderRadius}px`,
+                              }}
+                              selected={selectedIndex === 4}
+                              component={RouterLink}
+                              to="/pending-orders"
+                            >
+                              <ListItemIcon>
+                                <IconLocation stroke={1.5} size="1.3rem" />
+                              </ListItemIcon>
+                              <ListItemText
+                                primary={
+                                  <Typography variant="body2">
+                                    Track Order
+                                  </Typography>
+                                }
+                              />
+                            </ListItemButton>
                             {customer?.businessId > 0 && (
                               <ListItemButton
                                 className={classes.listItem}
@@ -290,7 +313,8 @@ const ProfileSection = () => {
                                   borderRadius: `${customization.borderRadius}px`,
                                 }}
                                 selected={selectedIndex === 4}
-                                onClick={handleLogout}
+                                component={RouterLink}
+                                to="/my-business"
                               >
                                 <ListItemIcon>
                                   <IconBuildingBank
@@ -313,7 +337,8 @@ const ProfileSection = () => {
                                 borderRadius: `${customization.borderRadius}px`,
                               }}
                               selected={selectedIndex === 4}
-                              onClick={handleLogout}
+                              component={RouterLink}
+                              to="/account"
                             >
                               <ListItemIcon>
                                 <IconUser stroke={1.5} size="1.3rem" />

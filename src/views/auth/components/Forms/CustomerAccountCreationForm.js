@@ -42,7 +42,7 @@ const CustomerAccountCreationSchema = Yup.object().shape({
   emailAddress: Yup.string()
     .email("Please enter a valid email address")
     .required("Please enter your email address"),
-  password: Yup.string().required("Create a password for your account"),
+  password: Yup.string().required("Create a password for your auth"),
   firstName: Yup.string().required("Name is required"),
   lastName: Yup.string().required("Name is required"),
   msisdn: Yup.string().min(9).max(12).required("Mobile number is required."),
@@ -218,7 +218,7 @@ const CustomerAccountCreationForm = () => {
                   state: { newInvite: true, firstName: values.firstName },
                 });
               } else {
-                // account creation error
+                // auth creation error
                 setRegisterDetails({
                   open: true,
                   status: false,
@@ -229,7 +229,7 @@ const CustomerAccountCreationForm = () => {
               }
             })
             .catch((res) => {
-              // account creation error
+              // auth creation error
               setRegisterDetails({
                 open: true,
                 status: false,

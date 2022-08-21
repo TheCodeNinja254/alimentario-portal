@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Chip, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
+import styled from "@mui/material/styles/styled";
+import { Typography } from "@mui/material";
+import trackInExpandText from "../../../animation/trackInExpandText";
+
+const NameTypography = styled(Typography)(({ theme, animate }) => ({
+  color: theme.palette.secondary.dark,
+  marginBottom: theme.spacing(3),
+  animation:
+    animate &&
+    `${trackInExpandText} 2.3s cubic-bezier(0.215, 0.610, 0.355, 1.000) both`,
+}));
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -42,17 +53,21 @@ const useStyles = makeStyles((theme) => ({
 const GreetingsCard = () => {
   const classes = useStyles();
 
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 100);
+  }, [animate]);
+
   return (
     <Paper square elevation={0} className={classes.paper}>
       <Grid container>
         <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
-          <MuiTypography
-            variant="h1"
-            gutterBottom
-            className={classes.mainGreeting}
-          >
+          <NameTypography variant="h1" gutterBottom animate={animate}>
             Chef At Work
-          </MuiTypography>
+          </NameTypography>
 
           <MuiTypography variant="body2" className={classes.contextText}>
             At Desafio, we provide you with more than a meal, we give you an

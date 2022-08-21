@@ -6,8 +6,8 @@ import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
 import { Typography } from "@mui/material";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
-import titleAnimation from "../../../animation/titleAnimation";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
+import trackInExpandText from "../../../animation/trackInExpandText";
 
 const NameTypography = styled(Typography)(({ theme, animate }) => ({
   color: theme.palette.common.black,
@@ -19,7 +19,7 @@ const NameTypography = styled(Typography)(({ theme, animate }) => ({
   },
   animation:
     animate &&
-    `${titleAnimation} 2.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both`,
+    `${trackInExpandText} 2.3s cubic-bezier(0.215, 0.610, 0.355, 1.000) both`,
 }));
 
 const useStyles = makeStyles((theme) => ({

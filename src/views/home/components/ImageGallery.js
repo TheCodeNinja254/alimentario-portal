@@ -2,6 +2,8 @@ import * as React from "react";
 import { ImageList, ImageListItem, ImageListItemBar } from "@material-ui/core";
 import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
+import { useEffect, useState } from "react";
+import AnimatedSection from "../../../ui-component/AnimatedSection";
 
 const itemData = [
   {
@@ -42,29 +44,38 @@ const useStyles = makeStyles((theme) => ({
 const TitlebarImageList = () => {
   const classes = useStyles();
 
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 1);
+  }, [animate]);
   return (
-    <ImageList>
-      <ImageListItem key="Subheader" cols={2}>
-        <MuiTypography
-          variant="h2"
-          gutterBottom
-          className={classes.subGreeting}
-        >
-          Where we&apos;ve been...
-        </MuiTypography>
-      </ImageListItem>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <ImageListItemBar title={item.title} subtitle={item.author} />
+    <AnimatedSection animate={animate} duration="2.0s">
+      <ImageList>
+        <ImageListItem key="Subheader" cols={2}>
+          <MuiTypography
+            variant="h2"
+            gutterBottom
+            className={classes.subGreeting}
+          >
+            Where we&apos;ve been...
+          </MuiTypography>
         </ImageListItem>
-      ))}
-    </ImageList>
+        {itemData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              src={`${item.img}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading="lazy"
+            />
+            <ImageListItemBar title={item.title} subtitle={item.author} />
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </AnimatedSection>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
@@ -10,6 +10,7 @@ import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSigned
 import photo from "../../assets/images/Graphics/cart_ready.jpg";
 import Image from "../../components/Image";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
+import AnimatedSection from "../../ui-component/AnimatedSection";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
   contextText: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(2),
     color: theme.palette.common.black,
   },
   actionText: {
@@ -78,8 +79,16 @@ const useStyles = makeStyles((theme) => ({
 const CheckoutHeader = () => {
   const classes = useStyles();
 
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 1);
+  }, [animate]);
+
   return (
-    <>
+    <AnimatedSection animate={animate} duration="1.4s">
       <Card elevation={0} className={classes.paper}>
         <Grid container>
           <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
@@ -162,7 +171,7 @@ const CheckoutHeader = () => {
           </Grid>
         </Grid>
       </Card>
-    </>
+    </AnimatedSection>
   );
 };
 

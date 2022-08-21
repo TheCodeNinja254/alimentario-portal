@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import {
@@ -13,10 +13,19 @@ import AuthFooter from "../../../ui-component/cards/AuthFooter";
 import RegistrationWrapper from "../components/styles/RegistrationWrapper";
 import AuthCardWrapper from "../components/styles/AuthCardWrapper";
 import CustomerAccountCreationForm from "../components/Forms/CustomerAccountCreationForm";
+import AnimatedSection from "../../../ui-component/AnimatedSection";
 
 const CustomerAccountCreation = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 1);
+  }, [animate]);
 
   return (
     <RegistrationWrapper>
@@ -76,7 +85,9 @@ const CustomerAccountCreation = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <CustomerAccountCreationForm />
+                    <AnimatedSection animate={animate} duration="1.4s">
+                      <CustomerAccountCreationForm />
+                    </AnimatedSection>
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />

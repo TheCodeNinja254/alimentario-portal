@@ -18,7 +18,7 @@ const dashboard = {
       id: "default",
       title: "Our Steaks & Cheese",
       type: "item",
-      url: "/dashboard/default",
+      url: "/",
       icon: icons.IconDashboard,
       breadcrumbs: false,
     },

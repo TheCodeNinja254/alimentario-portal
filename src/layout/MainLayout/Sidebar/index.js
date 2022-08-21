@@ -1,15 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
-
-// material-ui
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { Box, Drawer, useMediaQuery } from "@material-ui/core";
-
-// third-party
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { BrowserView, MobileView } from "react-device-detect";
-
-// project imports
 import { drawerWidth } from "../../../store/constant";
 import MenuList from "./MenuList";
 import LogoSection from "../LogoSection";

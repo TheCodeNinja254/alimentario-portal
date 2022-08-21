@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { Chip, Grid, Paper, Stack, Typography } from "@material-ui/core";
 import { CardContent, CircularProgress, Divider } from "@mui/material";
@@ -16,6 +16,7 @@ import MySnackbar from "../../../components/MySnackbar/MySnackbar";
 import ErrorHandler from "../../../utils/errorHandler";
 import MainCard from "../../../ui-component/cards/MainCard";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
+import AnimatedSection from "../../../ui-component/AnimatedSection";
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -132,8 +133,16 @@ const Cart = () => {
       });
   };
 
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 1);
+  }, [animate]);
+
   return (
-    <>
+    <AnimatedSection animate={animate} duration="1.4s">
       <GetCartItemsQuery>
         {({ getCartItems: { status, cartItemsList } }) =>
           status && cartItemsList?.length > 0 ? (
@@ -265,7 +274,7 @@ const Cart = () => {
         setOpen={setSnackbarOpen}
         open={snackbarOpen}
       />
-    </>
+    </AnimatedSection>
   );
 };
 

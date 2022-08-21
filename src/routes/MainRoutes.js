@@ -2,9 +2,7 @@ import React, { lazy } from "react";
 import MainLayout from "../layout/MainLayout";
 import Loadable from "../ui-component/Loadable";
 
-const DashboardDefault = Loadable(
-  lazy(() => import("../views/dashboard/Default"))
-);
+const DashboardDefault = Loadable(lazy(() => import("../views/home")));
 
 const CheckoutView = Loadable(lazy(() => import("../views/checkout")));
 
@@ -42,7 +40,7 @@ const MainRoutes = {
       element: <GalleryDefault />,
     },
     {
-      path: "/dashboard/default",
+      path: "/home/default",
       element: <DashboardDefault />,
     },
     {

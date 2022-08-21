@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Typography } from "@material-ui/core";
 import { Grid } from "@mui/material";
@@ -7,6 +7,7 @@ import PDFFileDisplay from "../../components/PDFFileDisplay";
 import cookiePolicy from "../../assets/Documents/DesafioAlimentarioCookiePolicy.pdf";
 import Image from "../../components/Image";
 import cookiePolicyImage from "../../assets/images/Graphics/cookiePolicy.jpg";
+import AnimatedSection from "../../ui-component/AnimatedSection";
 
 const useStyles = makeStyles((theme) => ({
   productImage: {
@@ -38,22 +39,35 @@ const useStyles = makeStyles((theme) => ({
 const CookiePolicy = () => {
   const classes = useStyles();
 
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 1);
+  }, [animate]);
+
   return (
-    <MainCard>
-      <Grid item xs={12}>
-        <Image
-          src={cookiePolicyImage}
-          alt="terms"
-          className={classes.productImage}
+    <AnimatedSection animate={animate} duration="1.4s">
+      <MainCard>
+        <Grid item xs={12}>
+          <Image
+            src={cookiePolicyImage}
+            alt="terms"
+            className={classes.productImage}
+          />
+          <Typography className={classes.cardTitle}>Cookie Policy</Typography>
+          <Typography className={classes.cardSubtitle}>
+            We use cookies to enhance the experience on the platform. Understand
+            what information we handle in cookies.
+          </Typography>
+        </Grid>
+        <PDFFileDisplay
+          pdf={cookiePolicy}
+          className={classes.bottomNavigation}
         />
-        <Typography className={classes.cardTitle}>Cookie Policy</Typography>
-        <Typography className={classes.cardSubtitle}>
-          We use cookies to enhance the experience on the platform. Understand
-          what information we handle in cookies.
-        </Typography>
-      </Grid>
-      <PDFFileDisplay pdf={cookiePolicy} className={classes.bottomNavigation} />
-    </MainCard>
+      </MainCard>
+    </AnimatedSection>
   );
 };
 

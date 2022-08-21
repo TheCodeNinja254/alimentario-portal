@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import {
   Button,
@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
+import AnimatedSection from "../../../ui-component/AnimatedSection";
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -82,108 +83,120 @@ const useStyles = makeStyles((theme) => ({
 const MenuCardMini = () => {
   const classes = useStyles();
 
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 1);
+  }, [animate]);
+
   return (
-    <Card className={classes.card}>
-      <CardContent>
-        <GetSignedInCustomerQuery>
-          {({ getSignedInCustomer: { status, customer, business } }) =>
-            status ? (
-              <Grid container direction="column" spacing={2}>
-                <Grid item>
-                  {customer?.businessId > 0 ? (
-                    <>
-                      <Typography variant="h4" className={classes.subTitle}>
-                        You can get our products for your business too
-                      </Typography>
-                      <Typography
-                        variant="subtitle2"
-                        className={classes.tagLineBefore}
-                      >
-                        Your Business:{" "}
-                        <span className={classes.boldedText}>
-                          {business?.businessName}
-                        </span>
-                        <br />
-                        Located at:{" "}
-                        <span className={classes.boldedText}>
-                          {business?.registeredAddress}
-                        </span>
-                      </Typography>
-                      <Stack direction="column">
-                        <AnimateButton>
-                          <Button
-                            component={Link}
-                            href="/account/register/register3"
-                            variant="contained"
-                            className={classes.button}
-                          >
-                            See All Orders
-                          </Button>
-                        </AnimateButton>
-                      </Stack>
-                    </>
-                  ) : (
-                    <>
-                      <Divider />
-                      <Typography variant="h4" className={classes.subTitle}>
-                        You can get our products for your business too
-                      </Typography>
-                      <Stack direction="column">
-                        <AnimateButton>
-                          <Button
-                            component={Link}
-                            href="/account/register/register3"
-                            variant="contained"
-                            className={classes.button}
-                          >
-                            Add Your Business
-                          </Button>
-                        </AnimateButton>
-                      </Stack>
-                    </>
-                  )}
+    <AnimatedSection animate={animate} duration="2.0s">
+      <Card className={classes.card}>
+        <CardContent>
+          <GetSignedInCustomerQuery>
+            {({ getSignedInCustomer: { status, customer, business } }) =>
+              status ? (
+                <Grid container direction="column" spacing={2}>
+                  <Grid item>
+                    {customer?.businessId > 0 ? (
+                      <>
+                        <Typography variant="h4" className={classes.subTitle}>
+                          You can get our products for your business too
+                        </Typography>
+                        <Typography
+                          variant="subtitle2"
+                          className={classes.tagLineBefore}
+                        >
+                          Your Business:{" "}
+                          <span className={classes.boldedText}>
+                            {business?.businessName}
+                          </span>
+                          <br />
+                          Located at:{" "}
+                          <span className={classes.boldedText}>
+                            {business?.registeredAddress}
+                          </span>
+                        </Typography>
+                        <Stack direction="column">
+                          <AnimateButton>
+                            <Button
+                              component={Link}
+                              href="/account/register/register3"
+                              variant="contained"
+                              className={classes.button}
+                            >
+                              See All Orders
+                            </Button>
+                          </AnimateButton>
+                        </Stack>
+                      </>
+                    ) : (
+                      <>
+                        <Divider />
+                        <Typography variant="h4" className={classes.subTitle}>
+                          You can get our products for your business too
+                        </Typography>
+                        <Stack direction="column">
+                          <AnimateButton>
+                            <Button
+                              component={Link}
+                              href="/account/register/register3"
+                              variant="contained"
+                              className={classes.button}
+                            >
+                              Add Your Business
+                            </Button>
+                          </AnimateButton>
+                        </Stack>
+                      </>
+                    )}
+                  </Grid>
                 </Grid>
-              </Grid>
-            ) : (
-              <Grid container direction="column" spacing={2}>
-                <Grid item>
-                  <Typography variant="h4">Create a Desafio Account</Typography>
+              ) : (
+                <Grid container direction="column" spacing={2}>
+                  <Grid item>
+                    <Typography variant="h4">
+                      Create a Desafio Account
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="subtitle2" className={classes.tagLine}>
+                      To start ordering or make standing orders
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Stack direction="column">
+                      <AnimateButton>
+                        <Button
+                          component={Link}
+                          href="/create-account"
+                          variant="contained"
+                          className={classes.button}
+                        >
+                          Create My Account
+                        </Button>
+                      </AnimateButton>
+                      <AnimateButton>
+                        <Button
+                          component={Link}
+                          href="/create-account"
+                          variant="contained"
+                          className={classes.button}
+                        >
+                          Create My Business Account
+                        </Button>
+                      </AnimateButton>
+                    </Stack>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography variant="subtitle2" className={classes.tagLine}>
-                    To start ordering or make standing orders
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Stack direction="column">
-                    <AnimateButton>
-                      <Button
-                        component={Link}
-                        href="/create-account"
-                        variant="contained"
-                        className={classes.button}
-                      >
-                        Create My Account
-                      </Button>
-                    </AnimateButton>
-                    <AnimateButton>
-                      <Button
-                        component={Link}
-                        href="/create-account"
-                        variant="contained"
-                        className={classes.button}
-                      >
-                        Create My Business Account
-                      </Button>
-                    </AnimateButton>
-                  </Stack>
-                </Grid>
-              </Grid>
-            )
-          }
-        </GetSignedInCustomerQuery>
-      </CardContent>
-    </Card>
+              )
+            }
+          </GetSignedInCustomerQuery>
+        </CardContent>
+      </Card>
+    </AnimatedSection>
   );
 };
 

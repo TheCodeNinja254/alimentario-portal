@@ -15,8 +15,6 @@ const PasswordReset = Loadable(
   lazy(() => import("../views/auth/PasswordReset"))
 );
 
-// ===========================|| AUTHENTICATION ROUTING ||=========================== //
-
 const AuthenticationRoutes = {
   path: "/",
   element: <MinimalLayout />,
@@ -26,7 +24,7 @@ const AuthenticationRoutes = {
       element: <CustomerAuth />,
     },
     {
-      path: "/create-auth",
+      path: "/create-account",
       element: <CustomerAccountCreation />,
     },
     {

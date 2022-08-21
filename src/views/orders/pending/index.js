@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import BusinessHomeHeader from "./BusinessHomeHeader";
+import PendingOrdersHeader from "./PendingOrdersHeader";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
 import MenuCard from "../../components/MenuCard";
 import { gridSpacing } from "../../../store/constant";
@@ -15,7 +15,7 @@ const Wholesale = () => {
             <Grid item lg={8} md={8} sm={12} xs={12}>
               <Grid container spacing={gridSpacing}>
                 <Grid item lg={12} md={12} sm={12} xs={12}>
-                  <BusinessHomeHeader />
+                  <PendingOrdersHeader />
                 </Grid>
               </Grid>
             </Grid>

@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
 import { Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import AnimatedSection from "../../../ui-component/AnimatedSection";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -108,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SwipeableTextMobileStepper = () => {
+const ImageCarousel = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -126,73 +128,83 @@ const SwipeableTextMobileStepper = () => {
     setActiveStep(step);
   };
 
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 1);
+  }, [animate]);
+
   return (
-    <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
-      <Paper square elevation={0} className={classes.paper}>
-        <Grid container>
-          <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
-            <Typography className={classes.tagLine}>
-              {images[activeStep].label}
-            </Typography>
+    <AnimatedSection animate={animate} duration="1.0s">
+      <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
+        <Paper square elevation={0} className={classes.paper}>
+          <Grid container>
+            <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
+              <Typography className={classes.tagLine}>
+                {images[activeStep].label}
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
-      </Paper>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-        interval={6000}
-      >
-        {images.map((step, index) => (
-          <div key={step.id}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                className={classes.carouselImages}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        className={classes.paper}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            variant=""
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button
-            size="small"
-            variant=""
-            onClick={handleBack}
-            disabled={activeStep === 0}
-          >
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-          </Button>
-        }
-      />
-    </Box>
+        </Paper>
+        <AutoPlaySwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+          interval={6000}
+        >
+          {images.map((step, index) => (
+            <div key={step.id}>
+              {Math.abs(activeStep - index) <= 2 ? (
+                <Box
+                  component="img"
+                  className={classes.carouselImages}
+                  src={step.imgPath}
+                  alt={step.label}
+                />
+              ) : null}
+            </div>
+          ))}
+        </AutoPlaySwipeableViews>
+        <MobileStepper
+          steps={maxSteps}
+          className={classes.paper}
+          position="static"
+          activeStep={activeStep}
+          nextButton={
+            <Button
+              size="small"
+              variant=""
+              onClick={handleNext}
+              disabled={activeStep === maxSteps - 1}
+            >
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowLeft />
+              ) : (
+                <KeyboardArrowRight />
+              )}
+            </Button>
+          }
+          backButton={
+            <Button
+              size="small"
+              variant=""
+              onClick={handleBack}
+              disabled={activeStep === 0}
+            >
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
+            </Button>
+          }
+        />
+      </Box>
+    </AnimatedSection>
   );
 };
 
-export default SwipeableTextMobileStepper;
+export default ImageCarousel;

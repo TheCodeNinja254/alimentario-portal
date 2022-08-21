@@ -34,6 +34,7 @@ import Image from "../../../../components/Image";
 import { REMOVE_CART_ITEM } from "../../../../api/Mutations/Cart";
 import MySnackbar from "../../../../components/MySnackbar/MySnackbar";
 import ErrorHandler from "../../../../utils/errorHandler";
+import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -406,6 +407,20 @@ const CartSection = () => {
                                 >
                                   Items you add to your cart will appear here.
                                 </Typography>
+                                <AnimateButton>
+                                  <Button
+                                    disableElevation
+                                    fullWidth
+                                    size="small"
+                                    variant="contained"
+                                    color="secondary"
+                                    onClick={handleClose}
+                                    component={RouterLink}
+                                    to="/"
+                                  >
+                                    Shop Now
+                                  </Button>
+                                </AnimateButton>
                               </CardContent>
                             </Grid>
                           </Grid>

@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import { Stack } from "@material-ui/core";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
-import photo from "../../assets/images/Graphics/cart_ready.jpg";
+import photo from "../../assets/images/Graphics/business.jpg";
 import Image from "../../components/Image";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 
@@ -90,21 +90,22 @@ const BusinessHomeHeader = () => {
             </Card>
             <CardContent>
               <GetSignedInCustomerQuery>
-                {({ getSignedInCustomer: { status, customer } }) =>
+                {({ getSignedInCustomer: { status } }) =>
                   status ? (
                     <>
                       <MuiTypography
                         gutterBottom
                         className={classes.mainGreeting}
                       >
-                        {customer?.firstName}&apos;s Cart
+                        Your business orders and account is coming soon!
                       </MuiTypography>
                       <MuiTypography
                         variant="body2"
                         className={classes.contextText}
                       >
-                        Confirm the items you wish to have delivered before
-                        making your order
+                        We are working hard to bring this feature to you. You
+                        will be able to make orders for your business and have
+                        the products delivered to your premises.
                       </MuiTypography>
                     </>
                   ) : (
@@ -114,14 +115,28 @@ const BusinessHomeHeader = () => {
                         gutterBottom
                         className={classes.mainGreeting}
                       >
-                        Your cart items will appear here.
+                        Your business cart items will appear here.
                       </MuiTypography>
                       <MuiTypography
                         variant="body2"
                         className={classes.contextText}
                       >
-                        Please sign in to your account to access your cart.
+                        Please sign in to your account to access your
+                        business&apos; cart.
                       </MuiTypography>
+                      <AnimateButton>
+                        <Button
+                          disableElevation
+                          fullWidth
+                          size="small"
+                          variant="contained"
+                          color="secondary"
+                          component={RouterLink}
+                          to="/auth"
+                        >
+                          Order for my home
+                        </Button>
+                      </AnimateButton>
                       <Stack
                         direction="row"
                         spacing={2}

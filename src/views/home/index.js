@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
-import { gridSpacing } from "../../../store/constant";
-import PopularCard from "./PopularCard";
-import TotalOrderLineChartCard from "./TotalOrderLineChartCard";
-import ProductCard from "./ProductCard";
-import ImageCarousel from "./ImageCarousel";
-import MenuCard from "../../components/MenuCard";
-import GreetingsCard from "./GreetingsCard";
-import TitlebarImageList from "./ImageGallery";
-import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
-import WelcomeModal from "../../components/WelcomeModal/WelcomeModal";
+import { gridSpacing } from "../../store/constant";
+import PopularCard from "./components/PopularCard";
+import TotalOrderLineChartCard from "./components/TotalOrderLineChartCard";
+import ProductCard from "./components/ProductCard";
+import ImageCarousel from "./components/ImageCarousel";
+import MenuCard from "../components/MenuCard";
+import GreetingsCard from "./components/GreetingsCard";
+import TitlebarImageList from "./components/ImageGallery";
+import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
+import WelcomeModal from "../components/WelcomeModal/WelcomeModal";
 
 const Dashboard = () => {
   const location = useLocation();

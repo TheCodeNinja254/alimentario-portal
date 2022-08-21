@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import {
@@ -14,10 +14,19 @@ import AuthWrapper1 from "../components/styles/RegistrationWrapper";
 import AuthCardWrapper from "../components/styles/AuthCardWrapper";
 import LoginForm from "../components/Forms/LoginForm";
 import { gridSpacing } from "../../../store/constant";
+import AnimatedSection from "../../../ui-component/AnimatedSection";
 
 const Authentication = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // animation
+      setAnimate(true);
+    }, 1);
+  }, [animate]);
 
   return (
     <AuthWrapper1>
@@ -77,7 +86,9 @@ const Authentication = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <LoginForm />
+                    <AnimatedSection animate={animate} duration="1.4s">
+                      <LoginForm />
+                    </AnimatedSection>
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />

@@ -4,7 +4,7 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import { gridSpacing } from "../../store/constant";
 import GreetingsCard from "./components/GreetingsCard";
-import TitlebarImageList from "../dashboard/Default/ImageGallery";
+import TitlebarImageList from "../home/components/ImageGallery";
 import MenuCard from "../components/MenuCard";
 
 // project imports

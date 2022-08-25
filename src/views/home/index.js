@@ -3,14 +3,14 @@ import { Grid } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
 import { gridSpacing } from "../../store/constant";
 import PopularCard from "./components/PopularCard";
-import TotalOrderLineChartCard from "./components/TotalOrderLineChartCard";
-import ProductCard from "./components/ProductCard";
+import ProductsSection from "./components/ProductsSection";
 import ImageCarousel from "./components/ImageCarousel";
-import MenuCard from "../components/MenuCard";
+import MenuCard from "../components/ActionCards";
 import GreetingsCard from "./components/GreetingsCard";
 import TitlebarImageList from "./components/ImageGallery";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import WelcomeModal from "../components/WelcomeModal/WelcomeModal";
+import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -40,7 +40,7 @@ const Dashboard = () => {
                   <GreetingsCard />
                 </Grid>
                 <Grid item xs={12}>
-                  <ProductCard sessionStatus={status} />
+                  <ProductsSection sessionStatus={status} />
                 </Grid>
                 <Grid item xs={12}>
                   <TitlebarImageList />
@@ -53,7 +53,7 @@ const Dashboard = () => {
                   <MenuCard />
                 </Grid>
                 <Grid item xs={12}>
-                  <TotalOrderLineChartCard isLoading={isLoading} />
+                  <WeDeliverCard />
                 </Grid>
                 <Grid item xs={12}>
                   <PopularCard isLoading={isLoading} />

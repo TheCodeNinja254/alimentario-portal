@@ -5,6 +5,7 @@ import { CardContent, CircularProgress, Divider } from "@mui/material";
 import { useMutation } from "@apollo/client";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
+import PropTypes from "prop-types";
 import GetCartItemsQuery, {
   GET_CART_ITEMS,
 } from "../../../api/Queries/Cart/GetCartItems";
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Cart = () => {
+const Cart = ({ calculateTotalDue }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
@@ -189,6 +190,7 @@ const Cart = () => {
                     <CartItem
                       cartItemsList={cartItemsList}
                       handleDeleteCartItem={handleDeleteCartItem}
+                      calculateTotalDue={calculateTotalDue}
                     />
                   </Grid>
                 </Grid>
@@ -276,6 +278,10 @@ const Cart = () => {
       />
     </AnimatedSection>
   );
+};
+
+Cart.propTypes = {
+  calculateTotalDue: PropTypes.func.isRequired,
 };
 
 export default Cart;

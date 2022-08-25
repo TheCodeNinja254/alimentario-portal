@@ -8,6 +8,7 @@ import termsAndConditions from "../../assets/Documents/DesafioAlimentarioLTDPriv
 import Image from "../../components/Image";
 import termsImage from "../../assets/images/Graphics/terms.jpg";
 import AnimatedSection from "../../ui-component/AnimatedSection";
+import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
 
 const useStyles = makeStyles((theme) => ({
   productImage: {
@@ -49,26 +50,31 @@ const TermsConditions = () => {
 
   return (
     <AnimatedSection animate={animate} duration="1.4s">
-      <MainCard>
-        <Grid item xs={12}>
-          <Image
-            src={termsImage}
-            alt="terms"
-            className={classes.productImage}
-          />
-          <Typography className={classes.cardTitle}>
-            Terms & Conditions
-          </Typography>
-          <Typography className={classes.cardSubtitle}>
-            Understand how we handle your data as we also explain what we expect
-            from you.
-          </Typography>
+      <Grid container spacing={3} direction="row">
+        <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+          <MainCard>
+            <Image
+              src={termsImage}
+              alt="terms"
+              className={classes.productImage}
+            />
+            <Typography className={classes.cardTitle}>
+              Terms & Conditions
+            </Typography>
+            <Typography className={classes.cardSubtitle}>
+              Understand how we handle your data as we also explain what we
+              expect from you.
+            </Typography>
+            <PDFFileDisplay
+              pdf={termsAndConditions}
+              className={classes.bottomNavigation}
+            />
+          </MainCard>
         </Grid>
-        <PDFFileDisplay
-          pdf={termsAndConditions}
-          className={classes.bottomNavigation}
-        />
-      </MainCard>
+        <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+          <WeDeliverCard />
+        </Grid>
+      </Grid>
     </AnimatedSection>
   );
 };

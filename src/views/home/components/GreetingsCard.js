@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import { Chip, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import styled from "@mui/material/styles/styled";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
@@ -124,29 +124,29 @@ const GreetingsCard = () => {
               This is your one stop shop for great steak & cheese. We deliver to
               your home, shop or eatery.
             </MuiTypography>
-            <MuiTypography
-              variant="h3"
-              gutterBottom
-              className={classes.actionText}
-            >
-              What do you want to do today?
-            </MuiTypography>
-            <Chip variant="outlined" label="Index" className={classes.chip} />
-            <Chip
-              variant="outlined"
-              label="Create Account"
-              className={classes.chip}
-            />
-            <Chip
-              variant="outlined"
-              label="Order Now"
-              className={classes.chip}
-            />
-            <Chip
-              variant="outlined"
-              label="Make a standing order"
-              className={classes.chip}
-            />
+            {/* <MuiTypography */}
+            {/*  variant="h3" */}
+            {/*  gutterBottom */}
+            {/*  className={classes.actionText} */}
+            {/* > */}
+            {/*  What do you want to do today? */}
+            {/* </MuiTypography> */}
+            {/* <Chip variant="outlined" label="Index" className={classes.chip} /> */}
+            {/* <Chip */}
+            {/*  variant="outlined" */}
+            {/*  label="Create Account" */}
+            {/*  className={classes.chip} */}
+            {/* /> */}
+            {/* <Chip */}
+            {/*  variant="outlined" */}
+            {/*  label="Order Now" */}
+            {/*  className={classes.chip} */}
+            {/* /> */}
+            {/* <Chip */}
+            {/*  variant="outlined" */}
+            {/*  label="Make a standing order" */}
+            {/*  className={classes.chip} */}
+            {/* /> */}
           </Grid>
         </Grid>
       </Paper>

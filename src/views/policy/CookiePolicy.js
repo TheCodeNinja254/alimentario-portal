@@ -8,6 +8,7 @@ import cookiePolicy from "../../assets/Documents/DesafioAlimentarioCookiePolicy.
 import Image from "../../components/Image";
 import cookiePolicyImage from "../../assets/images/Graphics/cookiePolicy.jpg";
 import AnimatedSection from "../../ui-component/AnimatedSection";
+import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
 
 const useStyles = makeStyles((theme) => ({
   productImage: {
@@ -49,24 +50,29 @@ const CookiePolicy = () => {
 
   return (
     <AnimatedSection animate={animate} duration="1.4s">
-      <MainCard>
-        <Grid item xs={12}>
-          <Image
-            src={cookiePolicyImage}
-            alt="terms"
-            className={classes.productImage}
-          />
-          <Typography className={classes.cardTitle}>Cookie Policy</Typography>
-          <Typography className={classes.cardSubtitle}>
-            We use cookies to enhance the experience on the platform. Understand
-            what information we handle in cookies.
-          </Typography>
+      <Grid container spacing={3} direction="row">
+        <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+          <MainCard>
+            <Image
+              src={cookiePolicyImage}
+              alt="terms"
+              className={classes.productImage}
+            />
+            <Typography className={classes.cardTitle}>Cookie Policy</Typography>
+            <Typography className={classes.cardSubtitle}>
+              We use cookies to enhance the experience on the platform.
+              Understand what information we handle in cookies.
+            </Typography>
+            <PDFFileDisplay
+              pdf={cookiePolicy}
+              className={classes.bottomNavigation}
+            />
+          </MainCard>
         </Grid>
-        <PDFFileDisplay
-          pdf={cookiePolicy}
-          className={classes.bottomNavigation}
-        />
-      </MainCard>
+        <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+          <WeDeliverCard />
+        </Grid>
+      </Grid>
     </AnimatedSection>
   );
 };

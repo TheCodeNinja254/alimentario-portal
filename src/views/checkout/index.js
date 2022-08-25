@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import CheckoutHeader from "./CheckoutHeader";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
-import MenuCard from "../components/MenuCard";
+import MenuCard from "../components/ActionCards";
 import { gridSpacing } from "../../store/constant";
 import Cart from "./Cart";
+import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
+import OrderCompletion from "./OrderCompletion";
 
-const Dashboard = () => {
+const Checkout = () => {
+  const [totalDue, setTotalDue] = useState(0);
+
+  const calculateTotalDue = (cartList) => {
+    let total = 0;
+    if (cartList?.length > 0) {
+      cartList.map((item) => {
+        const perItemDue = item?.quantity * item?.productPrice;
+        total += perItemDue;
+        return setTotalDue(total);
+      });
+    }
+  };
   return (
     <GetSignedInCustomerQuery>
       {/* eslint-disable-next-line no-unused-vars */}
@@ -17,7 +31,8 @@ const Dashboard = () => {
               <Grid container spacing={gridSpacing}>
                 <Grid item lg={12} md={12} sm={12} xs={12}>
                   <CheckoutHeader />
-                  <Cart />
+                  <Cart calculateTotalDue={calculateTotalDue} />
+                  <OrderCompletion totalDue={totalDue} />
                 </Grid>
               </Grid>
             </Grid>
@@ -25,6 +40,9 @@ const Dashboard = () => {
               <Grid container spacing={gridSpacing}>
                 <Grid item xs={12}>
                   <MenuCard />
+                </Grid>
+                <Grid item xs={12}>
+                  <WeDeliverCard />
                 </Grid>
               </Grid>
             </Grid>
@@ -35,4 +53,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Checkout;

@@ -2,8 +2,9 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import BusinessHomeHeader from "./BusinessHomeHeader";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
-import MenuCard from "../components/MenuCard";
+import MenuCard from "../components/ActionCards";
 import { gridSpacing } from "../../store/constant";
+import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
 
 const Wholesale = () => {
   return (
@@ -23,6 +24,9 @@ const Wholesale = () => {
               <Grid container spacing={gridSpacing}>
                 <Grid item xs={12}>
                   <MenuCard />
+                </Grid>
+                <Grid item xs={12}>
+                  <WeDeliverCard />
                 </Grid>
               </Grid>
             </Grid>

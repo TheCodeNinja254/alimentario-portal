@@ -21,6 +21,7 @@ export const GET_DISPLAY_PRODUCTS = gql`
         stockStatus
         productPrice
         productStatus
+        productCategory
         expiryDate
       }
     }

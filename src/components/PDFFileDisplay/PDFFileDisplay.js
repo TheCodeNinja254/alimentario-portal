@@ -20,7 +20,8 @@ const PDFFileDisplay = ({ pdf, className }) => {
       <PerfectScrollbar
         style={{
           height: "100%",
-          maxHeight: "calc(100vh - 155px)",
+          width: "100%",
+          // maxHeight: "calc(100vh - 155px)",
           overflowX: "hidden",
         }}
       >

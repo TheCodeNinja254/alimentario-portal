@@ -2,9 +2,9 @@ import React from "react";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { makeStyles } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
+import { Alert } from "@mui/material";
 import Loader from "./Loader";
 import ErrorHandler from "../utils/errorHandler";
-import Alert from "./Alert";
 
 const printErrorMessage = (error) => {
   let message =
@@ -56,7 +56,7 @@ const Query = ({
     // const errorCode = getErrorCode(error);
     // TODO: check errorPolicy and if === 'all' then pass thru render props all extracted/formated errors with errorcodes instead of inline error message
     return (
-      <Alert severity="warning" className={classes.alerts}>
+      <Alert severity="warning" variant="filled" className={classes.alerts}>
         <div>
           <Typography variant="body2">{ErrorHandler(message)}</Typography>
         </div>

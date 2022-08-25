@@ -296,6 +296,7 @@ const CartSection = () => {
                             <Button
                               size="small"
                               disableElevation
+                              onClick={() => setOpen(false)}
                               component={RouterLink}
                               to="/checkout"
                             >

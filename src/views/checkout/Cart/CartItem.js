@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme, styled } from "@mui/material/styles";
 import {
   Avatar,
@@ -45,9 +45,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CartItem = ({ cartItemsList, handleDeleteCartItem }) => {
+const CartItem = ({
+  cartItemsList,
+  handleDeleteCartItem,
+  calculateTotalDue,
+}) => {
   const theme = useTheme();
   const classes = useStyles();
+
+  useEffect(() => {
+    calculateTotalDue(cartItemsList);
+  }, [cartItemsList]);
 
   return (
     <List
@@ -149,6 +157,7 @@ const CartItem = ({ cartItemsList, handleDeleteCartItem }) => {
 CartItem.propTypes = {
   cartItemsList: PropTypes.array.isRequired,
   handleDeleteCartItem: PropTypes.func.isRequired,
+  calculateTotalDue: PropTypes.func.isRequired,
 };
 
 export default CartItem;

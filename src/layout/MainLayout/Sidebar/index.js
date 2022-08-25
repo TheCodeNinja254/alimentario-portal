@@ -7,7 +7,7 @@ import { BrowserView, MobileView } from "react-device-detect";
 import { drawerWidth } from "../../../store/constant";
 import MenuList from "./MenuList";
 import LogoSection from "../LogoSection";
-import MenuCardMini from "../../../views/components/MenuCard/MenuCardMini";
+import MenuCardMini from "../../../views/components/ActionCards/MenuCardMini";
 
 // style constant
 const useStyles = makeStyles((theme) => ({

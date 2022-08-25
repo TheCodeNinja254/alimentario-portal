@@ -4,6 +4,7 @@ import {
   Alert,
   AlertTitle,
   Box,
+  CardActions,
   CardContent,
   CircularProgress,
   Divider,
@@ -71,17 +72,145 @@ const OrderCompletion = ({ totalDue }) => {
             </Grid>
           </Grid>
         </Grid>
-        <CardContent>
-          <Grid item xs={12}>
-            <Stack direction="row" spacing={7}>
-              <div>
-                <Typography className={classes.cardTitle}>
-                  Complete Your Order
-                </Typography>
-                <Typography className={classes.cardSubTitle}>
-                  Amount due
-                </Typography>
-              </div>
+        <DeliveryAddress />
+        <Alert variant="outlined">
+          <AlertTitle>
+            Notice On Payment: <strong>Payment on delivery only</strong>
+          </AlertTitle>
+        </Alert>
+        {totalDue > 0 ? (
+          <>
+            <CardContent>
+              <Grid item xs={12}>
+                <Stack direction="row" spacing={7}>
+                  <div>
+                    <Typography className={classes.cardTitle}>
+                      Complete Your Order
+                    </Typography>
+                    <Typography className={classes.cardSubTitle}>
+                      Amount due
+                    </Typography>
+                  </div>
+                  <AnimateButton>
+                    <Button
+                      disableElevation
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      color="secondary"
+                      component={RouterLink}
+                      to="/"
+                    >
+                      Shop More
+                    </Button>
+                  </AnimateButton>
+                </Stack>
+                <Divider />
+                <Box className={classes.priceBox}>
+                  <Grid
+                    container
+                    direction="row"
+                    className={classes.priceContainer}
+                  >
+                    <Grid
+                      item
+                      className={classes.priceSection}
+                      xs={6}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      xl={3}
+                    >
+                      <Typography variant="body1">Sub Total</Typography>
+                    </Grid>
+                    <Grid
+                      item
+                      className={classes.priceSection}
+                      xs={6}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      xl={3}
+                    >
+                      <Typography variant="body1">
+                        <strong>Ksh. {totalDue}</strong>
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid container className={classes.priceContainer}>
+                    <Grid
+                      item
+                      className={classes.priceSection}
+                      xs={6}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      xl={3}
+                    >
+                      <Typography variant="body1">Delivery Fee</Typography>
+                    </Grid>
+                    <Grid
+                      item
+                      className={classes.priceSection}
+                      xs={6}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      xl={3}
+                    >
+                      <Typography variant="body1">Ksh. 400</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid container className={classes.totalContainer}>
+                    <Grid
+                      item
+                      className={classes.priceSection}
+                      xs={6}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      xl={3}
+                    >
+                      <Typography variant="body1">Total</Typography>
+                    </Grid>
+                    <Grid
+                      item
+                      className={classes.priceSection}
+                      xs={6}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      xl={3}
+                    >
+                      <Typography variant="body1">
+                        <strong>Ksh. {totalDue + 400}</strong>
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Grid>
+            </CardContent>
+            <CardActions>
+              <AnimateButton>
+                <Button
+                  disableElevation
+                  fullWidth
+                  size="small"
+                  variant="contained"
+                  color="secondary"
+                  className={classes.actionButton}
+                >
+                  Confirm Order
+                </Button>
+              </AnimateButton>
+            </CardActions>
+          </>
+        ) : (
+          <CardContent>
+            <Grid item xs={12}>
+              <Typography className={classes.cardTitle} sx={{ mb: 10 }}>
+                Your cart is empty
+              </Typography>
               <AnimateButton>
                 <Button
                   disableElevation
@@ -92,102 +221,13 @@ const OrderCompletion = ({ totalDue }) => {
                   component={RouterLink}
                   to="/"
                 >
-                  Shop More
+                  Go Shopping
                 </Button>
               </AnimateButton>
-            </Stack>
-            <Divider />
-            <Box className={classes.priceBox}>
-              <Grid
-                container
-                direction="row"
-                className={classes.priceContainer}
-              >
-                <Grid
-                  item
-                  className={classes.priceSection}
-                  xs={6}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  xl={3}
-                >
-                  <Typography variant="body1">Sub Total</Typography>
-                </Grid>
-                <Grid
-                  item
-                  className={classes.priceSection}
-                  xs={6}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  xl={3}
-                >
-                  <Typography variant="body1">
-                    <strong>Ksh. {totalDue}</strong>
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid container className={classes.priceContainer}>
-                <Grid
-                  item
-                  className={classes.priceSection}
-                  xs={6}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  xl={3}
-                >
-                  <Typography variant="body1">Delivery Fee</Typography>
-                </Grid>
-                <Grid
-                  item
-                  className={classes.priceSection}
-                  xs={6}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  xl={3}
-                >
-                  <Typography variant="body1">Ksh. 400</Typography>
-                </Grid>
-              </Grid>
-              <Grid container className={classes.totalContainer}>
-                <Grid
-                  item
-                  className={classes.priceSection}
-                  xs={6}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  xl={3}
-                >
-                  <Typography variant="body1">Total</Typography>
-                </Grid>
-                <Grid
-                  item
-                  className={classes.priceSection}
-                  xs={6}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  xl={3}
-                >
-                  <Typography variant="body1">
-                    <strong>Ksh. {totalDue + 400}</strong>
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-          </Grid>
-        </CardContent>
+            </Grid>
+          </CardContent>
+        )}
       </Grid>
-      <Alert variant="outlined">
-        <AlertTitle>
-          Notice On Payment: <strong>Payment on delivery only</strong>
-        </AlertTitle>
-      </Alert>
-      <DeliveryAddress />
     </MainCard>
   );
 };

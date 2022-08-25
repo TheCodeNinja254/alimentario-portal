@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Stack, Typography } from "@material-ui/core";
+import { Collapse, Grid, Stack, Typography } from "@material-ui/core";
 import { Paper, CardContent, Divider } from "@mui/material";
 import { makeStyles } from "@material-ui/styles";
 import { IconLocation } from "@tabler/icons";
 import Button from "@mui/material/Button";
+import Switch from "@mui/material/Switch";
 import GetDeliveryLocations from "../../api/Queries/Locations/GetDeliveryLocations";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import AddDeliveryLocationModal from "../components/AddDeliveryLocationModal";
@@ -38,12 +39,27 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
+  actionSection: {
+    padding: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+  actionSectionText: {
+    marginTop: theme.spacing(1),
+  },
+  locationSection: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const DeliveryAddress = () => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [selectedDeliveryLocation, setSelectedDeliveryLocation] =
+    useState(false);
 
   return (
     <CardContent>
@@ -57,23 +73,152 @@ const DeliveryAddress = () => {
           {({ getDeliveryLocations: { status, locationsList } }) => (
             <>
               {status && locationsList?.length > 0 ? (
-                <Paper className={classes.locationBox} variant="outlined">
-                  <Stack direction="row" spacing={4}>
-                    <IconLocation
-                      stroke={2.5}
-                      size="1rem"
-                      className={classes.icon}
-                    />
-                    <Typography gutterBottom className={classes.mainHeader}>
-                      <strong>Last used location</strong>
-                    </Typography>
-                  </Stack>
-                  <Typography gutterBottom className={classes.locationText}>
-                    Last used location here
-                  </Typography>
+                <>
+                  <Paper className={classes.locationBox} variant="outlined">
+                    <Stack direction="row" spacing={4}>
+                      <IconLocation
+                        stroke={2.5}
+                        size="1rem"
+                        className={classes.icon}
+                      />
+                      <Typography gutterBottom className={classes.mainHeader}>
+                        <strong>Last Used/Added Location</strong>
+                      </Typography>
+                      <Switch
+                        checked={
+                          selectedDeliveryLocation === locationsList[0].id
+                        }
+                        onChange={() =>
+                          setSelectedDeliveryLocation(locationsList[0].id)
+                        }
+                        inputProps={{ "aria-label": "controlled" }}
+                      />
+                    </Stack>
+                    <Grid container className={classes.locationSection}>
+                      <Grid item xs={6}>
+                        <Typography>County: </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography>
+                          <strong>{locationsList[0].countyName}</strong>
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography>General area/town:</Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography>
+                          <strong>{locationsList[0].localeName}</strong>
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography>Apt & Hse No.:</Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography>
+                          <strong>
+                            {locationsList[0].deliveryPreciseLocation}
+                          </strong>
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography>Alternative Mobile No.:</Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography>
+                          <strong>
+                            {locationsList[0].alternativePhoneNumber}
+                          </strong>
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                  <Collapse in={collapsed}>
+                    <Paper
+                      elevation={0}
+                      variant="outlined"
+                      className={classes.locationBox}
+                    >
+                      <Typography>
+                        <strong>Previously used locations</strong>
+                      </Typography>
+                      {locationsList.map((dl) => (
+                        <>
+                          <Grid container className={classes.locationSection}>
+                            <Grid item xs={6}>
+                              <Typography>County: </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                              <Typography>
+                                <strong>{dl.countyName}</strong>
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                              <Typography>General area/town:</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                              <Typography>
+                                <strong>{dl.localeName}</strong>
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                              <Typography>Apt & Hse No.:</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                              <Typography>
+                                <strong>{dl.deliveryPreciseLocation}</strong>
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                              <Typography>Alternative Mobile No.:</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                              <Typography>
+                                <strong>{dl.alternativePhoneNumber}</strong>
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={12} x={12}>
+                              <Paper
+                                elevation={0}
+                                variant="outlined"
+                                className={classes.actionSection}
+                              >
+                                <Grid
+                                  container
+                                  className={classes.locationSection}
+                                >
+                                  <Grid item xs={6} xl={6}>
+                                    <Typography
+                                      className={classes.actionSectionText}
+                                    >
+                                      Use this location
+                                    </Typography>
+                                  </Grid>
+                                  <Grid item xs={6} xl={6}>
+                                    <Switch
+                                      checked={
+                                        selectedDeliveryLocation === dl.id
+                                      }
+                                      onChange={() =>
+                                        setSelectedDeliveryLocation(dl.id)
+                                      }
+                                      inputProps={{
+                                        "aria-label": "controlled",
+                                      }}
+                                    />
+                                  </Grid>
+                                </Grid>
+                              </Paper>
+                            </Grid>
+                          </Grid>
+                          <Divider />
+                        </>
+                      ))}
+                    </Paper>
+                  </Collapse>
 
-                  <Stack direction="row">
-                    {locationsList > 1 && (
+                  <Stack direction="row" spacing={1}>
+                    {locationsList.length > 1 && (
                       <AnimateButton>
                         <Button
                           disableElevation
@@ -82,8 +227,9 @@ const DeliveryAddress = () => {
                           variant="outlined"
                           color="secondary"
                           className={classes.actionButton}
+                          onClick={() => setCollapsed(!collapsed)}
                         >
-                          View Previous
+                          {collapsed ? "Hide Previous" : "View Previous"}
                         </Button>
                       </AnimateButton>
                     )}
@@ -101,7 +247,7 @@ const DeliveryAddress = () => {
                       </Button>
                     </AnimateButton>
                   </Stack>
-                </Paper>
+                </>
               ) : (
                 <Paper className={classes.locationBox} variant="outlined">
                   <Stack direction="row" spacing={4}>

@@ -18,6 +18,7 @@ export const GET_DELIVERY_LOCATIONS = gql`
         countryName
         countyFlagUri
         countyName
+        localeName
       }
     }
   }

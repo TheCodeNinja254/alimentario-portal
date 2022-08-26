@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/styles";
 import { IconLocation } from "@tabler/icons";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
+import PropTypes from "prop-types";
 import GetDeliveryLocations from "../../api/Queries/Locations/GetDeliveryLocations";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import AddDeliveryLocationModal from "../components/AddDeliveryLocationModal";
@@ -52,14 +53,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DeliveryAddress = () => {
+const DeliveryAddress = ({
+  selectedDeliveryLocation,
+  setSelectedDeliveryLocation,
+}) => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   // eslint-disable-next-line no-unused-vars
-  const [selectedDeliveryLocation, setSelectedDeliveryLocation] =
-    useState(false);
 
   return (
     <CardContent>
@@ -282,6 +284,11 @@ const DeliveryAddress = () => {
       <AddDeliveryLocationModal open={open} setOpen={setOpen} />
     </CardContent>
   );
+};
+
+DeliveryAddress.propTypes = {
+  selectedDeliveryLocation: PropTypes.number.isRequired,
+  setSelectedDeliveryLocation: PropTypes.func.isRequired,
 };
 
 export default DeliveryAddress;

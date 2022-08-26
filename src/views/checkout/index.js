@@ -7,6 +7,7 @@ import { gridSpacing } from "../../store/constant";
 import Cart from "./Cart";
 import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
 import OrderCompletion from "./OrderCompletion";
+import GetCartItemsQuery from "../../api/Queries/Cart/GetCartItems";
 
 const Checkout = () => {
   const [totalDue, setTotalDue] = useState(0);
@@ -32,8 +33,26 @@ const Checkout = () => {
               <Grid container spacing={gridSpacing}>
                 <Grid item lg={12} md={12} sm={12} xs={12}>
                   <CheckoutHeader />
-                  <Cart calculateTotalDue={calculateTotalDue} />
-                  <OrderCompletion totalDue={totalDue} />
+                  <GetCartItemsQuery>
+                    {({
+                      getCartItems: {
+                        status: getCartItemStatus,
+                        cartItemsList,
+                      },
+                    }) => (
+                      <>
+                        <Cart
+                          calculateTotalDue={calculateTotalDue}
+                          getCartItemStatus={getCartItemStatus}
+                          cartItemsList={cartItemsList}
+                        />
+                        <OrderCompletion
+                          totalDue={totalDue}
+                          cartItemsList={cartItemsList}
+                        />
+                      </>
+                    )}
+                  </GetCartItemsQuery>
                 </Grid>
               </Grid>
             </Grid>

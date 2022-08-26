@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
 }));
+
 const MySnackbar = ({ open, message, severity, setOpen }) => {
   const classes = useStyles();
   const handleClose = (event, reason) => {
@@ -19,7 +20,12 @@ const MySnackbar = ({ open, message, severity, setOpen }) => {
   };
 
   return (
-    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+    <Snackbar
+      open={open}
+      autoHideDuration={6000}
+      onClose={handleClose}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+    >
       <Alert
         onClose={handleClose}
         severity={severity}

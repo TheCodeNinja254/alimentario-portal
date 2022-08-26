@@ -6,9 +6,7 @@ import { useMutation } from "@apollo/client";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import PropTypes from "prop-types";
-import GetCartItemsQuery, {
-  GET_CART_ITEMS,
-} from "../../../api/Queries/Cart/GetCartItems";
+import { GET_CART_ITEMS } from "../../../api/Queries/Cart/GetCartItems";
 import photo from "../../../assets/images/Graphics/bbq_05.jpg";
 import CartItem from "./CartItem";
 import Image from "../../../components/Image";
@@ -76,10 +74,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Cart = ({ calculateTotalDue }) => {
+const Cart = ({ calculateTotalDue, getCartItemStatus, cartItemsList }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
+  console.log(cartItemsList);
 
   const [submitDetails, setRemoveCartItemDetails] = React.useState({
     message: "",
@@ -144,132 +144,128 @@ const Cart = ({ calculateTotalDue }) => {
 
   return (
     <AnimatedSection animate={animate} duration="1.4s">
-      <GetCartItemsQuery>
-        {({ getCartItems: { status, cartItemsList } }) =>
-          status && cartItemsList?.length > 0 ? (
-            <Paper elevation={0} className={classes.cartPaper}>
-              <MainCard
-                border={false}
-                elevation={0}
-                content={false}
-                boxShadow
-                shadow={theme.shadows[0]}
-              >
-                <Grid container direction="column" spacing={2}>
-                  <Grid item xs={12}>
-                    <Grid
-                      container
-                      alignItems="center"
-                      justifyContent="space-between"
-                      sx={{ pt: 2, px: 2 }}
-                    >
-                      <Grid item>
-                        <Stack direction="row" spacing={2}>
-                          <Typography variant="subtitle1">
-                            Items In My Cart
-                          </Typography>
-                          <Chip
-                            size="small"
-                            label={cartItemsList?.length}
-                            sx={{
-                              color: theme.palette.background.default,
-                              bgcolor: theme.palette.warning.dark,
-                            }}
-                          />
-                          {loading && <CircularProgress size={20} />}
-                        </Stack>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid container direction="column" spacing={2}>
-                      <Grid item xs={12} p={0}>
-                        <Divider sx={{ my: 0 }} />
-                      </Grid>
-                    </Grid>
-                    <CartItem
-                      cartItemsList={cartItemsList}
-                      handleDeleteCartItem={handleDeleteCartItem}
-                      calculateTotalDue={calculateTotalDue}
-                    />
-                  </Grid>
-                </Grid>
-                <Divider />
-              </MainCard>
-            </Paper>
-          ) : (
-            <Paper elevation={0} className={classes.cartPaper}>
-              <MainCard
-                border={false}
-                elevation={0}
-                content={false}
-                boxShadow
-                shadow={theme.shadows[0]}
-              >
-                <Grid container direction="column" spacing={2}>
-                  <Grid item xs={12}>
-                    <Grid
-                      container
-                      alignItems="center"
-                      justifyContent="space-between"
-                      sx={{ pt: 2, px: 2 }}
-                    >
-                      <Grid item>
-                        <Stack direction="row" spacing={2}>
-                          <Typography variant="subtitle1">
-                            Items In My Cart
-                          </Typography>
-                          <Chip
-                            size="small"
-                            label={0}
-                            sx={{
-                              color: theme.palette.background.default,
-                              bgcolor: theme.palette.warning.dark,
-                            }}
-                          />
-                        </Stack>
-                      </Grid>
-                      <Grid item>
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="contained"
-                            color="secondary"
-                            component={RouterLink}
-                            to="/"
-                          >
-                            Go Shopping
-                          </Button>
-                        </AnimateButton>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <CardContent>
-                      <Image
-                        alt="Nothing to show"
-                        src={photo}
-                        className={classes.noContentImage}
+      {getCartItemStatus && cartItemsList?.length > 0 ? (
+        <Paper elevation={0} className={classes.cartPaper}>
+          <MainCard
+            border={false}
+            elevation={0}
+            content={false}
+            boxShadow
+            shadow={theme.shadows[0]}
+          >
+            <Grid container direction="column" spacing={2}>
+              <Grid item xs={12}>
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="space-between"
+                  sx={{ pt: 2, px: 2 }}
+                >
+                  <Grid item>
+                    <Stack direction="row" spacing={2}>
+                      <Typography variant="subtitle1">
+                        Items In My Cart
+                      </Typography>
+                      <Chip
+                        size="small"
+                        label={cartItemsList?.length}
+                        sx={{
+                          color: theme.palette.background.default,
+                          bgcolor: theme.palette.warning.dark,
+                        }}
                       />
-                      <Typography className={classes.noContentText}>
-                        Your cart is empty.
-                      </Typography>
-                      <Typography
-                        variant="caption"
-                        className={classes.noContentSubText}
-                      >
-                        Items you add to your cart will appear here.
-                      </Typography>
-                    </CardContent>
+                      {loading && <CircularProgress size={20} />}
+                    </Stack>
                   </Grid>
                 </Grid>
-              </MainCard>
-            </Paper>
-          )
-        }
-      </GetCartItemsQuery>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container direction="column" spacing={2}>
+                  <Grid item xs={12} p={0}>
+                    <Divider sx={{ my: 0 }} />
+                  </Grid>
+                </Grid>
+                <CartItem
+                  cartItemsList={cartItemsList}
+                  handleDeleteCartItem={handleDeleteCartItem}
+                  calculateTotalDue={calculateTotalDue}
+                />
+              </Grid>
+            </Grid>
+            <Divider />
+          </MainCard>
+        </Paper>
+      ) : (
+        <Paper elevation={0} className={classes.cartPaper}>
+          <MainCard
+            border={false}
+            elevation={0}
+            content={false}
+            boxShadow
+            shadow={theme.shadows[0]}
+          >
+            <Grid container direction="column" spacing={2}>
+              <Grid item xs={12}>
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="space-between"
+                  sx={{ pt: 2, px: 2 }}
+                >
+                  <Grid item>
+                    <Stack direction="row" spacing={2}>
+                      <Typography variant="subtitle1">
+                        Items In My Cart
+                      </Typography>
+                      <Chip
+                        size="small"
+                        label={0}
+                        sx={{
+                          color: theme.palette.background.default,
+                          bgcolor: theme.palette.warning.dark,
+                        }}
+                      />
+                    </Stack>
+                  </Grid>
+                  <Grid item>
+                    <AnimateButton>
+                      <Button
+                        disableElevation
+                        fullWidth
+                        size="small"
+                        variant="contained"
+                        color="secondary"
+                        component={RouterLink}
+                        to="/"
+                      >
+                        Go Shopping
+                      </Button>
+                    </AnimateButton>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <CardContent>
+                  <Image
+                    alt="Nothing to show"
+                    src={photo}
+                    className={classes.noContentImage}
+                  />
+                  <Typography className={classes.noContentText}>
+                    Your cart is empty.
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    className={classes.noContentSubText}
+                  >
+                    Items you add to your cart will appear here.
+                  </Typography>
+                </CardContent>
+              </Grid>
+            </Grid>
+          </MainCard>
+        </Paper>
+      )}
       <MySnackbar
         message={message}
         severity={severity}
@@ -282,6 +278,8 @@ const Cart = ({ calculateTotalDue }) => {
 
 Cart.propTypes = {
   calculateTotalDue: PropTypes.func.isRequired,
+  getCartItemStatus: PropTypes.bool.isRequired,
+  cartItemsList: PropTypes.array.isRequired,
 };
 
 export default Cart;

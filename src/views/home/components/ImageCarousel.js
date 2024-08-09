@@ -48,30 +48,12 @@ const images = [
     imgPath: "/images/Salame_nostrano.jpg",
     action: "Buy Now",
   },
-  // {
-  //   id: 6,
-  //   label: "Preparing the table",
-  //   imgPath: "/images/gallery/1.jpg",
-  //   action: "Buy Now",
-  // },
-  // {
-  //   id: 7,
-  //   label: "Preparing the table",
-  //   imgPath: "/images/gallery/2.jpg",
-  //   action: "Buy Now",
-  // },
   {
     id: 8,
     label: "Preparing the table",
     imgPath: "/images/gallery/3.jpg",
     action: "Buy Now",
   },
-  // {
-  //   id: 9,
-  //   label: "Preparing the table",
-  //   imgPath: "/images/gallery/4.jpg",
-  //   action: "Buy Now",
-  // },
 ];
 
 const useStyles = makeStyles((theme) => ({

@@ -24,17 +24,9 @@ app.listen(80);
 
 
 // prod values
-// const options = {
-//     key: fs.readFileSync('/opt/ssl/key.pem'),
-//   cert: fs.readFileSync('/opt/ssl/cert.pem'),
-// };
-//
-// // UAT values
-// // const options = {
-// //   key: fs.readFileSync('/opt/ssl/private.key'),
-// //   cert: fs.readFileSync('/opt/ssl/svdt1homeuat01.cer'),
-// // };
-//
-// // port for prod otherwise use :3000 for UAT
-// // app.listen(8000); //Without HTTPS
-// https.createServer(options, app).listen(443);
+const options = {
+    key: fs.readFileSync('/opt/ssl/key.pem'),
+  cert: fs.readFileSync('/opt/ssl/cert.pem'),
+};
+
+https.createServer(options, app).listen(443);

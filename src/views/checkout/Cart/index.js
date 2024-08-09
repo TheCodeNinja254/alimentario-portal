@@ -79,8 +79,6 @@ const Cart = ({ calculateTotalDue, getCartItemStatus, cartItemsList }) => {
   const theme = useTheme();
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
-  console.log(cartItemsList);
-
   const [submitDetails, setRemoveCartItemDetails] = React.useState({
     message: "",
     severity: "success",

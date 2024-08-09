@@ -40,8 +40,7 @@ const errorLink = onError(
       if (networkError.message === "Failed to fetch") {
         // eslint-disable-next-line no-param-reassign
         networkError.message =
-          "Sorry! We encountered a network error. Please refresh this page or " +
-          "send email to fibersalesgroup @safaricom.co.ke";
+          "Sorry! We encountered a network error. Please refresh this page";
       }
     }
   }

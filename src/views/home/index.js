@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
+
   useEffect(() => {
     if (location?.state?.newInvite) {
       setFirstName(location?.state?.firstName);

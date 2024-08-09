@@ -4,6 +4,7 @@ import { Typography } from "@material-ui/core";
 import { Grid } from "@mui/material";
 import MainCard from "../../ui-component/cards/MainCard";
 import PDFFileDisplay from "../../components/PDFFileDisplay";
+
 import cookiePolicy from "../../assets/Documents/DesafioAlimentarioCookiePolicy.pdf";
 import Image from "../../components/Image";
 import cookiePolicyImage from "../../assets/images/Graphics/cookiePolicy.jpg";

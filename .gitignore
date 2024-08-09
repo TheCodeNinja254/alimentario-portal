@@ -7,8 +7,6 @@
 .env
 package-lock.json
 
-/src/assets/Documents
-
 # testing
 /coverage
 

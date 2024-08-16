@@ -1,6 +1,4 @@
 import React from "react";
-
-// material-ui
 import { makeStyles } from "@material-ui/styles";
 import {
   Button,
@@ -12,12 +10,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-
-// project imports
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
+import RecentOrdersSection from "./RecentOrdersSection";
 
-// style constant
 const useStyles = makeStyles((theme) => ({
   card: {
     background: theme.palette.warning.light,
@@ -33,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       border: "19px solid ",
       borderColor: theme.palette.warning.main,
       borderRadius: "50%",
-      top: "65px",
+      top: "-95px",
       right: "-150px",
     },
     "&:before": {
@@ -44,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
       border: "3px solid ",
       borderColor: theme.palette.warning.main,
       borderRadius: "50%",
-      top: "145px",
+      top: "-135px",
       right: "-70px",
     },
   },
@@ -81,8 +77,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// ===========================|| PROFILE MENU - CREATE ACCOUNT CARD ||=========================== //
-
 const UpgradePlanCard = () => {
   const classes = useStyles();
 
@@ -96,11 +90,7 @@ const UpgradePlanCard = () => {
                 <Grid item>
                   <Typography variant="h4">Hi {customer?.firstName}</Typography>
                 </Grid>
-                <Grid item>
-                  <Typography variant="subtitle2" className={classes.tagLine}>
-                    Below are your recent orders
-                  </Typography>
-                </Grid>
+                <RecentOrdersSection />
                 <Grid item>
                   {customer?.businessId > 0 ? (
                     <>
@@ -152,7 +142,7 @@ const UpgradePlanCard = () => {
                         <AnimateButton>
                           <Button
                             component={RouterLink}
-                            to="/account/register/register3"
+                            to="/my-business"
                             variant="contained"
                             className={classes.button}
                           >

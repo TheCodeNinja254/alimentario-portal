@@ -22,6 +22,7 @@ import ADD_ORDER from "../../api/Mutations/Order";
 import StatusIcon from "../../components/StatusIcon";
 import Dialog from "../../components/Dialog";
 import ErrorHandler from "../../utils/errorHandler";
+import { GET_MY_ORDERS } from "../../api/Queries/Orders/GetMyOrders";
 
 const useStyles = makeStyles((theme) => ({
   cardTitle: {
@@ -87,7 +88,7 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
           variables: {
             input: {
               cartItemsList: itemsOnOrder,
-              amountDue: totalDue,
+              amountDue: totalDue + 200, // flat rate for delivery for now
               deliveryLocationId: selectedDeliveryLocation,
               orderType: "Retail",
             },
@@ -96,6 +97,14 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
             {
               query: GET_CART_ITEMS,
               variables: { awaitRefetchQueries: true },
+            },
+            {
+              query: GET_MY_ORDERS,
+              variables: { pageSize: 5, awaitRefetchQueries: true },
+            },
+            {
+              query: GET_MY_ORDERS,
+              variables: { pageSize: 20, awaitRefetchQueries: true },
             },
           ],
         })
@@ -158,12 +167,15 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
         open={modalOpenStatus}
         modalContent={
           <Box className={classes.dialogContent}>
-            <StatusIcon status={addStatus ? "success" : "error"} />
+            <StatusIcon
+              status={addStatus ? "Order created!" : "An error occurred"}
+            />
             <Typography variant="body1"> {addMessage}</Typography>
           </Box>
         }
         modalActions={
           <Button
+            disableElevation
             variant="contained"
             onClick={() => closeDialog()}
             color="primary"
@@ -279,7 +291,7 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
                       lg={3}
                       xl={3}
                     >
-                      <Typography variant="body1">Ksh. 400</Typography>
+                      <Typography variant="body1">Ksh. 200</Typography>
                     </Grid>
                   </Grid>
                   <Grid container className={classes.totalContainer}>
@@ -304,7 +316,7 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
                       xl={3}
                     >
                       <Typography variant="body1">
-                        <strong>Ksh. {totalDue + 400}</strong>
+                        <strong>Ksh. {totalDue + 200}</strong>
                       </Typography>
                     </Grid>
                   </Grid>

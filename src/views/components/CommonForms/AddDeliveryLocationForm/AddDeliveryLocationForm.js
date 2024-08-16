@@ -38,12 +38,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddDeliveryLocationForm = () => {
+const AddDeliveryLocationForm = ({ handleClose }) => {
   const classes = useStyles();
 
   const [submitError, setSubmitError] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const [submitDetails, setSubmitDetails] = useState("");
+  const [, setSubmitDetails] = useState("");
 
   const buttonDisabledStatus = (errors, values, loading) => {
     let status = true;
@@ -97,11 +96,7 @@ const AddDeliveryLocationForm = () => {
                 },
               } = response;
               if (addDeliveryLocationStatus) {
-                setSubmitDetails({
-                  status: true,
-                  quantity: values.quantity,
-                  customerSpecification: values.customerSpecification,
-                });
+                handleClose();
               } else {
                 setSubmitError(addDeliveryLocationMessage);
               }

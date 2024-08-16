@@ -3,8 +3,8 @@ import React from "react";
 import Query from "../../../components/Query";
 
 export const GET_DISPLAY_PRODUCTS = gql`
-  query GetDisplayProducts {
-    getDisplayProducts {
+  query GetDisplayProducts($productCategory: Int!) {
+    getDisplayProducts(productCategory: $productCategory) {
       status
       message
       productsList {

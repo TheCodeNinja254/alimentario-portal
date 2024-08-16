@@ -9,7 +9,7 @@ import cookiePolicy from "../../assets/Documents/DesafioAlimentarioCookiePolicy.
 import Image from "../../components/Image";
 import cookiePolicyImage from "../../assets/images/Graphics/cookiePolicy.jpg";
 import AnimatedSection from "../../ui-component/AnimatedSection";
-import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
+import InformationTab from "../components/InformationTab";
 
 const useStyles = makeStyles((theme) => ({
   productImage: {
@@ -71,7 +71,7 @@ const CookiePolicy = () => {
           </MainCard>
         </Grid>
         <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-          <WeDeliverCard />
+          <InformationTab />
         </Grid>
       </Grid>
     </AnimatedSection>

@@ -1,113 +1,89 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import { CardActionArea, Grid, Typography } from "@mui/material";
-import { makeStyles, styled } from "@material-ui/styles";
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import AnimatedSection from "../../../ui-component/AnimatedSection";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Chip, Stack, Typography } from "@material-ui/core";
+import {
+  BakeryDining,
+  BreakfastDiningOutlined,
+  Fastfood,
+  LocalDrink,
+} from "@material-ui/icons";
+import { makeStyles, useTheme } from "@material-ui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  chip: {
+    marginRight: theme.spacing(1),
+    borderColor: theme.palette.primary.dark,
+  },
+}));
 
 const productCategories = [
   {
-    categoryId: 1,
-    categoryName: "Steak",
-    categoryDisplayPic: "/images/categories/roastedSteak.jpg",
+    id: 1,
+    name: "Sandwiches & Burgers",
+    icon: <BreakfastDiningOutlined size="small" />,
+    catSlug: "sandwiches",
   },
   {
-    categoryId: 2,
-    categoryName: "Cheese",
-    categoryDisplayPic: "/images/categories/cheese.jpg",
+    id: 2,
+    name: "Sandwich Extras",
+    icon: <BakeryDining size="small" />,
+    catSlug: "extras",
   },
-  // {
-  //   categoryId: 3,
-  //   categoryName: "Cook Party",
-  //   categoryDisplayPic: "/images/categories/bbq.png",
-  // },
+  {
+    id: 3,
+    name: "Fresh Juices",
+    icon: <LocalDrink size="small" />,
+    catSlug: "juices",
+  },
+  {
+    id: 4,
+    name: "Dressings",
+    icon: <Fastfood size="small" />,
+    catSlug: "desafio-dressings",
+  },
 ];
 
-const useStyles = makeStyles((theme) => ({
-  categoryCardText: {
-    marginTop: theme.spacing(0),
-    marginRight: theme.spacing(2),
-    color: theme.palette.common.black,
-    fontSize: 25,
-    fontWeight: 700,
-    textAlign: "right",
-    [theme.breakpoints.down("sm")]: {
-      textAlign: "center",
-      marginTop: theme.spacing(0),
-      fontSize: 25,
-    },
-  },
-  branding: {
-    marginTop: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    color: theme.palette.common.black,
-    fontSize: 10,
-    fontWeight: 300,
-    textAlign: "right",
-    [theme.breakpoints.down("sm")]: {
-      textAlign: "center",
-      marginTop: theme.spacing(1),
-      fontSize: 10,
-      fontWeight: 300,
-    },
-  },
-}));
-
-const CategoryCard = styled(Card)(({ img }) => ({
-  backgroundImage: `url(${img})`,
-  height: 130,
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  opacity: 0.5,
-}));
-
-const ProductCategorization = ({ setFilter, setProductCategory }) => {
+const ProductCategorization = ({ selectedCat, setSelectedCat }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const navigate = useNavigate();
 
-  const handleCardClick = (id, categoryName) => {
-    setFilter(id);
-    setProductCategory(categoryName);
+  const handleCatChange = (_catId, _catSlug) => {
+    setSelectedCat(_catId);
+    // navigate.push(`/products/${_catSlug}`);
+    navigate(`/products/${_catSlug}`);
   };
 
-  const [animate, setAnimate] = useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      // animation
-      setAnimate(true);
-    }, 1);
-  }, [animate]);
-
   return (
-    <Grid container spacing={2}>
+    <Stack
+      direction="row"
+      sx={{
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3),
+        overflowX: "auto",
+        whiteSpace: "nowrap",
+      }}
+    >
       {productCategories.map((cat) => (
-        <Grid item xs={6} xl={6} id={cat.categoryId}>
-          <AnimatedSection animate={animate} duration="1.8s">
-            <Card elevation={0}>
-              <CardActionArea
-                onClick={() =>
-                  handleCardClick(cat.categoryId, cat.categoryName)
-                }
-              >
-                <CategoryCard img={cat.categoryDisplayPic}>
-                  <Typography className={classes.branding}>Desafio</Typography>
-                  <Typography className={classes.categoryCardText}>
-                    {cat.categoryName}
-                  </Typography>
-                </CategoryCard>
-              </CardActionArea>
-            </Card>
-          </AnimatedSection>
-        </Grid>
+        <Chip
+          key={cat.id}
+          variant={selectedCat === cat.id ? "filled" : "outlined"}
+          color="primary"
+          onClick={() => handleCatChange(cat.id, cat.catSlug)}
+          label={
+            <Stack direction="row" spacing={1}>
+              {cat.icon}
+              <Typography sx={{ marginTop: theme.spacing(0.7) }}>
+                <strong>{cat.name}</strong>
+              </Typography>
+            </Stack>
+          }
+          className={classes.chip}
+        />
       ))}
-    </Grid>
+    </Stack>
   );
-};
-
-ProductCategorization.propTypes = {
-  setFilter: PropTypes.func.isRequired,
-  setProductCategory: PropTypes.func.isRequired,
 };
 
 export default ProductCategorization;

@@ -4,8 +4,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import { Stack, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { Grid } from "@mui/material";
+import { Box, Grid, IconButton } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { Close } from "@material-ui/icons";
+import DialogTitle from "@mui/material/DialogTitle";
 import Image from "../../../components/Image";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import photo from "../../../assets/images/Graphics/bbq_05.jpg";
@@ -45,6 +47,19 @@ const SignInModal = ({ open, setOpen }) => {
 
   return (
     <Dialog fullWidth open={open} onClose={handleClose}>
+      <DialogTitle>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            flexDirection: "row",
+          }}
+        >
+          <IconButton onClick={() => handleClose()}>
+            <Close />
+          </IconButton>
+        </Box>
+      </DialogTitle>
       <DialogContent>
         <Grid container spacing={1}>
           <Grid item xs={12}>

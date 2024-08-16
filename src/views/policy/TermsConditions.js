@@ -8,7 +8,7 @@ import termsAndConditions from "../../assets/Documents/DesafioAlimentarioLTDPriv
 import Image from "../../components/Image";
 import termsImage from "../../assets/images/Graphics/terms.jpg";
 import AnimatedSection from "../../ui-component/AnimatedSection";
-import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
+import InformationTab from "../components/InformationTab";
 
 const useStyles = makeStyles((theme) => ({
   productImage: {
@@ -72,7 +72,7 @@ const TermsConditions = () => {
           </MainCard>
         </Grid>
         <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-          <WeDeliverCard />
+          <InformationTab />
         </Grid>
       </Grid>
     </AnimatedSection>

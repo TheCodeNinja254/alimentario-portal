@@ -13,8 +13,8 @@ const monthNames = [
   "Dec",
 ];
 
-const FormatDate = (timeStamp, timeInclude) => {
-  const currentDate = new Date(timeStamp.replace(" ", "T"));
+const formatDate = (timeStamp, timeInclude) => {
+  const currentDate = new Date(timeStamp?.replace(" ", "T"));
   const month = currentDate.getMonth() + 1;
   let day = currentDate.getDate();
   let hour = currentDate.getHours();
@@ -31,4 +31,4 @@ const FormatDate = (timeStamp, timeInclude) => {
   return `${monthNames[month - 1]} ${day}, ${currentDate.getFullYear()}${time}`;
 };
 
-export default FormatDate;
+export default formatDate;

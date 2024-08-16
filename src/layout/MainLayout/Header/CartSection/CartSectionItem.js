@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme, styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Chip,
@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { IconTrash } from "@tabler/icons";
 import PropTypes from "prop-types";
-import FormatDate from "../../../../utils/formatDate";
+import formatDate from "../../../../utils/formatDate";
 
 // styles
 const ListItemWrapper = styled("div")(() => ({
@@ -85,7 +85,7 @@ const CartSectionItem = ({ cartItemsList, handleDeleteCartItem }) => {
                   {cartItem?.customerSpecification}
                 </Typography>
                 <Typography variant="caption" display="block" gutterBottom>
-                  {FormatDate(cartItem.createdAt, true)}
+                  {formatDate(cartItem.createdAt, true)}
                 </Typography>
               </Grid>
               <Grid item xs={12}>

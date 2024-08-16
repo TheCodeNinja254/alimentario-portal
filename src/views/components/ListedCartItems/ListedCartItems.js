@@ -3,7 +3,7 @@ import { Avatar, List, ListItemAvatar, ListItemText } from "@material-ui/core";
 import { Box, IconButton, ListItem } from "@mui/material";
 import { IconTrash } from "@tabler/icons";
 import Image from "../../../components/Image";
-import FormatDate from "../../../utils/formatDate";
+import formatDate from "../../../utils/formatDate";
 
 // const useStyles = makeStyles(() => ({
 //   scrollableBox: {
@@ -31,7 +31,7 @@ const ListedCartItems = ({ cartItemsList }) => {
             </ListItemAvatar>
             <ListItemText
               primary={`${cartItem.productName} - ${cartItem.quantity} ${cartItem.productUnitOfMeasure} for Ksh. ${cartItem.productPrice}`}
-              secondary={FormatDate(cartItem.createdAt, true)}
+              secondary={formatDate(cartItem.createdAt, true)}
             />
             <IconButton edge="end" aria-label="delete">
               <IconTrash />

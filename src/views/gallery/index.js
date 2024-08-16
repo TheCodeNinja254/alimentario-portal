@@ -3,8 +3,7 @@ import { Grid } from "@material-ui/core";
 import { gridSpacing } from "../../store/constant";
 import GreetingsCard from "./components/GreetingsCard";
 import TitlebarImageList from "../home/components/ImageGallery";
-import MenuCard from "../components/ActionCards";
-import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
+import InformationTab from "../components/InformationTab";
 
 const Dashboard = () => {
   return (
@@ -20,14 +19,7 @@ const Dashboard = () => {
         </Grid>
       </Grid>
       <Grid item lg={4} md={8} sm={12} xs={12}>
-        <Grid container spacing={gridSpacing}>
-          <Grid item xs={12}>
-            <MenuCard />
-          </Grid>
-          <Grid item xs={12}>
-            <WeDeliverCard />
-          </Grid>
-        </Grid>
+        <InformationTab />
       </Grid>
     </Grid>
   );

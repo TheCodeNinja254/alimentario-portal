@@ -28,7 +28,7 @@ const AuthenticationRoutes = {
       element: <CustomerAccountCreation />,
     },
     {
-      path: "//forgot-password",
+      path: "/forgot-password",
       element: <PasswordReset />,
     },
   ],

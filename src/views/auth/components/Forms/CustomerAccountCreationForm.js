@@ -476,7 +476,9 @@ const CustomerAccountCreationForm = () => {
               <AnimateButton>
                 <Button
                   disableElevation
-                  disabled={buttonDisabledStatus(errors, values, loading)}
+                  disabled={
+                    buttonDisabledStatus(errors, values, loading) || !checked
+                  }
                   fullWidth
                   size="large"
                   type="submit"

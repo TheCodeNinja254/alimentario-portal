@@ -1,13 +1,13 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Chip, Stack, Typography } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
-import { Divider, Grid } from "@mui/material";
+import { Box, Divider, Grid, IconButton } from "@mui/material";
+import { Close } from "@material-ui/icons";
 import Image from "../../../components/Image";
 import AddToCartForm from "../CommonForms/AddToCartForm";
 import StatusIcon from "../../../components/StatusIcon";
@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
   nextActionsArea: {
     marginTop: theme.spacing(2),
   },
+  priceChip: {
+    fontWeight: 700,
+  },
 }));
 
 const AddToCartModal = ({
@@ -65,9 +68,25 @@ const AddToCartModal = ({
 
   return (
     <Dialog fullWidth open={open} onClose={handleClose}>
-      <DialogTitle className={classes.modalTitle}>
-        {submitStatus ? "" : "Add to cart"}
+      <DialogTitle>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "row",
+          }}
+        >
+          <DialogTitle className={classes.modalTitle}>
+            {submitStatus ? "" : "Add to cart"}
+          </DialogTitle>
+          <Box>
+            <IconButton onClick={() => handleClose()}>
+              <Close />
+            </IconButton>
+          </Box>
+        </Box>
       </DialogTitle>
+
       <DialogContent>
         {submitStatus ? (
           <Grid container spacing={1}>
@@ -184,14 +203,14 @@ const AddToCartModal = ({
                   variant="filled"
                   label={
                     selectedProduct?.stockStatus === 1
-                      ? "In Stock"
+                      ? "Available"
                       : "Out of Stock"
                   }
                   className={classes.priceChip}
                 />
                 <Chip
                   variant="filled"
-                  label={`Price per ${selectedProduct?.productUnitOfMeasure}: ${selectedProduct?.productPrice}`}
+                  label={`Ksh. ${selectedProduct?.productPrice}`}
                   className={classes.priceChip}
                 />
               </Stack>
@@ -200,16 +219,12 @@ const AddToCartModal = ({
             <Grid item xs={12}>
               <AddToCartForm
                 productId={selectedProduct.id}
-                productUnitOfMeasure={selectedProduct.productUnitOfMeasure}
                 setSubmitDetails={setSubmitDetails}
               />
             </Grid>
           </Grid>
         )}
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
-      </DialogActions>
     </Dialog>
   );
 };

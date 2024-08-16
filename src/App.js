@@ -5,6 +5,7 @@ import { CssBaseline, StyledEngineProvider } from "@material-ui/core";
 import Routes from "./routes";
 import themes from "./themes";
 import NavigationScroll from "./layout/NavigationScroll";
+import "./styles/global.css";
 
 const App = () => {
   const customization = useSelector((state) => state.customization);

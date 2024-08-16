@@ -6,6 +6,7 @@ import { IconMenu2 } from "@tabler/icons";
 import LogoSection from "../LogoSection";
 import ProfileSection from "./ProfileSection";
 import CartSection from "./CartSection";
+import CategoriesSection from "./CategoriesSection";
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -20,8 +21,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-// ===========================|| MAIN NAVBAR / HEADER ||=========================== //
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const classes = useStyles();
@@ -44,7 +43,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
       {/* <SearchSection theme="light" /> */}
       <div className={classes.grow} />
       <div className={classes.grow} />
-
+      <CategoriesSection />
       <CartSection />
       <ProfileSection />
     </>

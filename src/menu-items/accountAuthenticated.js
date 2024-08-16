@@ -1,9 +1,9 @@
 import {
+  IconBug,
   IconKey,
   IconReceipt2,
-  IconBug,
-  IconUser,
   IconShoppingCart,
+  IconUser,
 } from "@tabler/icons";
 
 // constant
@@ -15,12 +15,10 @@ const icons = {
   IconShoppingCart,
 };
 
-// ===========================|| UNAUTHENTICATED PAGES FOR ACCOUNT INFO ||=========================== //
-
 const accountAuthenticated = {
   id: "accountAuthenticated",
   title: "Account",
-  caption: "Get to your auth",
+  caption: "Get to your Account",
   type: "group",
   children: [
     {
@@ -33,13 +31,13 @@ const accountAuthenticated = {
           id: "pendingOrders",
           title: "Pending Orders",
           type: "item",
-          url: "/pages/login/login3",
+          url: "/pending-orders",
         },
         {
           id: "orderHistory",
           title: "Order History",
           type: "item",
-          url: "/pages/register/register3",
+          url: "/orders",
         },
       ],
     },
@@ -50,16 +48,10 @@ const accountAuthenticated = {
       icon: icons.IconUser,
       children: [
         {
-          id: "manageAccount",
-          title: "Manage My Account",
+          id: "account",
+          title: "My Account",
           type: "item",
-          url: "/pages/login/login3",
-        },
-        {
-          id: "logout",
-          title: "Logout",
-          type: "item",
-          url: "/pages/register/register3",
+          url: "/account",
         },
       ],
     },

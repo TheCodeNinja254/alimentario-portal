@@ -1,12 +1,11 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
+import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { makeStyles } from "@material-ui/styles";
-import { Grid } from "@mui/material";
-import { useState } from "react";
+import { Box, Grid, IconButton } from "@mui/material";
+import { Close } from "@material-ui/icons";
 import AddDeliveryLocationForm from "../CommonForms/AddDeliveryLocationForm";
 
 const useStyles = makeStyles((theme) => ({
@@ -55,19 +54,29 @@ const AddDeliveryLocationModal = ({ open, setOpen }) => {
 
   return (
     <Dialog fullWidth open={open} onClose={handleClose}>
+      <DialogTitle>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            flexDirection: "row",
+          }}
+        >
+          <IconButton onClick={() => handleClose()}>
+            <Close />
+          </IconButton>
+        </Box>
+      </DialogTitle>
       <DialogTitle className={classes.modalTitle}>
         {submitStatus ? "" : "Where can we deliver?"}
       </DialogTitle>
       <DialogContent>
         <Grid container>
           <Grid item xs={12}>
-            <AddDeliveryLocationForm />
+            <AddDeliveryLocationForm handleClose={handleClose} />
           </Grid>
         </Grid>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
-      </DialogActions>
     </Dialog>
   );
 };

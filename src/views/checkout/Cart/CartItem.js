@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useTheme, styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Chip,
@@ -16,7 +16,6 @@ import {
 import { IconTrash } from "@tabler/icons";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
-import FormatDate from "../../../utils/formatDate";
 
 // styles
 const ListItemWrapper = styled("div")(() => ({
@@ -84,7 +83,7 @@ const CartItem = ({
             <ListItem alignItems="center">
               <ListItemAvatar>
                 <StyledAvatar
-                  alt="John Doe"
+                  alt={cartItem.productName}
                   src={`/images/${cartItem?.productPicMain}`}
                 />
               </ListItemAvatar>
@@ -92,6 +91,14 @@ const CartItem = ({
                 primary={
                   <Typography className={classes.productName}>
                     {cartItem.productName}
+                  </Typography>
+                }
+                secondary={
+                  <Typography
+                    variant="caption"
+                    sx={{ marginLeft: theme.spacing(2) }}
+                  >
+                    {cartItem.productDescription}{" "}
                   </Typography>
                 }
               />
@@ -113,9 +120,6 @@ const CartItem = ({
               <Grid item xs={12} sx={{ pb: 2 }}>
                 <Typography variant="subtitle2">
                   {cartItem?.customerSpecification}
-                </Typography>
-                <Typography variant="caption" display="block" gutterBottom>
-                  {FormatDate(cartItem.createdAt, true)}
                 </Typography>
               </Grid>
               <Grid item xs={12}>

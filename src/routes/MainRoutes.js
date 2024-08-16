@@ -19,6 +19,8 @@ const TermsConditions = Loadable(
 
 const MyBusinessView = Loadable(lazy(() => import("../views/wholesale")));
 
+const ProductsView = Loadable(lazy(() => import("../views/products")));
+
 const OrdersView = Loadable(lazy(() => import("../views/orders/completed")));
 
 const PendingOrdersView = Loadable(
@@ -42,6 +44,10 @@ const MainRoutes = {
     {
       path: "/home/default",
       element: <DashboardDefault />,
+    },
+    {
+      path: "/products/:id",
+      element: <ProductsView />,
     },
     {
       path: "/checkout",

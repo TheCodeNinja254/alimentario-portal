@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Stack } from "@material-ui/core";
 import MuiTypography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { Divider } from "@mui/material";
+import { Fastfood } from "@material-ui/icons";
 import { gridSpacing } from "../../../store/constant";
 import AddToCartModal from "../../components/AddToCartModal";
 import SignInModal from "../../components/SignInModal/SignInModal";
-import ProductCategorization from "./ProductCategorization";
 import ProductCard from "./ProductCard";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import NoContentToShow from "../../components/NoContentToShow";
@@ -24,12 +24,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductsSection = ({ sessionStatus }) => {
+const _categories = [
+  "Sandwiches & Burgers",
+  "Sandwiches Extras",
+  "Fresh Juices",
+  "Dressings",
+];
+
+const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
   const classes = useStyles();
+  const theme = useTheme();
+
   const [open, setOpen] = React.useState(false);
   const [selectedProduct, setSelectedProduct] = React.useState({});
-  const [filter, setFilter] = React.useState(0);
-  const [productCategory, setProductCategory] = React.useState("");
 
   const [submitDetails, setSubmitDetails] = useState({
     status: false,
@@ -57,31 +64,29 @@ const ProductsSection = ({ sessionStatus }) => {
 
   return (
     <>
-      <MuiTypography variant="h2" gutterBottom className={classes.subGreeting}>
-        Chef&apos;s Choice
-      </MuiTypography>
-      <ProductCategorization
-        setFilter={setFilter}
-        setProductCategory={setProductCategory}
-      />
-      <MuiTypography variant="h4" gutterBottom className={classes.subGreeting}>
-        {productCategory === "" ? "Our Products" : `Our ${productCategory}`}
-      </MuiTypography>
+      <Stack direction="row">
+        <Fastfood color="primary" sx={{ marginTop: theme.spacing(2) }} />
+        <MuiTypography
+          variant="h4"
+          gutterBottom
+          className={classes.subGreeting}
+        >
+          {category === ""
+            ? "Desafio Sandwiches & Burgers"
+            : `Desafio ${_categories[category - 1]}`}
+        </MuiTypography>
+      </Stack>
       <Divider className={classes.divider} />
       <Grid container spacing={gridSpacing}>
-        <GetDisplayProductsQuery>
+        <GetDisplayProductsQuery
+          variables={{ productCategory: defaultCategoryId || category }}
+        >
           {({ getDisplayProducts: { status, productsList } }) =>
             status && productsList?.length > 0 ? (
               <ProductCard
                 handleAddToCart={handleAddToCart}
                 animate={animate}
-                productsList={
-                  filter === 0
-                    ? productsList
-                    : productsList.filter(
-                        (item) => item.productCategory === filter
-                      )
-                }
+                productsList={productsList}
               />
             ) : (
               <AnimatedSection animate={animate} duration="1.0s">

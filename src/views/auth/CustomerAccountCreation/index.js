@@ -109,6 +109,22 @@ const CustomerAccountCreation = () => {
                         Have an account?
                       </Typography>
                     </Grid>
+                    <Grid
+                      item
+                      container
+                      direction="column"
+                      alignItems="center"
+                      xs={12}
+                    >
+                      <Typography
+                        component={RouterLink}
+                        to="/"
+                        variant="subtitle1"
+                        sx={{ textDecoration: "none" }}
+                      >
+                        Back Home
+                      </Typography>
+                    </Grid>
                   </Grid>
                 </Grid>
               </AuthCardWrapper>

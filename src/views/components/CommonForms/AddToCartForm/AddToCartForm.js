@@ -32,11 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCartForm = ({
-  productId,
-  setSubmitDetails,
-  productUnitOfMeasure,
-}) => {
+const AddToCartForm = ({ productId, setSubmitDetails }) => {
   const classes = useStyles();
 
   const [submitError, setSubmitError] = useState("");
@@ -116,7 +112,7 @@ const AddToCartForm = ({
               className={classes.formInput}
             >
               <InputLabel htmlFor="outlined-adornment-quantity-login">
-                {`Quantity (${productUnitOfMeasure})`}
+                Quantity
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-quantity-login"
@@ -126,7 +122,7 @@ const AddToCartForm = ({
                 onChange={(e) => {
                   setFieldValue("quantity", e.target.value, true);
                 }}
-                label={`Quantity (${productUnitOfMeasure})`}
+                label="Quantity"
                 inputProps={{
                   classes: {
                     notchedOutline: classes.notchedOutline,
@@ -205,13 +201,11 @@ const AddToCartForm = ({
 
 AddToCartForm.defaultProps = {
   productId: 0,
-  productUnitOfMeasure: "",
 };
 
 AddToCartForm.propTypes = {
   productId: PropTypes.number,
   setSubmitDetails: PropTypes.func.isRequired,
-  productUnitOfMeasure: PropTypes.string,
 };
 
 export default AddToCartForm;

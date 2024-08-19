@@ -168,7 +168,8 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
         modalContent={
           <Box className={classes.dialogContent}>
             <StatusIcon
-              status={addStatus ? "Order created!" : "An error occurred"}
+              status={addStatus ? "success" : "An error occurred"}
+              text={addStatus ? "Order created!" : "An error occurred"}
             />
             <Typography variant="body1"> {addMessage}</Typography>
           </Box>

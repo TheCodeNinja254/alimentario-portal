@@ -117,6 +117,29 @@ const RecentOrdersSection = () => {
               </>
             ) : (
               <Box>
+                <Box sx={{ marginBottom: theme.spacing(2) }}>
+                  <Button
+                    sx={{ marginRight: theme.spacing(2) }}
+                    disableElevation
+                    size="small"
+                    variant={
+                      orderStatus === "pending" ? "contained" : "outlined"
+                    }
+                    onClick={() => setOrderStatus("pending")}
+                  >
+                    Pending
+                  </Button>
+                  <Button
+                    disableElevation
+                    size="small"
+                    variant={
+                      orderStatus === "closed" ? "contained" : "outlined"
+                    }
+                    onClick={() => setOrderStatus("closed")}
+                  >
+                    Older
+                  </Button>
+                </Box>
                 <Divider sx={{ marginTop: theme.spacing(1) }} />
                 <Image src={emptyPlate} alt="empty plate" />
                 <Typography variant="caption">

@@ -25,7 +25,6 @@ const AddToCartSchema = Yup.object().shape({
     .nullable(),
 });
 
-// style constant
 const useStyles = makeStyles((theme) => ({
   formInput: {
     ...theme.typography.customInput,

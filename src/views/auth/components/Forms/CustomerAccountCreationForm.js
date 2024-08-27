@@ -145,10 +145,6 @@ const CustomerAccountCreationForm = () => {
     setRegisterDetails({ open: false, status: false, message: "", body });
   };
 
-  // useEffect(() => {
-  //   changePassword("123456");
-  // }, []);
-
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>

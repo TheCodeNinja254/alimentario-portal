@@ -23,6 +23,8 @@ const ProductsView = Loadable(lazy(() => import("../views/products")));
 
 const OrdersView = Loadable(lazy(() => import("../views/orders/completed")));
 
+const AllOrdersView = Loadable(lazy(() => import("../views/orders/all")));
+
 const PendingOrdersView = Loadable(
   lazy(() => import("../views/orders/pending"))
 );
@@ -64,6 +66,10 @@ const MainRoutes = {
     {
       path: "/orders",
       element: <OrdersView />,
+    },
+    {
+      path: "/orders/p3r5PeSkyTPcMNO/all",
+      element: <AllOrdersView />,
     },
     {
       path: "/pending-orders",

@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UpgradePlanCard = () => {
+const ActionCard = () => {
   const classes = useStyles();
 
   return (
@@ -197,4 +197,4 @@ const UpgradePlanCard = () => {
   );
 };
 
-export default UpgradePlanCard;
+export default ActionCard;

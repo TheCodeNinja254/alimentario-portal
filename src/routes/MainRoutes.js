@@ -6,6 +6,8 @@ const DashboardDefault = Loadable(lazy(() => import("../views/home")));
 
 const CheckoutView = Loadable(lazy(() => import("../views/checkout")));
 
+const PaymentView = Loadable(lazy(() => import("../views/payment")));
+
 // Gallery Routing
 const GalleryDefault = Loadable(lazy(() => import("../views/gallery")));
 
@@ -54,6 +56,10 @@ const MainRoutes = {
     {
       path: "/checkout",
       element: <CheckoutView />,
+    },
+    {
+      path: "/payment",
+      element: <PaymentView />,
     },
     {
       path: "/account",

@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router";
 import MainCard from "../../ui-component/cards/MainCard";
 import DeliveryAddress from "./DeliveryAddress";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 const OrderCompletion = ({ totalDue, cartItemsList }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const [selectedDeliveryLocation, setSelectedDeliveryLocation] =
     useState(false);
@@ -115,11 +117,12 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
               },
             } = response;
             if (addOrderStatus) {
-              setAddOrderDetails({
-                modalOpenStatus: true,
-                addStatus: true,
-                addMessage: addOrderMessage,
-              });
+              navigate("/payment");
+              // setAddOrderDetails({
+              //   modalOpenStatus: true,
+              //   addStatus: true,
+              //   addMessage: addOrderMessage,
+              // });
             } else {
               setAddOrderDetails({
                 modalOpenStatus: true,

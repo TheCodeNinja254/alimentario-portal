@@ -1,21 +1,38 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
+import { useLocation } from "react-router-dom";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import { gridSpacing } from "../../store/constant";
 import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
 import PaymentCard from "./components/PaymentCard";
 
 const Payment = () => {
+  const location = useLocation();
+  const { paymentCorrelationId, totalDue, deliveryFee, itemsOnOrder } =
+    location.state || {}; // Access the passed state
+
+  const orderInfo = {
+    paymentCorrelationId,
+    totalDue,
+    deliveryFee,
+    itemsOnOrder,
+  };
+
   return (
     <GetSignedInCustomerQuery>
-      {({ getSignedInCustomer: { status } }) => (
+      {({
+        getSignedInCustomer: {
+          status,
+          customer: { msisdn },
+        },
+      }) => (
         <>
           {status && (
             <Grid container spacing={gridSpacing}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
                 <Grid container spacing={gridSpacing}>
                   <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <PaymentCard />
+                    <PaymentCard orderInfo={orderInfo} chargedMsisdn={msisdn} />
                   </Grid>
                 </Grid>
               </Grid>

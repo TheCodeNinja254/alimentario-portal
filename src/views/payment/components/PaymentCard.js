@@ -4,15 +4,23 @@ import {
   Alert,
   AlertTitle,
   Box,
+  CircularProgress,
   DialogTitle,
   Divider,
   Grid,
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@material-ui/styles";
+import { useMutation } from "@apollo/client";
 import Image from "../../../components/Image";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import lipaNaMpesaLogo from "../../../assets/images/logos/lipaNaMpesaLogo.jpg";
+import { GET_MY_ORDERS } from "../../../api/Queries/Orders/GetMyOrders";
+import ErrorHandler from "../../../utils/errorHandler";
+import StatusIcon from "../../../components/StatusIcon";
+import Dialog from "../../../components/Dialog";
+import { LIPA_NA_MPESA_ONLINE } from "../../../api/Mutations/Payments";
+import { encrypt } from "../../../utils/encryptDecrypt";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -62,13 +70,89 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PaymentCard = () => {
+const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
   const classes = useStyles();
 
   const [animate, setAnimate] = useState(false);
-  const amount = 1000;
-  const deliveryFees = 1000;
-  const total = amount + deliveryFees;
+
+  const [LipaNaMpesaMutation, { loading }] = useMutation(LIPA_NA_MPESA_ONLINE);
+
+  const { paymentCorrelationId, totalDue, deliveryFee, itemsOnOrder } =
+    orderInfo;
+
+  const [responseDetails, setResponseDetails] = useState({
+    modalOpenStatus: false,
+    addStatus: false,
+    addMessage: "",
+  });
+
+  const { modalOpenStatus, addStatus, addMessage } = responseDetails;
+
+  const closeDialog = () => {
+    setResponseDetails({
+      modalOpenStatus: false,
+      addStatus: true,
+      addMessage: "",
+    });
+  };
+
+  const handlePayNow = async () => {
+    if (itemsOnOrder.length > 0 && totalDue > 0) {
+      LipaNaMpesaMutation({
+        variables: {
+          phoneNumber: encrypt(chargedMsisdn),
+          amount: encrypt(`${totalDue + deliveryFee}`), // flat rate for delivery for now
+          paymentCorrelationId,
+        },
+        refetchQueries: [
+          {
+            query: GET_MY_ORDERS,
+            variables: { pageSize: 5, awaitRefetchQueries: true },
+          },
+          {
+            query: GET_MY_ORDERS,
+            variables: { pageSize: 20, awaitRefetchQueries: true },
+          },
+        ],
+      })
+        .then((response) => {
+          const {
+            data: {
+              addOrder: { status: addOrderStatus, message: addOrderMessage },
+            },
+          } = response;
+          if (addOrderStatus) {
+            setResponseDetails({
+              modalOpenStatus: true,
+              addStatus: true,
+              addMessage: addOrderMessage,
+            });
+          } else {
+            setResponseDetails({
+              modalOpenStatus: true,
+              addStatus: false,
+              addMessage: addOrderMessage,
+            });
+          }
+        })
+        .catch((res) => {
+          setResponseDetails({
+            modalOpenStatus: true,
+            addStatus: false,
+            addMessage: ErrorHandler(
+              res.message || res.graphQLErrors[0].message
+            ),
+          });
+        });
+    } else {
+      setResponseDetails({
+        modalOpenStatus: true,
+        addStatus: false,
+        addMessage:
+          "Something went wrong! We cannot confirm the order at this time",
+      });
+    }
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -76,12 +160,32 @@ const PaymentCard = () => {
     }, 1);
   }, [animate]);
 
-  const handlePayNow = () => {
-    console.log("Pay Now action triggered");
-  };
-
   return (
     <AnimatedSection animate={animate} duration="1.4s">
+      <Dialog
+        open={modalOpenStatus}
+        modalContent={
+          <Box className={classes.dialogContent}>
+            <StatusIcon
+              status={addStatus ? "success" : "An error occurred"}
+              text={addStatus ? "Order created!" : "An error occurred"}
+            />
+            <Typography variant="body1"> {addMessage}</Typography>
+          </Box>
+        }
+        modalActions={
+          <Button
+            disableElevation
+            variant="contained"
+            onClick={() => closeDialog()}
+            color="primary"
+            autoFocus
+          >
+            Close
+          </Button>
+        }
+        handleClose={closeDialog}
+      />
       <Card elevation={0} className={classes.paper}>
         <Grid container>
           <Grid item xs={7}>
@@ -109,18 +213,18 @@ const PaymentCard = () => {
           <Grid item xs={12} className={classes.costSummary}>
             <div className={classes.costItem}>
               <Typography variant="body1">Amount:</Typography>
-              <Typography variant="body1">{amount} KES</Typography>
+              <Typography variant="body1">{totalDue} KES</Typography>
             </div>
             <div className={classes.costItem}>
               <Typography variant="body1">Delivery Fees:</Typography>
-              <Typography variant="body1">{deliveryFees} KES</Typography>
+              <Typography variant="body1">{deliveryFee} KES</Typography>
             </div>
             <div className={classes.costItem}>
               <Typography variant="body1" fontWeight="bold">
                 Total:
               </Typography>
               <Typography variant="body1" fontWeight="bold">
-                {total} KES
+                {totalDue + deliveryFee} KES
               </Typography>
             </div>
           </Grid>
@@ -140,7 +244,7 @@ const PaymentCard = () => {
           {/* Pay Now Button */}
           <Grid item xs={12}>
             <Button className={classes.payNowButton} onClick={handlePayNow}>
-              Pay Now
+              {loading ? <CircularProgress /> : "Pay Now"}
             </Button>
           </Grid>
         </Grid>

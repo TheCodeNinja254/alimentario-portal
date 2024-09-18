@@ -58,7 +58,6 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
     useState(false);
 
   const [AddOrderMutation, { loading }] = useMutation(ADD_ORDER);
-  // eslint-disable-next-line no-unused-vars
   const [addOrderDetails, setAddOrderDetails] = useState({
     modalOpenStatus: false,
     addStatus: false,
@@ -113,11 +112,22 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
           .then((response) => {
             const {
               data: {
-                addOrder: { status: addOrderStatus, message: addOrderMessage },
+                addOrder: {
+                  status: addOrderStatus,
+                  message: addOrderMessage,
+                  paymentCorrelationId,
+                },
               },
             } = response;
             if (addOrderStatus) {
-              navigate("/payment");
+              navigate("/payment", {
+                state: {
+                  paymentCorrelationId,
+                  totalDue,
+                  deliveryFee: 200,
+                  itemsOnOrder,
+                },
+              });
               // setAddOrderDetails({
               //   modalOpenStatus: true,
               //   addStatus: true,

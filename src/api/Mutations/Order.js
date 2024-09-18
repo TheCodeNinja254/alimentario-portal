@@ -5,6 +5,7 @@ const ADD_ORDER = gql`
     addOrder(input: $input) {
       status
       message
+      paymentCorrelationId
     }
   }
 `;

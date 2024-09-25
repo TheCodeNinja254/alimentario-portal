@@ -10,17 +10,18 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { makeStyles } from "@material-ui/styles";
-import { useMutation } from "@apollo/client";
+import { makeStyles, useTheme } from "@material-ui/styles";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { RingLoader } from "react-spinners";
 import Image from "../../../components/Image";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import lipaNaMpesaLogo from "../../../assets/images/logos/lipaNaMpesaLogo.jpg";
-import { GET_MY_ORDERS } from "../../../api/Queries/Orders/GetMyOrders";
 import ErrorHandler from "../../../utils/errorHandler";
 import StatusIcon from "../../../components/StatusIcon";
 import Dialog from "../../../components/Dialog";
-import { LIPA_NA_MPESA_ONLINE } from "../../../api/Mutations/Payments";
+import LIPA_NA_MPESA_ONLINE from "../../../api/Mutations/Payments";
 import { encrypt } from "../../../utils/encryptDecrypt";
+import { CHECK_PAYMENTS_STATUS } from "../../../api/Queries/Payments/GetDisplayProducts";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -34,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginTop: theme.spacing(0),
     },
+  },
+  dialogContent: {
+    alignContent: "center",
+    justifyContent: "center",
+    textAlign: "center",
   },
   modalTitle: {
     color: theme.palette.secondary.dark,
@@ -71,28 +77,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
+  const theme = useTheme();
   const classes = useStyles();
 
   const [animate, setAnimate] = useState(false);
 
-  const [LipaNaMpesaMutation, { loading }] = useMutation(LIPA_NA_MPESA_ONLINE);
-
   const { paymentCorrelationId, totalDue, deliveryFee, itemsOnOrder } =
     orderInfo;
+
+  const [LipaNaMpesaMutation, { loading }] = useMutation(LIPA_NA_MPESA_ONLINE);
+  const [checkMpesaPaymentStatus] = useLazyQuery(CHECK_PAYMENTS_STATUS, {
+    variables: {
+      paymentCorrelationId,
+    },
+    fetchPolicy: "network-only",
+  });
 
   const [responseDetails, setResponseDetails] = useState({
     modalOpenStatus: false,
     addStatus: false,
     addMessage: "",
+    type: null,
   });
 
-  const { modalOpenStatus, addStatus, addMessage } = responseDetails;
+  const { modalOpenStatus, addStatus, addMessage, type } = responseDetails;
+
+  const [checkingStatus, setCheckingStatus] = useState(false); // To track payment status checking
+  const [pollingCompletionStatus, setPollingCompletionStatus] = useState(false); // To track polling status
+  const [pollingCount, setPollingCount] = useState(0);
 
   const closeDialog = () => {
     setResponseDetails({
       modalOpenStatus: false,
       addStatus: true,
       addMessage: "",
+      type: null,
     });
   };
 
@@ -101,58 +120,120 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
       LipaNaMpesaMutation({
         variables: {
           phoneNumber: encrypt(chargedMsisdn),
-          amount: encrypt(`${totalDue + deliveryFee}`), // flat rate for delivery for now
-          paymentCorrelationId,
+          // amount: encrypt(`${totalDue + deliveryFee}`), // flat rate for delivery for now
+          amount: encrypt(`${1}`), // flat rate for delivery for now - For test purposes
+          paymentCorrelationId, // created at order creation, Now we need to attach it to a payment
         },
-        refetchQueries: [
-          {
-            query: GET_MY_ORDERS,
-            variables: { pageSize: 5, awaitRefetchQueries: true },
-          },
-          {
-            query: GET_MY_ORDERS,
-            variables: { pageSize: 20, awaitRefetchQueries: true },
-          },
-        ],
       })
         .then((response) => {
           const {
             data: {
-              addOrder: { status: addOrderStatus, message: addOrderMessage },
+              lipaNaMpesaOnline: {
+                status: invokeStkStatus,
+                customerMessageExtended,
+                customerMessage,
+              },
             },
           } = response;
-          if (addOrderStatus) {
+          if (invokeStkStatus) {
+            setPollingCount((prevState) => prevState + 1);
+            setCheckingStatus(true);
+            setPollingCompletionStatus(false);
             setResponseDetails({
               modalOpenStatus: true,
               addStatus: true,
-              addMessage: addOrderMessage,
+              addMessage: customerMessage,
+              type: null,
             });
           } else {
+            setCheckingStatus(false);
+            setPollingCompletionStatus(true);
             setResponseDetails({
               modalOpenStatus: true,
               addStatus: false,
-              addMessage: addOrderMessage,
+              addMessage: `${customerMessage} - ${customerMessageExtended}`,
+              type: null,
             });
           }
         })
         .catch((res) => {
+          setCheckingStatus(false);
+          setPollingCompletionStatus(true);
           setResponseDetails({
             modalOpenStatus: true,
             addStatus: false,
             addMessage: ErrorHandler(
               res.message || res.graphQLErrors[0].message
             ),
+            type: null,
           });
         });
     } else {
+      setCheckingStatus(false);
+      setPollingCompletionStatus(true);
       setResponseDetails({
         modalOpenStatus: true,
         addStatus: false,
         addMessage:
           "Something went wrong! We cannot confirm the order at this time",
+        type: null,
       });
     }
   };
+
+  const handleCheckPaymentStatus = () => {
+    checkMpesaPaymentStatus()
+      .then((response) => {
+        const {
+          data: {
+            checkPaymentStatus: { status, message, pollingComplete },
+          },
+        } = response;
+
+        if (pollingComplete) {
+          setPollingCount(0);
+          setCheckingStatus(false);
+          setPollingCompletionStatus(true);
+
+          if (status) {
+            setResponseDetails({
+              modalOpenStatus: true,
+              addStatus: true,
+              addMessage: message,
+              type: "transaction",
+            });
+          } else {
+            setResponseDetails({
+              modalOpenStatus: true,
+              addStatus: false,
+              addMessage: message,
+              type: "transaction",
+            });
+          }
+        } else {
+          setPollingCount((prevState) => prevState + 1);
+          setPollingCompletionStatus(false);
+        }
+      })
+      .catch((error) => {
+        setResponseDetails({
+          modalOpenStatus: true,
+          addStatus: false,
+          addMessage: ErrorHandler(
+            error.message || error.graphQLErrors[0].message
+          ),
+          type: "transaction",
+        });
+      });
+  };
+
+  useEffect(() => {
+    if (checkingStatus && !pollingCompletionStatus && pollingCount > 0) {
+      setTimeout(() => {
+        handleCheckPaymentStatus();
+      }, 4000);
+    }
+  }, [checkingStatus, pollingCompletionStatus, pollingCount]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -166,10 +247,33 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
         open={modalOpenStatus}
         modalContent={
           <Box className={classes.dialogContent}>
-            <StatusIcon
-              status={addStatus ? "success" : "An error occurred"}
-              text={addStatus ? "Order created!" : "An error occurred"}
-            />
+            {type === "transaction" ? (
+              <StatusIcon
+                status={addStatus ? "success" : "An error occurred"}
+                text={addStatus ? "Payment Successful" : "An error occurred"}
+              />
+            ) : (
+              <Box>
+                <Box
+                  className={classes.dialogContent}
+                  display="flex"
+                  justifyContent="center"
+                >
+                  <RingLoader color={theme.palette.primary.main} />
+                </Box>
+                <Typography
+                  sx={{
+                    color: theme.palette.success.main,
+                    fontWeight: 700,
+                    fontSize: 20,
+                    textAlign: "center",
+                    marginTop: theme.spacing(1),
+                  }}
+                >
+                  {addStatus ? "Payment prompt sent" : "An error occurred"}
+                </Typography>
+              </Box>
+            )}
             <Typography variant="body1"> {addMessage}</Typography>
           </Box>
         }
@@ -244,7 +348,14 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
           {/* Pay Now Button */}
           <Grid item xs={12}>
             <Button className={classes.payNowButton} onClick={handlePayNow}>
-              {loading ? <CircularProgress /> : "Pay Now"}
+              {loading ? (
+                <CircularProgress
+                  size="small"
+                  sx={{ color: theme.palette.common.white }}
+                />
+              ) : (
+                "Pay Now"
+              )}
             </Button>
           </Grid>
         </Grid>

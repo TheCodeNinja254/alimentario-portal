@@ -1,15 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const CHECK_PAYMENTS = gql`
-  mutation AddToCart($input: AddToCartRequest!) {
-    addToCart(input: $input) {
-      status
-      message
-    }
-  }
-`;
-
-export const LIPA_NA_MPESA_ONLINE = gql`
+const LIPA_NA_MPESA_ONLINE = gql`
   mutation LipaNaMpesaOnline(
     $amount: String!
     $phoneNumber: String!
@@ -21,7 +12,11 @@ export const LIPA_NA_MPESA_ONLINE = gql`
       paymentCorrelationId: $paymentCorrelationId
     ) {
       status
-      message
+      responseMessage
+      customerMessageExtended
+      customerMessage
     }
   }
 `;
+
+export default LIPA_NA_MPESA_ONLINE;

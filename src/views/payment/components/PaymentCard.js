@@ -8,6 +8,8 @@ import {
   DialogTitle,
   Divider,
   Grid,
+  List,
+  ListItem,
   Typography,
 } from "@mui/material";
 import { makeStyles, useTheme } from "@material-ui/styles";
@@ -81,6 +83,9 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
   const classes = useStyles();
 
   const [animate, setAnimate] = useState(false);
+  const [promptText, setPromptText] = useState(
+    "Check your phone for a prompt to pay"
+  );
 
   const { paymentCorrelationId, totalDue, deliveryFee, itemsOnOrder } =
     orderInfo;
@@ -105,6 +110,7 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
   const [checkingStatus, setCheckingStatus] = useState(false); // To track payment status checking
   const [pollingCompletionStatus, setPollingCompletionStatus] = useState(false); // To track polling status
   const [pollingCount, setPollingCount] = useState(0);
+  const [showAlternative, setShowAlternative] = useState(false);
 
   const closeDialog = () => {
     setResponseDetails({
@@ -232,6 +238,41 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
       setTimeout(() => {
         handleCheckPaymentStatus();
       }, 4000);
+
+      // set prompt message
+      switch (true) {
+        case pollingCount <= 6:
+          setPromptText("Please check your phone for the M-PESA prompt.");
+          break;
+        case pollingCount > 6 && pollingCount <= 17:
+          setPromptText(
+            "Still waiting... Once you enter your PIN, wait to see the message here."
+          );
+          break;
+        case pollingCount > 17 && pollingCount <= 27:
+          setPromptText(
+            "Almost there, we’re still processing the request. Please wait."
+          );
+          break;
+        case pollingCount > 27 && pollingCount <= 35:
+          setPromptText("Looks like something went wrong. Apologies for that.");
+          setShowAlternative(true);
+          break;
+        default:
+          setPollingCount(0);
+          setCheckingStatus(false);
+          setPollingCompletionStatus(true);
+          setShowAlternative(true);
+
+          setResponseDetails({
+            modalOpenStatus: true,
+            addStatus: false,
+            addMessage: "Looks like something went wrong. Apologies for that.",
+            type: "transaction",
+          });
+
+          setPromptText("Something must have gone wrong.");
+      }
     }
   }, [checkingStatus, pollingCompletionStatus, pollingCount]);
 
@@ -245,36 +286,82 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
     <AnimatedSection animate={animate} duration="1.4s">
       <Dialog
         open={modalOpenStatus}
+        maxWidth="md"
+        fullWidth={false}
+        disableBackdropClose={
+          checkingStatus && pollingCount > 1 && pollingCount <= 62
+        }
         modalContent={
-          <Box className={classes.dialogContent}>
-            {type === "transaction" ? (
-              <StatusIcon
-                status={addStatus ? "success" : "An error occurred"}
-                text={addStatus ? "Payment Successful" : "An error occurred"}
-              />
-            ) : (
-              <Box>
-                <Box
-                  className={classes.dialogContent}
-                  display="flex"
-                  justifyContent="center"
-                >
-                  <RingLoader color={theme.palette.primary.main} />
+          <Box>
+            <Box className={classes.dialogContent}>
+              {type === "transaction" && pollingCount < 62 ? (
+                <StatusIcon
+                  status={addStatus ? "success" : "An error occurred"}
+                  text={addStatus ? "Payment Successful" : "An error occurred"}
+                />
+              ) : (
+                <Box>
+                  <Typography
+                    sx={{
+                      color: theme.palette.success.main,
+                      fontWeight: 700,
+                      fontSize: 20,
+                      textAlign: "center",
+                      marginTop: theme.spacing(3),
+                      marginBottom: theme.spacing(2),
+                    }}
+                  >
+                    {addStatus ? "Payment prompt sent" : "An error occurred"}
+                  </Typography>
+                  <Box
+                    className={classes.dialogContent}
+                    display="flex"
+                    justifyContent="center"
+                  >
+                    <RingLoader color={theme.palette.primary.main} />
+                  </Box>
+                  {addStatus && (
+                    <Typography
+                      sx={{
+                        color: theme.palette.info.main,
+                        fontWeight: 700,
+                        fontSize: 15,
+                        textAlign: "center",
+                        marginTop: theme.spacing(3),
+                        marginBottom: theme.spacing(2),
+                      }}
+                    >
+                      {promptText}
+                    </Typography>
+                  )}
                 </Box>
-                <Typography
-                  sx={{
-                    color: theme.palette.success.main,
-                    fontWeight: 700,
-                    fontSize: 20,
-                    textAlign: "center",
-                    marginTop: theme.spacing(1),
-                  }}
-                >
-                  {addStatus ? "Payment prompt sent" : "An error occurred"}
+              )}
+              <Typography variant="body2"> {addMessage}</Typography>
+            </Box>
+            {showAlternative && (
+              <Alert
+                variant="outlined"
+                severity="info"
+                sx={{ marginTop: theme.spacing(2) }}
+              >
+                <AlertTitle>Use Lipa Na M-PESA (Buy Goods)</AlertTitle>
+                <Typography sx={{ marginTop: theme.spacing(2) }}>
+                  To complete the payment manually:
                 </Typography>
-              </Box>
+                <List>
+                  <ListItem>1. Select M-PESA</ListItem>
+                  <ListItem>2. Select Lipa Na M-PESA</ListItem>
+                  <ListItem>
+                    3. Select Till Number:{" "}
+                    <span style={{ fontWeight: 700 }}>5721425</span>
+                  </ListItem>
+                  <ListItem>
+                    4. Enter the amount and complete the transaction with your
+                    M-PESA PIN
+                  </ListItem>
+                </List>
+              </Alert>
             )}
-            <Typography variant="body1"> {addMessage}</Typography>
           </Box>
         }
         modalActions={
@@ -284,6 +371,7 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
             onClick={() => closeDialog()}
             color="primary"
             autoFocus
+            disabled={pollingCount > 1 && checkingStatus}
           >
             Close
           </Button>
@@ -349,10 +437,13 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
           <Grid item xs={12}>
             <Button className={classes.payNowButton} onClick={handlePayNow}>
               {loading ? (
-                <CircularProgress
-                  size="small"
-                  sx={{ color: theme.palette.common.white }}
-                />
+                <>
+                  <CircularProgress
+                    size={23}
+                    sx={{ color: theme.palette.primary.light }}
+                  />{" "}
+                  <span>&nbsp;&nbsp;&nbsp;Please wait...</span>
+                </>
               ) : (
                 "Pay Now"
               )}

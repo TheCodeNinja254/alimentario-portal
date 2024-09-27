@@ -9,11 +9,12 @@ export const CHECK_PAYMENTS_STATUS = gql`
       status
       message
       paymentDetails {
-        #        id
         paymentMethod
         amountPaid
         resultCode
         resultDesc
+        mpesaReceiptNumber
+        transactionDate
       }
     }
   }

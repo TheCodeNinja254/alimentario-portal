@@ -120,19 +120,27 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
               },
             } = response;
             if (addOrderStatus) {
-              navigate("/payment", {
-                state: {
-                  paymentCorrelationId,
-                  totalDue,
-                  deliveryFee: 200,
-                  itemsOnOrder,
-                },
-              });
-              // setAddOrderDetails({
-              //   modalOpenStatus: true,
-              //   addStatus: true,
-              //   addMessage: addOrderMessage,
-              // });
+              const currentTime = new Date(); // Get current date and time
+              const currentHour = currentTime.getHours(); // Get the current hour (0-23 format)
+
+              // If the time is between 10:00 AM and 8:00 PM
+              if (currentHour >= 10 && currentHour < 20) {
+                setAddOrderDetails({
+                  modalOpenStatus: true,
+                  addStatus: true,
+                  addMessage: addOrderMessage,
+                });
+              } else {
+                // If it's outside the 10:00 AM - 8:00 PM range
+                navigate("/payment", {
+                  state: {
+                    paymentCorrelationId,
+                    totalDue,
+                    deliveryFee: 200,
+                    itemsOnOrder,
+                  },
+                });
+              }
             } else {
               setAddOrderDetails({
                 modalOpenStatus: true,

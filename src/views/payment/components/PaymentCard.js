@@ -15,6 +15,7 @@ import {
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { RingLoader } from "react-spinners";
+import { useNavigate } from "react-router";
 import Image from "../../../components/Image";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import lipaNaMpesaLogo from "../../../assets/images/logos/lipaNaMpesaLogo.jpg";
@@ -24,6 +25,7 @@ import Dialog from "../../../components/Dialog";
 import LIPA_NA_MPESA_ONLINE from "../../../api/Mutations/Payments";
 import { encrypt } from "../../../utils/encryptDecrypt";
 import { CHECK_PAYMENTS_STATUS } from "../../../api/Queries/Payments/GetDisplayProducts";
+import parseMpesaDate from "../../../utils/parseMpesaDate";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -79,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const classes = useStyles();
 
@@ -86,6 +89,15 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
   const [promptText, setPromptText] = useState(
     "Check your phone for a prompt to pay"
   );
+  const [transactionInfo, setTransactionInfo] = useState({
+    status: false,
+    paymentMethod: "",
+    amountPaid: 0,
+    resultCode: "",
+    resultDesc: "",
+    mpesaReceiptNumber: "",
+    transactionDate: "",
+  });
 
   const { paymentCorrelationId, totalDue, deliveryFee, itemsOnOrder } =
     orderInfo;
@@ -112,16 +124,32 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
   const [pollingCount, setPollingCount] = useState(0);
   const [showAlternative, setShowAlternative] = useState(false);
 
-  const closeDialog = () => {
-    setResponseDetails({
-      modalOpenStatus: false,
-      addStatus: true,
-      addMessage: "",
-      type: null,
-    });
+  const closeDialog = (modalTransactionStatus) => {
+    if (modalTransactionStatus) {
+      navigate("/pending-orders");
+    } else {
+      setResponseDetails({
+        modalOpenStatus: false,
+        addStatus: true,
+        addMessage: "",
+        type: null,
+      });
+    }
   };
 
   const handlePayNow = async () => {
+    setShowAlternative(false);
+
+    setTransactionInfo({
+      status: false,
+      paymentMethod: "",
+      amountPaid: 0,
+      resultCode: "",
+      resultDesc: "",
+      mpesaReceiptNumber: "",
+      transactionDate: "",
+    });
+
     if (itemsOnOrder.length > 0 && totalDue > 0) {
       LipaNaMpesaMutation({
         variables: {
@@ -202,11 +230,31 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
           setPollingCompletionStatus(true);
 
           if (status) {
+            const {
+              data: {
+                checkPaymentStatus: {
+                  paymentDetails: {
+                    paymentMethod,
+                    amountPaid,
+                    mpesaReceiptNumber,
+                    transactionDate,
+                  },
+                },
+              },
+            } = response;
+
             setResponseDetails({
               modalOpenStatus: true,
               addStatus: true,
               addMessage: message,
               type: "transaction",
+            });
+            setTransactionInfo({
+              status: true,
+              paymentMethod,
+              amountPaid,
+              mpesaReceiptNumber,
+              transactionDate,
             });
           } else {
             setResponseDetails({
@@ -287,7 +335,7 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
       <Dialog
         open={modalOpenStatus}
         maxWidth="md"
-        fullWidth={false}
+        fullWidth
         disableBackdropClose={
           checkingStatus && pollingCount > 1 && pollingCount <= 62
         }
@@ -336,7 +384,62 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
                   )}
                 </Box>
               )}
-              <Typography variant="body2"> {addMessage}</Typography>
+              <Typography
+                variant="body2"
+                sx={{ marginBottom: theme.spacing(2) }}
+              >
+                {" "}
+                {addMessage === "Payment status retrieved successfully."
+                  ? "Your payment is received. Your order is confirmed."
+                  : addMessage}
+              </Typography>
+              {transactionInfo && transactionInfo.status && (
+                <>
+                  <Divider sx={{ width: "100%" }} />
+                  <Grid item xs={12} className={classes.costSummary}>
+                    <div className={classes.costItem}>
+                      <Typography variant="body1" fontWeight="bold">
+                        Amount Paid:
+                      </Typography>
+                      <Typography variant="body1">
+                        KES {transactionInfo?.amountPaid}
+                      </Typography>
+                    </div>
+                    <div className={classes.costItem}>
+                      <Typography variant="body1" fontWeight="bold">
+                        Payment via:
+                      </Typography>
+                      <Typography variant="body1">
+                        {transactionInfo?.paymentMethod}
+                      </Typography>
+                    </div>
+                    <div className={classes.costItem}>
+                      <Typography variant="body1" fontWeight="bold">
+                        Transaction ID (Ref):
+                      </Typography>
+                      <Typography variant="body1">
+                        {transactionInfo?.mpesaReceiptNumber}
+                      </Typography>
+                    </div>
+                    <div className={classes.costItem}>
+                      <Typography variant="body1" fontWeight="bold">
+                        Transaction Time:
+                      </Typography>
+                      <Typography variant="body1">
+                        {parseMpesaDate(transactionInfo?.transactionDate)}
+                      </Typography>
+                    </div>
+                  </Grid>
+                  <Divider sx={{ width: "100%" }} />
+                  <Typography
+                    variant="body2"
+                    sx={{ marginTop: theme.spacing(2) }}
+                  >
+                    Click done below to start tracking your order. Thank you for
+                    shopping with us.
+                  </Typography>
+                </>
+              )}
             </Box>
             {showAlternative && (
               <Alert
@@ -368,12 +471,12 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
           <Button
             disableElevation
             variant="contained"
-            onClick={() => closeDialog()}
+            onClick={() => closeDialog(transactionInfo.status)}
             color="primary"
             autoFocus
             disabled={pollingCount > 1 && checkingStatus}
           >
-            Close
+            {transactionInfo.status ? "Done" : "Retry"}
           </Button>
         }
         handleClose={closeDialog}

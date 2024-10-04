@@ -6,6 +6,7 @@ import Routes from "./routes";
 import themes from "./themes";
 import NavigationScroll from "./layout/NavigationScroll";
 import "./styles/global.css";
+import { AlertProvider } from "./context/AlertProvider";
 
 const App = () => {
   const customization = useSelector((state) => state.customization);
@@ -13,10 +14,12 @@ const App = () => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes(customization)}>
-        <CssBaseline />
-        <NavigationScroll>
-          <Routes />
-        </NavigationScroll>
+        <AlertProvider>
+          <CssBaseline />
+          <NavigationScroll>
+            <Routes />
+          </NavigationScroll>
+        </AlertProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   );

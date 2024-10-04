@@ -13,6 +13,7 @@ import WelcomeModal from "../components/WelcomeModal/WelcomeModal";
 import BrandingSection from "./components/BrandingSection";
 import ProductCategorization from "./components/ProductCategorization";
 import InformationTab from "../components/InformationTab";
+import PromotionalModal from "../components/PromotionalModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -31,6 +32,7 @@ const Dashboard = () => {
   const location = useLocation();
   const [, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
+  const [promotionalModalOpen, setPromotionalModalOpen] = useState(true);
   const [firstName, setFirstName] = useState("");
   const [selectedCat, setSelectedCat] = useState(1);
 
@@ -84,6 +86,10 @@ const Dashboard = () => {
             </Grid>
           </Grid>
           <WelcomeModal open={open} setOpen={setOpen} firstName={firstName} />
+          <PromotionalModal
+            open={promotionalModalOpen}
+            setOpen={setPromotionalModalOpen}
+          />
         </>
       )}
     </GetSignedInCustomerQuery>

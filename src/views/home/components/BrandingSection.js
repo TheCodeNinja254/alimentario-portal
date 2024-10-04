@@ -4,18 +4,21 @@ import Card from "@mui/material/Card";
 import { CardActionArea, Grid, Typography } from "@mui/material";
 import { makeStyles, styled } from "@material-ui/styles";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
+import PromotionalModal from "../../components/PromotionalModal";
 
 const productCategories = [
   {
     categoryId: 1,
     categoryName: "",
     categoryDisplayPic: "/images/categories/toasted.png",
+    type: "display",
   },
-  // {
-  //   categoryId: 2,
-  //   categoryName: "Cheese",
-  //   categoryDisplayPic: "/images/categories/cheese.jpg",
-  // },
+  {
+    categoryId: 2,
+    categoryName: "",
+    categoryDisplayPic: "/images/categories/horseRacing.png",
+    type: "promotional",
+  },
   // {
   //   categoryId: 3,
   //   categoryName: "Cook Party",
@@ -65,7 +68,11 @@ const CategoryCard = styled(Card)(({ img }) => ({
 const BrandingSection = () => {
   const classes = useStyles();
 
-  const handleCardClick = () => {};
+  const [open, setOpen] = useState(false);
+
+  const handleCardClick = (_type) => {
+    if (_type === "promotional") setOpen(true);
+  };
 
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
@@ -78,10 +85,19 @@ const BrandingSection = () => {
   return (
     <Grid container spacing={2}>
       {productCategories.map((cat) => (
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={4} id={cat.categoryId}>
+        <Grid
+          item
+          xs={6}
+          sm={6}
+          md={6}
+          lg={6}
+          xl={4}
+          id={cat.categoryId}
+          key={cat.categoryId}
+        >
           <AnimatedSection animate={animate} duration="1.8s">
             <Card elevation={0}>
-              <CardActionArea onClick={() => handleCardClick()}>
+              <CardActionArea onClick={() => handleCardClick(cat.type)}>
                 <CategoryCard img={cat.categoryDisplayPic}>
                   {/* <Typography className={classes.branding}>Desafio</Typography> */}
                   <Typography className={classes.categoryCardText}>
@@ -93,6 +109,7 @@ const BrandingSection = () => {
           </AnimatedSection>
         </Grid>
       ))}
+      <PromotionalModal open={open} setOpen={setOpen} />
     </Grid>
   );
 };

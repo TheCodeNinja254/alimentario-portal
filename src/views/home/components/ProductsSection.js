@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Grid, Stack } from "@material-ui/core";
 import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { Fastfood } from "@material-ui/icons";
 import { gridSpacing } from "../../../store/constant";
 import AddToCartModal from "../../components/AddToCartModal";
@@ -11,6 +11,7 @@ import ProductCard from "./ProductCard";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import NoContentToShow from "../../components/NoContentToShow";
 import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
+import PreorderAlert from "../../../components/PreorderAlert";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -77,6 +78,11 @@ const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
         </MuiTypography>
       </Stack>
       <Divider className={classes.divider} />
+      <Box>
+        <PreorderAlert
+          sx={{ marginTop: theme.spacing(2), marginBottom: theme.spacing(2) }}
+        />
+      </Box>
       <Grid container spacing={gridSpacing}>
         <GetDisplayProductsQuery
           variables={{ productCategory: defaultCategoryId || category }}

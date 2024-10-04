@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     borderRadius: 10,
+    fontSize: 10,
     marginTop: theme.spacing(2),
   },
 }));
@@ -43,7 +44,6 @@ const ProductCard = ({ handleAddToCart, animate, productsList }) => {
   const classes = useStyles();
   const theme = useTheme();
 
-  // const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const show = false;
 
   return productsList.map((product) => (

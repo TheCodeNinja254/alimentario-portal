@@ -5,13 +5,15 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Chip, Stack, Typography } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { makeStyles } from "@material-ui/styles";
-import { Box, Divider, Grid, IconButton } from "@mui/material";
+import { makeStyles, useTheme } from "@material-ui/styles";
+import { Alert, Box, Divider, Grid, IconButton } from "@mui/material";
 import { Close } from "@material-ui/icons";
+import { useContext } from "react";
 import Image from "../../../components/Image";
 import AddToCartForm from "../CommonForms/AddToCartForm";
 import StatusIcon from "../../../components/StatusIcon";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
+import { AlertContext } from "../../../context/AlertProvider";
 
 const useStyles = makeStyles((theme) => ({
   loginInput: {
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   infoTab: {
     marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
   },
   nextActionsArea: {
     marginTop: theme.spacing(2),
@@ -55,6 +58,9 @@ const AddToCartModal = ({
   setSubmitDetails,
 }) => {
   const classes = useStyles();
+  const theme = useTheme();
+
+  const { alertVisible, hideAlert } = useContext(AlertContext);
 
   const {
     status: submitStatus,
@@ -101,7 +107,6 @@ const AddToCartModal = ({
               <Typography variant="caption">
                 has been added to you cart.
               </Typography>
-              <br />
             </Grid>
             <Grid item xs={6}>
               <Image
@@ -189,15 +194,7 @@ const AddToCartModal = ({
               <Typography variant="caption">
                 {selectedProduct.productDescription}
               </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Image
-                alt="Img"
-                src={`/images/${selectedProduct?.productPicMain}`}
-                className={classes.productImage}
-              />
-            </Grid>
-            <Grid item xs={12}>
+
               <Stack direction="row" spacing={1} className={classes.infoTab}>
                 <Chip
                   variant="filled"
@@ -215,7 +212,30 @@ const AddToCartModal = ({
                 />
               </Stack>
             </Grid>
-            <Divider />
+            <Grid item xs={6}>
+              <Image
+                alt="Img"
+                src={`/images/${selectedProduct?.productPicMain}`}
+                className={classes.productImage}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              {alertVisible && (
+                <Alert
+                  severity="info"
+                  sx={{ marginTop: theme.spacing(2) }}
+                  action={
+                    <Button onClick={hideAlert}>
+                      <Typography variant="caption">
+                        Normal Order Instead
+                      </Typography>
+                    </Button>
+                  }
+                >
+                  <strong>Pre-order now!</strong>
+                </Alert>
+              )}
+            </Grid>
             <Grid item xs={12}>
               <AddToCartForm
                 productId={selectedProduct.id}

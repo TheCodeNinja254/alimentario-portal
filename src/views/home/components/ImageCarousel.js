@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { useTheme } from "@material-ui/core/styles";
-import { Box, Paper } from "@material-ui/core";
+import { Box, Button, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
+import { Chip } from "@mui/material";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import NoContentToShow from "../../components/NoContentToShow";
 import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
@@ -98,17 +99,63 @@ const ImageCarousel = () => {
                   index={activeStep}
                   onChangeIndex={handleStepChange}
                   enableMouseEvents
-                  interval={4000}
+                  interval={9000}
                 >
                   {productsList.map((step, index) => (
-                    <div key={step.id}>
+                    <div
+                      key={step.id}
+                      style={{ position: "relative", height: "100%" }}
+                    >
                       {Math.abs(activeStep - index) <= 2 ? (
-                        <Box
-                          component="img"
-                          className={classes.carouselImages}
-                          src={`/images/${step?.productPicMain}`}
-                          alt={step.productName}
-                        />
+                        <>
+                          {/* Image Container */}
+                          <Box
+                            component="img"
+                            className={classes.carouselImages}
+                            src={`/images/${step?.productPicMain}`}
+                            alt={step.productName}
+                            sx={{ width: "100%", height: "auto" }}
+                          />
+
+                          {/* Product Price Chip */}
+                          <Chip
+                            label={
+                              step?.productPrice === 0
+                                ? "Extra"
+                                : `Ksh. ${step.productPrice}`
+                            }
+                            sx={{
+                              position: "absolute",
+                              top: "10px",
+                              left: "10px",
+                              backgroundColor: "rgba(255, 255, 255, 0.8)",
+                              fontWeight: "bold",
+                            }}
+                          />
+
+                          {/* Add to Cart Button positioned over image */}
+                          <Button
+                            disableElevation
+                            variant="contained"
+                            onClick={() =>
+                              console.log(`Added ${step.productName} to cart`)
+                            }
+                            sx={{
+                              "&:hover": {
+                                color: theme.palette.common.white,
+                              },
+                              position: "absolute",
+                              bottom: "10px",
+                              right: "10px",
+                              borderRadius: 8,
+                              color: theme.palette.primary.main,
+                              backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
+                              zIndex: 2, // Make sure it's on top of the image
+                            }}
+                          >
+                            Add to Cart
+                          </Button>
+                        </>
                       ) : null}
                     </div>
                   ))}

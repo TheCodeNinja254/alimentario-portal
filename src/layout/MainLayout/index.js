@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { AppBar, CssBaseline, Toolbar, useMediaQuery } from "@material-ui/core";
 import clsx from "clsx";
 import { IconChevronRight } from "@tabler/icons";
+import { Snackbar } from "@mui/material";
 import Breadcrumbs from "../../ui-component/extended/Breadcrumbs";
 import navigation from "../../menu-items";
 import { drawerWidth } from "../../store/constant";
 import { SET_MENU } from "../../store/actions";
-import Customization from "../Customization";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import { AlertContext } from "../../context/AlertProvider";
+import SocialsAndHelp from "../SocialsAndHelp";
 
-// style constant
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -68,12 +69,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// ===========================|| MAIN LAYOUT ||=========================== //
-
 const MainLayout = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  const { snackbarVisible, hideSnackbar } = useContext(AlertContext);
 
   // Handle left drawer
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
@@ -89,6 +90,13 @@ const MainLayout = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
+      <Snackbar
+        open={snackbarVisible}
+        autoHideDuration={32000}
+        onClose={hideSnackbar}
+        message="Do you see something you love? Pre-order your meal. We will deliver it
+        to your location within the venue, at your preferred time."
+      />
       {/* header */}
       <AppBar
         enableColorOnDark
@@ -127,7 +135,7 @@ const MainLayout = () => {
         />
         <Outlet />
       </main>
-      <Customization />
+      <SocialsAndHelp />
     </div>
   );
 };

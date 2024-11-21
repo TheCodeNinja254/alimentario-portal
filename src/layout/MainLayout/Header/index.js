@@ -7,6 +7,7 @@ import LogoSection from "../LogoSection";
 import ProfileSection from "./ProfileSection";
 import CartSection from "./CartSection";
 import CategoriesSection from "./CategoriesSection";
+import SocialsAndHelp from "../../SocialsAndHelp";
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
       <div className={classes.grow} />
       <div className={classes.grow} />
       <CategoriesSection />
+      <SocialsAndHelp />
       <CartSection />
       <ProfileSection />
     </>

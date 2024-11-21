@@ -2,9 +2,9 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { Stack, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
-import { Divider, Grid } from "@mui/material";
+import { Stack } from "@mui/material";
+import { Typography, Divider, Grid } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { Instagram, ShoppingCart } from "@material-ui/icons";
 import { useContext, useEffect, useState } from "react";
 import styled from "@mui/material/styles/styled";
@@ -76,7 +76,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PromotionalModal = ({ open, setOpen }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
   const { showAlert, showSnackbar } = useContext(AlertContext);
 
@@ -187,7 +188,7 @@ const PromotionalModal = ({ open, setOpen }) => {
                   fullWidth
                   size="small"
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                   onClick={handlePrebookingPrompt}
                   startIcon={<ShoppingCart size={10} />}
                 >
@@ -200,7 +201,7 @@ const PromotionalModal = ({ open, setOpen }) => {
                   fullWidth
                   size="small"
                   variant="outlined"
-                  color="secondary"
+                  color="primary"
                   onClick={() => setOpen(false)}
                 >
                   Close

@@ -9,8 +9,7 @@ import { store } from "./store";
 import * as serviceWorker from "./serviceWorker";
 import App from "./App";
 import "./assets/scss/style.scss";
-
-// ===========================|| REACT DOM RENDER  ||=========================== //
+import "./theme/global.css";
 
 ReactDOM.render(
   <Provider store={store}>

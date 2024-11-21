@@ -6,9 +6,9 @@ import {
   CardContent,
   Divider,
   Grid,
-  Stack,
   Typography,
 } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
@@ -81,7 +81,7 @@ const ActionCard = () => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} elevation={0}>
       <CardContent>
         <GetSignedInCustomerQuery>
           {({ getSignedInCustomer: { status, customer, business } }) =>

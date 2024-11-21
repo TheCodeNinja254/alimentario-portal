@@ -16,8 +16,7 @@ import {
   Popper,
   Typography,
 } from "@material-ui/core";
-import ListItemButton from "@material-ui/core/ListItemButton";
-
+import { ListItemButton, Tooltip } from "@mui/material";
 import {
   IconBuildingBank,
   IconLocation,
@@ -190,26 +189,28 @@ const ProfileSection = () => {
       {({ getSignedInCustomer: { status, customer } }) =>
         status ? (
           <>
-            <Chip
-              classes={{ label: classes.profileLabel }}
-              className={classes.profileChip}
-              icon={
-                <Avatar
-                  src={User1}
-                  className={classes.headerAvatar}
-                  ref={anchorRef}
-                  aria-controls={open ? "menu-list-grow" : undefined}
-                  aria-haspopup="true"
-                  color="inherit"
-                />
-              }
-              variant="outlined"
-              ref={anchorRef}
-              aria-controls={open ? "menu-list-grow" : undefined}
-              aria-haspopup="true"
-              onClick={handleToggle}
-              color="primary"
-            />
+            <Tooltip title="Manage account">
+              <Chip
+                classes={{ label: classes.profileLabel }}
+                className={classes.profileChip}
+                icon={
+                  <Avatar
+                    src={User1}
+                    className={classes.headerAvatar}
+                    ref={anchorRef}
+                    aria-controls={open ? "menu-list-grow" : undefined}
+                    aria-haspopup="true"
+                    color="inherit"
+                  />
+                }
+                variant="outlined"
+                ref={anchorRef}
+                aria-controls={open ? "menu-list-grow" : undefined}
+                aria-haspopup="true"
+                onClick={handleToggle}
+                color="primary"
+              />
+            </Tooltip>
             <Popper
               placement="bottom-end"
               open={open}
@@ -381,22 +382,24 @@ const ProfileSection = () => {
           </>
         ) : (
           <Button component={Link} href="/auth">
-            <Chip
-              classes={{ label: classes.profileLabel }}
-              className={classes.profileChip}
-              label={
-                <IconLogin
-                  stroke={1.5}
-                  size="1.5rem"
-                  color={theme.palette.primary.main}
-                />
-              }
-              variant="filled"
-              ref={anchorRef}
-              aria-controls={undefined}
-              aria-haspopup="false"
-              color="primary"
-            />
+            <Tooltip title="Sign in or create account">
+              <Chip
+                classes={{ label: classes.profileLabel }}
+                className={classes.profileChip}
+                label={
+                  <IconLogin
+                    stroke={1.5}
+                    size="1.5rem"
+                    color={theme.palette.primary.main}
+                  />
+                }
+                variant="filled"
+                ref={anchorRef}
+                aria-controls={undefined}
+                aria-haspopup="false"
+                color="primary"
+              />
+            </Tooltip>
           </Button>
         )
       }

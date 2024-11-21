@@ -14,7 +14,7 @@ import {
   OutlinedInput,
   Stack,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import isEmpty from "lodash.isempty";
 import * as Yup from "yup";
 import Visibility from "@material-ui/icons/Visibility";

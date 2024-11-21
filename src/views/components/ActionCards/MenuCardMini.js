@@ -7,9 +7,9 @@ import {
   Divider,
   Grid,
   Link,
-  Stack,
   Typography,
 } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
@@ -75,10 +75,9 @@ const useStyles = makeStyles((theme) => ({
   },
   subTitle: {
     marginTop: theme.spacing(1),
+    fontSize: 15,
   },
 }));
-
-// ===========================|| PROFILE MENU - CREATE ACCOUNT CARD ||=========================== //
 
 const MenuCardMini = () => {
   const classes = useStyles();
@@ -93,7 +92,7 @@ const MenuCardMini = () => {
 
   return (
     <AnimatedSection animate={animate} duration="2.0s">
-      <Card className={classes.card}>
+      <Card className={classes.card} elevation={0}>
         <CardContent>
           <GetSignedInCustomerQuery>
             {({ getSignedInCustomer: { status, customer, business } }) =>
@@ -102,7 +101,7 @@ const MenuCardMini = () => {
                   <Grid item>
                     {customer?.businessId > 0 ? (
                       <>
-                        <Typography variant="h4" className={classes.subTitle}>
+                        <Typography variant="h5" className={classes.subTitle}>
                           You can get our products for your business too
                         </Typography>
                         <Typography
@@ -123,7 +122,7 @@ const MenuCardMini = () => {
                           <AnimateButton>
                             <Button
                               component={Link}
-                              href="/account/register/register3"
+                              href="/orders"
                               variant="contained"
                               className={classes.button}
                             >
@@ -135,14 +134,14 @@ const MenuCardMini = () => {
                     ) : (
                       <>
                         <Divider />
-                        <Typography variant="h4" className={classes.subTitle}>
+                        <Typography variant="h5" className={classes.subTitle}>
                           You can get our products for your business too
                         </Typography>
                         <Stack direction="column">
                           <AnimateButton>
                             <Button
                               component={Link}
-                              href="/account/register/register3"
+                              href="/my-business"
                               variant="contained"
                               className={classes.button}
                             >

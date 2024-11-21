@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Chip, Stack, Typography } from "@material-ui/core";
+import { Chip, Typography } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import {
   BakeryDining,
   BreakfastDiningOutlined,

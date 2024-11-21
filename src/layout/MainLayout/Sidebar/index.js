@@ -19,11 +19,12 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    background: theme.palette.background.default,
+    background: theme.palette.background.paper,
     color: theme.palette.text.primary,
     borderRight: "none",
     [theme.breakpoints.up("md")]: {
-      top: "88px",
+      top: "64px",
+      paddingTop: "10px",
     },
   },
   ScrollHeight: {
@@ -51,7 +52,12 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
 
   const drawer = (
     <>
-      <Box sx={{ display: { xs: "block", md: "none" } }}>
+      <Box
+        sx={{
+          display: { xs: "block", md: "none" },
+          backgroundColor: theme.palette.background.default,
+        }}
+      >
         <div className={classes.boxContainer}>
           <LogoSection />
         </div>

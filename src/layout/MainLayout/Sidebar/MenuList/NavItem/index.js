@@ -2,9 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-// material-ui
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import {
   Avatar,
   Chip,
@@ -12,14 +10,10 @@ import {
   ListItemText,
   Typography,
   useMediaQuery,
-} from "@material-ui/core";
-import ListItemButton from "@material-ui/core/ListItemButton";
-
-// project imports
+  ListItemButton,
+} from "@mui/material";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { MENU_OPEN, SET_MENU } from "../../../../../store/actions";
-
-// assets
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -56,9 +50,10 @@ const useStyles = makeStyles((theme) => ({
 
 const NavItem = ({ item, level }) => {
   const classes = useStyles();
+  const theme = useTheme();
   const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
-  const matchesSM = useMediaQuery((theme) => theme.breakpoints.down("md"));
+  const matchesSM = useMediaQuery(() => theme.breakpoints.down("md"));
 
   const Icon = item.icon;
   const itemIcon = item.icon ? (
@@ -109,7 +104,7 @@ const NavItem = ({ item, level }) => {
       dispatch({ type: MENU_OPEN, id: item.id });
     }
     // eslint-disable-next-line
-    }, []);
+  }, []);
 
   return (
     <ListItemButton
@@ -128,7 +123,7 @@ const NavItem = ({ item, level }) => {
           <Typography
             variant={
               customization.isOpen.findIndex((id) => id === item.id) > -1
-                ? "h5"
+                ? "body1"
                 : "body1"
             }
             color="inherit"

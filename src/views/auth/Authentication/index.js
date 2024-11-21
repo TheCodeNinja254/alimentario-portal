@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
-import {
-  Divider,
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-} from "@material-ui/core";
+import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import Logo from "../../../ui-component/Logo";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
 import AuthWrapper1 from "../components/styles/RegistrationWrapper";

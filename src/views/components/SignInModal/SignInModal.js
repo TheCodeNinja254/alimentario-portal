@@ -1,13 +1,20 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import { Stack, Typography } from "@material-ui/core";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  Stack,
+  Typography,
+  Box,
+  Grid,
+  IconButton,
+  DialogTitle,
+} from "@mui/material";
+
 import { makeStyles } from "@material-ui/styles";
-import { Box, Grid, IconButton } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { Close } from "@material-ui/icons";
-import DialogTitle from "@mui/material/DialogTitle";
+
 import Image from "../../../components/Image";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import photo from "../../../assets/images/Graphics/bbq_05.jpg";

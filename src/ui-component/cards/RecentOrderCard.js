@@ -10,12 +10,12 @@ import {
   Divider,
   Grid,
   Typography,
+  Stack,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Tooltip from "@mui/material/Tooltip";
 import { makeStyles } from "@material-ui/styles";
 import { FiberManualRecord } from "@material-ui/icons";
-import { Stack } from "@material-ui/core";
 import formatDate from "../../utils/formatDate";
 import BufferProgress from "../../components/BufferProgress";
 

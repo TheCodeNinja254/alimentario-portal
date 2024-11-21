@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useSelector } from "react-redux";
-
-// material-ui
 import { makeStyles } from "@material-ui/styles";
 import {
   Collapse,
@@ -10,12 +8,8 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-} from "@material-ui/core";
-import ListItemButton from "@material-ui/core/ListItemButton";
-
-// project imports
-
-// assets
+  ListItemButton,
+} from "@mui/material";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons";
 import NavItem from "../NavItem";
@@ -137,7 +131,7 @@ const NavCollapse = ({ menu, level }) => {
         <ListItemText
           primary={
             <Typography
-              variant={selected === menu.id ? "h5" : "body1"}
+              variant={selected === menu.id ? "body1" : "body1"}
               color="inherit"
               className={classes.listItemTypography}
             >

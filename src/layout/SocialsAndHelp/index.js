@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "@material-ui/styles";
-import {
-  Button,
-  Drawer,
-  Fab,
-  Grid,
-  IconButton,
-  Tooltip,
-} from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/styles";
+import { Button, Drawer, Grid, Box, Chip, Tooltip } from "@material-ui/core";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   Email,
@@ -17,11 +10,34 @@ import {
   SupportAgent,
   WhatsApp,
 } from "@material-ui/icons";
-import { Box } from "@mui/material";
 import { IconBrandTiktok, IconBrandTwitter } from "@tabler/icons";
 import SubCard from "../../ui-component/cards/SubCard";
 import { gridSpacing } from "../../store/constant";
 import AnimatedSection from "../../ui-component/AnimatedSection";
+
+const useStyles = makeStyles((theme) => ({
+  cartChip: {
+    height: "48px",
+    alignItems: "center",
+    borderRadius: "27px",
+    transition: "all .2s ease-in-out",
+    borderColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.light,
+    '&[aria-controls="menu-list-grow"], &:hover': {
+      borderColor: theme.palette.primary.main,
+      background: `${theme.palette.primary.main}!important`,
+      color: theme.palette.primary.light,
+      "& svg": {
+        stroke: theme.palette.primary.light,
+      },
+    },
+    marginRight: theme.spacing(1),
+  },
+  profileLabel: {
+    lineHeight: 0,
+    padding: "12px",
+  },
+}));
 
 const socials = [
   {
@@ -91,6 +107,7 @@ const contacts = [
 
 const SocialsAndHelp = () => {
   const theme = useTheme();
+  const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
   const handleToggle = () => {
@@ -108,25 +125,22 @@ const SocialsAndHelp = () => {
   return (
     <>
       <Tooltip title="Connect with us on Socials and on call.">
-        <Fab
-          component="div"
+        <Chip
+          classes={{ label: classes.profileLabel }}
+          className={classes.cartChip}
+          label={
+            <SupportAgent
+              stroke={1.5}
+              size="1.5rem"
+              color={theme.palette.primary.main}
+            />
+          }
+          variant="outlined"
+          aria-controls={open ? "menu-list-grow" : undefined}
+          aria-haspopup="true"
           onClick={handleToggle}
-          size="medium"
-          variant="string"
-          color="secondary"
-          sx={{
-            bottom: 0,
-            m: 4,
-            position: "fixed",
-            right: 20,
-            zIndex: () => theme.zIndex.speedDial,
-            boxShadow: theme.shadows[8],
-          }}
-        >
-          <IconButton color="inherit" size="large" disableRipple>
-            <SupportAgent />
-          </IconButton>
-        </Fab>
+          color="primary"
+        />
       </Tooltip>
 
       <Drawer

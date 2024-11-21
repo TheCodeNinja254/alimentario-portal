@@ -1,15 +1,24 @@
-/**
- * MUI Components whose styles are override as per theme
- * @param {JsonObject} theme Plain Json Object
- */
-export default function componentStyleOverrides(theme) {
+import { grey } from "@mui/material/colors";
+
+export default function componentStyleOverrides(palette) {
   return {
     MuiButton: {
       styleOverrides: {
         root: {
-          fontWeight: 500,
+          fontWeight: 200,
           textTransform: "capitalize",
           borderRadius: "4px",
+        },
+      },
+    },
+    MuiCard: {
+      defaultProps: {
+        elevation: 0,
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: "5px",
+          backgroundColor: grey[200],
         },
       },
     },
@@ -22,14 +31,14 @@ export default function componentStyleOverrides(theme) {
           backgroundImage: "none",
         },
         rounded: {
-          borderRadius: `${theme.customization.borderRadius}px`,
+          borderRadius: `12px`,
         },
       },
     },
     MuiCardHeader: {
       styleOverrides: {
         root: {
-          color: theme.colors.textDark,
+          color: palette.primary.main,
           padding: "24px",
         },
         title: {
@@ -54,24 +63,24 @@ export default function componentStyleOverrides(theme) {
     MuiListItemButton: {
       styleOverrides: {
         root: {
-          color: theme.darkTextPrimary,
+          color: palette.text.secondary,
           paddingTop: "10px",
           paddingBottom: "10px",
           "&.Mui-selected": {
-            color: theme.menuSelected,
-            backgroundColor: theme.menuSelectedBack,
+            color: palette.text.primary,
+            backgroundColor: palette.background.paper,
             "&:hover": {
-              backgroundColor: theme.menuSelectedBack,
+              backgroundColor: palette.background.default,
             },
             "& .MuiListItemIcon-root": {
-              color: theme.menuSelected,
+              color: palette.background.paper,
             },
           },
           "&:hover": {
-            backgroundColor: theme.menuSelectedBack,
-            color: theme.menuSelected,
+            backgroundColor: palette.background.default,
+            color: palette.primary.main,
             "& .MuiListItemIcon-root": {
-              color: theme.menuSelected,
+              color: palette.primary.main,
             },
           },
         },
@@ -80,7 +89,7 @@ export default function componentStyleOverrides(theme) {
     MuiListItemIcon: {
       styleOverrides: {
         root: {
-          color: theme.darkTextPrimary,
+          color: palette.text.secondary,
           minWidth: "36px",
         },
       },
@@ -88,16 +97,16 @@ export default function componentStyleOverrides(theme) {
     MuiListItemText: {
       styleOverrides: {
         primary: {
-          color: theme.textDark,
+          color: palette.primary.secondary,
         },
       },
     },
     MuiInputBase: {
       styleOverrides: {
         input: {
-          color: theme.textDark,
+          color: palette.primary.dark,
           "&::placeholder": {
-            color: theme.darkTextSecondary,
+            color: palette.text.secondary,
             fontSize: "0.875rem",
           },
         },
@@ -106,13 +115,13 @@ export default function componentStyleOverrides(theme) {
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          background: theme.colors.grey50,
-          borderRadius: `${theme.customization.borderRadius}px`,
+          background: grey[500],
+          borderRadius: `12px`,
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: theme.colors.grey400,
+            borderColor: grey[400],
           },
           "&:hover $notchedOutline": {
-            borderColor: theme.colors.primaryLight,
+            borderColor: palette.primary.light,
           },
           "&.MuiInputBase-multiline": {
             padding: 1,
@@ -120,9 +129,9 @@ export default function componentStyleOverrides(theme) {
         },
         input: {
           fontWeight: 500,
-          background: theme.colors.grey50,
+          background: palette.primary.main,
           padding: "15.5px 14px",
-          borderRadius: `${theme.customization.borderRadius}px`,
+          borderRadius: `12px`,
           "&.MuiInputBase-inputSizeSmall": {
             padding: "10px 14px",
             "&.MuiInputBase-inputAdornedStart": {
@@ -134,7 +143,7 @@ export default function componentStyleOverrides(theme) {
           paddingLeft: 4,
         },
         notchedOutline: {
-          borderRadius: `${theme.customization.borderRadius}px`,
+          borderRadius: `12px`,
         },
       },
     },
@@ -142,22 +151,22 @@ export default function componentStyleOverrides(theme) {
       styleOverrides: {
         root: {
           "&.Mui-disabled": {
-            color: theme.colors.grey300,
+            color: grey[300],
           },
         },
         mark: {
-          backgroundColor: theme.paper,
+          backgroundColor: palette.background.paper,
           width: "4px",
         },
         valueLabel: {
-          color: theme.colors.primaryLight,
+          color: palette.primary.light,
         },
       },
     },
     MuiDivider: {
       styleOverrides: {
         root: {
-          borderColor: theme.divider,
+          borderColor: grey[500],
           opacity: 1,
         },
       },
@@ -165,8 +174,8 @@ export default function componentStyleOverrides(theme) {
     MuiAvatar: {
       styleOverrides: {
         root: {
-          color: theme.colors.primaryDark,
-          background: theme.colors.primary200,
+          color: grey[900],
+          background: palette.background.paper,
         },
       },
     },
@@ -182,8 +191,8 @@ export default function componentStyleOverrides(theme) {
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          color: theme.paper,
-          background: theme.colors.grey700,
+          color: palette.background.paper,
+          background: grey[700],
         },
       },
     },

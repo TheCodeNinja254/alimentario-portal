@@ -486,7 +486,7 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
           <Grid item xs={7}>
             <DialogTitle>
               <Box>
-                <Typography className={classes.modalTitle} variant="h1">
+                <Typography className={classes.modalTitle} variant="h4">
                   Payment
                 </Typography>
                 <Typography variant="caption">

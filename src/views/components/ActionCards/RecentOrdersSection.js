@@ -9,7 +9,7 @@ import RecentOrderCard from "../../../ui-component/cards/RecentOrderCard";
 import ViewMyOrdersModal from "../ViewMyOrdersModal";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import Image from "../../../components/Image";
-import emptyPlate from "../../../assets/images/Graphics/emptyPlate.png";
+import emptyPlate from "../../../assets/images/Graphics/emptyPlate.jpg";
 
 const useStyles = makeStyles((theme) => ({
   tagLine: {

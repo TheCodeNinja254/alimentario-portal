@@ -1,27 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { CssBaseline, StyledEngineProvider } from "@material-ui/core";
+import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import Routes from "./routes";
-import themes from "./themes";
+import theme from "./theme";
 import NavigationScroll from "./layout/NavigationScroll";
 import "./styles/global.css";
 import { AlertProvider } from "./context/AlertProvider";
 
 const App = () => {
-  const customization = useSelector((state) => state.customization);
-
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={themes(customization)}>
-        <AlertProvider>
-          <CssBaseline />
-          <NavigationScroll>
-            <Routes />
-          </NavigationScroll>
-        </AlertProvider>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <ThemeProvider theme={theme}>
+      <AlertProvider>
+        <CssBaseline />
+        <NavigationScroll>
+          <Routes />
+        </NavigationScroll>
+      </AlertProvider>
+    </ThemeProvider>
   );
 };
 

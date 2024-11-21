@@ -1,6 +1,5 @@
 import React from "react";
-import { IconButton, useMediaQuery } from "@mui/material";
-import { Stack, Tooltip } from "@material-ui/core";
+import { IconButton, useMediaQuery, Stack, Tooltip } from "@mui/material";
 import {
   BakeryDining,
   BreakfastDiningOutlined,

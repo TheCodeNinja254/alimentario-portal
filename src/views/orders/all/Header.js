@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
-import { Stack } from "@material-ui/core";
+
 import photo from "../../../assets/images/Graphics/pendingOrders.jpg";
 import Image from "../../../components/Image";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";

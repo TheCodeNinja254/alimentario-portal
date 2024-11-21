@@ -2,9 +2,9 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { Stack, Typography } from "@material-ui/core";
+import { Stack, Typography, Grid } from "@mui/material";
 import { makeStyles } from "@material-ui/styles";
-import { Grid } from "@mui/material";
+
 import Image from "../../../components/Image";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import photo from "../../../assets/images/Graphics/welcome.jpg";

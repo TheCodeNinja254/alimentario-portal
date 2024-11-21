@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Stack } from "@material-ui/core";
+import { Grid, Stack, Box, Divider } from "@mui/material";
 import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { Box, Divider } from "@mui/material";
 import { Fastfood } from "@material-ui/icons";
 import { gridSpacing } from "../../../store/constant";
 import AddToCartModal from "../../components/AddToCartModal";
@@ -16,7 +15,7 @@ import PreorderAlert from "../../../components/PreorderAlert";
 const useStyles = makeStyles((theme) => ({
   root: {},
   subGreeting: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(0),
     marginLeft: theme.spacing(1),
     color: theme.palette.primary.dark,
   },
@@ -65,7 +64,7 @@ const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
 
   return (
     <>
-      <Stack direction="row">
+      <Stack direction="row" sx={{ marginBottom: theme.spacing(1) }}>
         <Fastfood color="primary" sx={{ marginTop: theme.spacing(2) }} />
         <MuiTypography
           variant="h4"
@@ -83,7 +82,11 @@ const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
           sx={{ marginTop: theme.spacing(2), marginBottom: theme.spacing(2) }}
         />
       </Box>
-      <Grid container spacing={gridSpacing}>
+      <Grid
+        container
+        spacing={gridSpacing}
+        sx={{ marginTop: theme.spacing(3) }}
+      >
         <GetDisplayProductsQuery
           variables={{ productCategory: defaultCategoryId || category }}
         >

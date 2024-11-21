@@ -6,11 +6,7 @@ import {
   Grid,
   Paper,
   Popper,
-  Stack,
   Typography,
-} from "@material-ui/core";
-import { IconShoppingCart, IconX } from "@tabler/icons";
-import {
   Badge,
   Button,
   CardActions,
@@ -19,7 +15,10 @@ import {
   Divider,
   IconButton,
   useMediaQuery,
-} from "@mui/material";
+  Tooltip,
+} from "@material-ui/core";
+import { Stack } from "@mui/material";
+import { IconShoppingCart, IconX } from "@tabler/icons";
 import { Link as RouterLink } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { useMutation } from "@apollo/client";
@@ -179,28 +178,30 @@ const CartSection = () => {
         {({ getCartItems: { status, cartItemsList } }) =>
           status && cartItemsList?.length > 0 ? (
             <>
-              <Chip
-                classes={{ label: classes.profileLabel }}
-                className={classes.cartChip}
-                label={
-                  <Badge
-                    badgeContent={cartItemsList.length || 0}
-                    color="primary"
-                  >
-                    <IconShoppingCart
-                      stroke={1.5}
-                      size="1.5rem"
-                      color={theme.palette.primary.main}
-                    />
-                  </Badge>
-                }
-                variant="outlined"
-                ref={anchorRef}
-                aria-controls={open ? "menu-list-grow" : undefined}
-                aria-haspopup="true"
-                onClick={handleToggle}
-                color="primary"
-              />
+              <Tooltip title="See my shopping cart">
+                <Chip
+                  classes={{ label: classes.profileLabel }}
+                  className={classes.cartChip}
+                  label={
+                    <Badge
+                      badgeContent={cartItemsList.length || 0}
+                      color="primary"
+                    >
+                      <IconShoppingCart
+                        stroke={1.5}
+                        size="1.5rem"
+                        color={theme.palette.primary.main}
+                      />
+                    </Badge>
+                  }
+                  variant="outlined"
+                  ref={anchorRef}
+                  aria-controls={open ? "menu-list-grow" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                  color="primary"
+                />
+              </Tooltip>
               <Popper
                 placement="bottom-end"
                 open={open}
@@ -312,23 +313,25 @@ const CartSection = () => {
             </>
           ) : (
             <>
-              <Chip
-                classes={{ label: classes.profileLabel }}
-                className={classes.cartChip}
-                label={
-                  <IconShoppingCart
-                    stroke={1.5}
-                    size="1.5rem"
-                    color={theme.palette.primary.main}
-                  />
-                }
-                variant="outlined"
-                ref={anchorRef}
-                aria-controls={open ? "menu-list-grow" : undefined}
-                aria-haspopup="true"
-                onClick={handleToggle}
-                color="primary"
-              />
+              <Tooltip title="See my shopping cart">
+                <Chip
+                  classes={{ label: classes.profileLabel }}
+                  className={classes.cartChip}
+                  label={
+                    <IconShoppingCart
+                      stroke={1.5}
+                      size="1.5rem"
+                      color={theme.palette.primary.main}
+                    />
+                  }
+                  variant="outlined"
+                  ref={anchorRef}
+                  aria-controls={open ? "menu-list-grow" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                  color="primary"
+                />
+              </Tooltip>
               <Popper
                 placement="bottom-end"
                 open={open}

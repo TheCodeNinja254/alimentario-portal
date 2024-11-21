@@ -2,10 +2,10 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
-import { Stack } from "@material-ui/core";
+
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import photo from "../../assets/images/Graphics/business.jpg";
 import Image from "../../components/Image";

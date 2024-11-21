@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { AppBar, CssBaseline, Toolbar, useMediaQuery } from "@material-ui/core";
-import clsx from "clsx";
-import { IconChevronRight } from "@tabler/icons";
-import { Snackbar } from "@mui/material";
-import Breadcrumbs from "../../ui-component/extended/Breadcrumbs";
-import navigation from "../../menu-items";
+import {
+  AppBar,
+  CssBaseline,
+  Toolbar,
+  useMediaQuery,
+  Snackbar,
+  Container,
+} from "@mui/material";
 import { drawerWidth } from "../../store/constant";
 import { SET_MENU } from "../../store/actions";
 import Sidebar from "./Sidebar";
@@ -17,19 +19,18 @@ import SocialsAndHelp from "../SocialsAndHelp";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    marginTop: theme.spacing(10),
   },
   appBar: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.paper,
     // opacity: "90%",
   },
   appBarWidth: {
     transition: theme.transitions.create("width"),
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.paper,
     // opacity: "90%",
   },
   content: {
-    ...theme.typography.mainContent,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     transition: theme.transitions.create("margin", {
@@ -37,19 +38,18 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     [theme.breakpoints.up("md")]: {
-      marginLeft: -(drawerWidth - 20),
+      marginLeft: drawerWidth - 20,
       width: `calc(100% - ${drawerWidth}px)`,
     },
     [theme.breakpoints.down("md")]: {
-      // marginLeft: "20px",
       width: `calc(100% - ${drawerWidth}px)`,
       padding: "16px",
     },
     [theme.breakpoints.down("sm")]: {
-      // marginLeft: "10px",
+      marginLeft: "10px",
       width: `calc(100% - ${drawerWidth}px)`,
       padding: "16px",
-      // marginRight: "10px",
+      marginRight: "10px",
     },
   },
   contentShift: {
@@ -67,11 +67,18 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: "10px",
     },
   },
+  leftDrawerOpen: {
+    [theme.breakpoints.up("md")]: {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+    padding: theme.spacing(4),
+  },
 }));
 
 const MainLayout = () => {
-  const classes = useStyles();
   const theme = useTheme();
+  const classes = useStyles();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
 
   const { snackbarVisible, hideSnackbar } = useContext(AlertContext);
@@ -99,10 +106,12 @@ const MainLayout = () => {
       />
       {/* header */}
       <AppBar
-        enableColorOnDark
         position="fixed"
-        color="inherit"
         elevation={0}
+        sx={{
+          backgroundColor: theme.palette.background.paper,
+          color: theme.palette.primary.main,
+        }}
         className={leftDrawerOpened ? classes.appBarWidth : classes.appBar}
       >
         <Toolbar>
@@ -118,22 +127,13 @@ const MainLayout = () => {
 
       {/* main content */}
       <main
-        className={clsx([
-          classes.content,
-          {
-            [classes.contentShift]: leftDrawerOpened,
-          },
-        ])}
+        className={
+          leftDrawerOpened ? classes.leftDrawerOpen : classes.leftDrawerClosed
+        }
       >
-        {/* breadcrumb */}
-        <Breadcrumbs
-          separator={IconChevronRight}
-          navigation={navigation}
-          icon
-          title
-          rightAlign
-        />
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </main>
       <SocialsAndHelp />
     </div>

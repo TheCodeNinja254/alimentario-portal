@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import crypto from "crypto-browserify";
 
 const ek = process.env.REACT_APP_EK;
 const iv = process.env.REACT_APP_IV;

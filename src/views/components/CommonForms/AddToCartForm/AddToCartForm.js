@@ -13,6 +13,7 @@ import { Form as FormikForm, Formik } from "formik";
 import { useMutation } from "@apollo/client";
 import { makeStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
+import { grey } from "@mui/material/colors";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 import ErrorHandler from "../../../../utils/errorHandler";
 import { GET_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
@@ -27,7 +28,44 @@ const AddToCartSchema = Yup.object().shape({
 
 const useStyles = makeStyles((theme) => ({
   formInput: {
-    ...theme.typography.customInput,
+    marginTop: 8,
+    marginBottom: 8,
+    "& > label": {
+      top: "23px",
+      left: 15,
+      color: grey[500],
+      '&[data-shrink="false"]': {
+        top: "5px",
+      },
+    },
+    "& > div > input": {
+      padding: "30.5px 14px 11.5px !important",
+    },
+    "& legend": {
+      display: "none",
+    },
+    "& fieldset": {
+      top: 0,
+    },
+    background: grey[300],
+    borderRadius: `12px`,
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: grey[300],
+    },
+    "&:hover $notchedOutline": {
+      borderColor: theme.palette.primary.light,
+    },
+    "&.MuiInputBase-multiline": {
+      padding: 1,
+    },
+    fontWeight: 500,
+    padding: "15.5px 14px",
+    "&.MuiInputBase-inputSizeSmall": {
+      padding: "10px 14px",
+      "&.MuiInputBase-inputAdornedStart": {
+        paddingLeft: 0,
+      },
+    },
   },
 }));
 

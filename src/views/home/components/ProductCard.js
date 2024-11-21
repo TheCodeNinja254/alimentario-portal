@@ -6,9 +6,9 @@ import {
   CardMedia,
   Chip,
   Grid,
-  Stack,
   Typography,
 } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
@@ -49,7 +49,7 @@ const ProductCard = ({ handleAddToCart, animate, productsList }) => {
   return productsList.map((product) => (
     <Grid item xs={6} sm={6} md={6} lg={4} xl={3} key={product?.productName}>
       <AnimatedSection animate={animate} duration="1.0s">
-        <Card>
+        <Card elevation={0}>
           <CardActionArea onClick={() => handleAddToCart(product)}>
             <CardMedia
               component="img"
@@ -60,7 +60,7 @@ const ProductCard = ({ handleAddToCart, animate, productsList }) => {
             <CardContent>
               {product?.productPrice > 0 && (
                 <Chip
-                  variant="filled"
+                  variant="outlined"
                   label={
                     <Typography>
                       Ksh. <strong>{product?.productPrice}</strong>

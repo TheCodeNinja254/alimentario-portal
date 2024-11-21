@@ -1,14 +1,30 @@
-import React, { useState } from "react";
-import { Collapse, Grid, Stack, Typography } from "@material-ui/core";
-import { Paper, CardContent, Divider } from "@mui/material";
-import { makeStyles } from "@material-ui/styles";
+import React, { useContext, useState } from "react";
+import {
+  Collapse,
+  Grid,
+  Typography,
+  Paper,
+  CardContent,
+  Divider,
+  Box,
+} from "@material-ui/core";
+import { Stack } from "@mui/material";
+import { makeStyles, styled, useTheme } from "@material-ui/styles";
+import {
+  KeyboardDatePicker,
+  KeyboardTimePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 import { IconLocation } from "@tabler/icons";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
 import PropTypes from "prop-types";
+import Card from "@mui/material/Card";
 import GetDeliveryLocations from "../../api/Queries/Locations/GetDeliveryLocations";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import AddDeliveryLocationModal from "../components/AddDeliveryLocationModal";
+import { AlertContext } from "../../context/AlertProvider";
 
 const useStyles = makeStyles((theme) => ({
   cardTitle: {
@@ -20,7 +36,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 200,
     fontSize: 12,
     marginTop: theme.spacing(0),
+    marginBottom: theme.spacing(1),
     marginLeft: theme.spacing(2),
+  },
+  cardSubText: {
+    fontWeight: 200,
+    fontSize: 12,
+    marginTop: theme.spacing(0),
+    marginBottom: theme.spacing(1),
   },
   priceContainer: {
     marginLeft: theme.spacing(2),
@@ -32,6 +55,12 @@ const useStyles = makeStyles((theme) => ({
   locationBox: {
     marginTop: theme.spacing(3),
     padding: theme.spacing(2),
+  },
+  locationBoxAlternate: {
+    marginTop: theme.spacing(3),
+    padding: theme.spacing(4),
+    backgroundColor: theme.palette.background.paper,
+    elevation: 0,
   },
   locationText: {
     marginTop: theme.spacing(2),
@@ -53,29 +82,294 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const CategoryCard = styled(Card)(({ img }) => ({
+  backgroundImage: `url(${img})`,
+  height: 130,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  opacity: 10,
+}));
+
 const DeliveryAddress = ({
   selectedDeliveryLocation,
   setSelectedDeliveryLocation,
 }) => {
   const classes = useStyles();
+  const theme = useTheme();
+
+  const [preferredDate, setPreferredDate] = React.useState(null);
+  const [preferredTime, setPreferredTime] = React.useState(null);
+
+  const { alertVisible } = useContext(AlertContext);
 
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  // eslint-disable-next-line no-unused-vars
+
+  const today = new Date();
+  const minDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
 
   return (
     <CardContent>
-      <Grid item xs={12}>
-        <Typography className={classes.cardTitle}>Delivery Address</Typography>
-        <Typography className={classes.cardSubTitle}>
-          Confirm your delivery address.
-        </Typography>
-        <Divider />
-        <GetDeliveryLocations>
-          {({ getDeliveryLocations: { status, locationsList } }) => (
-            <>
-              {status && locationsList?.length > 0 ? (
-                <>
+      {alertVisible ? (
+        <Grid item xs={12}>
+          <Typography className={classes.cardTitle}>
+            Horse races are here, and so are we...
+          </Typography>
+          <Typography className={classes.cardSubTitle}>
+            You can make an pre-order, we will deliver it to you at your
+            preferred time
+          </Typography>
+          <Divider />
+          <Grid>
+            <Grid>
+              <CategoryCard img="/images/categories/horseRacing.png" />
+            </Grid>
+          </Grid>
+          <Paper className={classes.locationBoxAlternate} variant="outlined">
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={12} md={6} lg={6} xl={4}>
+                <Box>
+                  <Typography className={classes.cardSubText}>
+                    When can we deliver? Schedule a delivery.
+                  </Typography>
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                      minDate={minDate}
+                      disablePast
+                      id="date-picker-dialog"
+                      label="Preferred Date"
+                      name="preferredDate"
+                      required
+                      format="dd/MM/yyyy"
+                      inputVariant="outlined"
+                      value={preferredDate}
+                      onChange={(newValue) => setPreferredDate(newValue)}
+                      KeyboardButtonProps={{
+                        "aria-label": "change date",
+                      }}
+                      fullWidth
+                    />
+                  </MuiPickersUtilsProvider>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={6} xl={4}>
+                <Typography className={classes.cardSubText}>
+                  What time do you prefer?
+                </Typography>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardTimePicker
+                    id="date-time-dialog"
+                    label="Preferred Time"
+                    name="preferredTime"
+                    required
+                    inputVariant="outlined"
+                    value={preferredTime}
+                    onChange={(dateValue) => setPreferredTime(dateValue)}
+                    KeyboardButtonProps={{
+                      "aria-label": "change time",
+                    }}
+                    fullWidth
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+      ) : (
+        <Grid item xs={12}>
+          <Typography className={classes.cardTitle}>
+            Delivery Address
+          </Typography>
+          <Typography className={classes.cardSubTitle}>
+            Confirm your delivery address.
+          </Typography>
+          <Divider />
+          <GetDeliveryLocations>
+            {({ getDeliveryLocations: { status, locationsList } }) => (
+              <>
+                {status && locationsList?.length > 0 ? (
+                  <>
+                    <Paper className={classes.locationBox} variant="outlined">
+                      <Stack direction="row" spacing={4}>
+                        <IconLocation
+                          stroke={2.5}
+                          size="1rem"
+                          className={classes.icon}
+                        />
+                        <Typography gutterBottom className={classes.mainHeader}>
+                          <strong>Last Used/Added Location</strong>
+                        </Typography>
+                        <Switch
+                          sx={{ marginTop: theme.spacing(-2) }}
+                          checked={
+                            selectedDeliveryLocation === locationsList[0].id
+                          }
+                          onChange={() =>
+                            setSelectedDeliveryLocation(locationsList[0].id)
+                          }
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
+                      </Stack>
+                      <Grid container className={classes.locationSection}>
+                        <Grid item xs={6}>
+                          <Typography>County: </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography>
+                            <strong>{locationsList[0].countyName}</strong>
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography>General area/town:</Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography>
+                            <strong>{locationsList[0].localeName}</strong>
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography>Apt & Hse No.:</Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography>
+                            <strong>
+                              {locationsList[0].deliveryPreciseLocation}
+                            </strong>
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography>Alternative Mobile No.:</Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography>
+                            <strong>
+                              {locationsList[0].alternativePhoneNumber}
+                            </strong>
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Paper>
+                    <Collapse in={collapsed}>
+                      <Paper
+                        elevation={0}
+                        variant="outlined"
+                        className={classes.locationBox}
+                      >
+                        <Typography>
+                          <strong>Previously used locations</strong>
+                        </Typography>
+                        {locationsList.map((dl) => (
+                          <>
+                            <Grid container className={classes.locationSection}>
+                              <Grid item xs={6}>
+                                <Typography>County: </Typography>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Typography>
+                                  <strong>{dl.countyName}</strong>
+                                </Typography>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Typography>General area/town:</Typography>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Typography>
+                                  <strong>{dl.localeName}</strong>
+                                </Typography>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Typography>Apt & Hse No.:</Typography>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Typography>
+                                  <strong>{dl.deliveryPreciseLocation}</strong>
+                                </Typography>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Typography>Alternative Mobile No.:</Typography>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Typography>
+                                  <strong>{dl.alternativePhoneNumber}</strong>
+                                </Typography>
+                              </Grid>
+                              <Grid item xs={12} x={12}>
+                                <Paper
+                                  elevation={0}
+                                  variant="outlined"
+                                  className={classes.actionSection}
+                                >
+                                  <Grid
+                                    container
+                                    className={classes.locationSection}
+                                  >
+                                    <Grid item xs={6} xl={6}>
+                                      <Typography
+                                        className={classes.actionSectionText}
+                                      >
+                                        Use this location
+                                      </Typography>
+                                    </Grid>
+                                    <Grid item xs={6} xl={6}>
+                                      <Switch
+                                        checked={
+                                          selectedDeliveryLocation === dl.id
+                                        }
+                                        onChange={() =>
+                                          setSelectedDeliveryLocation(dl.id)
+                                        }
+                                        inputProps={{
+                                          "aria-label": "controlled",
+                                        }}
+                                      />
+                                    </Grid>
+                                  </Grid>
+                                </Paper>
+                              </Grid>
+                            </Grid>
+                            <Divider />
+                          </>
+                        ))}
+                      </Paper>
+                    </Collapse>
+
+                    <Stack direction="row" spacing={1}>
+                      {locationsList.length > 1 && (
+                        <AnimateButton>
+                          <Button
+                            disableElevation
+                            fullWidth
+                            size="small"
+                            variant="outlined"
+                            color="secondary"
+                            className={classes.actionButton}
+                            onClick={() => setCollapsed(!collapsed)}
+                          >
+                            {collapsed ? "Hide Previous" : "View Previous"}
+                          </Button>
+                        </AnimateButton>
+                      )}
+                      <AnimateButton>
+                        <Button
+                          disableElevation
+                          fullWidth
+                          size="small"
+                          variant="contained"
+                          color="secondary"
+                          className={classes.actionButton}
+                          onClick={() => setOpen(true)}
+                        >
+                          Add New
+                        </Button>
+                      </AnimateButton>
+                    </Stack>
+                  </>
+                ) : (
                   <Paper className={classes.locationBox} variant="outlined">
                     <Stack direction="row" spacing={4}>
                       <IconLocation
@@ -83,204 +377,30 @@ const DeliveryAddress = ({
                         size="1rem"
                         className={classes.icon}
                       />
-                      <Typography gutterBottom className={classes.mainHeader}>
-                        <strong>Last Used/Added Location</strong>
+                      <Typography gutterBottom className={classes.locationText}>
+                        You do not have a preferred delivery location.
                       </Typography>
-                      <Switch
-                        checked={
-                          selectedDeliveryLocation === locationsList[0].id
-                        }
-                        onChange={() =>
-                          setSelectedDeliveryLocation(locationsList[0].id)
-                        }
-                        inputProps={{ "aria-label": "controlled" }}
-                      />
                     </Stack>
-                    <Grid container className={classes.locationSection}>
-                      <Grid item xs={6}>
-                        <Typography>County: </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography>
-                          <strong>{locationsList[0].countyName}</strong>
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography>General area/town:</Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography>
-                          <strong>{locationsList[0].localeName}</strong>
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography>Apt & Hse No.:</Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography>
-                          <strong>
-                            {locationsList[0].deliveryPreciseLocation}
-                          </strong>
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography>Alternative Mobile No.:</Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography>
-                          <strong>
-                            {locationsList[0].alternativePhoneNumber}
-                          </strong>
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                  <Collapse in={collapsed}>
-                    <Paper
-                      elevation={0}
-                      variant="outlined"
-                      className={classes.locationBox}
-                    >
-                      <Typography>
-                        <strong>Previously used locations</strong>
-                      </Typography>
-                      {locationsList.map((dl) => (
-                        <>
-                          <Grid container className={classes.locationSection}>
-                            <Grid item xs={6}>
-                              <Typography>County: </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Typography>
-                                <strong>{dl.countyName}</strong>
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Typography>General area/town:</Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Typography>
-                                <strong>{dl.localeName}</strong>
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Typography>Apt & Hse No.:</Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Typography>
-                                <strong>{dl.deliveryPreciseLocation}</strong>
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Typography>Alternative Mobile No.:</Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Typography>
-                                <strong>{dl.alternativePhoneNumber}</strong>
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={12} x={12}>
-                              <Paper
-                                elevation={0}
-                                variant="outlined"
-                                className={classes.actionSection}
-                              >
-                                <Grid
-                                  container
-                                  className={classes.locationSection}
-                                >
-                                  <Grid item xs={6} xl={6}>
-                                    <Typography
-                                      className={classes.actionSectionText}
-                                    >
-                                      Use this location
-                                    </Typography>
-                                  </Grid>
-                                  <Grid item xs={6} xl={6}>
-                                    <Switch
-                                      checked={
-                                        selectedDeliveryLocation === dl.id
-                                      }
-                                      onChange={() =>
-                                        setSelectedDeliveryLocation(dl.id)
-                                      }
-                                      inputProps={{
-                                        "aria-label": "controlled",
-                                      }}
-                                    />
-                                  </Grid>
-                                </Grid>
-                              </Paper>
-                            </Grid>
-                          </Grid>
-                          <Divider />
-                        </>
-                      ))}
-                    </Paper>
-                  </Collapse>
-
-                  <Stack direction="row" spacing={1}>
-                    {locationsList.length > 1 && (
-                      <AnimateButton>
-                        <Button
-                          disableElevation
-                          fullWidth
-                          size="small"
-                          variant="outlined"
-                          color="secondary"
-                          className={classes.actionButton}
-                          onClick={() => setCollapsed(!collapsed)}
-                        >
-                          {collapsed ? "Hide Previous" : "View Previous"}
-                        </Button>
-                      </AnimateButton>
-                    )}
                     <AnimateButton>
                       <Button
                         disableElevation
                         fullWidth
                         size="small"
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         className={classes.actionButton}
                         onClick={() => setOpen(true)}
                       >
-                        Add New
+                        Add Now
                       </Button>
                     </AnimateButton>
-                  </Stack>
-                </>
-              ) : (
-                <Paper className={classes.locationBox} variant="outlined">
-                  <Stack direction="row" spacing={4}>
-                    <IconLocation
-                      stroke={2.5}
-                      size="1rem"
-                      className={classes.icon}
-                    />
-                    <Typography gutterBottom className={classes.locationText}>
-                      You do not have a preferred delivery location.
-                    </Typography>
-                  </Stack>
-                  <AnimateButton>
-                    <Button
-                      disableElevation
-                      fullWidth
-                      size="small"
-                      variant="contained"
-                      color="secondary"
-                      className={classes.actionButton}
-                      onClick={() => setOpen(true)}
-                    >
-                      Add Now
-                    </Button>
-                  </AnimateButton>
-                </Paper>
-              )}
-            </>
-          )}
-        </GetDeliveryLocations>
-      </Grid>
+                  </Paper>
+                )}
+              </>
+            )}
+          </GetDeliveryLocations>
+        </Grid>
+      )}
       <AddDeliveryLocationModal open={open} setOpen={setOpen} />
     </CardContent>
   );

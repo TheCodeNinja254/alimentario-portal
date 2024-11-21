@@ -5,7 +5,6 @@ import { Divider, List, Typography } from "@material-ui/core";
 import NavItem from "../NavItem";
 import NavCollapse from "../NavCollapse";
 
-// style constant
 const useStyles = makeStyles((theme) => ({
   menuCaption: {
     ...theme.typography.menuCaption,
@@ -18,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
   },
 }));
-
-// ===========================|| SIDEBAR MENU LIST GROUP ||=========================== //
 
 const NavGroup = ({ item }) => {
   const classes = useStyles();

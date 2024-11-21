@@ -1,12 +1,19 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Chip, Stack, Typography } from "@material-ui/core";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Chip,
+  Typography,
+  Box,
+  Divider,
+  Grid,
+  IconButton,
+} from "@material-ui/core";
+import { Stack, Alert } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { Alert, Box, Divider, Grid, IconButton } from "@mui/material";
 import { Close } from "@material-ui/icons";
 import { useContext } from "react";
 import Image from "../../../components/Image";
@@ -36,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productImage: {
     marginTop: theme.spacing(2),
-    width: "100%",
+    height: "75%",
   },
   infoTab: {
     marginBottom: theme.spacing(2),
@@ -118,7 +125,8 @@ const AddToCartModal = ({
             <Grid item xs={12}>
               <Stack direction="row" spacing={1} className={classes.infoTab}>
                 <Chip
-                  variant="filled"
+                  variant="outlined"
+                  color="primary"
                   label={
                     <Typography>
                       <strong>
@@ -130,7 +138,8 @@ const AddToCartModal = ({
                   className={classes.priceChip}
                 />
                 <Chip
-                  variant="filled"
+                  variant="outlined"
+                  color="primary"
                   label={
                     <Typography>
                       Ksh.{" "}

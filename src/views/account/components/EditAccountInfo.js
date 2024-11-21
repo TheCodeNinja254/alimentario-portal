@@ -1,7 +1,6 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography, Paper, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Paper, Stack } from "@material-ui/core";
 import { IconUser } from "@tabler/icons";
 import EditAccountInfoForm from "../forms/EditAccountInfoForm";
 import AnimatedSection from "../../../ui-component/AnimatedSection";

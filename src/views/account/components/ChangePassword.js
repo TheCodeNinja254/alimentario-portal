@@ -1,4 +1,5 @@
-import { Card, CardContent, Typography, Paper, Stack } from "@mui/material";
+import { Card, CardContent, Typography, Paper } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { IconKey } from "@tabler/icons";
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     marginTop: theme.spacing(2),
+    background: theme.palette.background.paper,
   },
   icon: {
     color: theme.palette.primary.dark,

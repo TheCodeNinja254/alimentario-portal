@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
-import { Card, CardContent, Stack } from "@mui/material";
+import { Card, CardContent } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
-
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import photo from "../../assets/images/Graphics/userAvatar2.jpg";
 import Image from "../../components/Image";
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     pl: 2,
     padding: theme.spacing(2),
-    background: theme.palette.background.light,
+    background: theme.palette.background.paper,
     [theme.breakpoints.down("sm")]: {
       marginTop: theme.spacing(0),
     },

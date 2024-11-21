@@ -10,12 +10,11 @@ import {
   ListItemText,
   Typography,
   useMediaQuery,
-  ListItemButton,
-} from "@mui/material";
+} from "@material-ui/core";
+import { ListItemButton } from "@mui/material";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { MENU_OPEN, SET_MENU } from "../../../../../store/actions";
 
-// style constant
 const useStyles = makeStyles((theme) => ({
   listIcon: {
     minWidth: "18px",
@@ -45,8 +44,6 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.subMenuCaption,
   },
 }));
-
-// ===========================|| SIDEBAR MENU LIST ITEMS ||=========================== //
 
 const NavItem = ({ item, level }) => {
   const classes = useStyles();

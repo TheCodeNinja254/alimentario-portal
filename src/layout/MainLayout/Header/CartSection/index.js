@@ -35,7 +35,6 @@ import MySnackbar from "../../../../components/MySnackbar/MySnackbar";
 import ErrorHandler from "../../../../utils/errorHandler";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 
-// style const
 const useStyles = makeStyles((theme) => ({
   cartChip: {
     height: "48px",
@@ -233,15 +232,20 @@ const CartSection = () => {
                           elevation={16}
                           content={false}
                           boxShadow
-                          shadow={theme.shadows[16]}
+                          shadow={theme.shadows[10]}
                         >
-                          <Grid container direction="column" spacing={2}>
-                            <Grid item xs={12}>
+                          <Grid
+                            container
+                            direction="column"
+                            spacing={2}
+                            style={{ padding: 7 }}
+                          >
+                            <Grid item xs={12} style={{ padding: 7 }}>
                               <Grid
                                 container
                                 alignItems="center"
                                 justifyContent="space-between"
-                                sx={{ pt: 2, px: 2 }}
+                                style={{ padding: 7 }}
                               >
                                 <Grid item>
                                   <Stack direction="row" spacing={2}>
@@ -295,7 +299,9 @@ const CartSection = () => {
                             sx={{ p: 1.25, justifyContent: "center" }}
                           >
                             <Button
+                              variant="contained"
                               size="small"
+                              color="primary"
                               disableElevation
                               onClick={() => setOpen(false)}
                               component={RouterLink}
@@ -367,7 +373,7 @@ const CartSection = () => {
                                 container
                                 alignItems="center"
                                 justifyContent="space-between"
-                                sx={{ pt: 2, px: 2 }}
+                                style={{ padding: theme.spacing(2) }}
                               >
                                 <Grid item>
                                   <Stack direction="row" spacing={2}>

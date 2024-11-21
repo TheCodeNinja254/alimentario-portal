@@ -7,7 +7,7 @@ import {
   Grid,
   IconButton,
   Typography,
-} from "@mui/material";
+} from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import DialogContent from "@mui/material/DialogContent";
 import * as React from "react";

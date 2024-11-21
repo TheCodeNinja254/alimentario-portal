@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Box, Divider } from "@mui/material";
-import { Typography } from "@material-ui/core";
+import { Box, Divider, Button, Typography } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import Image from "../../../components/Image";
-import emptyPlate from "../../../assets/images/Graphics/emptyPlate.png";
+import emptyPlate from "../../../assets/images/Graphics/emptyPlate.jpg";
 import GetAllOrdersQuery from "../../../api/Queries/Orders/GetAllOrders";
 import InternalOrderSectionCard from "../../components/InternalOrderSectionCard";
 import UpdateOrderStatusModal from "../../components/UpdateOrderStatusModal";

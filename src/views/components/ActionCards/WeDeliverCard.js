@@ -28,7 +28,7 @@ const WeDeliverCard = () => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} elevation={0}>
       <CardContent>
         <Typography className={classes.inCardText}>We deliver,</Typography>
         <Typography className={classes.inCardTextMinor}>

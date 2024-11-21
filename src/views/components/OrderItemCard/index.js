@@ -7,7 +7,7 @@ import {
   Grid,
   Typography,
   useMediaQuery,
-} from "@mui/material";
+} from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import { styled } from "@mui/material/styles";
 
@@ -22,7 +22,15 @@ const OrderItemCard = ({ orderItem }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Card elevation={0} sx={{ marginTop: theme.spacing(2) }} variant="outlined">
+    <Card
+      elevation={0}
+      style={{
+        marginTop: theme.spacing(2),
+        borderRadius: 10,
+        marginBottom: theme.spacing(2),
+      }}
+      variant="outlined"
+    >
       <CardContent>
         <Grid spacing={2} container>
           <Grid item xs={3} sm={2}>

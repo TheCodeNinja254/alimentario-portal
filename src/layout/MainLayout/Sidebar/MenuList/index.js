@@ -6,8 +6,6 @@ import GetSignedInCustomerQuery from "../../../../api/Queries/Authentication/Get
 import authenticatedMenuItems from "../../../../menu-items/authenticated";
 import authenticatedWithBusinessMenuItems from "../../../../menu-items/authenticatedWithBusiness";
 
-// ===========================|| SIDEBAR MENU LIST ||=========================== //
-
 const MenuList = () => {
   return (
     <GetSignedInCustomerQuery>

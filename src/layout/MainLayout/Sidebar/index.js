@@ -43,8 +43,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// ===========================|| SIDEBAR DRAWER ||=========================== //
-
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
   const classes = useStyles();
   const theme = useTheme();

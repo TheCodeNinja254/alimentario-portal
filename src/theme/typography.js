@@ -5,17 +5,17 @@ const typography = {
   h1: {
     fontWeight: 700,
     fontFamily: ["Futura Std Bold", "Futura Std Medium Oblique"].join(","),
-    fontSize: 42,
+    fontSize: 30,
     letterSpacing: "-0.02em",
   },
   h2: {
     fontWeight: 600,
-    fontSize: 29,
+    fontSize: 22,
     letterSpacing: "-0.24px",
   },
   h3: {
     fontWeight: 700,
-    fontSize: 24,
+    fontSize: 20,
     letterSpacing: "-0.02em",
   },
   h4: {

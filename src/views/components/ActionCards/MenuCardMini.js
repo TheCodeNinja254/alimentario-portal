@@ -14,7 +14,6 @@ import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 
-// style constant
 const useStyles = makeStyles((theme) => ({
   card: {
     background: theme.palette.warning.light,

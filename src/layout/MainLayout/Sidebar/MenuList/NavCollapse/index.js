@@ -8,8 +8,8 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-  ListItemButton,
-} from "@mui/material";
+} from "@material-ui/core";
+import { ListItemButton } from "@mui/material";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons";
 import NavItem from "../NavItem";
@@ -71,8 +71,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-// ===========================|| SIDEBAR MENU LIST COLLAPSE ITEMS ||=========================== //
 
 const NavCollapse = ({ menu, level }) => {
   const classes = useStyles();

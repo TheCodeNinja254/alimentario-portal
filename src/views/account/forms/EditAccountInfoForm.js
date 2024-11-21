@@ -36,7 +36,7 @@ const EditAccountInfoSchema = Yup.object().shape({
 });
 
 // style constant
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   inputField: {
     marginTop: 8,
     marginBottom: 8,

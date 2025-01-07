@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 // material-ui
-import { useTheme } from "@material-ui/styles";
+import { useTheme } from "@mui/material/styles";
 import {
   Card,
   CardContent,
@@ -27,9 +27,10 @@ const SubCard = ({
 
   return (
     <Card
+      elevation={0}
       sx={{
-        border: "1px solid",
-        borderColor: theme.palette.primary.light,
+        borderRadius: 3,
+        borderColor: theme.palette.background.paper,
         ":hover": {
           boxShadow: "0 2px 14px 0 rgb(32 40 45 / 8%)",
         },

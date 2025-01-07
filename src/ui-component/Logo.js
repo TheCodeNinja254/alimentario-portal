@@ -12,12 +12,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Logo = ({ withName }) => {
+const Logo = ({ withName, leftSpacing }) => {
   const classes = useStyles();
   const theme = useTheme();
 
   return (
-    <Box sx={{ marginLeft: theme.spacing(2) }}>
+    <Box sx={{ marginLeft: leftSpacing || theme.spacing(2) }}>
       <img
         src={logo}
         className={classes.logo}
@@ -30,10 +30,11 @@ const Logo = ({ withName }) => {
   );
 };
 
-Logo.defaultProps = { withName: false };
+Logo.defaultProps = { withName: false, leftSpacing: null };
 
 Logo.propTypes = {
   withName: PropTypes.bool,
+  leftSpacing: PropTypes.any,
 };
 
 export default Logo;

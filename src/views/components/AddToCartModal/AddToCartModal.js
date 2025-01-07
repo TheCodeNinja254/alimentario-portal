@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
   nextActionsArea: {
     marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   priceChip: {
     fontWeight: 700,
@@ -170,7 +171,7 @@ const AddToCartModal = ({
                   <Button
                     disableElevation
                     fullWidth
-                    size="large"
+                    size="small"
                     variant="contained"
                     color="secondary"
                     component={RouterLink}
@@ -183,7 +184,7 @@ const AddToCartModal = ({
                   <Button
                     disableElevation
                     fullWidth
-                    size="large"
+                    size="small"
                     variant="outlined"
                     color="secondary"
                     onClick={handleClose}

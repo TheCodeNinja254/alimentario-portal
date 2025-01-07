@@ -11,7 +11,7 @@ import isEmpty from "lodash.isempty";
 import * as Yup from "yup";
 import { Form as FormikForm, Formik } from "formik";
 import { useMutation } from "@apollo/client";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { grey } from "@mui/material/colors";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
@@ -28,11 +28,11 @@ const AddToCartSchema = Yup.object().shape({
 
 const useStyles = makeStyles((theme) => ({
   formInput: {
-    marginTop: 8,
-    marginBottom: 8,
+    marginTop: theme.spacing(0),
+    marginBottom: theme.spacing(0),
     "& > label": {
       top: "23px",
-      left: 15,
+      left: 20,
       color: grey[500],
       '&[data-shrink="false"]': {
         top: "5px",
@@ -47,10 +47,10 @@ const useStyles = makeStyles((theme) => ({
     "& fieldset": {
       top: 0,
     },
-    background: grey[300],
+    // background: grey[300],
     borderRadius: `12px`,
     "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: grey[300],
+      borderColor: grey[400],
     },
     "&:hover $notchedOutline": {
       borderColor: theme.palette.primary.light,
@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AddToCartForm = ({ productId, setSubmitDetails }) => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const [submitError, setSubmitError] = useState("");
 
@@ -217,6 +218,7 @@ const AddToCartForm = ({ productId, setSubmitDetails }) => {
             >
               <AnimateButton>
                 <Button
+                  style={{ marginBottom: theme.spacing(3) }}
                   disableElevation
                   disabled={buttonDisabledStatus(errors, values, loading)}
                   fullWidth

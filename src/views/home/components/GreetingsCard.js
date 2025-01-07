@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Paper } from "@material-ui/core";
-import styled from "@mui/material/styles/styled";
 import { makeStyles } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
-import { Typography } from "@mui/material";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
-import trackInExpandText from "../../../animation/trackInExpandText";
+import Logo from "../../../ui-component/Logo";
 
-const NameTypography = styled(Typography)(({ theme, animate }) => ({
-  color: theme.palette.common.black,
-  fontSize: 25,
-  fontWeight: 700,
-  [theme.breakpoints.down("sm")]: {
-    fontSize: 20,
-    fontWeight: 700,
-  },
-  animation:
-    animate &&
-    `${trackInExpandText} 2.3s cubic-bezier(0.215, 0.610, 0.355, 1.000) both`,
-}));
+// const NameTypography = styled(Typography)(({ theme, animate }) => ({
+//   color: theme.palette.common.black,
+//   fontSize: 25,
+//   fontWeight: 700,
+//   [theme.breakpoints.down("sm")]: {
+//     fontSize: 20,
+//     fontWeight: 700,
+//   },
+//   animation:
+//     animate &&
+//     `${trackInExpandText} 2.3s cubic-bezier(0.215, 0.610, 0.355, 1.000) both`,
+// }));
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -62,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   slogan: {
     color: theme.palette.primary.main,
+    marginTop: theme.spacing(2),
   },
   contextText: {
     marginTop: theme.spacing(4),
@@ -114,9 +113,7 @@ const GreetingsCard = () => {
             <MuiTypography gutterBottom className={classes.welcomeText}>
               Welcome to
             </MuiTypography>
-            <NameTypography variant="h1" gutterBottom animate={animate}>
-              Desafio Alimentario
-            </NameTypography>
+            <Logo />
             <MuiTypography variant="body2" className={classes.slogan}>
               The Food Challenge!
             </MuiTypography>
@@ -124,29 +121,6 @@ const GreetingsCard = () => {
               This is your one stop shop for great steak & cheese. We deliver to
               your home, shop or eatery.
             </MuiTypography>
-            {/* <MuiTypography */}
-            {/*  variant="h3" */}
-            {/*  gutterBottom */}
-            {/*  className={classes.actionText} */}
-            {/* > */}
-            {/*  What do you want to do today? */}
-            {/* </MuiTypography> */}
-            {/* <Chip variant="outlined" label="Index" className={classes.chip} /> */}
-            {/* <Chip */}
-            {/*  variant="outlined" */}
-            {/*  label="Create Account" */}
-            {/*  className={classes.chip} */}
-            {/* /> */}
-            {/* <Chip */}
-            {/*  variant="outlined" */}
-            {/*  label="Order Now" */}
-            {/*  className={classes.chip} */}
-            {/* /> */}
-            {/* <Chip */}
-            {/*  variant="outlined" */}
-            {/*  label="Make a standing order" */}
-            {/*  className={classes.chip} */}
-            {/* /> */}
           </Grid>
         </Grid>
       </Paper>

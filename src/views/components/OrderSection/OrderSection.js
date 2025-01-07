@@ -11,15 +11,14 @@ import {
 import { Close } from "@material-ui/icons";
 import DialogContent from "@mui/material/DialogContent";
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import OrderItemCard from "../OrderItemCard";
 import formatDate from "../../../utils/formatDate";
 import BufferProgress from "../../../components/BufferProgress";
 
 const useStyles = makeStyles((theme) => ({
   modalTitle: {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.primary.main,
     fontWeight: 700,
     fontSize: 20,
   },

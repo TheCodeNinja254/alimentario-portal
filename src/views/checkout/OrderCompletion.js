@@ -10,13 +10,12 @@ import {
   Divider,
   Card,
 } from "@material-ui/core";
-import { Alert, AlertTitle, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router";
-import MainCard from "../../ui-component/cards/MainCard";
 import DeliveryAddress from "./DeliveryAddress";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import { GET_CART_ITEMS } from "../../api/Queries/Cart/GetCartItems";
@@ -190,44 +189,35 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
 
   return (
     <AnimatedSection animate={animate} duration="1.4s">
-      <Box
-        sx={{
-          mt: theme.spacing(3),
-          padding: theme.spacing(1),
-          backgroundColor: theme.palette.background.paper,
-        }}
+      <Dialog
+        open={modalOpenStatus}
+        modalContent={
+          <Box className={classes.dialogContent}>
+            <StatusIcon
+              status={addStatus ? "success" : "An error occurred"}
+              text={addStatus ? "Order created!" : "An error occurred"}
+            />
+            <Typography variant="body1"> {addMessage}</Typography>
+          </Box>
+        }
+        modalActions={
+          <Button
+            disableElevation
+            variant="contained"
+            onClick={() => closeDialog()}
+            color="primary"
+            autoFocus
+          >
+            Close
+          </Button>
+        }
+        handleClose={closeDialog}
+      />
+      <Card
+        elevation={0}
+        style={{ borderRadius: 4, marginTop: theme.spacing(2) }}
       >
-        <MainCard
-          border={false}
-          elevation={0}
-          content={false}
-          boxShadow
-          shadow={0}
-        >
-          <Dialog
-            open={modalOpenStatus}
-            modalContent={
-              <Box className={classes.dialogContent}>
-                <StatusIcon
-                  status={addStatus ? "success" : "An error occurred"}
-                  text={addStatus ? "Order created!" : "An error occurred"}
-                />
-                <Typography variant="body1"> {addMessage}</Typography>
-              </Box>
-            }
-            modalActions={
-              <Button
-                disableElevation
-                variant="contained"
-                onClick={() => closeDialog()}
-                color="primary"
-                autoFocus
-              >
-                Close
-              </Button>
-            }
-            handleClose={closeDialog}
-          />
+        <CardContent>
           <Grid container direction="column" spacing={2}>
             <Grid item xs={12}>
               <Grid
@@ -238,7 +228,10 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
               >
                 <Grid item>
                   <Stack direction="row" spacing={2}>
-                    <Typography variant="subtitle1">
+                    <Typography
+                      variant="h2"
+                      style={{ color: theme.palette.primary.main }}
+                    >
                       {alertVisible ? "Pre-order now" : "Complete your order"}
                     </Typography>
                     {loading && <CircularProgress size={20} />}
@@ -246,167 +239,191 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
                 </Grid>
               </Grid>
             </Grid>
-            <DeliveryAddress
-              selectedDeliveryLocation={selectedDeliveryLocation}
-              setSelectedDeliveryLocation={setSelectedDeliveryLocation}
-            />
-            <Alert variant="outlined">
-              <AlertTitle>
-                Notice On Payment: <strong>Payment on delivery only</strong>
-              </AlertTitle>
-            </Alert>
-            {totalDue > 0 ? (
-              <Card elevation={0}>
-                <CardContent>
-                  <Grid item xs={12}>
-                    <Stack direction="row" spacing={7}>
-                      <div>
-                        <Typography className={classes.cardTitle}>
-                          Complete Your Order
-                        </Typography>
-                      </div>
-                      <AnimateButton>
-                        <Button
-                          disableElevation
-                          fullWidth
-                          size="small"
-                          variant="outlined"
-                          color="secondary"
-                          component={RouterLink}
-                          to="/"
-                        >
-                          Shop More
-                        </Button>
-                      </AnimateButton>
-                    </Stack>
-                    <Divider />
-                    <Box className={classes.priceBox}>
-                      <Grid
-                        container
-                        direction="row"
-                        className={classes.priceContainer}
-                      >
-                        <Grid
-                          item
-                          className={classes.priceSection}
-                          xs={6}
-                          sm={6}
-                          md={4}
-                          lg={3}
-                          xl={3}
-                        >
-                          <Typography variant="body1">Sub Total</Typography>
-                        </Grid>
-                        <Grid
-                          item
-                          className={classes.priceSection}
-                          xs={6}
-                          sm={6}
-                          md={4}
-                          lg={3}
-                          xl={3}
-                        >
-                          <Typography variant="body1">
-                            <strong>Ksh. {totalDue}</strong>
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                      <Grid container className={classes.priceContainer}>
-                        <Grid
-                          item
-                          className={classes.priceSection}
-                          xs={6}
-                          sm={6}
-                          md={4}
-                          lg={3}
-                          xl={3}
-                        >
-                          <Typography variant="body1">Delivery Fee</Typography>
-                        </Grid>
-                        <Grid
-                          item
-                          className={classes.priceSection}
-                          xs={6}
-                          sm={6}
-                          md={4}
-                          lg={3}
-                          xl={3}
-                        >
-                          <Typography variant="body1">Ksh. 200</Typography>
-                        </Grid>
-                      </Grid>
-                      <Grid container className={classes.totalContainer}>
-                        <Grid
-                          item
-                          className={classes.priceSection}
-                          xs={6}
-                          sm={6}
-                          md={4}
-                          lg={3}
-                          xl={3}
-                        >
-                          <Typography variant="body1">Total</Typography>
-                        </Grid>
-                        <Grid
-                          item
-                          className={classes.priceSection}
-                          xs={6}
-                          sm={6}
-                          md={4}
-                          lg={3}
-                          xl={3}
-                        >
-                          <Typography variant="body1">
-                            <strong>Ksh. {totalDue + 200}</strong>
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </Grid>
-                </CardContent>
-                <CardActions>
-                  <AnimateButton>
-                    <Button
-                      disableElevation
-                      fullWidth
-                      size="small"
-                      variant="contained"
-                      color="secondary"
-                      className={classes.actionButton}
-                      onClick={() => handleConfirmOrder()}
-                    >
-                      Confirm Order
-                    </Button>
-                  </AnimateButton>
-                </CardActions>
-              </Card>
-            ) : (
-              <Card elevation={0}>
-                <CardContent>
-                  <Grid item xs={12}>
-                    <Typography className={classes.cardTitle} sx={{ mb: 10 }}>
-                      Your cart is empty
-                    </Typography>
-                    <AnimateButton>
-                      <Button
-                        disableElevation
-                        fullWidth
-                        size="small"
-                        variant="outlined"
-                        color="secondary"
-                        component={RouterLink}
-                        to="/"
-                      >
-                        Go Shopping
-                      </Button>
-                    </AnimateButton>
-                  </Grid>
-                </CardContent>
-              </Card>
-            )}
           </Grid>
-        </MainCard>
-      </Box>
+        </CardContent>
+      </Card>
+      <Card
+        elevation={0}
+        style={{ borderRadius: 4, marginTop: theme.spacing(2) }}
+      >
+        <CardContent>
+          <DeliveryAddress
+            selectedDeliveryLocation={selectedDeliveryLocation}
+            setSelectedDeliveryLocation={setSelectedDeliveryLocation}
+          />
+        </CardContent>
+      </Card>
+
+      {/* <Alert variant="outlined"> */}
+      {/*  <AlertTitle> */}
+      {/*    Notice On Payment: <strong>Payment on delivery only</strong> */}
+      {/*  </AlertTitle> */}
+      {/* </Alert> */}
+      {totalDue > 0 ? (
+        <Card
+          elevation={0}
+          style={{ borderRadius: 4, marginTop: theme.spacing(2) }}
+        >
+          <CardContent>
+            <Grid item xs={12}>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ marginBottom: theme.spacing(2) }}
+              >
+                <Typography className={classes.cardTitle}>
+                  Complete Your Order
+                </Typography>
+                <AnimateButton>
+                  <Button
+                    disableElevation
+                    fullWidth
+                    size="small"
+                    variant="outlined"
+                    color="secondary"
+                    component={RouterLink}
+                    to="/"
+                  >
+                    Shop More
+                  </Button>
+                </AnimateButton>
+              </Box>
+              <Divider />
+              <Box className={classes.priceBox}>
+                <Grid
+                  container
+                  direction="row"
+                  className={classes.priceContainer}
+                >
+                  <Grid
+                    item
+                    className={classes.priceSection}
+                    xs={6}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    xl={3}
+                  >
+                    <Typography variant="body1">Sub Total</Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    className={classes.priceSection}
+                    xs={6}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    xl={3}
+                  >
+                    <Typography variant="body1">
+                      <strong>Ksh. {totalDue}</strong>
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container className={classes.priceContainer}>
+                  <Grid
+                    item
+                    className={classes.priceSection}
+                    xs={6}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    xl={3}
+                  >
+                    <Typography variant="body1">Delivery Fee</Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    className={classes.priceSection}
+                    xs={6}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    xl={3}
+                  >
+                    <Typography variant="body1">Ksh. 200</Typography>
+                  </Grid>
+                </Grid>
+                <Grid container className={classes.totalContainer}>
+                  <Grid
+                    item
+                    className={classes.priceSection}
+                    xs={6}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    xl={3}
+                  >
+                    <Typography variant="body1">Total</Typography>
+                  </Grid>
+                  <Grid
+                    item
+                    className={classes.priceSection}
+                    xs={6}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    xl={3}
+                  >
+                    <Typography variant="body1">
+                      <strong>Ksh. {totalDue + 200}</strong>
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="flex-end"
+              justifyItems="flex-end"
+            >
+              <AnimateButton>
+                <Button
+                  disableElevation
+                  fullWidth
+                  size="medium"
+                  variant="contained"
+                  color="primary"
+                  className={classes.actionButton}
+                  onClick={() => handleConfirmOrder()}
+                >
+                  Confirm Order
+                </Button>
+              </AnimateButton>
+            </Box>
+          </CardActions>
+        </Card>
+      ) : (
+        <Card
+          elevation={0}
+          style={{ borderRadius: 4, marginTop: theme.spacing(2) }}
+        >
+          <CardContent>
+            <Grid item xs={12}>
+              <Typography className={classes.cardTitle} sx={{ mb: 10 }}>
+                Your cart is empty
+              </Typography>
+              <AnimateButton>
+                <Button
+                  disableElevation
+                  fullWidth
+                  size="small"
+                  variant="outlined"
+                  color="secondary"
+                  component={RouterLink}
+                  to="/"
+                >
+                  Go Shopping
+                </Button>
+              </AnimateButton>
+            </Grid>
+          </CardContent>
+        </Card>
+      )}
     </AnimatedSection>
   );
 };

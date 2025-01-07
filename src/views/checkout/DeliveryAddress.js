@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import {
+  Card,
+  Button,
   Collapse,
   Grid,
   Typography,
@@ -7,6 +9,7 @@ import {
   CardContent,
   Divider,
   Box,
+  Switch,
 } from "@material-ui/core";
 import { Stack } from "@mui/material";
 import { makeStyles, styled, useTheme } from "@material-ui/styles";
@@ -17,10 +20,7 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { IconLocation } from "@tabler/icons";
-import Button from "@mui/material/Button";
-import Switch from "@mui/material/Switch";
 import PropTypes from "prop-types";
-import Card from "@mui/material/Card";
 import GetDeliveryLocations from "../../api/Queries/Locations/GetDeliveryLocations";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import AddDeliveryLocationModal from "../components/AddDeliveryLocationModal";
@@ -182,12 +182,31 @@ const DeliveryAddress = ({
         </Grid>
       ) : (
         <Grid item xs={12}>
-          <Typography className={classes.cardTitle}>
-            Delivery Address
-          </Typography>
-          <Typography className={classes.cardSubTitle}>
-            Confirm your delivery address.
-          </Typography>
+          <Box display="flex" justifyContent="space-between">
+            <Box>
+              <Typography className={classes.cardTitle}>
+                Delivery Address
+              </Typography>
+              <Typography className={classes.cardSubTitle}>
+                Confirm your delivery address.
+              </Typography>
+            </Box>
+            <Box display="flex" justifyContent="flex-end">
+              <AnimateButton>
+                <Button
+                  disableElevation
+                  fullWidth
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  className={classes.actionButton}
+                  onClick={() => setOpen(true)}
+                >
+                  Add New
+                </Button>
+              </AnimateButton>
+            </Box>
+          </Box>
           <Divider />
           <GetDeliveryLocations>
             {({ getDeliveryLocations: { status, locationsList } }) => (
@@ -205,6 +224,7 @@ const DeliveryAddress = ({
                           <strong>Last Used/Added Location</strong>
                         </Typography>
                         <Switch
+                          color="primary"
                           sx={{ marginTop: theme.spacing(-2) }}
                           checked={
                             selectedDeliveryLocation === locationsList[0].id
@@ -338,7 +358,11 @@ const DeliveryAddress = ({
                       </Paper>
                     </Collapse>
 
-                    <Stack direction="row" spacing={1}>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      sx={{ marginTop: theme.spacing(2) }}
+                    >
                       {locationsList.length > 1 && (
                         <AnimateButton>
                           <Button
@@ -354,19 +378,6 @@ const DeliveryAddress = ({
                           </Button>
                         </AnimateButton>
                       )}
-                      <AnimateButton>
-                        <Button
-                          disableElevation
-                          fullWidth
-                          size="small"
-                          variant="contained"
-                          color="secondary"
-                          className={classes.actionButton}
-                          onClick={() => setOpen(true)}
-                        >
-                          Add New
-                        </Button>
-                      </AnimateButton>
                     </Stack>
                   </>
                 ) : (

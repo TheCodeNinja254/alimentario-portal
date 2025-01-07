@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button } from "@material-ui/core";
 import {
-  Alert,
-  AlertTitle,
+  Card,
+  Button,
   Box,
   CircularProgress,
   DialogTitle,
@@ -11,14 +10,15 @@ import {
   List,
   ListItem,
   Typography,
-} from "@mui/material";
+} from "@material-ui/core";
+import { Alert, AlertTitle } from "@mui/material";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { RingLoader } from "react-spinners";
 import { useNavigate } from "react-router";
 import Image from "../../../components/Image";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
-import lipaNaMpesaLogo from "../../../assets/images/logos/lipaNaMpesaLogo.jpg";
+import lipaNaMpesaLogo from "../../../assets/images/logos/lipaNaMpesaLogo.png";
 import ErrorHandler from "../../../utils/errorHandler";
 import StatusIcon from "../../../components/StatusIcon";
 import Dialog from "../../../components/Dialog";
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   modalTitle: {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.primary.main,
     fontWeight: 700,
     fontSize: 20,
   },
@@ -351,7 +351,7 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
                 <Box>
                   <Typography
                     sx={{
-                      color: theme.palette.success.main,
+                      color: theme.palette.primary.main,
                       fontWeight: 700,
                       fontSize: 20,
                       textAlign: "center",
@@ -496,11 +496,13 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
             </DialogTitle>
           </Grid>
           <Grid item xs={5}>
-            <Image
-              src={lipaNaMpesaLogo}
-              alt="M-PESA"
-              className={classes.mpesaLogo}
-            />
+            <Box display="flex" justifyContent="flex-end">
+              <Image
+                src={lipaNaMpesaLogo}
+                alt="M-PESA"
+                className={classes.mpesaLogo}
+              />
+            </Box>
           </Grid>
 
           {/* Cost Summary Section */}

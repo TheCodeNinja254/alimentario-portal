@@ -16,7 +16,7 @@ import RecentOrdersSection from "./RecentOrdersSection";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    background: theme.palette.warning.light,
+    background: theme.palette.primary.light,
     marginTop: theme.spacing(2),
     marginBottom: "16px",
     overflow: "hidden",
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       width: "200px",
       height: "200px",
       border: "19px solid ",
-      borderColor: theme.palette.warning.main,
+      borderColor: theme.palette.primary.main,
       borderRadius: "50%",
       top: "-95px",
       right: "-150px",
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       width: "200px",
       height: "200px",
       border: "3px solid ",
-      borderColor: theme.palette.warning.main,
+      borderColor: theme.palette.primary.main,
       borderRadius: "50%",
       top: "-135px",
       right: "-70px",
@@ -50,13 +50,13 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     color: theme.palette.grey[800],
-    backgroundColor: theme.palette.warning.main,
+    backgroundColor: theme.palette.primary.main,
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),
     textTransform: "capitalize",
     boxShadow: "none",
     "&:hover": {
-      backgroundColor: theme.palette.warning.dark,
+      backgroundColor: theme.palette.primary.dark,
     },
     divider: {
       marginTop: theme.spacing(3),
@@ -141,10 +141,12 @@ const ActionCard = () => {
                       <Stack direction="column">
                         <AnimateButton>
                           <Button
+                            disableElevation
+                            color="secondary"
                             component={RouterLink}
                             to="/my-business"
                             variant="contained"
-                            className={classes.button}
+                            style={{ textTransform: "capitalize" }}
                           >
                             Add Your Business
                           </Button>

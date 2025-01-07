@@ -7,7 +7,7 @@ const black = "#212529";
 export default {
   primary: {
     main: "#064838",
-    light: "#D7CCC8",
+    light: "#cbf2e9",
     dark: "#064838",
   },
   secondary: {

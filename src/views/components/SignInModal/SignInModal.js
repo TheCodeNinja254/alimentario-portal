@@ -3,18 +3,16 @@ import {
   Button,
   Dialog,
   DialogContent,
-  Stack,
   Typography,
   Box,
   Grid,
   IconButton,
   DialogTitle,
-} from "@mui/material";
-
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Link as RouterLink } from "react-router-dom";
 import { Close } from "@material-ui/icons";
-
+import { Stack } from "@mui/material";
 import Image from "../../../components/Image";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import photo from "../../../assets/images/Graphics/bbq_05.jpg";
@@ -95,7 +93,7 @@ const SignInModal = ({ open, setOpen }) => {
                   fullWidth
                   size="small"
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                   component={RouterLink}
                   to="/auth"
                 >
@@ -108,7 +106,7 @@ const SignInModal = ({ open, setOpen }) => {
                   fullWidth
                   size="small"
                   variant="outlined"
-                  color="secondary"
+                  color="primary"
                   component={RouterLink}
                   to="/create-account"
                 >

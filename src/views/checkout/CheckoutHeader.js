@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
-import { Card, CardContent, Button } from "@material-ui/core";
+import { Card, CardContent, Button, Box } from "@material-ui/core";
 import { Stack } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { ShoppingCart } from "@material-ui/icons";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
-import photo from "../../assets/images/Graphics/cart_ready.jpg";
-import Image from "../../components/Image";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import AnimatedSection from "../../ui-component/AnimatedSection";
 
@@ -76,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CheckoutHeader = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
@@ -90,81 +90,83 @@ const CheckoutHeader = () => {
       <Card elevation={0} className={classes.paper}>
         <Grid container>
           <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
-            <Card elevation={0}>
-              <CardContent>
-                <Image alt="Img" src={photo} className={classes.productImage} />
-              </CardContent>
-            </Card>
             <CardContent>
-              <GetSignedInCustomerQuery>
-                {({ getSignedInCustomer: { status, customer } }) =>
-                  status ? (
-                    <>
-                      <MuiTypography
-                        gutterBottom
-                        className={classes.mainGreeting}
-                      >
-                        {customer?.firstName}&apos;s Cart
-                      </MuiTypography>
-                      <MuiTypography
-                        variant="body2"
-                        className={classes.contextText}
-                      >
-                        Confirm the items you wish to have delivered before
-                        making your order
-                      </MuiTypography>
-                    </>
-                  ) : (
-                    <>
-                      <MuiTypography
-                        variant="h2"
-                        gutterBottom
-                        className={classes.mainGreeting}
-                      >
-                        Your cart items will appear here.
-                      </MuiTypography>
-                      <MuiTypography
-                        variant="body2"
-                        className={classes.contextText}
-                      >
-                        Please sign in to your account to access your cart.
-                      </MuiTypography>
-                      <Stack
-                        direction="row"
-                        spacing={2}
-                        className={classes.cardActions}
-                      >
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="contained"
-                            color="secondary"
-                            component={RouterLink}
-                            to="/auth"
+              <Box display="flex" justifyContent="space-between">
+                <Box>
+                  <GetSignedInCustomerQuery>
+                    {({ getSignedInCustomer: { status, customer } }) =>
+                      status ? (
+                        <>
+                          <MuiTypography
+                            gutterBottom
+                            className={classes.mainGreeting}
                           >
-                            Sign In
-                          </Button>
-                        </AnimateButton>
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="outlined"
-                            color="secondary"
-                            component={RouterLink}
-                            to="/create-account"
+                            {customer?.firstName}&apos;s Cart
+                          </MuiTypography>
+                          <MuiTypography
+                            variant="body2"
+                            className={classes.contextText}
                           >
-                            Create Account
-                          </Button>
-                        </AnimateButton>
-                      </Stack>
-                    </>
-                  )
-                }
-              </GetSignedInCustomerQuery>
+                            Confirm the items you wish to have delivered before
+                            making your order
+                          </MuiTypography>
+                        </>
+                      ) : (
+                        <>
+                          <MuiTypography
+                            variant="h2"
+                            gutterBottom
+                            className={classes.mainGreeting}
+                          >
+                            Your cart items will appear here.
+                          </MuiTypography>
+                          <MuiTypography
+                            variant="body2"
+                            className={classes.contextText}
+                          >
+                            Please sign in to your account to access your cart.
+                          </MuiTypography>
+                          <Stack
+                            direction="row"
+                            spacing={2}
+                            className={classes.cardActions}
+                          >
+                            <AnimateButton>
+                              <Button
+                                disableElevation
+                                fullWidth
+                                size="small"
+                                variant="contained"
+                                color="secondary"
+                                component={RouterLink}
+                                to="/auth"
+                              >
+                                Sign In
+                              </Button>
+                            </AnimateButton>
+                            <AnimateButton>
+                              <Button
+                                disableElevation
+                                fullWidth
+                                size="small"
+                                variant="outlined"
+                                color="secondary"
+                                component={RouterLink}
+                                to="/create-account"
+                              >
+                                Create Account
+                              </Button>
+                            </AnimateButton>
+                          </Stack>
+                        </>
+                      )
+                    }
+                  </GetSignedInCustomerQuery>
+                </Box>
+                <ShoppingCart
+                  style={{ fontSize: 70, color: theme.palette.primary.main }}
+                />
+              </Box>
             </CardContent>
           </Grid>
         </Grid>

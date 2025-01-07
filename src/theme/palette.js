@@ -6,14 +6,14 @@ const black = "#212529";
 
 export default {
   primary: {
-    main: "#795548",
+    main: "#064838",
     light: "#D7CCC8",
-    dark: "#5D4037",
+    dark: "#064838",
   },
   secondary: {
-    main: "#795548",
+    main: "#F77816",
     light: "#D7CCC8",
-    dark: "#5D4037",
+    dark: "#9c4909",
   },
   success: {
     contrastText: white,

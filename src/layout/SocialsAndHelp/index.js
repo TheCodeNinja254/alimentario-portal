@@ -211,7 +211,7 @@ const SocialsAndHelp = () => {
                     For any enquiries, questions or support.
                   </Typography>
                 </Box>
-                <Box display="flex">
+                <Box display="flex" sx={{ padding: theme.spacing(2) }}>
                   {ourBrands.map((brand) => (
                     <Box key={brand.id}>
                       <Image

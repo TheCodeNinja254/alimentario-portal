@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Paper } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 
 const GreetingsCard = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
@@ -113,7 +114,7 @@ const GreetingsCard = () => {
             <MuiTypography gutterBottom className={classes.welcomeText}>
               Welcome to
             </MuiTypography>
-            <Logo />
+            <Logo leftSpacing={theme.spacing(0)} />
             <MuiTypography variant="body2" className={classes.slogan}>
               The Food Challenge!
             </MuiTypography>

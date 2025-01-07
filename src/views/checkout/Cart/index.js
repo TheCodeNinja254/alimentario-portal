@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import {
+  Button,
   Chip,
   Grid,
-  Paper,
-  Stack,
   Typography,
+  Card,
   CardContent,
   CircularProgress,
   Divider,
-} from "@mui/material";
+  Box,
+} from "@material-ui/core";
 import { useMutation } from "@apollo/client";
-import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Stack } from "@mui/material";
 import { GET_CART_ITEMS } from "../../../api/Queries/Cart/GetCartItems";
 import photo from "../../../assets/images/Graphics/bbq_05.jpg";
 import CartItem from "./CartItem";
@@ -21,7 +22,6 @@ import Image from "../../../components/Image";
 import { REMOVE_CART_ITEM } from "../../../api/Mutations/Cart";
 import MySnackbar from "../../../components/MySnackbar/MySnackbar";
 import ErrorHandler from "../../../utils/errorHandler";
-import MainCard from "../../../ui-component/cards/MainCard";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 
@@ -151,14 +151,8 @@ const Cart = ({ calculateTotalDue, getCartItemStatus, cartItemsList }) => {
   return (
     <AnimatedSection animate={animate} duration="1.4s">
       {getCartItemStatus && cartItemsList?.length > 0 ? (
-        <Paper elevation={0} className={classes.cartPaper}>
-          <MainCard
-            border={false}
-            elevation={0}
-            content={false}
-            boxShadow
-            shadow={theme.shadows[0]}
-          >
+        <Card elevation={0} className={classes.cartPaper}>
+          <CardContent>
             <Grid container direction="column" spacing={2}>
               <Grid item xs={12}>
                 <Grid
@@ -167,21 +161,30 @@ const Cart = ({ calculateTotalDue, getCartItemStatus, cartItemsList }) => {
                   justifyContent="space-between"
                   sx={{ pt: 2, px: 2 }}
                 >
-                  <Grid item>
-                    <Stack direction="row" spacing={2}>
+                  <Grid item xs={12}>
+                    <Box display="flex" justifyContent="space-between">
                       <Typography variant="subtitle1">
                         Items In My Cart
                       </Typography>
-                      <Chip
-                        size="small"
-                        label={cartItemsList?.length}
-                        sx={{
-                          color: theme.palette.background.default,
-                          bgcolor: theme.palette.warning.dark,
-                        }}
-                      />
-                      {loading && <CircularProgress size={20} />}
-                    </Stack>
+                      <Box>
+                        <Chip
+                          size="small"
+                          label={cartItemsList?.length}
+                          sx={{
+                            color: theme.palette.background.default,
+                            bgcolor: theme.palette.warning.dark,
+                          }}
+                        />
+                        {loading && (
+                          <CircularProgress
+                            style={{
+                              marginLeft: theme.spacing(2),
+                            }}
+                            size={20}
+                          />
+                        )}
+                      </Box>
+                    </Box>
                   </Grid>
                 </Grid>
               </Grid>
@@ -198,18 +201,11 @@ const Cart = ({ calculateTotalDue, getCartItemStatus, cartItemsList }) => {
                 />
               </Grid>
             </Grid>
-            <Divider />
-          </MainCard>
-        </Paper>
+          </CardContent>
+        </Card>
       ) : (
-        <Paper elevation={0} className={classes.cartPaper}>
-          <MainCard
-            border={false}
-            elevation={0}
-            content={false}
-            boxShadow
-            shadow={theme.shadows[0]}
-          >
+        <Card elevation={0} className={classes.cartPaper}>
+          <CardContent>
             <Grid container direction="column" spacing={2}>
               <Grid item xs={12}>
                 <Grid
@@ -269,8 +265,8 @@ const Cart = ({ calculateTotalDue, getCartItemStatus, cartItemsList }) => {
                 </CardContent>
               </Grid>
             </Grid>
-          </MainCard>
-        </Paper>
+          </CardContent>
+        </Card>
       )}
       <MySnackbar
         message={message}

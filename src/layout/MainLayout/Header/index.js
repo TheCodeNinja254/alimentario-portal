@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { Box, ButtonBase } from "@material-ui/core";
 import { IconMenu2 } from "@tabler/icons";
 import LogoSection from "../LogoSection";
@@ -25,13 +25,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <>
       {/* logo & toggler button */}
       <div className={classes.boxContainer}>
         <ButtonBase
-          sx={{ borderRadius: "12px", marginRight: 3, overflow: "hidden" }}
+          sx={{
+            borderRadius: "12px",
+            marginRight: theme.spacing(2),
+            overflow: "hidden",
+          }}
         >
           <IconMenu2 stroke={2} size="2rem" onClick={handleLeftDrawerToggle} />
         </ButtonBase>

@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import PropTypes from "prop-types";
-import logo from "../assets/images/alimentarioLogo.svg";
+import { Box } from "@material-ui/core";
+import logo from "../assets/images/desafioLogo.png";
 
 // ===========================|| LOGO SVG ||=========================== //
 const useStyles = makeStyles((theme) => ({
@@ -14,26 +14,23 @@ const useStyles = makeStyles((theme) => ({
 
 const Logo = ({ withName }) => {
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
-    <>
+    <Box sx={{ marginLeft: theme.spacing(2) }}>
       <img
         src={logo}
         className={classes.logo}
         alt="Desafio Alimentario"
-        width="35"
+        width="auto"
         height="35"
       />
-      {withName && (
-        <Typography variant="h4" color="primary.dark">
-          Desafio Alimentario
-        </Typography>
-      )}
-    </>
+      {withName && <></>}
+    </Box>
   );
 };
 
-Logo.defaultProps = { withName: true };
+Logo.defaultProps = { withName: false };
 
 Logo.propTypes = {
   withName: PropTypes.bool,

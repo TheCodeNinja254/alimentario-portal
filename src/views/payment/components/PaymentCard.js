@@ -155,7 +155,7 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
         variables: {
           phoneNumber: encrypt(chargedMsisdn),
           // amount: encrypt(`${totalDue + deliveryFee}`), // flat rate for delivery for now
-          amount: encrypt(`${1}`), // flat rate for delivery for now - For test purposes
+          amount: encrypt(`${10}`), // flat rate for delivery for now - For test purposes
           paymentCorrelationId, // created at order creation, Now we need to attach it to a payment
         },
       })

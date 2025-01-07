@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     pl: 2,
     padding: theme.spacing(2),
-    background: theme.palette.primary.light,
+    background: theme.palette.background.default,
     [theme.breakpoints.down("sm")]: {
       marginTop: theme.spacing(0),
     },

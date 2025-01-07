@@ -6,7 +6,6 @@ import {
   AppBar,
   CssBaseline,
   Toolbar,
-  useMediaQuery,
   Snackbar,
   Container,
 } from "@mui/material";
@@ -79,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
 const MainLayout = () => {
   const theme = useTheme();
   const classes = useStyles();
-  const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
 
   const { snackbarVisible, hideSnackbar } = useContext(AlertContext);
 
@@ -91,8 +89,8 @@ const MainLayout = () => {
   };
 
   React.useEffect(() => {
-    dispatch({ type: SET_MENU, opened: !matchDownMd });
-  }, [matchDownMd]);
+    dispatch({ type: SET_MENU, opened: false });
+  }, []);
 
   return (
     <div className={classes.root}>

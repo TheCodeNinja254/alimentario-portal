@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     height: 50,
     pl: 2,
     padding: theme.spacing(2),
-    background: theme.palette.primary.light,
+    background: theme.palette.background.default,
   },
 }));
 

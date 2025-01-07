@@ -44,7 +44,7 @@ export default {
     light: colors.red[100],
   },
   background: {
-    default: "#EDEDF9",
+    default: "#FFFFFF",
     paper: "#F6F6F1",
     dark: "#F7F7F7",
   },

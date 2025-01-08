@@ -5,6 +5,7 @@ import { Box, CardActionArea, Grid, Typography } from "@material-ui/core";
 import { makeStyles, styled, useTheme } from "@material-ui/styles";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
+import { useNavigate } from "react-router";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import PromotionalModal from "../../components/PromotionalModal";
 
@@ -14,13 +15,15 @@ const productCategories = [
     title: "",
     categoryName: "Desafio Toasted",
     categoryDisplayPic: "/images/categories/desafioToasted.png",
-    type: "display",
+    link: "/desafio-toasted",
+    type: "navigational",
   },
   {
     categoryId: 2,
     title: "",
     categoryName: "",
     categoryDisplayPic: "/images/categories/horseRacing.png",
+    link: "",
     type: "promotional",
   },
   {
@@ -28,14 +31,16 @@ const productCategories = [
     title: "",
     categoryName: "Desafio Harvest",
     categoryDisplayPic: "/images/categories/desafioHarvest.png",
-    type: "display",
+    link: "/desafio-harvest",
+    type: "navigational",
   },
   {
     categoryId: 4,
     title: "",
     categoryName: "Desafio Food Club",
     categoryDisplayPic: "/images/categories/desafioFoodClub.png",
-    type: "display",
+    link: "/desafio-foodclub",
+    type: "navigational",
   },
 ];
 
@@ -83,13 +88,14 @@ const CategoryCard = styled(Card)(({ img }) => ({
 const BrandingSection = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
 
-  const handleCardClick = (_type) => {
+  const handleCardClick = (_type, _link) => {
     if (_type === "promotional") setOpen(true);
 
-    // if(_type === "navigational")
+    if (_type === "navigational") navigate(_link);
   };
 
   const [activeStep, setActiveStep] = React.useState(0);
@@ -101,7 +107,6 @@ const BrandingSection = () => {
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
     setTimeout(() => {
-      // animation
       setAnimate(true);
     }, 1);
   }, [animate]);
@@ -130,7 +135,9 @@ const BrandingSection = () => {
               >
                 <AnimatedSection animate={animate} duration="1.8s">
                   <Card elevation={0}>
-                    <CardActionArea onClick={() => handleCardClick(cat.type)}>
+                    <CardActionArea
+                      onClick={() => handleCardClick(cat.type, cat.link)}
+                    >
                       <CategoryCard img={cat.categoryDisplayPic}>
                         <Typography className={classes.branding}>
                           {cat.title}

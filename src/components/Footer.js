@@ -1,5 +1,12 @@
 import React from "react";
-import { Divider, Grid, Box, Button, Typography } from "@material-ui/core";
+import {
+  Container,
+  Divider,
+  Grid,
+  Box,
+  Button,
+  Typography,
+} from "@material-ui/core";
 import {
   Instagram,
   LinkedIn,
@@ -78,83 +85,91 @@ const Footer = () => {
 
   return (
     <Box className={classes.footer}>
-      <Grid container spacing={4}>
-        {/* Our Brands */}
-        <Grid item xs={12} md={4}>
-          <Typography className={classes.sectionTitle}>Our Brands</Typography>
-          <Box display="flex" justifyContent="left" flexWrap="wrap">
-            {ourBrands.map((brand, index) => (
-              <img
-                key={`img-${index}`}
-                src={brand}
-                alt="Brand Logo"
-                className={classes.brandImages}
-              />
-            ))}
-          </Box>
-        </Grid>
+      <Container>
+        <Grid container spacing={4}>
+          {/* Our Brands */}
+          <Grid item xs={12} md={4}>
+            <Typography className={classes.sectionTitle}>Our Brands</Typography>
+            <Box display="flex" justifyContent="left" flexWrap="wrap">
+              {ourBrands.map((brand, index) => (
+                <img
+                  key={`img-${index}`}
+                  src={brand}
+                  alt="Brand Logo"
+                  className={classes.brandImages}
+                />
+              ))}
+            </Box>
+          </Grid>
 
-        {/* Socials */}
-        <Grid item xs={12} md={4}>
-          <Typography className={classes.sectionTitle}>Social Media</Typography>
-          <Box>
-            {socials.map((social) => (
-              <Box key={social.id} mb={1}>
-                <Button
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={social.icon}
-                  variant="text"
-                  color="primary"
-                >
-                  {social.name}
-                </Button>
-              </Box>
-            ))}
-          </Box>
-        </Grid>
+          {/* Socials */}
+          <Grid item xs={12} md={4}>
+            <Typography className={classes.sectionTitle}>
+              Social Media
+            </Typography>
+            <Box>
+              {socials.map((social) => (
+                <Box key={social.id} mb={1}>
+                  <Button
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    startIcon={social.icon}
+                    variant="text"
+                    color="primary"
+                  >
+                    {social.name}
+                  </Button>
+                </Box>
+              ))}
+            </Box>
+          </Grid>
 
-        {/* Contacts */}
-        <Grid item xs={12} md={4}>
-          <Typography className={classes.sectionTitle}>Contact Us</Typography>
-          <Box>
-            {contacts.map((contact) => (
-              <Box key={contact.id} mb={1}>
-                <Button startIcon={contact.icon} variant="text" color="primary">
-                  {contact.name}
-                </Button>
-              </Box>
-            ))}
-          </Box>
-        </Grid>
+          {/* Contacts */}
+          <Grid item xs={12} md={4}>
+            <Typography className={classes.sectionTitle}>Contact Us</Typography>
+            <Box>
+              {contacts.map((contact) => (
+                <Box key={contact.id} mb={1}>
+                  <Button
+                    startIcon={contact.icon}
+                    variant="text"
+                    color="primary"
+                  >
+                    {contact.name}
+                  </Button>
+                </Box>
+              ))}
+            </Box>
+          </Grid>
 
-        {/* Terms and conditions */}
-        <Grid item xs={12} style={{ textAlign: "center" }}>
-          <Stack direction="row" spacing={2} style={{ textAlign: "center" }}>
-            <RouterLink to="/terms">
-              <Typography variant="body2" color="textSecondary">
-                Terms & Conditions
-              </Typography>
-            </RouterLink>
+          {/* Terms and conditions */}
+          <Grid item xs={12} style={{ textAlign: "center" }}>
+            <Stack direction="row" spacing={2} style={{ textAlign: "center" }}>
+              <RouterLink to="/terms">
+                <Typography variant="body2" color="textSecondary">
+                  Terms & Conditions
+                </Typography>
+              </RouterLink>
 
-            <Divider orientation="vertical" style={{ height: 15 }} />
-            <RouterLink to="/cookie-policy">
-              <Typography variant="body2" color="textSecondary">
-                Cookie Policy
-              </Typography>
-            </RouterLink>
-          </Stack>
-        </Grid>
+              <Divider orientation="vertical" style={{ height: 15 }} />
+              <RouterLink to="/cookie-policy">
+                <Typography variant="body2" color="textSecondary">
+                  Cookie Policy
+                </Typography>
+              </RouterLink>
+            </Stack>
+          </Grid>
 
-        {/* Copyright */}
-        <Grid item xs={12} style={{ textAlign: "left" }}>
-          <Typography variant="body2" color="textSecondary">
-            &copy; {currentYear} <strong>desafio.co.ke</strong>. All rights
-            reserved.
-          </Typography>
+          {/* Copyright */}
+          <Grid item xs={12} style={{ textAlign: "left" }}>
+            <Typography variant="body2" color="textSecondary">
+              &copy; {currentYear} <strong>desafio.co.ke</strong>. All rights
+              reserved.
+            </Typography>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </Box>
   );
 };

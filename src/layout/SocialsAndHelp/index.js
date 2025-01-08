@@ -32,9 +32,10 @@ import desafioFoodClub from "../../assets/images/desafioFoodClub.png";
 
 const useStyles = makeStyles((theme) => ({
   cartChip: {
-    height: "48px",
+    height: "45px",
+    width: "45px",
     alignItems: "center",
-    borderRadius: "27px",
+    borderRadius: "50%",
     transition: "all .2s ease-in-out",
     borderColor: theme.palette.primary.light,
     backgroundColor: theme.palette.primary.light,
@@ -50,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
   },
   profileLabel: {
     lineHeight: 0,
-    padding: "12px",
+    marginLeft: theme.spacing(-1),
+    // padding: "12px",
   },
   brandImages: {
     height: 35,

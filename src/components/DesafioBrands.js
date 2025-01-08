@@ -11,16 +11,18 @@ import Image from "./Image";
 import desafioToasted from "../assets/images/desafioToasted.png";
 import desafioHarvest from "../assets/images/desafioHarvest.png";
 import desafioFoodClub from "../assets/images/desafioFoodClub.png";
+import horseRacing from "../assets/images/horseRacingIcon.png";
 
 const ourBrands = [
   { id: 1, link: "/toasted", image: desafioToasted },
   { id: 2, link: "/desafio-harvest", image: desafioHarvest },
   { id: 3, link: "/desafio-foodclub", image: desafioFoodClub },
+  { id: 4, link: "/horse-racing", image: horseRacing },
 ];
 
 const useStyles = makeStyles(() => ({
   brandImages: {
-    height: 25,
+    height: 30,
   },
 }));
 

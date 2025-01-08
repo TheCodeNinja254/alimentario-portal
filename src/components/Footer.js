@@ -21,6 +21,7 @@ import { Stack } from "@mui/material";
 import desafioToasted from "../assets/images/desafioToasted.png";
 import desafioHarvest from "../assets/images/desafioHarvest.png";
 import desafioFoodClub from "../assets/images/desafioFoodClub.png";
+import horseRacing from "../assets/images/horseRacingIcon.png";
 
 const useStyles = makeStyles((theme) => ({
   brandImages: {
@@ -49,6 +50,7 @@ const Footer = () => {
     { id: 1, img: desafioToasted },
     { id: 2, img: desafioHarvest },
     { id: 3, img: desafioFoodClub },
+    { id: 4, img: horseRacing },
   ];
 
   const socials = [

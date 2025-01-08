@@ -22,7 +22,7 @@ const productCategories = [
     categoryId: 2,
     title: "",
     categoryName: "",
-    categoryDisplayPic: "/images/categories/horseRacing.png",
+    categoryDisplayPic: "/images/categories/horseRacingIcon.png",
     link: "",
     type: "promotional",
   },

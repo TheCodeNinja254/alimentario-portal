@@ -20,6 +20,10 @@ const TermsConditions = Loadable(
 
 const MyBusinessView = Loadable(lazy(() => import("../views/wholesale")));
 
+const EventsHome = Loadable(lazy(() => import("../views/events")));
+
+const FoodClubHome = Loadable(lazy(() => import("../views/foodclub")));
+
 const ProductsView = Loadable(lazy(() => import("../views/products")));
 
 const OrdersView = Loadable(lazy(() => import("../views/orders/completed")));
@@ -43,6 +47,18 @@ const MainRoutes = {
     {
       path: "/desafio-toasted",
       element: <ToastedHome />,
+    },
+    {
+      path: "/desafio-harvest",
+      element: <ToastedHome />,
+    },
+    {
+      path: "/desafio-foodclub",
+      element: <FoodClubHome />,
+    },
+    {
+      path: "/horse-racing",
+      element: <EventsHome />,
     },
     {
       path: "/toasted",

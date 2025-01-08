@@ -51,14 +51,19 @@ const productCategories = [
   },
 ];
 
-const ProductCategorization = ({ selectedCat, setSelectedCat }) => {
+const ProductCategorization = ({
+  selectedCat,
+  setSelectedCat,
+  shouldNavigate = true,
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const navigate = useNavigate();
 
   const handleCatChange = (_catId, _catSlug) => {
     setSelectedCat(_catId);
-    navigate(`/products/${_catSlug}`);
+
+    if (shouldNavigate) navigate(`/products/${_catSlug}`);
   };
 
   return (

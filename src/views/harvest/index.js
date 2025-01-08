@@ -12,9 +12,9 @@ import AnimatedSection from "../../ui-component/AnimatedSection";
 const brandHeader = {
   categoryId: 1,
   title: "",
-  categoryName: "Desafio Toasted",
-  categoryDisplayPic: "/images/categories/desafioToasted.png",
-  link: "/desafio-toasted",
+  categoryName: "Desafio Harvest",
+  categoryDisplayPic: "/images/categories/desafioHarvest.png",
+  link: "/desafio-harvest",
   type: "navigational",
 };
 
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ToastedHome = () => {
+const HarvestHome = () => {
   const classes = useStyles();
   const [, setLoading] = useState(true);
   const [selectedCat, setSelectedCat] = useState(0);
@@ -94,4 +94,4 @@ const ToastedHome = () => {
   );
 };
 
-export default ToastedHome;
+export default HarvestHome;

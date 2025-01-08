@@ -38,9 +38,10 @@ import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 
 const useStyles = makeStyles((theme) => ({
   cartChip: {
-    height: "48px",
+    height: "45px",
+    width: "45px",
     alignItems: "center",
-    borderRadius: "27px",
+    borderRadius: "50%",
     transition: "all .2s ease-in-out",
     borderColor: theme.palette.primary.light,
     backgroundColor: theme.palette.primary.light,
@@ -52,11 +53,11 @@ const useStyles = makeStyles((theme) => ({
         stroke: theme.palette.primary.light,
       },
     },
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(2),
   },
   profileLabel: {
     lineHeight: 0,
-    padding: "12px",
+    marginLeft: theme.spacing(-1),
   },
   card: {
     backgroundColor: theme.palette.primary.light,
@@ -186,6 +187,7 @@ const CartSection = () => {
                     <Badge
                       badgeContent={cartItemsList.length || 0}
                       color="primary"
+                      style={{ top: 6, right: 0 }}
                     >
                       <IconShoppingCart
                         stroke={1.5}

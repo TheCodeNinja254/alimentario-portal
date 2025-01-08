@@ -3,7 +3,6 @@ import { Box, CardActionArea, Grid } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { makeStyles } from "@material-ui/styles";
 import { gridSpacing } from "../../store/constant";
-import ProductsSection from "../home/components/ProductsSection";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import ProductCategorization from "../home/components/ProductCategorization";
 import InformationTab from "../components/InformationTab";
@@ -12,9 +11,9 @@ import AnimatedSection from "../../ui-component/AnimatedSection";
 const brandHeader = {
   categoryId: 1,
   title: "",
-  categoryName: "Desafio Toasted",
-  categoryDisplayPic: "/images/categories/desafioToasted.png",
-  link: "/desafio-toasted",
+  categoryName: "Desafio Food Club",
+  categoryDisplayPic: "/images/categories/desafioFoodClub.png",
+  link: "/desafio-foodclub",
   type: "navigational",
 };
 
@@ -35,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ToastedHome = () => {
+const Events = () => {
   const classes = useStyles();
   const [, setLoading] = useState(true);
   const [selectedCat, setSelectedCat] = useState(0);
@@ -77,10 +76,6 @@ const ToastedHome = () => {
                     setSelectedCat={setSelectedCat}
                     shouldNavigate={false}
                   />
-                  <ProductsSection
-                    sessionStatus={status}
-                    category={selectedCat}
-                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -94,4 +89,4 @@ const ToastedHome = () => {
   );
 };
 
-export default ToastedHome;
+export default Events;

@@ -87,17 +87,20 @@ const Footer = () => {
     <Box className={classes.footer}>
       <Container>
         <Grid container spacing={4}>
-          {/* Our Brands */}
+          {/* Contacts */}
           <Grid item xs={12} md={4}>
-            <Typography className={classes.sectionTitle}>Our Brands</Typography>
-            <Box display="flex" justifyContent="left" flexWrap="wrap">
-              {ourBrands.map((brand, index) => (
-                <img
-                  key={`img-${index}`}
-                  src={brand}
-                  alt="Brand Logo"
-                  className={classes.brandImages}
-                />
+            <Typography className={classes.sectionTitle}>Contact Us</Typography>
+            <Box>
+              {contacts.map((contact) => (
+                <Box key={contact.id} mb={1}>
+                  <Button
+                    startIcon={contact.icon}
+                    variant="text"
+                    color="primary"
+                  >
+                    {contact.name}
+                  </Button>
+                </Box>
               ))}
             </Box>
           </Grid>
@@ -125,20 +128,17 @@ const Footer = () => {
             </Box>
           </Grid>
 
-          {/* Contacts */}
+          {/* Our Brands */}
           <Grid item xs={12} md={4}>
-            <Typography className={classes.sectionTitle}>Contact Us</Typography>
-            <Box>
-              {contacts.map((contact) => (
-                <Box key={contact.id} mb={1}>
-                  <Button
-                    startIcon={contact.icon}
-                    variant="text"
-                    color="primary"
-                  >
-                    {contact.name}
-                  </Button>
-                </Box>
+            <Typography className={classes.sectionTitle}>Our Brands</Typography>
+            <Box display="flex" justifyContent="left" flexWrap="wrap">
+              {ourBrands.map((brand, index) => (
+                <img
+                  key={`img-${index}`}
+                  src={brand}
+                  alt="Brand Logo"
+                  className={classes.brandImages}
+                />
               ))}
             </Box>
           </Grid>

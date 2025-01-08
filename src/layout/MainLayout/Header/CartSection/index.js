@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 300,
   },
   noContentText: {
-    color: theme.palette.secondary.main,
+    color: theme.palette.primary.main,
     fontWeight: 700,
     fontSize: 16,
     marginTop: theme.spacing(1),

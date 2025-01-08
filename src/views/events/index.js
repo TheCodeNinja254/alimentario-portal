@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   posterImage: {
     height: 400,
     [theme.breakpoints.down("sm")]: {
-      height: 400,
+      height: 280,
     },
   },
 }));
@@ -96,20 +96,19 @@ const Events = () => {
                             </CardActionArea>
                           </Card>
                         </Box>
-                        <Typography variant="body1" paragraph>
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the dummy
-                          text ever since the 1500s, when an unknown printer
-                          took a galley of type and scrambled it to make a type
-                          specimen book.
-                        </Typography>
-                        <Typography variant="body1" paragraph>
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the dummy
-                          text ever since the 1500s, when an unknown printer
-                          took a galley of type and scrambled it to make a type
-                          specimen book.
-                        </Typography>
+                        <Box sx={{ marginTop: theme.spacing(2) }}>
+                          <Typography variant="h3" paragraph>
+                            The Sport of Kings is back, and we got you!
+                          </Typography>
+                          <Typography variant="body1" paragraph>
+                            For all your Steak from the grill, starters,
+                            sandwiches, burgers, Wine and more.
+                          </Typography>
+                          <Typography variant="h4" paragraph>
+                            <strong>Pre-book here</strong> or{" "}
+                            <strong>visit our stand</strong>
+                          </Typography>
+                        </Box>
                       </AnimatedSection>
                     </Grid>
                   </Grid>

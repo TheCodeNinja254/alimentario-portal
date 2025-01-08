@@ -22,7 +22,7 @@ const productCategories = [
     categoryId: 2,
     title: "",
     categoryName: "",
-    categoryDisplayPic: "/images/categories/horseRacingIcon.png",
+    categoryDisplayPic: "/images/categories/horseRacing.png",
     link: "",
     type: "promotional",
   },
@@ -115,7 +115,7 @@ const BrandingSection = () => {
     <Box sx={{ marginTop: theme.spacing(2) }}>
       <Box>
         <AutoPlaySwipeableViews
-          axis="x-reverse"
+          axis="x"
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents

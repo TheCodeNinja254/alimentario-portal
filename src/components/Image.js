@@ -10,10 +10,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Image = ({ src, alt = "Image", className }) => {
+const Image = ({ src, alt = "Image", className, ...props }) => {
   const classes = useStyles();
   return (
-    <img src={src} className={clsx(classes.image, className || "")} alt={alt} />
+    <img
+      src={src}
+      className={clsx(classes.image, className || "")}
+      alt={alt}
+      {...props}
+    />
   );
 };
 

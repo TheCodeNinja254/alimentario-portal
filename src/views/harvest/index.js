@@ -5,9 +5,9 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import { gridSpacing } from "../../store/constant";
 import ProductsSection from "../home/components/ProductsSection";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
-import ProductCategorization from "../home/components/ProductCategorization";
 import InformationTab from "../components/InformationTab";
 import AnimatedSection from "../../ui-component/AnimatedSection";
+import HarvestProductCategorization from "../../components/HarvestProductCategorization";
 
 const brandHeader = {
   categoryId: 1,
@@ -81,23 +81,17 @@ const HarvestHome = () => {
                     }}
                   >
                     <AnimatedSection animate={animate} duration="1.8s">
-                      <Typography variant="body1" paragraph>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the dummy
-                        text ever since the 1500s, when an unknown printer took
-                        a galley of type and scrambled it to make a type
-                        specimen book.
+                      <Typography variant="h3" paragraph>
+                        Indulge in the Finest Steaks and Cheese!
                       </Typography>
                       <Typography variant="body1" paragraph>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the dummy
-                        text ever since the 1500s, when an unknown printer took
-                        a galley of type and scrambled it to make a type
-                        specimen book.
+                        Savor premium Kenyan steaks and authentic Italian cheese
+                        for a perfect blend of bold flavors and unmatched
+                        quality.
                       </Typography>
                     </AnimatedSection>
                   </Box>
-                  <ProductCategorization
+                  <HarvestProductCategorization
                     selectedCat={selectedCat}
                     setSelectedCat={setSelectedCat}
                     shouldNavigate={false}

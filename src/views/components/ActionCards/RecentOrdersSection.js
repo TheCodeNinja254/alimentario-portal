@@ -62,8 +62,9 @@ const RecentOrdersSection = () => {
                 </Typography>
                 <Box sx={{ marginBottom: theme.spacing(2) }}>
                   <Button
-                    sx={{ marginRight: theme.spacing(2) }}
+                    style={{ marginRight: theme.spacing(2) }}
                     disableElevation
+                    color="primary"
                     size="small"
                     variant={
                       orderStatus === "pending" ? "contained" : "outlined"
@@ -74,6 +75,7 @@ const RecentOrdersSection = () => {
                   </Button>
                   <Button
                     disableElevation
+                    color="primary"
                     size="small"
                     variant={
                       orderStatus === "closed" ? "contained" : "outlined"
@@ -118,9 +120,13 @@ const RecentOrdersSection = () => {
             ) : (
               <Box>
                 <Box sx={{ marginBottom: theme.spacing(2) }}>
+                  <Typography variant="subtitle2" className={classes.tagLine}>
+                    Below are your recent orders
+                  </Typography>
                   <Button
-                    sx={{ marginRight: theme.spacing(2) }}
+                    style={{ marginRight: theme.spacing(2) }}
                     disableElevation
+                    color="primary"
                     size="small"
                     variant={
                       orderStatus === "pending" ? "contained" : "outlined"
@@ -132,6 +138,7 @@ const RecentOrdersSection = () => {
                   <Button
                     disableElevation
                     size="small"
+                    color="primary"
                     variant={
                       orderStatus === "closed" ? "contained" : "outlined"
                     }

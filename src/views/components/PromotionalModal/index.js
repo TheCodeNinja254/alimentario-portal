@@ -12,9 +12,10 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import { Instagram, ShoppingCart } from "@material-ui/icons";
 import { useContext, useEffect, useState } from "react";
 import styled from "@mui/material/styles/styled";
+import { useNavigate } from "react-router";
 import Image from "../../../components/Image";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
-import photo from "../../../assets/promotions/horseRacing.png";
+import photo from "../../../assets/promotions/horseRacingTwelve.png";
 import trackInExpandText from "../../../animation/trackInExpandText";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import { AlertContext } from "../../../context/AlertProvider";
@@ -82,17 +83,15 @@ const useStyles = makeStyles((theme) => ({
 const PromotionalModal = ({ open, setOpen }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
-
-  const { showAlert, showSnackbar } = useContext(AlertContext);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setOpen(false);
   };
 
   const handlePrebookingPrompt = async () => {
-    showAlert();
-    showSnackbar();
     handleClose();
+    navigate("/horse-racing");
   };
 
   const [animate, setAnimate] = useState(false);
@@ -196,7 +195,7 @@ const PromotionalModal = ({ open, setOpen }) => {
                   onClick={handlePrebookingPrompt}
                   startIcon={<ShoppingCart size={10} />}
                 >
-                  Pre-Order a Meal
+                  Learn more
                 </Button>
               </AnimateButton>
               <AnimateButton>

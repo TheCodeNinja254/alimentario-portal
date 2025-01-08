@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, Button, Typography } from "@material-ui/core";
+import { Divider, Grid, Box, Button, Typography } from "@material-ui/core";
 import {
   Instagram,
   LinkedIn,
@@ -7,8 +7,10 @@ import {
   Phone,
   Email,
 } from "@material-ui/icons";
+import { Link as RouterLink } from "react-router-dom";
 import { IconBrandTiktok, IconBrandTwitter } from "@tabler/icons";
 import { makeStyles } from "@material-ui/styles";
+import { Stack } from "@mui/material";
 import desafioToasted from "../assets/images/desafioToasted.png";
 import desafioHarvest from "../assets/images/desafioHarvest.png";
 import desafioFoodClub from "../assets/images/desafioFoodClub.png";
@@ -127,8 +129,26 @@ const Footer = () => {
           </Box>
         </Grid>
 
-        {/* Copyright */}
+        {/* Terms and conditions */}
         <Grid item xs={12} style={{ textAlign: "center" }}>
+          <Stack direction="row" spacing={2} style={{ textAlign: "center" }}>
+            <RouterLink to="/terms">
+              <Typography variant="body2" color="textSecondary">
+                Terms & Conditions
+              </Typography>
+            </RouterLink>
+
+            <Divider orientation="vertical" style={{ height: 15 }} />
+            <RouterLink to="/cookie-policy">
+              <Typography variant="body2" color="textSecondary">
+                Cookie Policy
+              </Typography>
+            </RouterLink>
+          </Stack>
+        </Grid>
+
+        {/* Copyright */}
+        <Grid item xs={12} style={{ textAlign: "left" }}>
           <Typography variant="body2" color="textSecondary">
             &copy; {currentYear} <strong>desafio.co.ke</strong>. All rights
             reserved.

@@ -1,15 +1,13 @@
-// constant
 import {
   BakeryDining,
   BreakfastDiningOutlined,
   Fastfood,
-  Kitchen,
-  LocalDrink,
 } from "@material-ui/icons";
+import { IconBottle } from "@tabler/icons";
 
 const dashboard = {
   id: "dashboard",
-  title: "Desafio Special",
+  title: "Toasted by Desafio Specials",
   type: "group",
   children: [
     {
@@ -22,18 +20,18 @@ const dashboard = {
     },
     {
       id: "2",
-      title: "Sandwich Extras",
+      title: "Desafio Wine",
       type: "item",
-      url: "/products/extras",
-      icon: BakeryDining,
+      url: "/products/wine",
+      icon: IconBottle,
       breadcrumbs: false,
     },
     {
       id: "3",
-      title: "Fresh Juices",
+      title: "Sandwich Extras",
       type: "item",
-      url: "/products/juices",
-      icon: LocalDrink,
+      url: "/products/extras",
+      icon: BakeryDining,
       breadcrumbs: false,
     },
     {
@@ -42,14 +40,6 @@ const dashboard = {
       type: "item",
       url: "/products/desafio-dressings",
       icon: Fastfood,
-      breadcrumbs: false,
-    },
-    {
-      id: "5",
-      title: "Chef at work",
-      type: "item",
-      url: "/gallery",
-      icon: Kitchen,
       breadcrumbs: false,
     },
   ],

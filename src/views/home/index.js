@@ -7,7 +7,6 @@ import { gridSpacing } from "../../store/constant";
 import ProductsSection from "./components/ProductsSection";
 import ImageCarousel from "./components/ImageCarousel";
 import GreetingsCard from "./components/GreetingsCard";
-import TitlebarImageList from "./components/ImageGallery";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import WelcomeModal from "../components/WelcomeModal/WelcomeModal";
 import BrandingSection from "./components/BrandingSection";
@@ -75,9 +74,6 @@ const Dashboard = () => {
                     sessionStatus={status}
                     category={selectedCat}
                   />
-                </Grid>
-                <Grid item xs={12}>
-                  <TitlebarImageList />
                 </Grid>
               </Grid>
             </Grid>

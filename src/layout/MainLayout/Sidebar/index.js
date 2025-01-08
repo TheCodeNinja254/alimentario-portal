@@ -8,8 +8,8 @@ import { drawerWidth } from "../../../store/constant";
 import MenuList from "./MenuList";
 import LogoSection from "../LogoSection";
 import MenuCardMini from "../../../views/components/ActionCards/MenuCardMini";
+import DesafioBrands from "../../../components/DesafioBrands";
 
-// style constant
 const useStyles = makeStyles((theme) => ({
   drawer: {
     [theme.breakpoints.up("md")]: {
@@ -62,6 +62,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
       </Box>
       <BrowserView>
         <PerfectScrollbar component="div" className={classes.ScrollHeight}>
+          <DesafioBrands />
           <MenuList />
           <MenuCardMini />
         </PerfectScrollbar>

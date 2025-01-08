@@ -57,7 +57,6 @@ const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
     setTimeout(() => {
-      // animation
       setAnimate(true);
     }, 1);
   }, [animate]);
@@ -71,9 +70,9 @@ const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
           gutterBottom
           className={classes.subGreeting}
         >
-          {category === ""
-            ? "Desafio Sandwiches & Burgers"
-            : `Desafio ${_categories[category - 1]}`}
+          {category
+            ? `Desafio ${_categories[category - 1]}`
+            : "Toasted by Desafio"}
         </MuiTypography>
       </Stack>
       <Divider className={classes.divider} />

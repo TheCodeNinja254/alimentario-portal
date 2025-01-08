@@ -33,7 +33,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [promotionalModalOpen, setPromotionalModalOpen] = useState(true);
   const [firstName, setFirstName] = useState("");
-  const [selectedCat, setSelectedCat] = useState(1);
+  const [selectedCat, setSelectedCat] = useState(0);
 
   useEffect(() => {
     if (location?.state?.newInvite) {

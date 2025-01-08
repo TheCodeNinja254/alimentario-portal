@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 const productCategories = [
   {
+    id: 0,
+    name: "Desafio Toasted",
+    icon: <Fastfood size="small" />,
+    catSlug: "/desafio-toasted",
+  },
+  {
     id: 1,
     name: "Sandwiches & Burgers",
     icon: <BreakfastDiningOutlined size="small" />,
@@ -52,7 +58,6 @@ const ProductCategorization = ({ selectedCat, setSelectedCat }) => {
 
   const handleCatChange = (_catId, _catSlug) => {
     setSelectedCat(_catId);
-    // navigate.push(`/products/${_catSlug}`);
     navigate(`/products/${_catSlug}`);
   };
 

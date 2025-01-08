@@ -30,7 +30,7 @@ const Products = () => {
   const { id } = useParams();
 
   const defaultCategoryId =
-    productCatMapper.find((cat) => cat.slug === id)?.id || 1;
+    productCatMapper.find((cat) => cat.slug === id)?.id || 0;
 
   const [selectedCat, setSelectedCat] = useState(defaultCategoryId);
 

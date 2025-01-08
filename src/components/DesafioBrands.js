@@ -14,8 +14,8 @@ import desafioFoodClub from "../assets/images/desafioFoodClub.png";
 
 const ourBrands = [
   { id: 1, link: "/toasted", image: desafioToasted },
-  { id: 1, link: "/desafio-harvest", image: desafioHarvest },
-  { id: 1, link: "/desafio-foodclub", image: desafioFoodClub },
+  { id: 2, link: "/desafio-harvest", image: desafioHarvest },
+  { id: 3, link: "/desafio-foodclub", image: desafioFoodClub },
 ];
 
 const useStyles = makeStyles(() => ({
@@ -45,7 +45,7 @@ const DesafioBrands = () => {
         More from Desafio
       </Typography>
       {ourBrands.map((brand) => (
-        <CardActionArea onClick={() => navigate(brand.link)}>
+        <CardActionArea onClick={() => navigate(brand.link)} key={brand.id}>
           <CardContent>
             <Image
               key={brand.id}

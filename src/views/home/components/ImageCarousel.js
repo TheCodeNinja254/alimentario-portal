@@ -56,14 +56,6 @@ const ImageCarousel = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [, setMaxSteps] = React.useState(0);
 
-  // const handleNext = () => {
-  //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  // };
-  //
-  // const handleBack = () => {
-  //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  // };
-
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
@@ -132,29 +124,16 @@ const ImageCarousel = () => {
                               fontWeight: "bold",
                             }}
                           />
-
-                          {/* /!* Add to Cart Button positioned over image *!/ */}
-                          {/* <Button */}
-                          {/*  disableElevation */}
-                          {/*  variant="contained" */}
-                          {/*  onClick={() => */}
-                          {/*    console.log(`Added ${step.productName} to cart`) */}
-                          {/*  } */}
-                          {/*  sx={{ */}
-                          {/*    "&:hover": { */}
-                          {/*      color: theme.palette.common.white, */}
-                          {/*    }, */}
-                          {/*    position: "absolute", */}
-                          {/*    bottom: "10px", */}
-                          {/*    right: "10px", */}
-                          {/*    borderRadius: 8, */}
-                          {/*    color: theme.palette.primary.main, */}
-                          {/*    backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background */}
-                          {/*    zIndex: 2, // Make sure it's on top of the image */}
-                          {/*  }} */}
-                          {/* > */}
-                          {/*  Add to Cart */}
-                          {/* </Button> */}
+                          <Chip
+                            label={step?.productName}
+                            sx={{
+                              position: "absolute",
+                              top: "10px",
+                              left: "100px",
+                              backgroundColor: "rgba(255, 255, 255, 0.8)",
+                              fontWeight: "bold",
+                            }}
+                          />
                         </>
                       ) : null}
                     </div>
@@ -168,40 +147,6 @@ const ImageCarousel = () => {
             );
           }}
         </GetDisplayProductsQuery>
-        {/* <MobileStepper */}
-        {/*  steps={maxSteps} */}
-        {/*  className={classes.paper} */}
-        {/*  position="static" */}
-        {/*  activeStep={activeStep} */}
-        {/*  nextButton={ */}
-        {/*    <Button */}
-        {/*      size="small" */}
-        {/*      variant="" */}
-        {/*      onClick={handleNext} */}
-        {/*      disabled={activeStep === maxSteps - 1} */}
-        {/*    > */}
-        {/*      {theme.direction === "rtl" ? ( */}
-        {/*        <KeyboardArrowLeft /> */}
-        {/*      ) : ( */}
-        {/*        <KeyboardArrowRight /> */}
-        {/*      )} */}
-        {/*    </Button> */}
-        {/*  } */}
-        {/*  backButton={ */}
-        {/*    <Button */}
-        {/*      size="small" */}
-        {/*      variant="" */}
-        {/*      onClick={handleBack} */}
-        {/*      disabled={activeStep === 0} */}
-        {/*    > */}
-        {/*      {theme.direction === "rtl" ? ( */}
-        {/*        <KeyboardArrowRight /> */}
-        {/*      ) : ( */}
-        {/*        <KeyboardArrowLeft /> */}
-        {/*      )} */}
-        {/*    </Button> */}
-        {/*  } */}
-        {/* /> */}
       </Box>
     </AnimatedSection>
   );

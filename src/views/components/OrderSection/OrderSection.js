@@ -11,7 +11,8 @@ import {
 import { Close } from "@material-ui/icons";
 import DialogContent from "@mui/material/DialogContent";
 import * as React from "react";
-import { makeStyles, useTheme } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
+import { useTheme } from "@mui/material/styles";
 import OrderItemCard from "../OrderItemCard";
 import formatDate from "../../../utils/formatDate";
 import BufferProgress from "../../../components/BufferProgress";

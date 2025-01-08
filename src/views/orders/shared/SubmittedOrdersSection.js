@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Card, Button, Divider, Typography } from "@material-ui/core";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@material-ui/core/styles";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import OrderSection from "../../components/OrderSection/OrderSection";
 import GetMyOrdersQuery from "../../../api/Queries/Orders/GetMyOrders";
@@ -66,9 +66,9 @@ const SubmittedOrdersSection = ({ orderStatus }) => {
                 </Box>
                 {content.map((order) => (
                   <Card
-                    sx={{
+                    style={{
                       backgroundColor: theme.palette.grey[200],
-                      marginTop: theme.spacing(2),
+                      marginTop: theme.spacing(3),
                     }}
                     elevation={0}
                   >

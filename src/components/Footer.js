@@ -45,7 +45,11 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
 
-  const ourBrands = [desafioToasted, desafioHarvest, desafioFoodClub];
+  const ourBrands = [
+    { id: 1, img: desafioToasted },
+    { id: 2, img: desafioHarvest },
+    { id: 3, img: desafioFoodClub },
+  ];
 
   const socials = [
     {
@@ -132,10 +136,10 @@ const Footer = () => {
           <Grid item xs={12} md={4}>
             <Typography className={classes.sectionTitle}>Our Brands</Typography>
             <Box display="flex" justifyContent="left" flexWrap="wrap">
-              {ourBrands.map((brand, index) => (
+              {ourBrands.map((brand) => (
                 <img
-                  key={`img-${index}`}
-                  src={brand}
+                  key={`img-${brand.id}`}
+                  src={brand.img}
                   alt="Brand Logo"
                   className={classes.brandImages}
                 />

@@ -79,7 +79,7 @@ const OrderSection = ({ order, handleClose, showHandleCloseButton }) => {
               }}
             >
               <Chip
-                sx={{
+                style={{
                   marginTop: theme.spacing(0.5),
                   marginRight: theme.spacing(2),
                   backgroundColor: statusColor[order.orderStatus],

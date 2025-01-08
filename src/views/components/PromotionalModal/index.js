@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { Instagram, ShoppingCart } from "@material-ui/icons";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "@mui/material/styles/styled";
 import { useNavigate } from "react-router";
 import Image from "../../../components/Image";
@@ -18,7 +18,6 @@ import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import photo from "../../../assets/promotions/horseRacingTwelve.png";
 import trackInExpandText from "../../../animation/trackInExpandText";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
-import { AlertContext } from "../../../context/AlertProvider";
 
 const NameTypography = styled(Typography)(({ theme, animate }) => ({
   color: theme.palette.common.black,

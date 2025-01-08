@@ -208,6 +208,7 @@ const AddToCartModal = ({
               <Stack direction="row" spacing={1} className={classes.infoTab}>
                 <Chip
                   variant="filled"
+                  color="primary"
                   label={
                     selectedProduct?.stockStatus === 1
                       ? "Available"
@@ -217,6 +218,7 @@ const AddToCartModal = ({
                 />
                 <Chip
                   variant="filled"
+                  color="primary"
                   label={`Ksh. ${selectedProduct?.productPrice}`}
                   className={classes.priceChip}
                 />

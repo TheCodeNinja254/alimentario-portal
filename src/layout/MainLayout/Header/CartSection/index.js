@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import {
+  Box,
   Chip,
   ClickAwayListener,
   Grid,
@@ -298,17 +299,19 @@ const CartSection = () => {
                           <CardActions
                             sx={{ p: 1.25, justifyContent: "center" }}
                           >
-                            <Button
-                              variant="contained"
-                              size="small"
-                              color="primary"
-                              disableElevation
-                              onClick={() => setOpen(false)}
-                              component={RouterLink}
-                              to="/checkout"
-                            >
-                              Checkout Now
-                            </Button>
+                            <Box display="flex" justifyContent="center">
+                              <Button
+                                variant="contained"
+                                size="small"
+                                color="primary"
+                                disableElevation
+                                onClick={() => setOpen(false)}
+                                component={RouterLink}
+                                to="/checkout"
+                              >
+                                Checkout Now
+                              </Button>
+                            </Box>
                           </CardActions>
                         </MainCard>
                       </ClickAwayListener>

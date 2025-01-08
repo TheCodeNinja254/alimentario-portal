@@ -43,11 +43,11 @@ const typography = {
     fontWeight: 500,
   },
   customInput: {
-    marginTop: 8,
-    marginBottom: 8,
+    marginTop: 0,
+    marginBottom: 0,
     "& > label": {
       top: "23px",
-      left: 0,
+      left: 20,
       color: grey[500],
       '&[data-shrink="false"]': {
         top: "5px",
@@ -61,6 +61,24 @@ const typography = {
     },
     "& fieldset": {
       top: 0,
+    },
+    borderRadius: `12px`,
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: grey[400],
+    },
+    "&:hover $notchedOutline": {
+      borderColor: "#cbf2e9",
+    },
+    "&.MuiInputBase-multiline": {
+      padding: 1,
+    },
+    fontWeight: 500,
+    padding: "15.5px 14px",
+    "&.MuiInputBase-inputSizeSmall": {
+      padding: "10px 14px",
+      "&.MuiInputBase-inputAdornedStart": {
+        paddingLeft: 0,
+      },
     },
   },
 };

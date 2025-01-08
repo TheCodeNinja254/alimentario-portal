@@ -17,7 +17,6 @@ import isEmpty from "lodash.isempty";
 import { useMutation } from "@apollo/client";
 import { Grid } from "@mui/material";
 import { IconPhone, IconUser } from "@tabler/icons";
-import { grey } from "@mui/material/colors";
 import { encrypt } from "../../../utils/encryptDecrypt";
 import { GET_SIGNED_IN_CUSTOMER } from "../../../api/Queries/Authentication/GetSignedInCustomer";
 import ErrorHandler from "../../../utils/errorHandler";
@@ -36,27 +35,9 @@ const EditAccountInfoSchema = Yup.object().shape({
 });
 
 // style constant
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   inputField: {
-    marginTop: 8,
-    marginBottom: 8,
-    "& > label": {
-      top: "23px",
-      left: 0,
-      color: grey[500],
-      '&[data-shrink="false"]': {
-        top: "5px",
-      },
-    },
-    "& > div > input": {
-      padding: "30.5px 14px 11.5px !important",
-    },
-    "& legend": {
-      display: "none",
-    },
-    "& fieldset": {
-      top: 0,
-    },
+    ...theme.typography.customInput,
   },
   dialogContent: {
     textAlign: "center",

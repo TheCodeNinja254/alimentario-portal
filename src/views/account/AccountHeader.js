@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
+import { VerifiedUser } from "@material-ui/icons";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
-import photo from "../../assets/images/Graphics/userAvatar2.jpg";
-import Image from "../../components/Image";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import AnimatedSection from "../../ui-component/AnimatedSection";
 
@@ -87,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AccountHeader = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
@@ -102,99 +102,95 @@ const AccountHeader = () => {
         <Card elevation={0} className={classes.paper}>
           <Grid container>
             <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
-              <Card elevation={0}>
+              <Box display="flex" justifyContent="space-between">
                 <CardContent>
-                  <Image
-                    alt="Img"
-                    src={photo}
-                    className={classes.productImage}
-                  />
+                  <GetSignedInCustomerQuery>
+                    {({ getSignedInCustomer: { status, customer } }) =>
+                      status ? (
+                        <>
+                          <MuiTypography
+                            gutterBottom
+                            className={classes.minorGreeting}
+                          >
+                            Hi {customer?.firstName}
+                          </MuiTypography>
+                          <MuiTypography
+                            gutterBottom
+                            className={classes.mainGreeting}
+                          >
+                            Manage your account
+                          </MuiTypography>
+                          <MuiTypography
+                            variant="body2"
+                            className={classes.contextText}
+                          >
+                            Control & manage your user data here.
+                          </MuiTypography>
+                        </>
+                      ) : (
+                        <>
+                          <MuiTypography
+                            variant="h2"
+                            gutterBottom
+                            className={classes.minorGreeting}
+                          >
+                            Hello,
+                          </MuiTypography>
+                          <MuiTypography
+                            variant="h2"
+                            gutterBottom
+                            className={classes.mainGreeting}
+                          >
+                            Please sign in to manage your account
+                          </MuiTypography>
+                          <MuiTypography
+                            variant="body2"
+                            className={classes.contextText}
+                          >
+                            Upon signing in, you will be able to control and
+                            manage your user data.
+                          </MuiTypography>
+                          <Stack
+                            direction="row"
+                            spacing={2}
+                            className={classes.cardActions}
+                          >
+                            <AnimateButton>
+                              <Button
+                                disableElevation
+                                fullWidth
+                                size="small"
+                                variant="contained"
+                                color="secondary"
+                                component={RouterLink}
+                                to="/auth"
+                              >
+                                Sign In
+                              </Button>
+                            </AnimateButton>
+                            <AnimateButton>
+                              <Button
+                                disableElevation
+                                fullWidth
+                                size="small"
+                                variant="outlined"
+                                color="secondary"
+                                component={RouterLink}
+                                to="/create-account"
+                              >
+                                Create Account
+                              </Button>
+                            </AnimateButton>
+                          </Stack>
+                        </>
+                      )
+                    }
+                  </GetSignedInCustomerQuery>
                 </CardContent>
-              </Card>
-              <CardContent>
-                <GetSignedInCustomerQuery>
-                  {({ getSignedInCustomer: { status, customer } }) =>
-                    status ? (
-                      <>
-                        <MuiTypography
-                          gutterBottom
-                          className={classes.minorGreeting}
-                        >
-                          Hi {customer?.firstName}
-                        </MuiTypography>
-                        <MuiTypography
-                          gutterBottom
-                          className={classes.mainGreeting}
-                        >
-                          Manage your account
-                        </MuiTypography>
-                        <MuiTypography
-                          variant="body2"
-                          className={classes.contextText}
-                        >
-                          Control & manage your user data here.
-                        </MuiTypography>
-                      </>
-                    ) : (
-                      <>
-                        <MuiTypography
-                          variant="h2"
-                          gutterBottom
-                          className={classes.minorGreeting}
-                        >
-                          Hello,
-                        </MuiTypography>
-                        <MuiTypography
-                          variant="h2"
-                          gutterBottom
-                          className={classes.mainGreeting}
-                        >
-                          Please sign in to manage your account
-                        </MuiTypography>
-                        <MuiTypography
-                          variant="body2"
-                          className={classes.contextText}
-                        >
-                          Upon signing in, you will be able to control and
-                          manage your user data.
-                        </MuiTypography>
-                        <Stack
-                          direction="row"
-                          spacing={2}
-                          className={classes.cardActions}
-                        >
-                          <AnimateButton>
-                            <Button
-                              disableElevation
-                              fullWidth
-                              size="small"
-                              variant="contained"
-                              color="secondary"
-                              component={RouterLink}
-                              to="/auth"
-                            >
-                              Sign In
-                            </Button>
-                          </AnimateButton>
-                          <AnimateButton>
-                            <Button
-                              disableElevation
-                              fullWidth
-                              size="small"
-                              variant="outlined"
-                              color="secondary"
-                              component={RouterLink}
-                              to="/create-account"
-                            >
-                              Create Account
-                            </Button>
-                          </AnimateButton>
-                        </Stack>
-                      </>
-                    )
-                  }
-                </GetSignedInCustomerQuery>
-              </CardContent>
+                <VerifiedUser
+                  style={{ fontSize: 70, color: theme.palette.primary.main }}
+                />
+              </Box>
             </Grid>
           </Grid>
         </Card>

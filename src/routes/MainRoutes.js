@@ -8,8 +8,7 @@ const CheckoutView = Loadable(lazy(() => import("../views/checkout")));
 
 const PaymentView = Loadable(lazy(() => import("../views/payment")));
 
-// Gallery Routing
-const GalleryDefault = Loadable(lazy(() => import("../views/gallery")));
+const ToastedHome = Loadable(lazy(() => import("../views/toasted")));
 
 const CookiePolicyView = Loadable(
   lazy(() => import("../views/policy/CookiePolicy"))
@@ -42,8 +41,12 @@ const MainRoutes = {
       element: <DashboardDefault />,
     },
     {
-      path: "/gallery",
-      element: <GalleryDefault />,
+      path: "/desafio-toasted",
+      element: <ToastedHome />,
+    },
+    {
+      path: "/toasted",
+      element: <ToastedHome />,
     },
     {
       path: "/home/default",

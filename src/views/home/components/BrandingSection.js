@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CategoryCard = styled(Card)(({ img }) => ({
+export const CategoryCard = styled(Card)(({ img }) => ({
   backgroundImage: `url(${img})`,
   height: 130,
   backgroundRepeat: "no-repeat",

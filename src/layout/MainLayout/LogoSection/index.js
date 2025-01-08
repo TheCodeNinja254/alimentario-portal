@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-// material-ui
-import { ButtonBase } from "@material-ui/core";
-
-// project imports
+import { ButtonBase, useMediaQuery } from "@material-ui/core";
+import { useTheme } from "@material-ui/styles";
 import config from "../../../config";
 import Logo from "../../../ui-component/Logo";
 
-// ===========================|| MAIN LOGO ||=========================== //
+const LogoSection = () => {
+  const theme = useTheme();
+  const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
 
-const LogoSection = () => (
-  <ButtonBase disableRipple component={Link} to={config.defaultPath}>
-    <Logo />
-  </ButtonBase>
-);
+  return (
+    <ButtonBase disableRipple component={Link} to={config.defaultPath}>
+      <Logo leftSpacing={matchDownSM ? theme.spacing(0) : theme.spacing(2)} />
+    </ButtonBase>
+  );
+};
 
 export default LogoSection;

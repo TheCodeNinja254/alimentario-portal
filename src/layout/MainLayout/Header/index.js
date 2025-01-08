@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { Box, ButtonBase } from "@material-ui/core";
-import { IconMenu2 } from "@tabler/icons";
+import { Box, IconButton, useMediaQuery } from "@material-ui/core";
+import { Menu } from "@material-ui/icons";
 import LogoSection from "../LogoSection";
 import ProfileSection from "./ProfileSection";
 import CartSection from "./CartSection";
@@ -27,20 +27,28 @@ const Header = ({ handleLeftDrawerToggle }) => {
   const classes = useStyles();
   const theme = useTheme();
 
+  const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
       {/* logo & toggler button */}
       <div className={classes.boxContainer}>
-        <ButtonBase
+        <IconButton
           sx={{
-            borderRadius: "12px",
-            marginRight: theme.spacing(2),
+            marginRight: matchDownSM ? theme.spacing(0) : theme.spacing(0),
             overflow: "hidden",
           }}
         >
-          <IconMenu2 stroke={2} size="2rem" onClick={handleLeftDrawerToggle} />
-        </ButtonBase>
-        <Box component="span" sx={{ display: { md: "block" }, flexGrow: 1 }}>
+          <Menu stroke={2} size="2rem" onClick={handleLeftDrawerToggle} />
+        </IconButton>
+        <Box
+          component="span"
+          sx={{
+            display: { md: "block" },
+            flexGrow: 1,
+            marginTop: theme.spacing(1),
+          }}
+        >
           <LogoSection />
         </Box>
       </div>

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import MuiTypography from "@material-ui/core/Typography";
 import { Stack } from "@mui/material";
-import { Button, Card, CardContent } from "@material-ui/core";
+import { Box, Button, Card, CardContent } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
+import { WatchLater } from "@material-ui/icons";
 import GetSignedInCustomerQuery from "../../../api/Queries/Authentication/GetSignedInCustomer";
-import photo from "../../../assets/images/Graphics/pendingOrders.jpg";
-import Image from "../../../components/Image";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 
@@ -77,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PendingOrdersHeader = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
@@ -91,126 +91,126 @@ const PendingOrdersHeader = () => {
       <Card elevation={0} className={classes.paper}>
         <Grid container>
           <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
-            <Card elevation={0}>
+            <Box display="flex" justifyContent="space-between">
               <CardContent>
-                <Image alt="Img" src={photo} className={classes.productImage} />
+                <GetSignedInCustomerQuery>
+                  {({ getSignedInCustomer: { status } }) =>
+                    status ? (
+                      <>
+                        <MuiTypography
+                          gutterBottom
+                          className={classes.mainGreeting}
+                        >
+                          Pending Orders
+                        </MuiTypography>
+                        <MuiTypography
+                          variant="body2"
+                          className={classes.contextText}
+                        >
+                          View orders pending fulfillment.
+                        </MuiTypography>
+                        <Stack
+                          direction="row"
+                          spacing={2}
+                          className={classes.cardActions}
+                        >
+                          <AnimateButton>
+                            <Button
+                              disableElevation
+                              fullWidth
+                              size="small"
+                              variant="contained"
+                              color="secondary"
+                              component={RouterLink}
+                              to="/orders"
+                            >
+                              Past orders
+                            </Button>
+                          </AnimateButton>
+                          <AnimateButton>
+                            <Button
+                              disableElevation
+                              fullWidth
+                              size="small"
+                              variant="outlined"
+                              color="secondary"
+                              component={RouterLink}
+                              to="/"
+                            >
+                              New order
+                            </Button>
+                          </AnimateButton>
+                        </Stack>
+                      </>
+                    ) : (
+                      <>
+                        <MuiTypography
+                          variant="h2"
+                          gutterBottom
+                          className={classes.mainGreeting}
+                        >
+                          Your pending orders will appear here.
+                        </MuiTypography>
+                        <MuiTypography
+                          variant="body2"
+                          className={classes.contextText}
+                        >
+                          Please sign in to your account to access your orders.
+                        </MuiTypography>
+                        <Stack
+                          direction="row"
+                          spacing={2}
+                          className={classes.cardActions}
+                        >
+                          <AnimateButton>
+                            <Button
+                              disableElevation
+                              fullWidth
+                              size="small"
+                              variant="contained"
+                              color="secondary"
+                              component={RouterLink}
+                              to="/auth"
+                            >
+                              Sign In
+                            </Button>
+                          </AnimateButton>
+                          <AnimateButton>
+                            <Button
+                              disableElevation
+                              fullWidth
+                              size="small"
+                              variant="outlined"
+                              color="secondary"
+                              component={RouterLink}
+                              to="/create-account"
+                            >
+                              Sign Up
+                            </Button>
+                          </AnimateButton>
+                          <AnimateButton>
+                            <Button
+                              disableElevation
+                              fullWidth
+                              size="small"
+                              variant="contained"
+                              color="secondary"
+                              component={RouterLink}
+                              to="/"
+                            >
+                              Shop Now
+                            </Button>
+                          </AnimateButton>
+                        </Stack>
+                      </>
+                    )
+                  }
+                </GetSignedInCustomerQuery>
               </CardContent>
-            </Card>
-            <CardContent>
-              <GetSignedInCustomerQuery>
-                {({ getSignedInCustomer: { status } }) =>
-                  status ? (
-                    <>
-                      <MuiTypography
-                        gutterBottom
-                        className={classes.mainGreeting}
-                      >
-                        Pending Orders
-                      </MuiTypography>
-                      <MuiTypography
-                        variant="body2"
-                        className={classes.contextText}
-                      >
-                        View orders pending fulfillment.
-                      </MuiTypography>
-                      <Stack
-                        direction="row"
-                        spacing={2}
-                        className={classes.cardActions}
-                      >
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="contained"
-                            color="secondary"
-                            component={RouterLink}
-                            to="/orders"
-                          >
-                            Past orders
-                          </Button>
-                        </AnimateButton>
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="outlined"
-                            color="secondary"
-                            component={RouterLink}
-                            to="/"
-                          >
-                            New order
-                          </Button>
-                        </AnimateButton>
-                      </Stack>
-                    </>
-                  ) : (
-                    <>
-                      <MuiTypography
-                        variant="h2"
-                        gutterBottom
-                        className={classes.mainGreeting}
-                      >
-                        Your pending orders will appear here.
-                      </MuiTypography>
-                      <MuiTypography
-                        variant="body2"
-                        className={classes.contextText}
-                      >
-                        Please sign in to your account to access your orders.
-                      </MuiTypography>
-                      <Stack
-                        direction="row"
-                        spacing={2}
-                        className={classes.cardActions}
-                      >
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="contained"
-                            color="secondary"
-                            component={RouterLink}
-                            to="/auth"
-                          >
-                            Sign In
-                          </Button>
-                        </AnimateButton>
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="outlined"
-                            color="secondary"
-                            component={RouterLink}
-                            to="/create-account"
-                          >
-                            Sign Up
-                          </Button>
-                        </AnimateButton>
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="contained"
-                            color="secondary"
-                            component={RouterLink}
-                            to="/"
-                          >
-                            Shop Now
-                          </Button>
-                        </AnimateButton>
-                      </Stack>
-                    </>
-                  )
-                }
-              </GetSignedInCustomerQuery>
-            </CardContent>
+              <WatchLater
+                style={{ fontSize: 70, color: theme.palette.primary.main }}
+              />
+            </Box>
           </Grid>
         </Grid>
       </Card>

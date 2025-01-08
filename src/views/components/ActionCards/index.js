@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0.6,
   },
   button: {
-    color: theme.palette.grey[800],
+    color: theme.palette.common.white,
     backgroundColor: theme.palette.primary.main,
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),

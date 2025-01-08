@@ -14,6 +14,7 @@ import { SET_MENU } from "../../store/actions";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { AlertContext } from "../../context/AlertProvider";
+import Footer from "../../components/Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -131,6 +132,7 @@ const MainLayout = () => {
         <Container>
           <Outlet />
         </Container>
+        <Footer />
       </main>
     </div>
   );

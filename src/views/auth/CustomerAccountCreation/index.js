@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Divider, Grid, Typography, useMediaQuery } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import Logo from "../../../ui-component/Logo";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
 import RegistrationWrapper from "../components/styles/RegistrationWrapper";
@@ -44,7 +45,7 @@ const CustomerAccountCreation = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Grid item sx={{ mb: 3 }}>
+                  <Grid item style={{ marginBottom: 3, marginTop: 8 }}>
                     <Logo withName={false} />
                   </Grid>
                   <Grid item xs={12}>
@@ -72,7 +73,7 @@ const CustomerAccountCreation = () => {
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : ""}
                           >
-                            Enter your details to continue
+                            Create a Desafio account
                           </Typography>
                         </Stack>
                       </Grid>

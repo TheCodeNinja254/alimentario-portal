@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Divider, Grid, Typography, useMediaQuery } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import Logo from "../../../ui-component/Logo";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
 import AuthWrapper1 from "../components/styles/RegistrationWrapper";
@@ -44,6 +45,7 @@ const Authentication = () => {
                   spacing={gridSpacing}
                   alignItems="center"
                   justifyContent="center"
+                  style={{ marginTop: theme.spacing(8) }}
                 >
                   <Grid item sx={{ mb: 3 }}>
                     <Logo withName={false} />
@@ -73,7 +75,8 @@ const Authentication = () => {
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : ""}
                           >
-                            Enter your credentials to continue
+                            Enter your credentials to continue to your Desafio
+                            account.
                           </Typography>
                         </Stack>
                       </Grid>

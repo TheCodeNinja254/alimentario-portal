@@ -42,10 +42,13 @@ const CustomerAccountCreationSchema = Yup.object().shape({
   emailAddress: Yup.string()
     .email("Please enter a valid email address")
     .required("Please enter your email address"),
-  password: Yup.string().required("Create a password for your auth"),
+  password: Yup.string().required("Create a password for your account."),
   firstName: Yup.string().required("Name is required"),
   lastName: Yup.string().required("Name is required"),
-  msisdn: Yup.string().min(9).max(12).required("Mobile number is required."),
+  msisdn: Yup.string()
+    .min(10, "Mobile must atleast have 10 numbers")
+    .max(10, "Mobile must at most have 10 numbers")
+    .required("Mobile number is required."),
 });
 
 // style constant
@@ -265,34 +268,70 @@ const CustomerAccountCreationForm = () => {
             />
             <Grid container spacing={matchDownSM ? 0 : 2}>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <FormControl
                   fullWidth
                   error={Boolean(errors.firstName)}
-                  label="First Name"
-                  margin="normal"
-                  value={values.firstName}
-                  name="firstName"
-                  onChange={(e) => {
-                    setFieldValue("firstName", e.target.value, true);
-                  }}
-                  type="text"
                   className={classes.loginInput}
-                />
+                >
+                  <InputLabel htmlFor="outlined-adornment-email-register">
+                    First Name
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-fname-register"
+                    type="text"
+                    value={values.firstName}
+                    name="firstName"
+                    onChange={(e) => {
+                      setFieldValue("firstName", e.target.value, true);
+                    }}
+                    inputProps={{
+                      classes: {
+                        notchedOutline: classes.notchedOutline,
+                      },
+                    }}
+                  />
+                  {errors.firstName && (
+                    <FormHelperText
+                      error
+                      id="standard-weight-helper-text-firstName-register"
+                    >
+                      {errors.firstName}
+                    </FormHelperText>
+                  )}
+                </FormControl>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <FormControl
                   fullWidth
-                  error={Boolean(errors.email)}
-                  label="Last Name"
-                  margin="normal"
-                  value={values.lastName}
-                  name="lastName"
-                  onChange={(e) => {
-                    setFieldValue("lastName", e.target.value, true);
-                  }}
-                  type="text"
+                  error={Boolean(errors.lastName)}
                   className={classes.loginInput}
-                />
+                >
+                  <InputLabel htmlFor="outlined-adornment-lastName-register">
+                    Last Name
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-lastName-register"
+                    type="text"
+                    value={values.lastName}
+                    name="lastName"
+                    onChange={(e) => {
+                      setFieldValue("lastName", e.target.value, true);
+                    }}
+                    inputProps={{
+                      classes: {
+                        notchedOutline: classes.notchedOutline,
+                      },
+                    }}
+                  />
+                  {errors.lastName && (
+                    <FormHelperText
+                      error
+                      id="standard-weight-helper-text-lastName-register"
+                    >
+                      {errors.lastName}
+                    </FormHelperText>
+                  )}
+                </FormControl>
               </Grid>
             </Grid>
             <FormControl

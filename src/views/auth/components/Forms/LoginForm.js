@@ -12,9 +12,8 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  Stack,
   Typography,
-} from "@mui/material";
+} from "@material-ui/core";
 import isEmpty from "lodash.isempty";
 import * as Yup from "yup";
 import Visibility from "@material-ui/icons/Visibility";
@@ -23,6 +22,7 @@ import { Form as FormikForm, Formik } from "formik";
 import { useMutation } from "@apollo/client";
 import { makeStyles } from "@material-ui/styles";
 import { useNavigate } from "react-router";
+import { Stack } from "@mui/material";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 import StatusIcon from "../../../../components/StatusIcon";
 import Dialog from "../../../../components/Dialog";

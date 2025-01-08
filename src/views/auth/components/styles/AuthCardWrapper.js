@@ -1,15 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
-
-// material-ui
 import { makeStyles } from "@material-ui/styles";
+import { Card, CardContent } from "@material-ui/core";
 
-// project import
-import MainCard from "../../../../ui-component/cards/MainCard";
-
-// style constant
 const useStyles = makeStyles((theme) => ({
   card: {
+    opacity: 0.9,
+    marginTop: theme.spacing(6),
+    borderRadius: 10,
     maxWidth: "475px",
     "& > *": {
       flexGrow: 1,
@@ -34,14 +32,14 @@ const AuthCardWrapper = ({ children, ...other }) => {
   const classes = useStyles();
 
   return (
-    <MainCard
+    <Card
+      elevation={0}
       className={classes.card}
       contentClass={classes.content}
-      sx={{ opacity: "90%" }}
       {...other}
     >
-      {children}
-    </MainCard>
+      <CardContent>{children}</CardContent>
+    </Card>
   );
 };
 

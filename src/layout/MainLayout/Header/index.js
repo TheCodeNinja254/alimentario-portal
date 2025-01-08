@@ -34,12 +34,13 @@ const Header = ({ handleLeftDrawerToggle }) => {
       {/* logo & toggler button */}
       <div className={classes.boxContainer}>
         <IconButton
+          onClick={handleLeftDrawerToggle}
           sx={{
             marginRight: matchDownSM ? theme.spacing(0) : theme.spacing(0),
             overflow: "hidden",
           }}
         >
-          <Menu stroke={2} size="2rem" onClick={handleLeftDrawerToggle} />
+          <Menu stroke={2} size="2rem" />
         </IconButton>
         <Box
           component="span"

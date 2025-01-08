@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { useTheme } from "@material-ui/core/styles";
-import { Box, Button, Paper } from "@material-ui/core";
+import { Box, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
@@ -133,28 +133,28 @@ const ImageCarousel = () => {
                             }}
                           />
 
-                          {/* Add to Cart Button positioned over image */}
-                          <Button
-                            disableElevation
-                            variant="contained"
-                            onClick={() =>
-                              console.log(`Added ${step.productName} to cart`)
-                            }
-                            sx={{
-                              "&:hover": {
-                                color: theme.palette.common.white,
-                              },
-                              position: "absolute",
-                              bottom: "10px",
-                              right: "10px",
-                              borderRadius: 8,
-                              color: theme.palette.primary.main,
-                              backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
-                              zIndex: 2, // Make sure it's on top of the image
-                            }}
-                          >
-                            Add to Cart
-                          </Button>
+                          {/* /!* Add to Cart Button positioned over image *!/ */}
+                          {/* <Button */}
+                          {/*  disableElevation */}
+                          {/*  variant="contained" */}
+                          {/*  onClick={() => */}
+                          {/*    console.log(`Added ${step.productName} to cart`) */}
+                          {/*  } */}
+                          {/*  sx={{ */}
+                          {/*    "&:hover": { */}
+                          {/*      color: theme.palette.common.white, */}
+                          {/*    }, */}
+                          {/*    position: "absolute", */}
+                          {/*    bottom: "10px", */}
+                          {/*    right: "10px", */}
+                          {/*    borderRadius: 8, */}
+                          {/*    color: theme.palette.primary.main, */}
+                          {/*    backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background */}
+                          {/*    zIndex: 2, // Make sure it's on top of the image */}
+                          {/*  }} */}
+                          {/* > */}
+                          {/*  Add to Cart */}
+                          {/* </Button> */}
                         </>
                       ) : null}
                     </div>

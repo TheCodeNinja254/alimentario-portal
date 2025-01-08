@@ -1,0 +1,142 @@
+import React from "react";
+import { Grid, Box, Button, Typography } from "@material-ui/core";
+import {
+  Instagram,
+  LinkedIn,
+  WhatsApp,
+  Phone,
+  Email,
+} from "@material-ui/icons";
+import { IconBrandTiktok, IconBrandTwitter } from "@tabler/icons";
+import { makeStyles } from "@material-ui/styles";
+import desafioToasted from "../assets/images/desafioToasted.png";
+import desafioHarvest from "../assets/images/desafioHarvest.png";
+import desafioFoodClub from "../assets/images/desafioFoodClub.png";
+
+const useStyles = makeStyles((theme) => ({
+  brandImages: {
+    height: 50,
+    width: "auto",
+    margin: theme.spacing(1),
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(4, 2),
+    marginTop: theme.spacing(4),
+    textAlign: "left",
+  },
+  sectionTitle: {
+    fontWeight: "bold",
+    marginBottom: theme.spacing(2),
+  },
+}));
+
+const Footer = () => {
+  const classes = useStyles();
+
+  const currentYear = new Date().getFullYear();
+
+  const ourBrands = [desafioToasted, desafioHarvest, desafioFoodClub];
+
+  const socials = [
+    {
+      id: 1,
+      name: "@Desafio_Alimentario",
+      link: "https://www.instagram.com/desafio_alimentario/",
+      icon: <Instagram />,
+    },
+    {
+      id: 2,
+      name: "@desafio_alimentario",
+      link: "https://www.tiktok.com/@desafio_alimentario",
+      icon: <IconBrandTiktok />,
+    },
+    {
+      id: 3,
+      name: "desafio-care",
+      link: "https://linkedin.com/in/desafio-care",
+      icon: <LinkedIn />,
+    },
+    {
+      id: 4,
+      name: "@Desafio_Care",
+      link: "https://x.com/Desafio_Care",
+      icon: <IconBrandTwitter />,
+    },
+  ];
+
+  const contacts = [
+    { id: 1, name: "0740121619", icon: <WhatsApp /> },
+    { id: 2, name: "0780064188", icon: <WhatsApp /> },
+    { id: 3, name: "0740121619", icon: <Phone /> },
+    { id: 4, name: "0780064188", icon: <Phone /> },
+    { id: 5, name: "info@desafio.co.ke", icon: <Email /> },
+    { id: 6, name: "customer.care@desafio.co.ke", icon: <Email /> },
+  ];
+
+  return (
+    <Box className={classes.footer}>
+      <Grid container spacing={4}>
+        {/* Our Brands */}
+        <Grid item xs={12} md={4}>
+          <Typography className={classes.sectionTitle}>Our Brands</Typography>
+          <Box display="flex" justifyContent="left" flexWrap="wrap">
+            {ourBrands.map((brand, index) => (
+              <img
+                key={`img-${index}`}
+                src={brand}
+                alt="Brand Logo"
+                className={classes.brandImages}
+              />
+            ))}
+          </Box>
+        </Grid>
+
+        {/* Socials */}
+        <Grid item xs={12} md={4}>
+          <Typography className={classes.sectionTitle}>Social Media</Typography>
+          <Box>
+            {socials.map((social) => (
+              <Box key={social.id} mb={1}>
+                <Button
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={social.icon}
+                  variant="text"
+                  color="primary"
+                >
+                  {social.name}
+                </Button>
+              </Box>
+            ))}
+          </Box>
+        </Grid>
+
+        {/* Contacts */}
+        <Grid item xs={12} md={4}>
+          <Typography className={classes.sectionTitle}>Contact Us</Typography>
+          <Box>
+            {contacts.map((contact) => (
+              <Box key={contact.id} mb={1}>
+                <Button startIcon={contact.icon} variant="text" color="primary">
+                  {contact.name}
+                </Button>
+              </Box>
+            ))}
+          </Box>
+        </Grid>
+
+        {/* Copyright */}
+        <Grid item xs={12} style={{ textAlign: "center" }}>
+          <Typography variant="body2" color="textSecondary">
+            &copy; {currentYear} <strong>desafio.co.ke</strong>. All rights
+            reserved.
+          </Typography>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+export default Footer;

@@ -10,6 +10,8 @@ const PaymentView = Loadable(lazy(() => import("../views/payment")));
 
 const ToastedHome = Loadable(lazy(() => import("../views/toasted")));
 
+const HarvestHome = Loadable(lazy(() => import("../views/harvest")));
+
 const CookiePolicyView = Loadable(
   lazy(() => import("../views/policy/CookiePolicy"))
 );
@@ -50,7 +52,7 @@ const MainRoutes = {
     },
     {
       path: "/desafio-harvest",
-      element: <ToastedHome />,
+      element: <HarvestHome />,
     },
     {
       path: "/desafio-foodclub",

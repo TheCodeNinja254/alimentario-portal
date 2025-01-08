@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Box, CardActionArea, Grid } from "@material-ui/core";
+import { Box, CardActionArea, Grid, Typography } from "@material-ui/core";
 import Card from "@mui/material/Card";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { gridSpacing } from "../../store/constant";
 import ProductsSection from "../home/components/ProductsSection";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
@@ -37,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
 
 const HarvestHome = () => {
   const classes = useStyles();
+  const theme = useTheme();
+
   const [, setLoading] = useState(true);
   const [selectedCat, setSelectedCat] = useState(0);
 
@@ -70,6 +72,29 @@ const HarvestHome = () => {
                           />
                         </CardActionArea>
                       </Card>
+                    </AnimatedSection>
+                  </Box>
+                  <Box
+                    sx={{
+                      marginTop: theme.spacing(2),
+                      marginBottom: theme.spacing(2),
+                    }}
+                  >
+                    <AnimatedSection animate={animate} duration="1.8s">
+                      <Typography variant="body1" paragraph>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the dummy
+                        text ever since the 1500s, when an unknown printer took
+                        a galley of type and scrambled it to make a type
+                        specimen book.
+                      </Typography>
+                      <Typography variant="body1" paragraph>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the dummy
+                        text ever since the 1500s, when an unknown printer took
+                        a galley of type and scrambled it to make a type
+                        specimen book.
+                      </Typography>
                     </AnimatedSection>
                   </Box>
                   <ProductCategorization

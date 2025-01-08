@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, CardActionArea, Grid, Typography } from "@material-ui/core";
 import Card from "@mui/material/Card";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { gridSpacing } from "../../store/constant";
 import ProductsSection from "../home/components/ProductsSection";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
   brandImages: {
     height: 40,
-    marginTop: theme.spacing(10),
     [theme.breakpoints.down("sm")]: {
       marginTop: theme.spacing(0),
     },
@@ -54,6 +53,7 @@ const Events = () => {
   const classes = useStyles();
   const [, setLoading] = useState(true);
   const [selectedCat, setSelectedCat] = useState(0);
+  const theme = useTheme();
 
   useEffect(() => {
     setLoading(false);
@@ -84,8 +84,8 @@ const Events = () => {
                       </AnimatedSection>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
-                      <Box sx={{ width: "40%" }}>
-                        <AnimatedSection animate={animate} duration="2.0s">
+                      <AnimatedSection animate={animate} duration="2.0s">
+                        <Box sx={{ width: "40%", marginTop: theme.spacing(6) }}>
                           <Card elevation={0}>
                             <CardActionArea>
                               <img
@@ -94,12 +94,23 @@ const Events = () => {
                                 className={classes.brandImages}
                               />
                             </CardActionArea>
-                            <Typography variant="body2" paragraph>
-                              Lorem
-                            </Typography>
                           </Card>
-                        </AnimatedSection>
-                      </Box>
+                        </Box>
+                        <Typography variant="body1" paragraph>
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the dummy
+                          text ever since the 1500s, when an unknown printer
+                          took a galley of type and scrambled it to make a type
+                          specimen book.
+                        </Typography>
+                        <Typography variant="body1" paragraph>
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the dummy
+                          text ever since the 1500s, when an unknown printer
+                          took a galley of type and scrambled it to make a type
+                          specimen book.
+                        </Typography>
+                      </AnimatedSection>
                     </Grid>
                   </Grid>
                   <ProductCategorization

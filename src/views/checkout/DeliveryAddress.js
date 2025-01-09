@@ -3,22 +3,24 @@ import {
   Chip,
   Card,
   Button,
-  Collapse,
+  // Collapse,
   Grid,
   Typography,
   Paper,
   CardContent,
   Divider,
   Box,
-  Switch,
+  // Switch,
+  FormControlLabel,
+  Checkbox,
 } from "@material-ui/core";
-import { Stack } from "@mui/material";
+// import { Stack } from "@mui/material";
 import { makeStyles, styled, useTheme } from "@material-ui/styles";
-import { IconLocation } from "@tabler/icons";
+// import { IconLocation } from "@tabler/icons";
 import PropTypes from "prop-types";
 import { Check } from "@material-ui/icons";
 import GetDeliveryLocations from "../../api/Queries/Locations/GetDeliveryLocations";
-import AnimateButton from "../../ui-component/extended/AnimateButton";
+// import AnimateButton from "../../ui-component/extended/AnimateButton";
 import AddDeliveryLocationModal from "../components/AddDeliveryLocationModal";
 
 const useStyles = makeStyles((theme) => ({
@@ -118,7 +120,6 @@ const DeliveryAddress = ({
   const theme = useTheme();
 
   const [open, setOpen] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
 
   const handleTimePeriodClick = (_preferredTimePeriod) => {
     setHasPickedTimeSlotHasError(false);
@@ -191,30 +192,29 @@ const DeliveryAddress = ({
         </Grid>
       ) : (
         <Grid item xs={12}>
-          <Box display="flex" justifyContent="space-between">
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            mb={2}
+          >
             <Box>
-              <Typography className={classes.cardTitle}>
+              <Typography variant="h6" className={classes.cardTitle}>
                 Delivery Address
               </Typography>
-              <Typography className={classes.cardSubTitle}>
+              <Typography variant="body2" className={classes.cardSubTitle}>
                 Confirm your delivery address.
               </Typography>
             </Box>
-            <Box display="flex" justifyContent="flex-end">
-              <AnimateButton>
-                <Button
-                  disableElevation
-                  fullWidth
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  className={classes.actionButton}
-                  onClick={() => setOpen(true)}
-                >
-                  Add New
-                </Button>
-              </AnimateButton>
-            </Box>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              className={classes.actionButton}
+              onClick={() => setOpen(true)}
+            >
+              Add New
+            </Button>
           </Box>
           <Divider />
           <GetDeliveryLocations>
@@ -222,198 +222,80 @@ const DeliveryAddress = ({
               <>
                 {status && locationsList?.length > 0 ? (
                   <>
-                    <Paper className={classes.locationBox} variant="outlined">
-                      <Stack direction="row" spacing={4}>
-                        <IconLocation
-                          stroke={2.5}
-                          size="1rem"
-                          className={classes.icon}
-                        />
-                        <Typography gutterBottom className={classes.mainHeader}>
-                          <strong>Last Used/Added Location</strong>
-                        </Typography>
-                        <Switch
-                          color="primary"
-                          sx={{ marginTop: theme.spacing(-2) }}
-                          checked={
-                            selectedDeliveryLocation === locationsList[0].id
-                          }
-                          onChange={() =>
-                            setSelectedDeliveryLocation(locationsList[0].id)
-                          }
-                          inputProps={{ "aria-label": "controlled" }}
-                        />
-                      </Stack>
-                      <Grid container className={classes.locationSection}>
-                        <Grid item xs={6}>
-                          <Typography>County: </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>
-                            <strong>{locationsList[0].countyName}</strong>
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>General area/town:</Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>
-                            <strong>{locationsList[0].localeName}</strong>
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>Apt & Hse No.:</Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>
-                            <strong>
-                              {locationsList[0].deliveryPreciseLocation}
-                            </strong>
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>Alternative Mobile No.:</Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Typography>
-                            <strong>
-                              {locationsList[0].alternativePhoneNumber}
-                            </strong>
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Paper>
-                    <Collapse in={collapsed}>
-                      <Paper
-                        elevation={0}
-                        variant="outlined"
-                        className={classes.locationBox}
-                      >
-                        <Typography>
-                          <strong>Previously used locations</strong>
-                        </Typography>
-                        {locationsList.map((dl) => (
-                          <>
-                            <Grid container className={classes.locationSection}>
-                              <Grid item xs={6}>
-                                <Typography>County: </Typography>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Typography>
-                                  <strong>{dl.countyName}</strong>
-                                </Typography>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Typography>General area/town:</Typography>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Typography>
-                                  <strong>{dl.localeName}</strong>
-                                </Typography>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Typography>Apt & Hse No.:</Typography>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Typography>
-                                  <strong>{dl.deliveryPreciseLocation}</strong>
-                                </Typography>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Typography>Alternative Mobile No.:</Typography>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Typography>
-                                  <strong>{dl.alternativePhoneNumber}</strong>
-                                </Typography>
-                              </Grid>
-                              <Grid item xs={12} x={12}>
-                                <Paper
-                                  elevation={0}
-                                  variant="outlined"
-                                  className={classes.actionSection}
-                                >
-                                  <Grid
-                                    container
-                                    className={classes.locationSection}
-                                  >
-                                    <Grid item xs={6} xl={6}>
-                                      <Typography
-                                        className={classes.actionSectionText}
-                                      >
-                                        Use this location
-                                      </Typography>
-                                    </Grid>
-                                    <Grid item xs={6} xl={6}>
-                                      <Switch
-                                        checked={
-                                          selectedDeliveryLocation === dl.id
-                                        }
-                                        onChange={() =>
-                                          setSelectedDeliveryLocation(dl.id)
-                                        }
-                                        inputProps={{
-                                          "aria-label": "controlled",
-                                        }}
-                                      />
-                                    </Grid>
-                                  </Grid>
-                                </Paper>
-                              </Grid>
-                            </Grid>
-                            <Divider />
-                          </>
-                        ))}
-                      </Paper>
-                    </Collapse>
-
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      sx={{ marginTop: theme.spacing(2) }}
+                    <Paper
+                      className={classes.locationBox}
+                      variant="outlined"
+                      sx={{ p: 2, mt: 2 }}
                     >
-                      {locationsList.length > 1 && (
-                        <AnimateButton>
-                          <Button
-                            disableElevation
-                            fullWidth
-                            size="small"
-                            variant="outlined"
-                            color="secondary"
-                            className={classes.actionButton}
-                            onClick={() => setCollapsed(!collapsed)}
-                          >
-                            {collapsed ? "Hide Previous" : "View Previous"}
-                          </Button>
-                        </AnimateButton>
-                      )}
-                    </Stack>
+                      <Typography variant="subtitle1" gutterBottom>
+                        <strong>Delivery Locations</strong>
+                      </Typography>
+                      {locationsList.map((location, index) => (
+                        <Box key={location.id} sx={{ mb: 2 }}>
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={
+                                  selectedDeliveryLocation === location.id
+                                }
+                                onChange={() =>
+                                  setSelectedDeliveryLocation(location.id)
+                                }
+                                color="primary"
+                              />
+                            }
+                            label={
+                              <Box>
+                                <Typography variant="body2">
+                                  <strong>
+                                    {index === 0
+                                      ? "Latest Location"
+                                      : "Previous Location"}
+                                  </strong>
+                                </Typography>
+                                <Typography variant="body2">
+                                  County: {location?.countyName}
+                                </Typography>
+                                <Typography variant="body2">
+                                  Town: {location?.localeName}
+                                </Typography>
+                                <Typography variant="body2">
+                                  Address: {location?.deliveryPreciseLocation}
+                                </Typography>
+                                <Typography variant="body2">
+                                  Alt Phone: {location?.alternativePhoneNumber}
+                                </Typography>
+                              </Box>
+                            }
+                          />
+                          {index < locationsList.length - 1 && (
+                            <Divider sx={{ my: 1 }} />
+                          )}
+                        </Box>
+                      ))}
+                    </Paper>
                   </>
                 ) : (
-                  <Paper className={classes.locationBox} variant="outlined">
-                    <Stack direction="row" spacing={4}>
-                      <IconLocation
-                        stroke={2.5}
-                        size="1rem"
-                        className={classes.icon}
-                      />
-                      <Typography gutterBottom className={classes.locationText}>
-                        You do not have a preferred delivery location.
-                      </Typography>
-                    </Stack>
-                    <AnimateButton>
-                      <Button
-                        disableElevation
-                        fullWidth
-                        size="small"
-                        variant="contained"
-                        color="primary"
-                        className={classes.actionButton}
-                        onClick={() => setOpen(true)}
-                      >
-                        Add Now
-                      </Button>
-                    </AnimateButton>
+                  <Paper
+                    className={classes.locationBox}
+                    variant="outlined"
+                    sx={{ p: 2, mt: 2 }}
+                  >
+                    <Typography
+                      variant="body2"
+                      className={classes.locationText}
+                    >
+                      You do not have a preferred delivery location.
+                    </Typography>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      className={classes.actionButton}
+                      onClick={() => setOpen(true)}
+                    >
+                      Add Now
+                    </Button>
                   </Paper>
                 )}
               </>

@@ -39,6 +39,7 @@ const Checkout = () => {
                         getCartItems: {
                           status: getCartItemStatus,
                           cartItemsList,
+                          preOrderItemsFound,
                         },
                       }) => (
                         <>
@@ -50,6 +51,7 @@ const Checkout = () => {
                           <OrderCompletion
                             totalDue={totalDue}
                             cartItemsList={cartItemsList}
+                            preOrderItemsFound={preOrderItemsFound}
                           />
                         </>
                       )}

@@ -7,6 +7,7 @@ export const GET_CART_ITEMS = gql`
     getCartItems {
       status
       message
+      preOrderItemsFound
       cartItemsList {
         id
         productName

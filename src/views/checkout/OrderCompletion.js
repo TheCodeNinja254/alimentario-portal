@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OrderCompletion = ({ totalDue, cartItemsList }) => {
+const OrderCompletion = ({ totalDue, cartItemsList, preOrderItemsFound }) => {
   const classes = useStyles();
   const theme = useTheme();
   const navigate = useNavigate();
@@ -242,24 +242,27 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
           </Grid>
         </CardContent>
       </Card>
-      <Card
-        elevation={0}
-        style={{ borderRadius: 4, marginTop: theme.spacing(2) }}
-      >
-        <CardContent>
-          <DeliveryAddress
-            selectedDeliveryLocation={selectedDeliveryLocation}
-            setSelectedDeliveryLocation={setSelectedDeliveryLocation}
-          />
-        </CardContent>
-      </Card>
+      {totalDue > 0 && cartItemsList?.length > 0 && (
+        <Card
+          elevation={0}
+          style={{ borderRadius: 4, marginTop: theme.spacing(2) }}
+        >
+          <CardContent>
+            <DeliveryAddress
+              preOrderItemsFound={preOrderItemsFound}
+              selectedDeliveryLocation={selectedDeliveryLocation}
+              setSelectedDeliveryLocation={setSelectedDeliveryLocation}
+            />
+          </CardContent>
+        </Card>
+      )}
 
       {/* <Alert variant="outlined"> */}
       {/*  <AlertTitle> */}
       {/*    Notice On Payment: <strong>Payment on delivery only</strong> */}
       {/*  </AlertTitle> */}
       {/* </Alert> */}
-      {totalDue > 0 ? (
+      {totalDue > 0 && cartItemsList?.length > 0 ? (
         <Card
           elevation={0}
           style={{ borderRadius: 4, marginTop: theme.spacing(2) }}
@@ -391,7 +394,7 @@ const OrderCompletion = ({ totalDue, cartItemsList }) => {
                   className={classes.actionButton}
                   onClick={() => handleConfirmOrder()}
                 >
-                  Confirm Order
+                  {preOrderItemsFound ? "Confirm Pre-rder" : "Confirm Order"}
                 </Button>
               </AnimateButton>
             </Box>

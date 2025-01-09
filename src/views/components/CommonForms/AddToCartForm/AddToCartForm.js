@@ -110,6 +110,8 @@ const AddToCartForm = ({ productId, setSubmitDetails, productFamily }) => {
                 quantity: Number(values.quantity),
                 customerSpecification: values.customerSpecification,
                 productId,
+                orderType:
+                  productFamily === "racecourse" ? "pre-order" : "normal",
               },
             },
             refetchQueries: [

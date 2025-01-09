@@ -69,7 +69,7 @@ const AppCarousel = ({ imageList }) => {
                     className={classes.carouselImages}
                     src={step.image}
                     alt={step.title}
-                    sx={{ width: "100%", height: "auto" }}
+                    sx={{ width: "90%", height: "auto" }}
                   />
                 </>
               ) : null}

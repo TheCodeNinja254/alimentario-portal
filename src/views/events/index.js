@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Box, CardActionArea, Grid, Typography } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { gridSpacing } from "../../store/constant";
 import ProductsSection from "../home/components/ProductsSection";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
-import ProductCategorization from "../home/components/ProductCategorization";
 import InformationTab from "../components/InformationTab";
 import AnimatedSection from "../../ui-component/AnimatedSection";
 import AppCarousel from "../../components/AppCarousel";
+import EventsProductCategorization from "../../components/EventsProductCategorization";
 
 const brandHeader = {
   categoryId: 1,
@@ -107,17 +106,17 @@ const Events = () => {
     <GetSignedInCustomerQuery>
       {({ getSignedInCustomer: { status } }) => (
         <>
-          <Grid container spacing={gridSpacing}>
+          <Grid container>
             <Grid item lg={8} md={8} sm={12} xs={12}>
-              <Grid container spacing={gridSpacing}>
+              <Grid container>
                 <Grid item xs={12}>
-                  <Grid container spacing={gridSpacing}>
+                  <Grid container>
                     <Grid item xs={12} sm={12} md={6}>
                       <Box sx={{ marginTop: theme.spacing(6) }}>
                         <AppCarousel imageList={carouselImages} />
                       </Box>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={6}>
+                    <Grid item xs={11} sm={11} md={6}>
                       <AnimatedSection animate={animate} duration="2.0s">
                         <Box sx={{ width: "40%", marginTop: theme.spacing(6) }}>
                           <Card elevation={0}>
@@ -146,7 +145,7 @@ const Events = () => {
                       </AnimatedSection>
                     </Grid>
                   </Grid>
-                  <ProductCategorization
+                  <EventsProductCategorization
                     selectedCat={selectedCat}
                     setSelectedCat={setSelectedCat}
                     shouldNavigate={false}
@@ -154,11 +153,13 @@ const Events = () => {
                   <ProductsSection
                     sessionStatus={status}
                     category={selectedCat}
+                    title="Racecourse Special"
+                    productFamily="racecourse"
                   />
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item lg={4} md={8} sm={12} xs={12}>
+            <Grid item lg={4} md={4} sm={12} xs={12}>
               <InformationTab />
             </Grid>
           </Grid>

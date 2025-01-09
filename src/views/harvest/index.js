@@ -99,6 +99,7 @@ const HarvestHome = () => {
                   <ProductsSection
                     sessionStatus={status}
                     category={selectedCat}
+                    productFamily="harvest"
                   />
                 </Grid>
               </Grid>

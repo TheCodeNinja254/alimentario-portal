@@ -73,6 +73,7 @@ const Dashboard = () => {
                   <ProductsSection
                     sessionStatus={status}
                     category={selectedCat}
+                    productFamily="toasted"
                   />
                 </Grid>
               </Grid>

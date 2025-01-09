@@ -80,6 +80,7 @@ const ToastedHome = () => {
                   <ProductsSection
                     sessionStatus={status}
                     category={selectedCat}
+                    productFamily="toasted"
                   />
                 </Grid>
               </Grid>

@@ -71,7 +71,9 @@ const ImageCarousel = () => {
   return (
     <AnimatedSection animate={animate} duration="1.0s">
       <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
-        <GetDisplayProductsQuery variables={{ productCategory: 0 }}>
+        <GetDisplayProductsQuery
+          variables={{ productCategory: 0, productFamily: "toasted" }}
+        >
           {({ getDisplayProducts: { status, productsList } }) => {
             setMaxSteps(productsList.length);
 

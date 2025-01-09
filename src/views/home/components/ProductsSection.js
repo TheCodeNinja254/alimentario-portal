@@ -31,7 +31,13 @@ const _categories = [
   "Dressings",
 ];
 
-const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
+const ProductsSection = ({
+  defaultCategoryId,
+  sessionStatus,
+  category,
+  title,
+  productFamily = "toasted",
+}) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -65,15 +71,25 @@ const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
     <>
       <Stack direction="row" sx={{ marginBottom: theme.spacing(1) }}>
         <Fastfood color="primary" sx={{ marginTop: theme.spacing(2) }} />
-        <MuiTypography
-          variant="h4"
-          gutterBottom
-          className={classes.subGreeting}
-        >
-          {category
-            ? `Desafio ${_categories[category - 1]}`
-            : "Toasted by Desafio"}
-        </MuiTypography>
+        {title ? (
+          <MuiTypography
+            variant="h4"
+            gutterBottom
+            className={classes.subGreeting}
+          >
+            {title}
+          </MuiTypography>
+        ) : (
+          <MuiTypography
+            variant="h4"
+            gutterBottom
+            className={classes.subGreeting}
+          >
+            {category
+              ? `Desafio ${_categories[category - 1]}`
+              : "Toasted by Desafio"}
+          </MuiTypography>
+        )}
       </Stack>
       <Divider className={classes.divider} />
       <Box>
@@ -87,7 +103,10 @@ const ProductsSection = ({ defaultCategoryId, sessionStatus, category }) => {
         sx={{ marginTop: theme.spacing(3) }}
       >
         <GetDisplayProductsQuery
-          variables={{ productCategory: defaultCategoryId || category }}
+          variables={{
+            productCategory: defaultCategoryId || category,
+            productFamily,
+          }}
         >
           {({ getDisplayProducts: { status, productsList } }) =>
             status && productsList?.length > 0 ? (

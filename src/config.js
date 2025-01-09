@@ -14,6 +14,7 @@ const config = {
     6: "Racecourse Wines",
     7: "Racecourse Bites",
     8: "Desafio Wine (Online)",
+    9: "Coffee & Tea",
   },
 };
 

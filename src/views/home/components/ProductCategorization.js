@@ -8,7 +8,7 @@ import {
   Fastfood,
 } from "@material-ui/icons";
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { IconBottle } from "@tabler/icons";
+import { IconBottle, IconCup } from "@tabler/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -36,6 +36,12 @@ const productCategories = [
     name: "Wine",
     icon: <IconBottle />,
     catSlug: "sandwiches",
+  },
+  {
+    id: 9,
+    name: "Coffee & Tea",
+    icon: <IconCup />,
+    catSlug: "coffee-n-tea",
   },
   {
     id: 2,
@@ -85,7 +91,7 @@ const ProductCategorization = ({
       {productCategories.map((cat) => (
         <Chip
           key={cat.id}
-          variant={selectedCat === cat.id ? "filled" : "outlined"}
+          variant={selectedCat === cat.id ? "default" : "outlined"}
           color="primary"
           onClick={() => handleCatChange(cat.id, cat.catSlug)}
           label={

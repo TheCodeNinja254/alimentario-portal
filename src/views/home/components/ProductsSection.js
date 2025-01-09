@@ -34,6 +34,7 @@ const _categories = [
   "",
   "",
   "Wine",
+  "Coffee & Tea",
 ];
 
 const ProductsSection = ({

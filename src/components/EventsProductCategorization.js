@@ -71,7 +71,7 @@ const EventsProductCategorization = ({
       {productCategories?.map((cat) => (
         <Chip
           key={cat.id}
-          variant={selectedCat === cat.id ? "filled" : "outlined"}
+          variant={selectedCat === cat.id ? "default" : "outlined"}
           color="primary"
           onClick={() => handleCatChange(cat.id, cat.catSlug)}
           label={

@@ -100,6 +100,7 @@ const HarvestHome = () => {
                     sessionStatus={status}
                     category={selectedCat}
                     productFamily="harvest"
+                    title="Desafio Harvest"
                   />
                 </Grid>
               </Grid>

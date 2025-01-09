@@ -90,105 +90,113 @@ const OrderCompletion = ({ totalDue, cartItemsList, preOrderItemsFound }) => {
     });
   };
 
+  // const currentTime = new Date(); // Get current date and time
+  // const currentHour = currentTime.getHours(); // Get the current hour (0-23 format)
+
+  // If the time is between 10:00 AM and 8:00 PM
+  // if (currentHour >= 10 && currentHour < 20) {
+  //   setAddOrderDetails({
+  //     modalOpenStatus: true,
+  //     addStatus: true,
+  //     addMessage: addOrderMessage,
+  //   });
+  // } else {
+  // If it's outside the 10:00 AM - 8:00 PM range
+
   const handleConfirmOrder = async () => {
     if (cartItemsList.length > 0 && totalDue > 0) {
       if (selectedDeliveryLocation && selectedDeliveryLocation > 0) {
-        if (preOrderItemsFound && preferredTime !== null) {
-          AddOrderMutation({
-            variables: {
-              input: {
-                cartItemsList: itemsOnOrder,
-                amountDue: totalDue, // flat rate for delivery for now
-                deliveryLocationId: selectedDeliveryLocation,
-                orderType: "Retail",
-                isPreorder: preOrderItemsFound,
-                preferredDeliveryTime: preferredTime ?? "",
-              },
-            },
-            refetchQueries: [
-              {
-                query: GET_CART_ITEMS,
-                variables: { awaitRefetchQueries: true },
-              },
-              {
-                query: GET_MY_ORDERS,
-                variables: { pageSize: 5, awaitRefetchQueries: true },
-              },
-              {
-                query: GET_MY_ORDERS,
-                variables: { pageSize: 20, awaitRefetchQueries: true },
-              },
-            ],
-          })
-            .then((response) => {
-              const {
-                data: {
-                  addOrder: {
-                    status: addOrderStatus,
-                    message: addOrderMessage,
-                    paymentCorrelationId,
-                  },
+        // Check if pre-order items exist and validate the preferred delivery time
+        if (!preOrderItemsFound || (preOrderItemsFound && preferredTime)) {
+          try {
+            const response = await AddOrderMutation({
+              variables: {
+                input: {
+                  cartItemsList: itemsOnOrder,
+                  amountDue: totalDue, // Flat rate for delivery for now
+                  deliveryLocationId: selectedDeliveryLocation,
+                  orderType: "Retail",
+                  isPreorder: preOrderItemsFound,
+                  preferredDeliveryTime: preferredTime ?? "",
                 },
-              } = response;
-              if (addOrderStatus) {
-                // const currentTime = new Date(); // Get current date and time
-                // const currentHour = currentTime.getHours(); // Get the current hour (0-23 format)
+              },
+              refetchQueries: [
+                {
+                  query: GET_CART_ITEMS,
+                  variables: { awaitRefetchQueries: true },
+                },
+                {
+                  query: GET_MY_ORDERS,
+                  variables: { pageSize: 5, awaitRefetchQueries: true },
+                },
+                {
+                  query: GET_MY_ORDERS,
+                  variables: { pageSize: 20, awaitRefetchQueries: true },
+                },
+              ],
+            });
 
-                // If the time is between 10:00 AM and 8:00 PM
-                // if (currentHour >= 10 && currentHour < 20) {
-                //   setAddOrderDetails({
-                //     modalOpenStatus: true,
-                //     addStatus: true,
-                //     addMessage: addOrderMessage,
-                //   });
-                // } else {
-                // If it's outside the 10:00 AM - 8:00 PM range
-                navigate("/payment", {
-                  state: {
-                    paymentCorrelationId,
-                    totalDue,
-                    itemsOnOrder,
-                  },
-                });
-                // }
-              } else {
-                setAddOrderDetails({
-                  modalOpenStatus: true,
-                  addStatus: false,
-                  addMessage: addOrderMessage,
-                });
-              }
-            })
-            .catch((res) => {
+            const {
+              data: {
+                addOrder: {
+                  status: addOrderStatus,
+                  message: addOrderMessage,
+                  paymentCorrelationId,
+                },
+              },
+            } = response;
+
+            if (addOrderStatus) {
+              navigate("/payment", {
+                state: {
+                  paymentCorrelationId,
+                  totalDue,
+                  itemsOnOrder,
+                },
+              });
+            } else {
               setAddOrderDetails({
                 modalOpenStatus: true,
                 addStatus: false,
-                addMessage: ErrorHandler(
-                  res.message || res.graphQLErrors[0].message
-                ),
+                addMessage: addOrderMessage,
               });
+            }
+          } catch (error) {
+            setAddOrderDetails({
+              modalOpenStatus: true,
+              addStatus: false,
+              addMessage: ErrorHandler(
+                error.message ||
+                  error.graphQLErrors?.[0]?.message ||
+                  "An error occurred"
+              ),
             });
+          }
         } else {
+          // Handle missing preferred time for pre-orders
           setHasPickedTimeSlotHasError(true);
           setAddOrderDetails({
             modalOpenStatus: true,
             addStatus: false,
-            addMessage: "What time would you wish to receive your meal?",
+            addMessage:
+              "Please select a preferred delivery time for your pre-order.",
           });
         }
       } else {
+        // Handle missing delivery location
         setAddOrderDetails({
           modalOpenStatus: true,
           addStatus: false,
-          addMessage: "Please select a delivery location",
+          addMessage: "Please select a delivery location.",
         });
       }
     } else {
+      // Handle invalid cart or payment details
       setAddOrderDetails({
         modalOpenStatus: true,
         addStatus: false,
         addMessage:
-          "Something went wrong! We cannot confirm the order at this time",
+          "Something went wrong! We cannot confirm the order at this time.",
       });
     }
   };

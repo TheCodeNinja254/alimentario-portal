@@ -3,7 +3,6 @@ import { Grid, Stack, Box, Divider } from "@mui/material";
 import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { Fastfood } from "@material-ui/icons";
-import { gridSpacing } from "../../../store/constant";
 import AddToCartModal from "../../components/AddToCartModal";
 import SignInModal from "../../components/SignInModal/SignInModal";
 import ProductCard from "./ProductCard";
@@ -116,6 +115,7 @@ const ProductsSection = ({
                 handleAddToCart={handleAddToCart}
                 animate={animate}
                 productsList={productsList}
+                productFamily={productFamily}
               />
             ) : (
               <AnimatedSection animate={animate} duration="1.0s">
@@ -132,6 +132,7 @@ const ProductsSection = ({
           selectedProduct={selectedProduct}
           submitDetails={submitDetails}
           setSubmitDetails={setSubmitDetails}
+          productFamily={productFamily}
         />
       ) : (
         <SignInModal open={open} setOpen={setOpen} />

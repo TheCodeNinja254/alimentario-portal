@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCartForm = ({ productId, setSubmitDetails }) => {
+const AddToCartForm = ({ productId, setSubmitDetails, productFamily }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -84,6 +84,9 @@ const AddToCartForm = ({ productId, setSubmitDetails }) => {
   };
 
   const [AddToCartMutation, { loading }] = useMutation(ADD_TO_CART);
+
+  const submitButtonText =
+    productFamily === "racecourse" ? "Pre-Order Now" : "Add to cart now";
 
   return (
     <>
@@ -227,7 +230,7 @@ const AddToCartForm = ({ productId, setSubmitDetails }) => {
                   variant="contained"
                   color="secondary"
                 >
-                  {loading ? "Please wait..." : "Add to cart now"}
+                  {loading ? "Please wait..." : submitButtonText}
                 </Button>
               </AnimateButton>
             </Box>

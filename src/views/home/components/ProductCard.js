@@ -59,7 +59,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductCard = ({ handleAddToCart, animate, productsList }) => {
+const ProductCard = ({
+  handleAddToCart,
+  animate,
+  productsList,
+  productFamily = "normal",
+}) => {
   const classes = useStyles();
 
   const show = true;
@@ -67,6 +72,9 @@ const ProductCard = ({ handleAddToCart, animate, productsList }) => {
   const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   const charactersBeforeSlide = matchDownSM ? 15 : 25;
+
+  const submitButtonText =
+    productFamily === "racecourse" ? "PRE-ORDER" : "ADD TO CART";
 
   return productsList.map((product) => (
     <Grid item xs={6} sm={6} md={6} lg={4} xl={3} key={product?.productName}>
@@ -150,7 +158,7 @@ const ProductCard = ({ handleAddToCart, animate, productsList }) => {
                 variant="contained"
                 onClick={() => handleAddToCart(product)}
               >
-                {product?.productPrice === 0 ? "ADD" : "ADD TO CART"}
+                {product?.productPrice === 0 ? "ADD" : submitButtonText}
               </Button>
               {/* <Button size="small" color="secondary" variant="outlined"> */}
               {/*  REVIEWS */}

@@ -64,6 +64,7 @@ const AddToCartModal = ({
   selectedProduct,
   submitDetails,
   setSubmitDetails,
+  productFamily = "normal",
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -274,6 +275,7 @@ const AddToCartModal = ({
                 <AddToCartForm
                   productId={selectedProduct.id}
                   setSubmitDetails={setSubmitDetails}
+                  productFamily={productFamily}
                 />
               ) : (
                 <Chip

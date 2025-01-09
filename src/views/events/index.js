@@ -8,8 +8,7 @@ import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSigned
 import ProductCategorization from "../home/components/ProductCategorization";
 import InformationTab from "../components/InformationTab";
 import AnimatedSection from "../../ui-component/AnimatedSection";
-import Image from "../../components/Image";
-import horseRacingPoster from "../../assets/images/horseRacingTwelve.png";
+import AppCarousel from "../../components/AppCarousel";
 
 const brandHeader = {
   categoryId: 1,
@@ -19,6 +18,44 @@ const brandHeader = {
   link: "/horse-racing",
   type: "navigational",
 };
+
+const carouselImages = [
+  {
+    id: 1,
+    image: "/images/promotions/horseRacingTwelve.png",
+    title: "First",
+  },
+  {
+    id: 2,
+    image: "/images/promotions/horseRacesPast.png",
+    title: "First",
+  },
+  {
+    id: 3,
+    image: "/images/promotions/horseRacingOld.png",
+    title: "First",
+  },
+  {
+    id: 4,
+    image: "/images/promotions/afterParty.png",
+    title: "First",
+  },
+  {
+    id: 5,
+    image: "/images/promotions/food1.png",
+    title: "First",
+  },
+  {
+    id: 6,
+    image: "/images/promotions/food2.png",
+    title: "First",
+  },
+  {
+    id: 7,
+    image: "/images/promotions/burger.png",
+    title: "First",
+  },
+];
 
 const useStyles = makeStyles((theme) => ({
   branding: {
@@ -76,12 +113,9 @@ const Events = () => {
                 <Grid item xs={12}>
                   <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} sm={12} md={6}>
-                      <AnimatedSection animate={animate} duration="1.8s">
-                        <Image
-                          src={horseRacingPoster}
-                          className={classes.posterImage}
-                        />
-                      </AnimatedSection>
+                      <Box sx={{ marginTop: theme.spacing(6) }}>
+                        <AppCarousel imageList={carouselImages} />
+                      </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
                       <AnimatedSection animate={animate} duration="2.0s">

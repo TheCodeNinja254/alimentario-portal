@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
+  Chip,
   Card,
   Button,
   Collapse,
@@ -13,18 +14,12 @@ import {
 } from "@material-ui/core";
 import { Stack } from "@mui/material";
 import { makeStyles, styled, useTheme } from "@material-ui/styles";
-import {
-  KeyboardDatePicker,
-  KeyboardTimePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 import { IconLocation } from "@tabler/icons";
 import PropTypes from "prop-types";
+import { Check } from "@material-ui/icons";
 import GetDeliveryLocations from "../../api/Queries/Locations/GetDeliveryLocations";
 import AnimateButton from "../../ui-component/extended/AnimateButton";
 import AddDeliveryLocationModal from "../components/AddDeliveryLocationModal";
-import { AlertContext } from "../../context/AlertProvider";
 
 const useStyles = makeStyles((theme) => ({
   cardTitle: {
@@ -82,40 +77,57 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CategoryCard = styled(Card)(({ img }) => ({
+const CategoryCard = styled(Card)(({ theme, img }) => ({
   backgroundImage: `url(${img})`,
-  height: 130,
+  height: 200,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   backgroundPosition: "center",
   opacity: 10,
+  borderRadius: 10,
+  marginTop: theme.spacing(2),
 }));
+
+const periodSlots = [
+  "12:00PM",
+  "12:30PM",
+  "1:00PM",
+  "1:30PM",
+  "2:00PM",
+  "2:30PM",
+  "3:30PM",
+  "4:00PM",
+  "4:30PM",
+  "5:00PM",
+  "5:30PM",
+  "6:00PM",
+  "6:30PM",
+  "7:00PM",
+];
 
 const DeliveryAddress = ({
   selectedDeliveryLocation,
   setSelectedDeliveryLocation,
+  preOrderItemsFound,
+  preferredTime,
+  setPreferredTime,
+  hasPickedTimeSlotHasError,
+  setHasPickedTimeSlotHasError,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [preferredDate, setPreferredDate] = React.useState(null);
-  const [preferredTime, setPreferredTime] = React.useState(null);
-
-  const { alertVisible } = useContext(AlertContext);
-
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
-  const today = new Date();
-  const minDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
-  );
+  const handleTimePeriodClick = (_preferredTimePeriod) => {
+    setHasPickedTimeSlotHasError(false);
+    setPreferredTime(_preferredTimePeriod);
+  };
 
   return (
     <CardContent>
-      {alertVisible ? (
+      {preOrderItemsFound ? (
         <Grid item xs={12}>
           <Typography className={classes.cardTitle}>
             Horse races are here, and so are we...
@@ -127,55 +139,52 @@ const DeliveryAddress = ({
           <Divider />
           <Grid>
             <Grid>
-              <CategoryCard img="/images/categories/horseRacing.png" />
+              <CategoryCard
+                elevation={0}
+                img="/images/categories/horseRacingBanner.png"
+              />
             </Grid>
           </Grid>
           <Paper className={classes.locationBoxAlternate} variant="outlined">
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={12} md={6} lg={6} xl={4}>
+              <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Box>
-                  <Typography className={classes.cardSubText}>
-                    When can we deliver? Schedule a delivery.
+                  <Typography style={{ fontSize: 16 }}>
+                    Pre-orders for{" "}
+                    <strong>
+                      Race Day, 12 Jan 2025 (Sunday) from 12.00 PM
+                    </strong>
                   </Typography>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      minDate={minDate}
-                      disablePast
-                      id="date-picker-dialog"
-                      label="Preferred Date"
-                      name="preferredDate"
-                      required
-                      format="dd/MM/yyyy"
-                      inputVariant="outlined"
-                      value={preferredDate}
-                      onChange={(newValue) => setPreferredDate(newValue)}
-                      KeyboardButtonProps={{
-                        "aria-label": "change date",
-                      }}
-                      fullWidth
-                    />
-                  </MuiPickersUtilsProvider>
+                  <Typography className={classes.cardSubText}>
+                    What time would you like us to deliver to you? Pick a slot
+                  </Typography>
+                  <Box>
+                    {periodSlots.map((slot) => (
+                      <Chip
+                        key={slot}
+                        variant={
+                          preferredTime === slot ? "default" : "outlined"
+                        }
+                        color="primary"
+                        label={slot}
+                        onClick={() => handleTimePeriodClick(slot)}
+                        style={{
+                          marginRight: theme.spacing(1),
+                          marginBottom: theme.spacing(0.5),
+                        }}
+                        deleteIcon={preferredTime === slot ? <Check /> : <></>}
+                      />
+                    ))}
+                  </Box>
+                  {hasPickedTimeSlotHasError && (
+                    <Typography
+                      variant="caption"
+                      style={{ color: theme.palette.error.main }}
+                    >
+                      Please select a preferred time slot to receive your meal
+                    </Typography>
+                  )}
                 </Box>
-              </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={6} xl={4}>
-                <Typography className={classes.cardSubText}>
-                  What time do you prefer?
-                </Typography>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardTimePicker
-                    id="date-time-dialog"
-                    label="Preferred Time"
-                    name="preferredTime"
-                    required
-                    inputVariant="outlined"
-                    value={preferredTime}
-                    onChange={(dateValue) => setPreferredTime(dateValue)}
-                    KeyboardButtonProps={{
-                      "aria-label": "change time",
-                    }}
-                    fullWidth
-                  />
-                </MuiPickersUtilsProvider>
               </Grid>
             </Grid>
           </Paper>

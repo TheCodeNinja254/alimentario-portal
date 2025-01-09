@@ -4,7 +4,6 @@ import {
   Typography,
   Box,
   Button,
-  CardActions,
   CardContent,
   CircularProgress,
   Divider,
@@ -58,8 +57,13 @@ const OrderCompletion = ({ totalDue, cartItemsList, preOrderItemsFound }) => {
   const navigate = useNavigate();
   const { alertVisible } = useContext(AlertContext);
 
-  const [selectedDeliveryLocation, setSelectedDeliveryLocation] =
+  const [preferredTime, setPreferredTime] = useState(null);
+  const [hasPickedTimeSlotHasError, setHasPickedTimeSlotHasError] =
     useState(false);
+
+  const [selectedDeliveryLocation, setSelectedDeliveryLocation] = useState(
+    preOrderItemsFound ? 7 : false
+  );
 
   const [AddOrderMutation, { loading }] = useMutation(ADD_ORDER);
   const [addOrderDetails, setAddOrderDetails] = useState({
@@ -89,79 +93,89 @@ const OrderCompletion = ({ totalDue, cartItemsList, preOrderItemsFound }) => {
   const handleConfirmOrder = async () => {
     if (cartItemsList.length > 0 && totalDue > 0) {
       if (selectedDeliveryLocation && selectedDeliveryLocation > 0) {
-        AddOrderMutation({
-          variables: {
-            input: {
-              cartItemsList: itemsOnOrder,
-              amountDue: totalDue + 200, // flat rate for delivery for now
-              deliveryLocationId: selectedDeliveryLocation,
-              orderType: "Retail",
-            },
-          },
-          refetchQueries: [
-            {
-              query: GET_CART_ITEMS,
-              variables: { awaitRefetchQueries: true },
-            },
-            {
-              query: GET_MY_ORDERS,
-              variables: { pageSize: 5, awaitRefetchQueries: true },
-            },
-            {
-              query: GET_MY_ORDERS,
-              variables: { pageSize: 20, awaitRefetchQueries: true },
-            },
-          ],
-        })
-          .then((response) => {
-            const {
-              data: {
-                addOrder: {
-                  status: addOrderStatus,
-                  message: addOrderMessage,
-                  paymentCorrelationId,
-                },
+        if (preOrderItemsFound && preferredTime !== null) {
+          AddOrderMutation({
+            variables: {
+              input: {
+                cartItemsList: itemsOnOrder,
+                amountDue: totalDue, // flat rate for delivery for now
+                deliveryLocationId: selectedDeliveryLocation,
+                orderType: "Retail",
+                isPreorder: preOrderItemsFound,
+                preferredDeliveryTime: preferredTime ?? "",
               },
-            } = response;
-            if (addOrderStatus) {
-              // const currentTime = new Date(); // Get current date and time
-              // const currentHour = currentTime.getHours(); // Get the current hour (0-23 format)
-
-              // If the time is between 10:00 AM and 8:00 PM
-              // if (currentHour >= 10 && currentHour < 20) {
-              //   setAddOrderDetails({
-              //     modalOpenStatus: true,
-              //     addStatus: true,
-              //     addMessage: addOrderMessage,
-              //   });
-              // } else {
-              // If it's outside the 10:00 AM - 8:00 PM range
-              navigate("/payment", {
-                state: {
-                  paymentCorrelationId,
-                  totalDue,
-                  deliveryFee: 200,
-                  itemsOnOrder,
+            },
+            refetchQueries: [
+              {
+                query: GET_CART_ITEMS,
+                variables: { awaitRefetchQueries: true },
+              },
+              {
+                query: GET_MY_ORDERS,
+                variables: { pageSize: 5, awaitRefetchQueries: true },
+              },
+              {
+                query: GET_MY_ORDERS,
+                variables: { pageSize: 20, awaitRefetchQueries: true },
+              },
+            ],
+          })
+            .then((response) => {
+              const {
+                data: {
+                  addOrder: {
+                    status: addOrderStatus,
+                    message: addOrderMessage,
+                    paymentCorrelationId,
+                  },
                 },
-              });
-              // }
-            } else {
+              } = response;
+              if (addOrderStatus) {
+                // const currentTime = new Date(); // Get current date and time
+                // const currentHour = currentTime.getHours(); // Get the current hour (0-23 format)
+
+                // If the time is between 10:00 AM and 8:00 PM
+                // if (currentHour >= 10 && currentHour < 20) {
+                //   setAddOrderDetails({
+                //     modalOpenStatus: true,
+                //     addStatus: true,
+                //     addMessage: addOrderMessage,
+                //   });
+                // } else {
+                // If it's outside the 10:00 AM - 8:00 PM range
+                navigate("/payment", {
+                  state: {
+                    paymentCorrelationId,
+                    totalDue,
+                    itemsOnOrder,
+                  },
+                });
+                // }
+              } else {
+                setAddOrderDetails({
+                  modalOpenStatus: true,
+                  addStatus: false,
+                  addMessage: addOrderMessage,
+                });
+              }
+            })
+            .catch((res) => {
               setAddOrderDetails({
                 modalOpenStatus: true,
                 addStatus: false,
-                addMessage: addOrderMessage,
+                addMessage: ErrorHandler(
+                  res.message || res.graphQLErrors[0].message
+                ),
               });
-            }
-          })
-          .catch((res) => {
-            setAddOrderDetails({
-              modalOpenStatus: true,
-              addStatus: false,
-              addMessage: ErrorHandler(
-                res.message || res.graphQLErrors[0].message
-              ),
             });
+        } else {
+          setHasPickedTimeSlotHasError(true);
+          setAddOrderDetails({
+            modalOpenStatus: true,
+            addStatus: false,
+            addMessage: "What time would you wish to receive your meal?",
           });
+        }
       } else {
         setAddOrderDetails({
           modalOpenStatus: true,
@@ -252,6 +266,10 @@ const OrderCompletion = ({ totalDue, cartItemsList, preOrderItemsFound }) => {
               preOrderItemsFound={preOrderItemsFound}
               selectedDeliveryLocation={selectedDeliveryLocation}
               setSelectedDeliveryLocation={setSelectedDeliveryLocation}
+              setPreferredTime={setPreferredTime}
+              preferredTime={preferredTime}
+              hasPickedTimeSlotHasError={hasPickedTimeSlotHasError}
+              setHasPickedTimeSlotHasError={setHasPickedTimeSlotHasError}
             />
           </CardContent>
         </Card>
@@ -345,7 +363,14 @@ const OrderCompletion = ({ totalDue, cartItemsList, preOrderItemsFound }) => {
                     lg={3}
                     xl={3}
                   >
-                    <Typography variant="body1">Ksh. 200</Typography>
+                    {preOrderItemsFound ? (
+                      <Typography variant="body1">Free</Typography>
+                    ) : (
+                      <Typography variant="body2">
+                        Delivery will be charged separately. Our team will
+                        contact you.
+                      </Typography>
+                    )}
                   </Grid>
                 </Grid>
                 <Grid container className={classes.totalContainer}>
@@ -370,35 +395,27 @@ const OrderCompletion = ({ totalDue, cartItemsList, preOrderItemsFound }) => {
                     xl={3}
                   >
                     <Typography variant="body1">
-                      <strong>Ksh. {totalDue + 200}</strong>
+                      <strong>Ksh. {totalDue}</strong>
                     </Typography>
                   </Grid>
                 </Grid>
               </Box>
             </Grid>
-          </CardContent>
-          <CardActions>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="flex-end"
-              justifyItems="flex-end"
-            >
+            <Box sx={{ marginTop: theme.spacing(2) }}>
               <AnimateButton>
                 <Button
                   disableElevation
                   fullWidth
-                  size="medium"
+                  size="large"
                   variant="contained"
                   color="primary"
-                  className={classes.actionButton}
                   onClick={() => handleConfirmOrder()}
                 >
                   {preOrderItemsFound ? "Confirm Pre-rder" : "Confirm Order"}
                 </Button>
               </AnimateButton>
             </Box>
-          </CardActions>
+          </CardContent>
         </Card>
       ) : (
         <Card

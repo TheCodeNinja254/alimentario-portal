@@ -99,8 +99,7 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
     transactionDate: "",
   });
 
-  const { paymentCorrelationId, totalDue, deliveryFee, itemsOnOrder } =
-    orderInfo;
+  const { paymentCorrelationId, totalDue, itemsOnOrder } = orderInfo;
 
   const [LipaNaMpesaMutation, { loading }] = useMutation(LIPA_NA_MPESA_ONLINE);
   const [checkMpesaPaymentStatus] = useLazyQuery(CHECK_PAYMENTS_STATUS, {
@@ -154,8 +153,8 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
       LipaNaMpesaMutation({
         variables: {
           phoneNumber: encrypt(chargedMsisdn),
-          // amount: encrypt(`${totalDue + deliveryFee}`), // flat rate for delivery for now
-          amount: encrypt(`${10}`), // flat rate for delivery for now - For test purposes
+          amount: encrypt(`${totalDue}`), // flat rate for delivery for now
+          // amount: encrypt(`${10}`), // flat rate for delivery for now - For test purposes
           paymentCorrelationId, // created at order creation, Now we need to attach it to a payment
         },
       })
@@ -513,15 +512,11 @@ const PaymentCard = ({ orderInfo, chargedMsisdn }) => {
               <Typography variant="body1">{totalDue} KES</Typography>
             </div>
             <div className={classes.costItem}>
-              <Typography variant="body1">Delivery Fees:</Typography>
-              <Typography variant="body1">{deliveryFee} KES</Typography>
-            </div>
-            <div className={classes.costItem}>
               <Typography variant="body1" fontWeight="bold">
                 Total:
               </Typography>
               <Typography variant="body1" fontWeight="bold">
-                {totalDue + deliveryFee} KES
+                <strong>{totalDue} KES</strong>
               </Typography>
             </div>
           </Grid>

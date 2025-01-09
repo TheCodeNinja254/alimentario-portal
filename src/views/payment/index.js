@@ -8,13 +8,11 @@ import PaymentCard from "./components/PaymentCard";
 
 const Payment = () => {
   const location = useLocation();
-  const { paymentCorrelationId, totalDue, deliveryFee, itemsOnOrder } =
-    location.state || {}; // Access the passed state
+  const { paymentCorrelationId, totalDue, itemsOnOrder } = location.state || {}; // Access the passed state
 
   const orderInfo = {
     paymentCorrelationId,
     totalDue,
-    deliveryFee,
     itemsOnOrder,
   };
 

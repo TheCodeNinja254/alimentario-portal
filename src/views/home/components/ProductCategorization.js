@@ -6,9 +6,9 @@ import {
   BakeryDining,
   BreakfastDiningOutlined,
   Fastfood,
-  LocalDrink,
 } from "@material-ui/icons";
 import { makeStyles, useTheme } from "@material-ui/styles";
+import { IconBottle } from "@tabler/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -32,17 +32,23 @@ const productCategories = [
     catSlug: "sandwiches",
   },
   {
+    id: 8,
+    name: "Wine",
+    icon: <IconBottle />,
+    catSlug: "sandwiches",
+  },
+  {
     id: 2,
     name: "Sandwich Extras",
     icon: <BakeryDining size="small" />,
     catSlug: "extras",
   },
-  {
-    id: 3,
-    name: "Fresh Juices",
-    icon: <LocalDrink size="small" />,
-    catSlug: "juices",
-  },
+  // {
+  //   id: 3,
+  //   name: "Fresh Juices",
+  //   icon: <LocalDrink size="small" />,
+  //   catSlug: "juices",
+  // },
   {
     id: 4,
     name: "Dressings",

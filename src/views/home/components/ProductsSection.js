@@ -27,8 +27,13 @@ const useStyles = makeStyles((theme) => ({
 const _categories = [
   "Sandwiches & Burgers",
   "Sandwiches Extras",
-  "Fresh Juices",
+  // "Fresh Juices",
+  "",
   "Dressings",
+  "",
+  "",
+  "",
+  "Wine",
 ];
 
 const ProductsSection = ({
@@ -67,6 +72,8 @@ const ProductsSection = ({
     }, 1);
   }, [animate]);
 
+  const displayName = _categories[category - 1] ?? "Special";
+
   return (
     <>
       <Stack direction="row" sx={{ marginBottom: theme.spacing(1) }}>
@@ -85,9 +92,7 @@ const ProductsSection = ({
             gutterBottom
             className={classes.subGreeting}
           >
-            {category
-              ? `Desafio ${_categories[category - 1]}`
-              : "Toasted by Desafio"}
+            {category ? `Desafio ${displayName}` : "Toasted by Desafio"}
           </MuiTypography>
         )}
       </Stack>

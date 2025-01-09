@@ -13,6 +13,7 @@ const config = {
     5: "Racecourse Specials (Meals)",
     6: "Racecourse Wines",
     7: "Racecourse Bites",
+    8: "Desafio Wine (Online)",
   },
 };
 

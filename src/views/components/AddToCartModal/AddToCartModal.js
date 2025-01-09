@@ -80,6 +80,71 @@ const AddToCartModal = ({
     setOpen(false);
   };
 
+  const TagsSection = ({ stage = "initial" }) => {
+    return (
+      <Box
+        display="flex"
+        justifyContent="left"
+        flexWrap="wrap"
+        className={classes.infoTab}
+      >
+        <Chip
+          style={{ margin: theme.spacing(1) }}
+          variant="outlined"
+          size="small"
+          color="primary"
+          label={
+            stage === "initial" ? (
+              <Typography variant="caption">
+                Ksh. <strong>{selectedProduct?.productPrice}</strong>
+              </Typography>
+            ) : (
+              <Typography variant="caption">
+                <strong>
+                  {quantity} {selectedProduct?.productUnitOfMeasure}
+                </strong>{" "}
+                @ Ksh. <strong>{selectedProduct?.productPrice}</strong>
+              </Typography>
+            )
+          }
+          className={classes.priceChip}
+        />
+        {stage !== "initial" && (
+          <Chip
+            style={{ margin: theme.spacing(1) }}
+            variant="outlined"
+            color="primary"
+            size="small"
+            label={
+              <Typography variant="caption">
+                Ksh.{" "}
+                <strong>
+                  {selectedProduct?.productPrice * Number(quantity)}
+                </strong>
+              </Typography>
+            }
+            className={classes.priceChip}
+          />
+        )}
+        {selectedProduct?.tag &&
+          selectedProduct?.tag !== "" &&
+          selectedProduct.tag
+            .split(",")
+            .map((tag) => (
+              <Chip
+                style={{ margin: theme.spacing(1) }}
+                key={tag}
+                variant="default"
+                color="primary"
+                size="small"
+                label={<Typography variant="caption">{tag.trim()}</Typography>}
+                className={classes.chip}
+              />
+            ))}
+      </Box>
+    );
+  };
+
   return (
     <Dialog fullWidth open={open} onClose={handleClose}>
       <DialogTitle>
@@ -108,50 +173,23 @@ const AddToCartModal = ({
               <StatusIcon status="success" text="Successfully added to cart" />
             </Grid>
             <Grid item xs={6}>
-              <Typography variant="caption">PRODUCT</Typography>
-              <Typography className={classes.productTitle}>
-                {selectedProduct.productName}
-              </Typography>
-              <Typography variant="caption">
-                has been added to you cart.
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
               <Image
                 alt="Img"
                 src={`/images/${selectedProduct?.productPicMain}`}
                 className={classes.productImage}
               />
             </Grid>
+            <Grid item xs={6}>
+              <Typography variant="caption">PRODUCT</Typography>
+              <Typography className={classes.productTitle}>
+                {selectedProduct.productName?.toUpperCase()}
+              </Typography>
+              <Typography variant="caption">
+                has been added to you cart.
+              </Typography>
+            </Grid>
             <Grid item xs={12}>
-              <Stack direction="row" spacing={1} className={classes.infoTab}>
-                <Chip
-                  variant="outlined"
-                  color="primary"
-                  label={
-                    <Typography>
-                      <strong>
-                        {quantity} {selectedProduct?.productUnitOfMeasure}
-                      </strong>{" "}
-                      @ Ksh. <strong>{selectedProduct?.productPrice}</strong>
-                    </Typography>
-                  }
-                  className={classes.priceChip}
-                />
-                <Chip
-                  variant="outlined"
-                  color="primary"
-                  label={
-                    <Typography>
-                      Ksh.{" "}
-                      <strong>
-                        {selectedProduct?.productPrice * Number(quantity)}
-                      </strong>
-                    </Typography>
-                  }
-                  className={classes.priceChip}
-                />
-              </Stack>
+              <TagsSection stage="after" />
               {customerSpecification !== "" && (
                 <>
                   <Typography variant="caption">ADDITIONAL INFO</Typography>
@@ -198,38 +236,21 @@ const AddToCartModal = ({
         ) : (
           <Grid container spacing={1}>
             <Grid item xs={6}>
-              <Typography className={classes.productTitle}>
-                {selectedProduct.productName}
-              </Typography>
-              <Typography variant="caption">
-                {selectedProduct.productDescription}
-              </Typography>
-
-              <Stack direction="row" spacing={1} className={classes.infoTab}>
-                <Chip
-                  variant="filled"
-                  color="primary"
-                  label={
-                    selectedProduct?.stockStatus === 1
-                      ? "Available"
-                      : "Out of Stock"
-                  }
-                  className={classes.priceChip}
-                />
-                <Chip
-                  variant="filled"
-                  color="primary"
-                  label={`Ksh. ${selectedProduct?.productPrice}`}
-                  className={classes.priceChip}
-                />
-              </Stack>
-            </Grid>
-            <Grid item xs={6}>
               <Image
                 alt="Img"
                 src={`/images/${selectedProduct?.productPicMain}`}
                 className={classes.productImage}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography className={classes.productTitle}>
+                {selectedProduct?.productName?.toUpperCase()}
+              </Typography>
+              <Typography variant="caption">
+                {selectedProduct.productDescription}
+              </Typography>
+
+              <TagsSection stage="initial" />
             </Grid>
             <Grid item xs={12}>
               {alertVisible && (
@@ -249,10 +270,24 @@ const AddToCartModal = ({
               )}
             </Grid>
             <Grid item xs={12}>
-              <AddToCartForm
-                productId={selectedProduct.id}
-                setSubmitDetails={setSubmitDetails}
-              />
+              {selectedProduct?.stockStatus === 1 ? (
+                <AddToCartForm
+                  productId={selectedProduct.id}
+                  setSubmitDetails={setSubmitDetails}
+                />
+              ) : (
+                <Chip
+                  variant="outlined"
+                  color="primary"
+                  size="small"
+                  label={
+                    <Typography variant="caption">
+                      <strong>Out of Stock, Check again later!</strong>
+                    </Typography>
+                  }
+                  className={classes.priceChip}
+                />
+              )}
             </Grid>
           </Grid>
         )}

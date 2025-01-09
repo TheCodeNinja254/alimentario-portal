@@ -26,6 +26,10 @@ export const GET_DISPLAY_PRODUCTS = gql`
         productStatus
         productCategory
         expiryDate
+        tag
+        productFamily
+        vendor
+        originCountry
       }
     }
   }

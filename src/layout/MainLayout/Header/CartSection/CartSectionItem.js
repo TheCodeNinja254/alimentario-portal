@@ -15,9 +15,9 @@ import {
 } from "@mui/material";
 import { IconTrash } from "@tabler/icons";
 import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/styles";
 import formatDate from "../../../../utils/formatDate";
 
-// styles
 const ListItemWrapper = styled("div")(() => ({
   padding: 16,
   "& .MuiListItem-root": {
@@ -30,7 +30,28 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 
+const useStyles = makeStyles(() => ({
+  root: {},
+  scrollText: {
+    display: "inline-block",
+    maxWidth: "80%", // Adjust based on parent container width
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis", // Optional: For a graceful fade effect
+    // animation: "$scroll 10s linear infinite",
+  },
+  "@keyframes scroll": {
+    "0%": {
+      transform: "translateX(100%)",
+    },
+    "100%": {
+      transform: "translateX(-100%)",
+    },
+  },
+}));
+
 const CartSectionItem = ({ cartItemsList, handleDeleteCartItem }) => {
+  const classes = useStyles();
   const theme = useTheme();
 
   return (
@@ -64,7 +85,21 @@ const CartSectionItem = ({ cartItemsList, handleDeleteCartItem }) => {
                   src={`/images/${cartItem?.productPicMain}`}
                 />
               </ListItemAvatar>
-              <ListItemText primary={cartItem.productName} />
+              <ListItemText
+                primary={
+                  <Typography
+                    gutterBottom
+                    variant="body2"
+                    className={`${classes.productName} ${
+                      cartItem?.productName?.length > 25
+                        ? classes.scrollText
+                        : ""
+                    }`}
+                  >
+                    {cartItem?.productName?.toUpperCase()}
+                  </Typography>
+                }
+              />
               <ListItemSecondaryAction>
                 <Grid container justifyContent="flex-end">
                   <Grid item xs={12}>

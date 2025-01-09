@@ -103,11 +103,7 @@ const ProductsSection = ({
           sx={{ marginTop: theme.spacing(2), marginBottom: theme.spacing(2) }}
         />
       </Box>
-      <Grid
-        container
-        spacing={gridSpacing}
-        sx={{ marginTop: theme.spacing(3) }}
-      >
+      <Grid container spacing={1} sx={{ marginTop: theme.spacing(3) }}>
         <GetDisplayProductsQuery
           variables={{
             productCategory: defaultCategoryId || category,

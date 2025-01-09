@@ -83,3 +83,22 @@ img {
 .ql-editor {
     min-height: 300px;
 }
+
+.scrollText {
+    display: inline-block;
+    max-width: 100%; /* Adjust based on parent container width */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Optional: For a graceful fade effect */
+    animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+

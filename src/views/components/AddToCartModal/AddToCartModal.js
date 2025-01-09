@@ -10,6 +10,7 @@ import {
   Divider,
   Grid,
   IconButton,
+  useMediaQuery,
 } from "@material-ui/core";
 import { Stack, Alert } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.customInput,
   },
   modalTitle: {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.primary.main,
     fontWeight: 700,
     fontSize: 16,
   },
@@ -37,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(0),
+    },
   },
   chip: {
     borderColor: theme.palette.primary.dark,
@@ -68,6 +72,7 @@ const AddToCartModal = ({
 }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { alertVisible, hideAlert } = useContext(AlertContext);
 
@@ -147,7 +152,16 @@ const AddToCartModal = ({
   };
 
   return (
-    <Dialog fullWidth open={open} onClose={handleClose}>
+    <Dialog
+      fullScreen={isMobile}
+      fullWidth
+      open={open}
+      onClose={handleClose}
+      PaperProps={{
+        square: false,
+        style: { backgroundColor: theme.palette.background.default },
+      }}
+    >
       <DialogTitle>
         <Box
           sx={{
@@ -156,8 +170,10 @@ const AddToCartModal = ({
             flexDirection: "row",
           }}
         >
-          <DialogTitle className={classes.modalTitle}>
-            {submitStatus ? "" : "Add to cart"}
+          <DialogTitle>
+            <Typography className={classes.modalTitle}>
+              {submitStatus ? "" : "Add to cart"}
+            </Typography>
           </DialogTitle>
           <Box>
             <IconButton onClick={() => handleClose()}>
@@ -180,16 +196,16 @@ const AddToCartModal = ({
                 className={classes.productImage}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={12} md={6}>
               <Typography variant="caption">PRODUCT</Typography>
-              <Typography className={classes.productTitle}>
+              <Typography className={classes.productTitle} variant="body2">
                 {selectedProduct.productName?.toUpperCase()}
               </Typography>
               <Typography variant="caption">
                 has been added to you cart.
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={12} md={6}>
               <TagsSection stage="after" />
               {customerSpecification !== "" && (
                 <>
@@ -236,15 +252,15 @@ const AddToCartModal = ({
           </Grid>
         ) : (
           <Grid container spacing={1}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={12} md={6}>
               <Image
                 alt="Img"
                 src={`/images/${selectedProduct?.productPicMain}`}
                 className={classes.productImage}
               />
             </Grid>
-            <Grid item xs={6}>
-              <Typography className={classes.productTitle}>
+            <Grid item xs={12} sm={12} md={6}>
+              <Typography className={classes.productTitle} variant="body2">
                 {selectedProduct?.productName?.toUpperCase()}
               </Typography>
               <Typography variant="caption">

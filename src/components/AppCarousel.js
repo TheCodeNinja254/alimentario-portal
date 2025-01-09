@@ -51,7 +51,7 @@ const AppCarousel = ({ imageList }) => {
 
   return (
     <AnimatedSection animate={animate} duration="1.0s">
-      <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
+      <Box sx={{ width: "100%", flexGrow: 1 }}>
         <AutoPlaySwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={activeStep}

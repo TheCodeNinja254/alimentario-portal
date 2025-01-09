@@ -7,6 +7,7 @@ import {
   Typography,
   Divider,
   Grid,
+  useMediaQuery,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { Instagram, ShoppingCart } from "@material-ui/icons";
@@ -88,6 +89,8 @@ const PromotionalModal = ({ open, setOpen }) => {
     setOpen(false);
   };
 
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const handlePrebookingPrompt = async () => {
     handleClose();
     navigate("/horse-racing");
@@ -102,7 +105,7 @@ const PromotionalModal = ({ open, setOpen }) => {
   }, [animate]);
 
   return (
-    <Dialog fullWidth open={open} onClose={handleClose}>
+    <Dialog fullWidth open={open} onClose={handleClose} fullScreen={isMobile}>
       <AnimatedSection animate={animate} duration="1.1s">
         <Grid container spacing={0}>
           <Grid item xs={12}>

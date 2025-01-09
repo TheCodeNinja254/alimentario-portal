@@ -8,6 +8,7 @@ import Cart from "./Cart";
 import WeDeliverCard from "../components/ActionCards/WeDeliverCard";
 import OrderCompletion from "./OrderCompletion";
 import GetCartItemsQuery from "../../api/Queries/Cart/GetCartItems";
+import BrandsQuickLinks from "../../components/BrandsQuickLinks";
 
 const Checkout = () => {
   const [totalDue, setTotalDue] = useState(0);
@@ -59,6 +60,7 @@ const Checkout = () => {
               <Grid item lg={4} md={8} sm={12} xs={12}>
                 <Grid container spacing={gridSpacing}>
                   <Grid item xs={12}>
+                    <BrandsQuickLinks />
                     <MenuCard />
                   </Grid>
                   <Grid item xs={12}>

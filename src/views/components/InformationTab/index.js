@@ -5,6 +5,7 @@ import MenuCard from "../ActionCards";
 import BannerCard from "../ActionCards/BannerCard";
 import WeDeliverCard from "../ActionCards/WeDeliverCard";
 import PopularCard from "../../home/components/PopularCard";
+import BrandsQuickLinks from "../../../components/BrandsQuickLinks";
 
 const InformationTab = ({ showRecentOrders = true }) => {
   const showFeature = false;
@@ -12,6 +13,7 @@ const InformationTab = ({ showRecentOrders = true }) => {
 
   return (
     <Grid container spacing={gridSpacing}>
+      <BrandsQuickLinks />
       {showRecentOrders && (
         <Grid item xs={12}>
           <MenuCard />

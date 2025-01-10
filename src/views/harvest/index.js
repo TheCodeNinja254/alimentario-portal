@@ -8,6 +8,7 @@ import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSigned
 import InformationTab from "../components/InformationTab";
 import AnimatedSection from "../../ui-component/AnimatedSection";
 import HarvestProductCategorization from "../../components/HarvestProductCategorization";
+import ImageCarousel from "../../components/ImageCarousel";
 
 const brandHeader = {
   categoryId: 1,
@@ -60,7 +61,14 @@ const HarvestHome = () => {
           <Grid container spacing={gridSpacing}>
             <Grid item lg={8} md={8} sm={12} xs={12}>
               <Grid container spacing={gridSpacing}>
-                <Grid item xs={12}>
+                <Grid item lg={6} md={6} sm={12} xs={12}>
+                  <ImageCarousel
+                    productFamily="harvest"
+                    showNameTitle={false}
+                    showPriceChip={false}
+                  />
+                </Grid>
+                <Grid item lg={6} md={6} sm={12} xs={12}>
                   <Box sx={{ width: "40%" }}>
                     <AnimatedSection animate={animate} duration="1.8s">
                       <Card elevation={0}>
@@ -91,6 +99,8 @@ const HarvestHome = () => {
                       </Typography>
                     </AnimatedSection>
                   </Box>
+                </Grid>
+                <Grid item xs={12}>
                   <HarvestProductCategorization
                     selectedCat={selectedCat}
                     setSelectedCat={setSelectedCat}

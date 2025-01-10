@@ -57,7 +57,7 @@ const AppCarousel = ({ imageList }) => {
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
-          interval={8000}
+          interval={3000}
         >
           {imageList.map((step, index) => (
             <div key={step.id} style={{ position: "relative", height: "100%" }}>

@@ -141,19 +141,19 @@ const Events = () => {
                           <Typography variant="h3" paragraph>
                             The Sport of Kings is back, and we got you!
                           </Typography>
-                          <Typography variant="body1" paragraph>
+                          <Typography variant="caption" paragraph>
                             For all your Steak from the grill, starters,
                             sandwiches, burgers, Wine and more.
                           </Typography>
                           <Typography
-                            variant="h4"
+                            variant="h5"
                             paragraph
                             style={{ textDecorationLine: "underline" }}
                           >
                             <strong>Pre-book for 12 Jan 2025</strong> or{" "}
                             <strong>visit our stand</strong>
                           </Typography>
-                          <Typography variant="body1" paragraph>
+                          <Typography variant="caption" paragraph>
                             See 2025 Full Schedule
                           </Typography>
                           <AnimateButton>

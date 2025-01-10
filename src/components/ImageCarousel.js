@@ -8,9 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/styles";
 import { Chip } from "@mui/material";
-import AnimatedSection from "../../../ui-component/AnimatedSection";
-import NoContentToShow from "../../components/NoContentToShow";
-import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
+import AnimatedSection from "../ui-component/AnimatedSection";
+import NoContentToShow from "../views/components/NoContentToShow";
+import GetDisplayProductsQuery from "../api/Queries/Products/GetDisplayProducts";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -50,7 +50,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ImageCarousel = () => {
+const ImageCarousel = ({
+  productFamily = "toasted",
+  showNameTitle = true,
+  showPriceChip = true,
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -72,28 +76,30 @@ const ImageCarousel = () => {
     <AnimatedSection animate={animate} duration="1.0s">
       <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
         <GetDisplayProductsQuery
-          variables={{ productCategory: 0, productFamily: "toasted" }}
+          variables={{ productCategory: 0, productFamily }}
         >
           {({ getDisplayProducts: { status, productsList } }) => {
             setMaxSteps(productsList.length);
 
             return status && productsList?.length > 0 ? (
               <>
-                <Paper square elevation={0} className={classes.paper}>
-                  <Grid container>
-                    <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
-                      <Typography className={classes.tagLine}>
-                        {productsList[activeStep].productName}
-                      </Typography>
+                {showNameTitle && (
+                  <Paper square elevation={0} className={classes.paper}>
+                    <Grid container>
+                      <Grid item lg={12} xl={12} md={12} sm={12} xs={12}>
+                        <Typography className={classes.tagLine}>
+                          {productsList[activeStep].productName}
+                        </Typography>
+                      </Grid>
                     </Grid>
-                  </Grid>
-                </Paper>
+                  </Paper>
+                )}
                 <AutoPlaySwipeableViews
                   axis={theme.direction === "rtl" ? "x-reverse" : "x"}
                   index={activeStep}
                   onChangeIndex={handleStepChange}
                   enableMouseEvents
-                  interval={9000}
+                  interval={3000}
                 >
                   {productsList.map((step, index) => (
                     <div
@@ -112,26 +118,28 @@ const ImageCarousel = () => {
                           />
 
                           {/* Product Price Chip */}
-                          <Chip
-                            label={
-                              step?.productPrice === 0
-                                ? "Extra"
-                                : `Ksh. ${step.productPrice}`
-                            }
-                            sx={{
-                              position: "absolute",
-                              top: "10px",
-                              left: "10px",
-                              backgroundColor: "rgba(255, 255, 255, 0.8)",
-                              fontWeight: "bold",
-                            }}
-                          />
+                          {showPriceChip && (
+                            <Chip
+                              label={
+                                step?.productPrice === 0
+                                  ? "Extra"
+                                  : `Ksh. ${step.productPrice}`
+                              }
+                              sx={{
+                                position: "absolute",
+                                top: "10px",
+                                left: "10px",
+                                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                                fontWeight: "bold",
+                              }}
+                            />
+                          )}
                           <Chip
                             label={step?.productName}
                             sx={{
                               position: "absolute",
                               top: "10px",
-                              left: "100px",
+                              left: showPriceChip ? "100px" : "10px",
                               backgroundColor: "rgba(255, 255, 255, 0.8)",
                               fontWeight: "bold",
                             }}

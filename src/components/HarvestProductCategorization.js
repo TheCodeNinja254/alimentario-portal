@@ -26,31 +26,19 @@ const productCategories = [
   {
     id: 10,
     name: "Kenyan",
-    icon: (
-      <Stack direction="row" spacing={2}>
-        <Image src={kenyaFlag} alt="Kenyan" style={{ height: 22 }} />
-      </Stack>
-    ),
+    icon: <Image src={kenyaFlag} alt="Kenyan" style={{ height: 22 }} />,
     catSlug: "/desafio-harvest",
   },
   {
     id: 11,
     name: "Italian Meat",
-    icon: (
-      <Stack direction="row" spacing={2}>
-        <Image src={italyFlag} alt="Kenyan" style={{ height: 22 }} />
-      </Stack>
-    ),
+    icon: <Image src={italyFlag} alt="Kenyan" style={{ height: 22 }} />,
     catSlug: "/desafio-harvest",
   },
   {
     id: 12,
     name: "Italian Cheese",
-    icon: (
-      <Stack direction="row" spacing={2}>
-        <Image src={italyFlag} alt="Kenyan" style={{ height: 22 }} />
-      </Stack>
-    ),
+    icon: <Image src={italyFlag} alt="Kenyan" style={{ height: 22 }} />,
     catSlug: "/desafio-harvest",
   },
 ];

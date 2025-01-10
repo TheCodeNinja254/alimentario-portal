@@ -53,7 +53,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
       <Box
         sx={{
           display: { xs: "block", md: "none" },
-          backgroundColor: theme.palette.background.default,
+          backgroundColor: theme.palette.background.paper,
         }}
       >
         <div className={classes.boxContainer}>
@@ -69,6 +69,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
       </BrowserView>
       <MobileView>
         <Box sx={{ px: 2 }}>
+          <DesafioBrands />
           <MenuList />
           <MenuCardMini />
         </Box>

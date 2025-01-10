@@ -5,7 +5,7 @@ import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
 import { gridSpacing } from "../../store/constant";
 import ProductsSection from "./components/ProductsSection";
-import ImageCarousel from "./components/ImageCarousel";
+import ImageCarousel from "../../components/ImageCarousel";
 import GreetingsCard from "./components/GreetingsCard";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import WelcomeModal from "../components/WelcomeModal/WelcomeModal";
@@ -69,6 +69,7 @@ const Dashboard = () => {
                   <ProductCategorization
                     selectedCat={selectedCat}
                     setSelectedCat={setSelectedCat}
+                    shouldNavigate={false}
                   />
                   <ProductsSection
                     sessionStatus={status}

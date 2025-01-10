@@ -102,13 +102,17 @@ const ProductCard = ({
                     className={classes.priceChip}
                   />
                 ) : (
-                  <Chip
-                    variant="outlined"
-                    color="primary"
-                    size="small"
-                    label={<Typography variant="caption">Extra</Typography>}
-                    className={classes.priceChip}
-                  />
+                  <>
+                    {productFamily === "toasted" && (
+                      <Chip
+                        variant="outlined"
+                        color="primary"
+                        size="small"
+                        label={<Typography variant="caption">Extra</Typography>}
+                        className={classes.priceChip}
+                      />
+                    )}
+                  </>
                 )}
                 {show &&
                   product?.tag &&
@@ -146,9 +150,7 @@ const ProductCard = ({
                 variant="caption"
                 className="typography-two-lines"
               >
-                {product?.productPrice <= 0
-                  ? "An great addition to any meal."
-                  : product?.productDescription}
+                {product?.productDescription}
               </Typography>
               <Button
                 size="small"

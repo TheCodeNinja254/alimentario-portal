@@ -1,9 +1,11 @@
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@material-ui/styles";
 import OrderSection from "../OrderSection/OrderSection";
 
 const ViewMyOrdersModal = ({ open, setOpen, order }) => {
+  const theme = useTheme();
   const handleClose = () => {
     setOpen(false);
   };

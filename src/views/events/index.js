@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Box, CardActionArea, Grid, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  CardActionArea,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { makeStyles, useTheme } from "@material-ui/styles";
+import { Instagram } from "@material-ui/icons";
 import ProductsSection from "../home/components/ProductsSection";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
 import InformationTab from "../components/InformationTab";
 import AnimatedSection from "../../ui-component/AnimatedSection";
 import AppCarousel from "../../components/AppCarousel";
 import EventsProductCategorization from "../../components/EventsProductCategorization";
+import AnimateButton from "../../ui-component/extended/AnimateButton";
 
 const brandHeader = {
   categoryId: 1,
@@ -137,10 +145,35 @@ const Events = () => {
                             For all your Steak from the grill, starters,
                             sandwiches, burgers, Wine and more.
                           </Typography>
-                          <Typography variant="h4" paragraph>
-                            <strong>Pre-book here</strong> or{" "}
+                          <Typography
+                            variant="h4"
+                            paragraph
+                            style={{ textDecorationLine: "underline" }}
+                          >
+                            <strong>Pre-book for 12 Jan 2025</strong> or{" "}
                             <strong>visit our stand</strong>
                           </Typography>
+                          <Typography variant="body1" paragraph>
+                            See 2025 Full Schedule
+                          </Typography>
+                          <AnimateButton>
+                            <a
+                              href={process.env.REACT_APP_HORSE_RACE_SCHEDULE}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Button
+                                disableElevation
+                                fullWidth
+                                size="small"
+                                variant="outlined"
+                                color="secondary"
+                                startIcon={<Instagram size={10} />}
+                              >
+                                Schedule @jockeyclubke
+                              </Button>
+                            </a>
+                          </AnimateButton>
                         </Box>
                       </AnimatedSection>
                     </Grid>

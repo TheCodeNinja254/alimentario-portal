@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Chip, Typography } from "@material-ui/core";
 import { Stack } from "@mui/material";
 import { makeStyles, useTheme } from "@material-ui/styles";
+import { IconGlobe } from "@tabler/icons";
 import Image from "./Image";
 import kenyaFlag from "../assets/images/flags/kenya.png";
 import italyFlag from "../assets/images/flags/italy.png";
@@ -18,23 +19,39 @@ const useStyles = makeStyles((theme) => ({
 const productCategories = [
   {
     id: 0,
+    name: "Everything",
+    icon: <IconGlobe />,
+    catSlug: "/desafio-harvest",
+  },
+  {
+    id: 10,
     name: "Kenyan",
     icon: (
       <Stack direction="row" spacing={2}>
         <Image src={kenyaFlag} alt="Kenyan" style={{ height: 22 }} />
       </Stack>
     ),
-    catSlug: "/desafio-toasted",
+    catSlug: "/desafio-harvest",
   },
   {
-    id: 1,
-    name: "Italian",
+    id: 11,
+    name: "Italian Meat",
     icon: (
       <Stack direction="row" spacing={2}>
         <Image src={italyFlag} alt="Kenyan" style={{ height: 22 }} />
       </Stack>
     ),
-    catSlug: "sandwiches",
+    catSlug: "/desafio-harvest",
+  },
+  {
+    id: 12,
+    name: "Italian Cheese",
+    icon: (
+      <Stack direction="row" spacing={2}>
+        <Image src={italyFlag} alt="Kenyan" style={{ height: 22 }} />
+      </Stack>
+    ),
+    catSlug: "/desafio-harvest",
   },
 ];
 

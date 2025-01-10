@@ -94,27 +94,29 @@ const AddToCartModal = ({
         flexWrap="wrap"
         className={classes.infoTab}
       >
-        <Chip
-          style={{ margin: theme.spacing(1) }}
-          variant="outlined"
-          size="small"
-          color="primary"
-          label={
-            stage === "initial" ? (
-              <Typography variant="caption">
-                Ksh. <strong>{selectedProduct?.productPrice}</strong>
-              </Typography>
-            ) : (
-              <Typography variant="caption">
-                <strong>
-                  {quantity} {selectedProduct?.productUnitOfMeasure}
-                </strong>{" "}
-                @ Ksh. <strong>{selectedProduct?.productPrice}</strong>
-              </Typography>
-            )
-          }
-          className={classes.priceChip}
-        />
+        {selectedProduct?.productPrice > 0 && (
+          <Chip
+            style={{ margin: theme.spacing(1) }}
+            variant="outlined"
+            size="small"
+            color="primary"
+            label={
+              stage === "initial" ? (
+                <Typography variant="caption">
+                  Ksh. <strong>{selectedProduct?.productPrice}</strong>
+                </Typography>
+              ) : (
+                <Typography variant="caption">
+                  <strong>
+                    {quantity} {selectedProduct?.productUnitOfMeasure}
+                  </strong>{" "}
+                  @ Ksh. <strong>{selectedProduct?.productPrice}</strong>
+                </Typography>
+              )
+            }
+            className={classes.priceChip}
+          />
+        )}
         {stage !== "initial" && (
           <Chip
             style={{ margin: theme.spacing(1) }}

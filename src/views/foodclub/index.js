@@ -7,6 +7,8 @@ import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSigned
 import ProductCategorization from "../home/components/ProductCategorization";
 import InformationTab from "../components/InformationTab";
 import AnimatedSection from "../../ui-component/AnimatedSection";
+import Image from "../../components/Image";
+import comingSoon from "../../assets/images/comingSoon.png";
 
 const brandHeader = {
   categoryId: 1,
@@ -76,6 +78,9 @@ const Events = () => {
                     setSelectedCat={setSelectedCat}
                     shouldNavigate={false}
                   />
+                  <Box>
+                    <Image src={comingSoon} alt="coming soon" />
+                  </Box>
                 </Grid>
               </Grid>
             </Grid>

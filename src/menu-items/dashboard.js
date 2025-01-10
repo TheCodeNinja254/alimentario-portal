@@ -3,7 +3,7 @@ import {
   BreakfastDiningOutlined,
   Fastfood,
 } from "@material-ui/icons";
-import { IconBottle } from "@tabler/icons";
+import { IconBottle, IconCup } from "@tabler/icons";
 
 const dashboard = {
   id: "dashboard",
@@ -28,6 +28,14 @@ const dashboard = {
     },
     {
       id: "3",
+      title: "Coffee & Tea",
+      type: "item",
+      url: "/products/coffee-n-tea",
+      icon: IconCup,
+      breadcrumbs: false,
+    },
+    {
+      id: "4",
       title: "Sandwich Extras",
       type: "item",
       url: "/products/extras",
@@ -35,7 +43,7 @@ const dashboard = {
       breadcrumbs: false,
     },
     {
-      id: "4",
+      id: "5",
       title: "Desafio Dressings",
       type: "item",
       url: "/products/desafio-dressings",

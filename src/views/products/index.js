@@ -8,7 +8,25 @@ import BrandingSection from "../home/components/BrandingSection";
 import ProductsSection from "../home/components/ProductsSection";
 import InformationTab from "../components/InformationTab";
 
+// 0: "Everything",
+//     1: "Sandwich and Burgers", // toasted
+//     2: "Sandwich Extras", // toasted
+//     3: "Fresh Juices", // toasted
+//     4: "Dressings", // toasted
+//     5: "Racecourse Specials (Meals)",
+//     6: "Racecourse Wines",
+//     7: "Racecourse Bites",
+//     8: "Desafio Wine (Online)",
+//     9: "Coffee & Tea", // toasted
+//     10: "Local Steak", // harvest
+//     11: "Imported Steak (Italian)", // harvest
+//     12: "Imported Cheese (Italian)", // harvest
+
 const productCatMapper = [
+  {
+    id: 0,
+    slug: "toasted",
+  },
   {
     id: 1,
     slug: "sandwiches",
@@ -18,12 +36,16 @@ const productCatMapper = [
     slug: "extras",
   },
   {
-    id: 3,
-    slug: "juices",
-  },
-  {
     id: 4,
     slug: "desafio-dressings",
+  },
+  {
+    id: 8,
+    slug: "wine",
+  },
+  {
+    id: 9,
+    slug: "coffee-n-tea",
   },
 ];
 const Products = () => {
@@ -46,6 +68,7 @@ const Products = () => {
                   <ProductCategorization
                     selectedCat={selectedCat}
                     setSelectedCat={setSelectedCat}
+                    defaultCategoryId={defaultCategoryId}
                   />
                   <ProductsSection
                     defaultCategoryId={defaultCategoryId}

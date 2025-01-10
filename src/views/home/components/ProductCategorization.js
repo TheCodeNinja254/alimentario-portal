@@ -23,7 +23,7 @@ const productCategories = [
     id: 0,
     name: "Desafio Toasted",
     icon: <Fastfood size="small" />,
-    catSlug: "/desafio-toasted",
+    catSlug: "desafio-toasted",
   },
   {
     id: 1,
@@ -35,7 +35,7 @@ const productCategories = [
     id: 8,
     name: "Wine",
     icon: <IconBottle />,
-    catSlug: "sandwiches",
+    catSlug: "wine",
   },
   {
     id: 9,
@@ -67,6 +67,7 @@ const ProductCategorization = ({
   selectedCat,
   setSelectedCat,
   shouldNavigate = true,
+  defaultCategoryId,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -91,7 +92,11 @@ const ProductCategorization = ({
       {productCategories.map((cat) => (
         <Chip
           key={cat.id}
-          variant={selectedCat === cat.id ? "default" : "outlined"}
+          variant={
+            selectedCat === cat.id || defaultCategoryId === cat.id
+              ? "default"
+              : "outlined"
+          }
           color="primary"
           onClick={() => handleCatChange(cat.id, cat.catSlug)}
           label={

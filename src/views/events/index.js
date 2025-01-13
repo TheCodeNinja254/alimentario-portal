@@ -150,7 +150,7 @@ const Events = () => {
                             paragraph
                             style={{ textDecorationLine: "underline" }}
                           >
-                            <strong>Pre-book for 12 Jan 2025</strong> or{" "}
+                            <strong>Pre-book for 26 Jan 2025</strong> or{" "}
                             <strong>visit our stand</strong>
                           </Typography>
                           <Typography variant="caption" paragraph>

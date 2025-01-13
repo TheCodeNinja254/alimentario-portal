@@ -3,6 +3,7 @@ import { Grid, Stack, Box, Divider } from "@mui/material";
 import MuiTypography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { Fastfood } from "@material-ui/icons";
+import { Card, CardContent, Typography } from "@material-ui/core";
 import AddToCartModal from "../../components/AddToCartModal";
 import SignInModal from "../../components/SignInModal/SignInModal";
 import ProductCard from "./ProductCard";
@@ -10,6 +11,8 @@ import AnimatedSection from "../../../ui-component/AnimatedSection";
 import NoContentToShow from "../../components/NoContentToShow";
 import GetDisplayProductsQuery from "../../../api/Queries/Products/GetDisplayProducts";
 import PreorderAlert from "../../../components/PreorderAlert";
+import Image from "../../../components/Image";
+import goldirocks from "../../../assets/images/goldirocks.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -102,6 +105,32 @@ const ProductsSection = ({
           sx={{ marginTop: theme.spacing(2), marginBottom: theme.spacing(2) }}
         />
       </Box>
+      {category === 9 && (
+        <Card
+          elevation={0}
+          style={{
+            background: `linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(6,72,56,1) 35%, rgba(0,212,255,1) 100%)`,
+            color: theme.palette.common.white,
+            marginTop: theme.spacing(2),
+            marginBottom: theme.spacing(2),
+            paddingY: theme.spacing(2),
+          }}
+        >
+          <CardContent>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <Image src={goldirocks} alt="Goldirocks" />
+              </Grid>
+              <Grid item xs={8}>
+                <Typography variant="h3">
+                  In Partnership with Masai Coffee powered by Goldrock
+                  International
+                </Typography>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      )}
       <Grid container spacing={1} sx={{ marginTop: theme.spacing(3) }}>
         <GetDisplayProductsQuery
           variables={{

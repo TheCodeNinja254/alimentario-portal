@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Box, CardActionArea, Grid } from "@material-ui/core";
+import {
+  Box,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import Card from "@mui/material/Card";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import { gridSpacing } from "../../store/constant";
 import GetSignedInCustomerQuery from "../../api/Queries/Authentication/GetSignedInCustomer";
-import ProductCategorization from "../home/components/ProductCategorization";
 import InformationTab from "../components/InformationTab";
-import AnimatedSection from "../../ui-component/AnimatedSection";
 import Image from "../../components/Image";
-import comingSoon from "../../assets/images/comingSoon.png";
+import AnimatedSection from "../../ui-component/AnimatedSection";
+import chefsService from "../../assets/images/chefsService.png";
+import myCookingChef from "../../assets/images/myCookingChef.jpeg";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const brandHeader = {
   categoryId: 1,
@@ -19,27 +27,33 @@ const brandHeader = {
   type: "navigational",
 };
 
+const foodclubServices = [
+  {
+    id: 1,
+    image: myCookingChef,
+    title: "Chef's Service",
+  },
+  {
+    id: 2,
+    image: chefsService,
+    title: "Chef's Table",
+  },
+];
+
 const useStyles = makeStyles((theme) => ({
-  branding: {
-    marginTop: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    color: theme.palette.common.black,
-    fontSize: 10,
-    fontWeight: 300,
-    textAlign: "right",
-    [theme.breakpoints.down("sm")]: {
-      textAlign: "center",
-      marginTop: theme.spacing(1),
-      fontSize: 10,
-      fontWeight: 300,
-    },
+  root: {},
+  chip: {
+    marginRight: theme.spacing(1),
+    borderColor: theme.palette.primary.dark,
   },
 }));
 
 const Events = () => {
+  const theme = useTheme();
   const classes = useStyles();
+
   const [, setLoading] = useState(true);
-  const [selectedCat, setSelectedCat] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setLoading(false);
@@ -60,26 +74,105 @@ const Events = () => {
             <Grid item lg={8} md={8} sm={12} xs={12}>
               <Grid container spacing={gridSpacing}>
                 <Grid item xs={12}>
-                  <Box sx={{ width: "40%" }}>
-                    <AnimatedSection animate={animate} duration="1.8s">
-                      <Card elevation={0}>
-                        <CardActionArea>
+                  <Box sx={{ width: "100%" }}>
+                    <Box key={brandHeader.categoryId}>
+                      <AnimatedSection animate={animate} duration="1.8s">
+                        <Card elevation={0}>
                           <img
                             src={brandHeader.categoryDisplayPic}
                             alt="Brand Logo"
-                            className={classes.brandImages}
+                            style={{ height: isMobile ? "60px" : 70 }}
                           />
-                        </CardActionArea>
-                      </Card>
-                    </AnimatedSection>
-                  </Box>
-                  <ProductCategorization
-                    selectedCat={selectedCat}
-                    setSelectedCat={setSelectedCat}
-                    shouldNavigate={false}
-                  />
-                  <Box>
-                    <Image src={comingSoon} alt="coming soon" />
+                        </Card>
+                        <Box sx={{ marginY: theme.spacing(3) }}>
+                          <Typography variant="h3">Join the club?</Typography>
+                          <Typography
+                            variant="body2"
+                            style={{ marginTop: theme.spacing(3) }}
+                          >
+                            You can Experience Desafio with us and more people
+                            or at your private event. You can also access any of
+                            our Chefs for your event. We bring the warmth of
+                            family and the excellence of Desafio - The
+                            Desafio&apos;s touch.{" "}
+                          </Typography>
+                          <Typography>
+                            Status = {status ? "true" : "false"}
+                          </Typography>
+                        </Box>
+                      </AnimatedSection>
+                      <AnimatedSection animate={animate} duration="2s">
+                        <Box>
+                          <Typography variant="h4">
+                            We can come to you, or, you can come to us!
+                          </Typography>
+                        </Box>
+                      </AnimatedSection>
+                    </Box>
+                    <Grid
+                      container
+                      spacing={0}
+                      style={{ marginTop: theme.spacing(2) }}
+                    >
+                      {foodclubServices.map((service) => (
+                        <Grid
+                          key={service.id}
+                          item
+                          xs={6}
+                          sm={6}
+                          md={6}
+                          lg={4}
+                          xl={4}
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            marginRight: theme.spacing(2),
+                          }}
+                        >
+                          <AnimatedSection animate={animate} duration="2s">
+                            <Card
+                              elevation={0}
+                              style={{
+                                borderRadius: 10,
+                                marginTop: theme.spacing(0),
+                              }}
+                              variant="outlined"
+                            >
+                              <CardActionArea>
+                                <CardContent>
+                                  <Image
+                                    src={service.image}
+                                    alt=""
+                                    style={{ height: 200 }}
+                                  />
+                                  <Typography
+                                    style={{ marginTop: theme.spacing(1) }}
+                                  >
+                                    {service.title}
+                                  </Typography>
+                                  <Typography
+                                    variant="caption"
+                                    style={{
+                                      marginTop: theme.spacing(0.5),
+                                      marginBottom: theme.spacing(0.5),
+                                    }}
+                                  >
+                                    Join our Chefs for a special Chef curated
+                                    experience
+                                  </Typography>
+                                </CardContent>
+                              </CardActionArea>
+                            </Card>
+                          </AnimatedSection>
+                        </Grid>
+                      ))}
+                    </Grid>
+                    <Grid
+                      container
+                      spacing={gridSpacing}
+                      style={{ marginTop: theme.spacing(3) }}
+                    />
                   </Box>
                 </Grid>
               </Grid>

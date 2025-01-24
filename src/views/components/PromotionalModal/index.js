@@ -3,7 +3,7 @@ import { Dialog, Grid, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { useEffect, useState } from "react";
 import Image from "../../../components/Image";
-import photo from "../../../assets/images/desafioBurger.jpg";
+import photo from "../../../assets/images/horseRacingTwelve.png";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import HorseRacePromotional from "../../../components/HorseRacePromotional";
 import ToastedPromotion from "../../../components/ToastedPromotion";
@@ -73,7 +73,7 @@ const PromotionalModal = ({ open, setOpen }) => {
     }, 100);
   }, [animate]);
 
-  const promotionTopic = "toasted";
+  const promotionTopic = "promotional";
 
   return (
     <Dialog fullWidth open={open} onClose={handleClose} fullScreen={isMobile}>

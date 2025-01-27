@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Box } from "@material-ui/core";
 import { Fastfood } from "@material-ui/icons";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { Alert } from "@mui/material";
 import Typography from "@material-ui/core/Typography";
 import { useTheme } from "@material-ui/styles";
+import { useParams } from "react-router";
 import SearchComponent from "../../components/SearchComponent";
 import { OrdersTable } from "./components";
 import UpdateOrderStatusModal from "../components/UpdateOrderStatusModal";
@@ -15,6 +16,9 @@ import PageTitle from "../../components/PageTitle";
 
 const Orders = () => {
   const theme = useTheme();
+
+  const { orderType } = useParams();
+
   const [dataSetToShow, setDataSetToShow] = useState(5);
   const [open, setOpen] = useState(false);
   const [productViewModalOpen, setProductViewModalOpen] = useState(false);
@@ -23,16 +27,12 @@ const Orders = () => {
 
   const [searchValue, setSearchValue] = useState("");
 
-  // orderInfo status
-  const [status, setStatus] = React.useState("pending");
-
   const handleOpenModal = ({ _orderId, _currentStatus }) => {
     setOpen(true);
     setOrderInfo({ orderId: _orderId, currentStatus: _currentStatus });
   };
 
   const handleSearch = (_text) => {
-    console.log(_text);
     setSearchValue(_text);
   };
 
@@ -47,24 +47,40 @@ const Orders = () => {
 
   const searchVariables = { hasSearch, searchValue } || undefined;
 
+  const parsedOrderType = {
+    new: "pending",
+    "past-orders": "closed",
+  };
+
+  const parsedStatus =
+    orderType === "past-orders" ? parsedOrderType[orderType] : "pending";
+
   const { data, error, loading } = useQuery(GET_ALL_ORDERS, {
     variables: {
       pageSize: dataSetToShow,
-      orderStatus: status,
+      orderStatus: parsedStatus,
       ...searchVariables,
+      isPreorder: orderType === "pre-orders" ? 1 : 0,
     },
   });
+
+  const parsedTitle = {
+    new: "Pending/New Orders",
+    "past-orders": "Past Orders",
+    "pre-orders": "Pre Orders",
+  };
 
   return (
     <Box>
       <PageTitle
-        title="Pending/New Orders"
-        subTitle="View all new and pending orders"
+        title={parsedTitle[orderType] || "Pending/New Orders"}
+        subTitle="View orders on this screen"
       />
       <SearchComponent
         searchPlaceholder="Search orders"
         SearchPreceedingIcon={<Fastfood />}
         handleSearch={handleSearch}
+        hasSearch={hasSearch}
       />
       {loading ? (
         <Box>
@@ -104,6 +120,8 @@ const Orders = () => {
         setOpen={setOpen}
         currentStatus={currentStatus}
         orderId={orderId}
+        searchVariables={searchVariables}
+        isPreorder={orderType === "pre-orders" ? 1 : 0}
       />
       <ViewMyOrdersModal
         open={productViewModalOpen}

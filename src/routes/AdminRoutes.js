@@ -14,16 +14,8 @@ const AuthenticationRoutes = {
       element: <ComingSoonComponent />,
     },
     {
-      path: "/admin/new-orders",
+      path: "/admin/orders/:orderType",
       element: <OrdersComponent />,
-    },
-    {
-      path: "/admin/pre-orders",
-      element: <ComingSoonComponent />,
-    },
-    {
-      path: "/admin/orders",
-      element: <ComingSoonComponent />,
     },
     {
       path: "/admin/products/toasted",

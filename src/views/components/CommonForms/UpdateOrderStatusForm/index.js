@@ -34,13 +34,15 @@ const UpdateOrderStatusForm = ({
   orderId,
   currentStatus,
   setSubmitStatus,
+  searchVariables,
+  isPreorder,
 }) => {
   const classes = useStyles();
 
   const [submitError, setSubmitError] = useState("");
   const [, setSubmitDetails] = useState("");
 
-  const [value, setValue] = React.useState("female");
+  const [value, setValue] = React.useState("");
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -96,6 +98,8 @@ const UpdateOrderStatusForm = ({
                 variables: {
                   pageSize: 5,
                   orderStatus: "pending",
+                  isPreorder,
+                  ...searchVariables,
                   awaitRefetchQueries: true,
                 },
               },

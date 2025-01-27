@@ -3,8 +3,20 @@ import React from "react";
 import Query from "../../../components/Query";
 
 export const GET_ALL_ORDERS = gql`
-  query GetAllOrders($pageSize: Int!, $orderStatus: String) {
-    getAllOrders(pageSize: $pageSize, orderStatus: $orderStatus) {
+  query GetAllOrders(
+    $pageSize: Int!
+    $orderStatus: String
+    $hasSearch: Boolean
+    $searchValue: String
+    $isPreorder: Int
+  ) {
+    getAllOrders(
+      pageSize: $pageSize
+      orderStatus: $orderStatus
+      hasSearch: $hasSearch
+      searchValue: $searchValue
+      isPreorder: $isPreorder
+    ) {
       status
       message
       myOrders {

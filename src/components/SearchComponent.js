@@ -5,17 +5,24 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import { useTheme } from "@material-ui/styles";
 import { Tooltip } from "@material-ui/core";
+import { CancelRounded } from "@material-ui/icons";
 import useIsMobile from "../hooks/useIsMobile";
 
 const SearchComponent = ({
   searchPlaceholder,
   SearchPreceedingIcon,
   handleSearch,
+  hasSearch,
 }) => {
   const theme = useTheme();
   const isMobile = useIsMobile();
 
   const [searchTerm, setSearchTerm] = React.useState("");
+
+  const handleCancel = () => {
+    handleSearch("");
+    setSearchTerm("");
+  };
 
   return (
     <Paper
@@ -41,6 +48,18 @@ const SearchComponent = ({
         inputProps={{ "aria-label": "search orders" }}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      {hasSearch && (
+        <Tooltip title="Click to search">
+          <IconButton
+            type="button"
+            sx={{ p: "10px" }}
+            aria-label="search"
+            onClick={() => handleCancel()}
+          >
+            <CancelRounded />
+          </IconButton>
+        </Tooltip>
+      )}
       <Tooltip title="Click to search">
         <IconButton
           type="button"

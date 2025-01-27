@@ -26,7 +26,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UpdateOrderStatusModal = ({ open, setOpen, currentStatus, orderId }) => {
+const UpdateOrderStatusModal = ({
+  open,
+  setOpen,
+  currentStatus,
+  orderId,
+  searchVariables,
+  isPreorder,
+}) => {
   const classes = useStyles();
 
   const [submitStatus, setSubmitStatus] = useState(false);
@@ -63,6 +70,8 @@ const UpdateOrderStatusModal = ({ open, setOpen, currentStatus, orderId }) => {
               orderId={orderId}
               currentStatus={currentStatus}
               setSubmitStatus={setSubmitStatus}
+              searchVariables={searchVariables}
+              isPreorder={isPreorder}
             />
           </Grid>
         </Grid>

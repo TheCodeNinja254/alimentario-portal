@@ -26,6 +26,7 @@
         "@material-ui/styles": "^4.11.5",
         "@material-ui/utils": "^5.0.0-beta.0",
         "@mui/material": "^5.9.1",
+        "@mui/x-data-grid": "^7.24.1",
         "@tabler/icons": "^1.39.1",
         "@testing-library/jest-dom": "^5.11.10",
         "@testing-library/react": "^11.2.6",
@@ -82,7 +83,7 @@
             "last 1 safari version"
         ]
     },
-    "resolutions" : {
+    "resolutions": {
         "react-error-overlay": "6.0.9"
     },
     "devDependencies": {

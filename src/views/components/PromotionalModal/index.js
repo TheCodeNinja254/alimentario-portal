@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import { useEffect, useState } from "react";
 import Image from "../../../components/Image";
 import photo from "../../../assets/images/horseRacingTwelve.png";
+import burgerPhoto from "../../../assets/images/desafioBurger.jpg";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import HorseRacePromotional from "../../../components/HorseRacePromotional";
 import ToastedPromotion from "../../../components/ToastedPromotion";
@@ -73,14 +74,18 @@ const PromotionalModal = ({ open, setOpen }) => {
     }, 100);
   }, [animate]);
 
-  const promotionTopic = "promotional";
+  const promotionTopic = "toasted";
 
   return (
     <Dialog fullWidth open={open} onClose={handleClose} fullScreen={isMobile}>
       <AnimatedSection animate={animate} duration="1.1s">
         <Grid container spacing={0}>
           <Grid item xs={12}>
-            <Image alt="Img" src={photo} className={classes.productImage} />
+            <Image
+              alt="Img"
+              src={promotionTopic === "toasted" ? burgerPhoto : photo}
+              className={classes.productImage}
+            />
           </Grid>
         </Grid>
       </AnimatedSection>

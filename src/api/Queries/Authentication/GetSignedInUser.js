@@ -15,7 +15,6 @@ export const GET_SIGNED_IN_USER = gql`
         userRole
         emailAddress
         verificationStatus
-        bearerToken
       }
     }
   }

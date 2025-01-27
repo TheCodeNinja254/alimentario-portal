@@ -27,11 +27,11 @@ const brandHeader = {
 };
 
 const carouselImages = [
-  {
-    id: 1,
-    image: "/images/promotions/horseRacingTwelve.png",
-    title: "First",
-  },
+  // {
+  //   id: 1,
+  //   image: "/images/promotions/horseRacingTwelve.png",
+  //   title: "First",
+  // },
   {
     id: 2,
     image: "/images/promotions/horseRacesPast.png",
@@ -145,12 +145,8 @@ const Events = () => {
                             For all your Steak from the grill, starters,
                             sandwiches, burgers, Wine and more.
                           </Typography>
-                          <Typography
-                            variant="h5"
-                            paragraph
-                            style={{ textDecorationLine: "underline" }}
-                          >
-                            <strong>Pre-book for 26 Jan 2025</strong> or{" "}
+                          <Typography variant="h5" paragraph>
+                            <strong>Pre-book for 16 Feb 2025</strong> or{" "}
                             <strong>visit our stand</strong>
                           </Typography>
                           <Typography variant="caption" paragraph>

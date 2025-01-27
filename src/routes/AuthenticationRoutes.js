@@ -15,10 +15,16 @@ const PasswordReset = Loadable(
   lazy(() => import("../views/auth/PasswordReset"))
 );
 
+const UserAuth = Loadable(lazy(() => import("../views/admin/auth")));
+
 const AuthenticationRoutes = {
   path: "/",
   element: <MinimalLayout />,
   children: [
+    {
+      path: "/admin/auth",
+      element: <UserAuth />,
+    },
     {
       path: "/auth",
       element: <CustomerAuth />,

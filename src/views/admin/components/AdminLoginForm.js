@@ -174,7 +174,6 @@ const AdminLoginForm = () => {
                 },
               } = response;
               if (signInStatus) {
-                actions.resetForm();
                 navigate("/admin");
               } else {
                 // login error

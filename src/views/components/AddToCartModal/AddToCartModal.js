@@ -22,6 +22,7 @@ import AddToCartForm from "../CommonForms/AddToCartForm";
 import StatusIcon from "../../../components/StatusIcon";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import { AlertContext } from "../../../context/AlertProvider";
+import PointOfSaleForm from "../CommonForms/PointOfSaleForm";
 
 const useStyles = makeStyles((theme) => ({
   loginInput: {
@@ -69,6 +70,7 @@ const AddToCartModal = ({
   submitDetails,
   setSubmitDetails,
   productFamily = "normal",
+  isPOS = false,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -173,9 +175,15 @@ const AddToCartModal = ({
           }}
         >
           <DialogTitle>
-            <Typography className={classes.modalTitle}>
-              {submitStatus ? "" : "Add to cart"}
-            </Typography>
+            {isPOS ? (
+              <Typography className={classes.modalTitle}>
+                Add to customers bucket
+              </Typography>
+            ) : (
+              <Typography className={classes.modalTitle}>
+                {submitStatus ? "" : "Add to cart"}
+              </Typography>
+            )}
           </DialogTitle>
           <Box>
             <IconButton onClick={() => handleClose()}>
@@ -290,11 +298,21 @@ const AddToCartModal = ({
             </Grid>
             <Grid item xs={12}>
               {selectedProduct?.stockStatus === 1 ? (
-                <AddToCartForm
-                  productId={selectedProduct.id}
-                  setSubmitDetails={setSubmitDetails}
-                  productFamily={productFamily}
-                />
+                <>
+                  {isPOS ? (
+                    <PointOfSaleForm
+                      productId={selectedProduct.id}
+                      setSubmitDetails={setSubmitDetails}
+                      productFamily={productFamily}
+                    />
+                  ) : (
+                    <AddToCartForm
+                      productId={selectedProduct.id}
+                      setSubmitDetails={setSubmitDetails}
+                      productFamily={productFamily}
+                    />
+                  )}
+                </>
               ) : (
                 <Chip
                   variant="outlined"

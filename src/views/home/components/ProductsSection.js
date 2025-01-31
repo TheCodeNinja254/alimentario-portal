@@ -45,6 +45,7 @@ const ProductsSection = ({
   category,
   title,
   productFamily = "toasted",
+  isPOS = false,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -162,6 +163,7 @@ const ProductsSection = ({
           submitDetails={submitDetails}
           setSubmitDetails={setSubmitDetails}
           productFamily={productFamily}
+          isPOS={isPOS}
         />
       ) : (
         <SignInModal open={open} setOpen={setOpen} />

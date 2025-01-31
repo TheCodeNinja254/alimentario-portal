@@ -77,7 +77,7 @@ const ProductCard = ({
     productFamily === "racecourse" ? "PRE-ORDER" : "ADD TO CART";
 
   return productsList.map((product) => (
-    <Grid item xs={6} sm={6} md={6} lg={4} xl={3} key={product?.productName}>
+    <Grid item xs={6} sm={6} md={6} lg={4} xl={4} key={product?.productName}>
       <AnimatedSection animate={animate} duration="1.0s">
         <Card elevation={0}>
           <CardActionArea onClick={() => handleAddToCart(product)}>

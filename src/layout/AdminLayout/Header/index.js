@@ -5,6 +5,7 @@ import { Box, IconButton, useMediaQuery } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import LogoSection from "../LogoSection";
 import ProfileSection from "./ProfileSection";
+import CartSection from "../../MainLayout/Header/CartSection";
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -54,6 +55,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
       {/* header search */}
       <div className={classes.grow} />
       <div className={classes.grow} />
+      <CartSection isPosSale />
       <ProfileSection />
     </>
   );

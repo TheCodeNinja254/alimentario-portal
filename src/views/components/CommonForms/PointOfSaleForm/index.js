@@ -17,7 +17,11 @@ import { grey } from "@mui/material/colors";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 import ErrorHandler from "../../../../utils/errorHandler";
 import { GET_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
-import { ADD_TO_CART } from "../../../../api/Mutations/Cart";
+import { ADD_TO_POS_CART } from "../../../../api/Mutations/Cart";
+import {
+  getOrderDetails,
+  saveOrderDetails,
+} from "../../../../utils/orderDetailsStorage";
 
 const AddToCartSchema = Yup.object().shape({
   quantity: Yup.number().max(100).required("Please enter the amount you need"),
@@ -83,10 +87,11 @@ const AddToCartForm = ({ productId, setSubmitDetails, productFamily }) => {
     return status;
   };
 
-  const [AddToCartMutation, { loading }] = useMutation(ADD_TO_CART);
+  const guestIdInContext = getOrderDetails();
 
-  const submitButtonText =
-    productFamily === "racecourse" ? "Pre-Order Now" : "Add to cart now";
+  const [AddToCartMutation, { loading }] = useMutation(ADD_TO_POS_CART);
+
+  const submitButtonText = "Add to customer cart";
 
   return (
     <>
@@ -112,6 +117,7 @@ const AddToCartForm = ({ productId, setSubmitDetails, productFamily }) => {
                 productId,
                 orderType:
                   productFamily === "racecourse" ? "pre-order" : "normal",
+                guestId: guestIdInContext?.guestId || "",
               },
             },
             refetchQueries: [
@@ -124,13 +130,14 @@ const AddToCartForm = ({ productId, setSubmitDetails, productFamily }) => {
             .then((response) => {
               const {
                 data: {
-                  addToCart: {
+                  addToPOSCart: {
                     status: addToCartStatus,
                     message: addToCartMessage,
                   },
                 },
               } = response;
               if (addToCartStatus) {
+                saveOrderDetails(response?.data?.addToPOSCart?.body?.guestId);
                 setSubmitDetails({
                   status: true,
                   quantity: values.quantity,

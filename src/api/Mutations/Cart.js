@@ -9,6 +9,18 @@ export const ADD_TO_CART = gql`
   }
 `;
 
+export const ADD_TO_POS_CART = gql`
+  mutation AddToPOSCart($input: AddToCartRequest!) {
+    addToPOSCart(input: $input) {
+      status
+      message
+      body {
+        guestId
+      }
+    }
+  }
+`;
+
 export const REMOVE_CART_ITEM = gql`
   mutation RemoveCartItem($id: Int!) {
     removeCartItem(id: $id) {

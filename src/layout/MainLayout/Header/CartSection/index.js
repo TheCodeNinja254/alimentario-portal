@@ -35,6 +35,7 @@ import { REMOVE_CART_ITEM } from "../../../../api/Mutations/Cart";
 import MySnackbar from "../../../../components/MySnackbar/MySnackbar";
 import ErrorHandler from "../../../../utils/errorHandler";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
+import { getOrderDetails } from "../../../../utils/orderDetailsStorage";
 
 const useStyles = makeStyles((theme) => ({
   cartChip: {
@@ -90,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CartSection = () => {
+const CartSection = ({ isPosSale = false }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
@@ -118,6 +119,8 @@ const CartSection = () => {
 
     setOpen(false);
   };
+
+  const orderDetails = getOrderDetails();
 
   const [RemoveCartItemMutation, { loading }] = useMutation(REMOVE_CART_ITEM);
 
@@ -175,8 +178,11 @@ const CartSection = () => {
   }, [open]);
   return (
     <>
-      <GetCartItemsQuery>
-        {({ getCartItems: { status, cartItemsList } }) =>
+      <GetCartItemsQuery
+        isPosSale={isPosSale}
+        variables={{ guestId: orderDetails?.guestId }}
+      >
+        {({ getPOSCartItems: { status, cartItemsList } }) =>
           status && cartItemsList?.length > 0 ? (
             <>
               <Tooltip title="See my shopping cart">

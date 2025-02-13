@@ -25,13 +25,14 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import { useMutation } from "@apollo/client";
 import Transitions from "../../../../ui-component/extended/Transitions";
 import MainCard from "../../../../ui-component/cards/MainCard";
-import GetCartItemsQuery, {
-  GET_CART_ITEMS,
+import {
+  GET_POS_CART_ITEMS,
+  GetPOSCartItemsQuery,
 } from "../../../../api/Queries/Cart/GetCartItems";
 import photo from "../../../../assets/images/Graphics/bbq_05.jpg";
-import CartSectionItem from "./CartSectionItem";
+import PosCartSectionItem from "./PosCartSectionItem";
 import Image from "../../../../components/Image";
-import { REMOVE_CART_ITEM } from "../../../../api/Mutations/Cart";
+import { REMOVE_POS_CART_ITEM } from "../../../../api/Mutations/Cart";
 import MySnackbar from "../../../../components/MySnackbar/MySnackbar";
 import ErrorHandler from "../../../../utils/errorHandler";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
@@ -91,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CartSection = ({ isPosSale = false }) => {
+const PosCartSection = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
@@ -122,7 +123,8 @@ const CartSection = ({ isPosSale = false }) => {
 
   const orderDetails = getOrderDetails();
 
-  const [RemoveCartItemMutation, { loading }] = useMutation(REMOVE_CART_ITEM);
+  const [RemoveCartItemMutation, { loading }] =
+    useMutation(REMOVE_POS_CART_ITEM);
 
   const handleDeleteCartItem = async (id) => {
     RemoveCartItemMutation({
@@ -131,15 +133,18 @@ const CartSection = ({ isPosSale = false }) => {
       },
       refetchQueries: [
         {
-          query: GET_CART_ITEMS,
-          variables: { awaitRefetchQueries: true },
+          query: GET_POS_CART_ITEMS,
+          variables: {
+            guestId: orderDetails?.guestId,
+            awaitRefetchQueries: true,
+          },
         },
       ],
     })
       .then((response) => {
         const {
           data: {
-            removeCartItem: {
+            removePOSCartItem: {
               status: removeItemStatus,
               message: removeItemMessage,
             },
@@ -176,13 +181,11 @@ const CartSection = ({ isPosSale = false }) => {
 
     prevOpen.current = open;
   }, [open]);
+
   return (
     <>
-      <GetCartItemsQuery
-        isPosSale={isPosSale}
-        variables={{ guestId: orderDetails?.guestId }}
-      >
-        {({ getCartItems: { status, cartItemsList } }) =>
+      <GetPOSCartItemsQuery variables={{ guestId: orderDetails?.guestId }}>
+        {({ getPOSCartItems: { status, cartItemsList } }) =>
           status && cartItemsList?.length > 0 ? (
             <>
               <Tooltip title="See my shopping cart">
@@ -296,7 +299,7 @@ const CartSection = ({ isPosSale = false }) => {
                                     <Divider sx={{ my: 0 }} />
                                   </Grid>
                                 </Grid>
-                                <CartSectionItem
+                                <PosCartSectionItem
                                   cartItemsList={cartItemsList}
                                   handleDeleteCartItem={handleDeleteCartItem}
                                 />
@@ -315,7 +318,7 @@ const CartSection = ({ isPosSale = false }) => {
                                 disableElevation
                                 onClick={() => setOpen(false)}
                                 component={RouterLink}
-                                to="/checkout"
+                                to="/admin/point-of-sale/checkout"
                               >
                                 Checkout Now
                               </Button>
@@ -454,7 +457,7 @@ const CartSection = ({ isPosSale = false }) => {
             </>
           )
         }
-      </GetCartItemsQuery>
+      </GetPOSCartItemsQuery>
       <MySnackbar
         message={message}
         severity={severity}
@@ -465,4 +468,4 @@ const CartSection = ({ isPosSale = false }) => {
   );
 };
 
-export default CartSection;
+export default PosCartSection;

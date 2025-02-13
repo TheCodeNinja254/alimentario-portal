@@ -5,6 +5,9 @@ import AdminLayout from "../layout/AdminLayout";
 const ComingSoonComponent = Loadable(lazy(() => import("../views/comingSoon")));
 const OrdersComponent = Loadable(lazy(() => import("../views/admin/orders")));
 const PointOfSale = Loadable(lazy(() => import("../views/admin/pointOfSale")));
+const PointOfSaleCheckout = Loadable(
+  lazy(() => import("../views/admin/posCheckout"))
+);
 
 const AuthenticationRoutes = {
   path: "/",
@@ -41,6 +44,10 @@ const AuthenticationRoutes = {
     {
       path: "/admin/point-of-sale",
       element: <PointOfSale />,
+    },
+    {
+      path: "/admin/point-of-sale/checkout",
+      element: <PointOfSaleCheckout />,
     },
   ],
 };

@@ -62,13 +62,12 @@ export const GET_POS_CART_ITEMS = gql`
   }
 `;
 
-const GetCartItemsQuery = ({ isPosSale = false, ...restProps }) => {
-  return (
-    <Query
-      query={isPosSale ? GET_POS_CART_ITEMS : GET_CART_ITEMS}
-      {...restProps}
-    />
-  );
+const GetCartItemsQuery = ({ ...restProps }) => {
+  return <Query query={GET_CART_ITEMS} {...restProps} />;
+};
+
+export const GetPOSCartItemsQuery = ({ ...restProps }) => {
+  return <Query query={GET_POS_CART_ITEMS} {...restProps} />;
 };
 
 export default GetCartItemsQuery;

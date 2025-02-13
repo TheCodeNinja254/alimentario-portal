@@ -29,3 +29,12 @@ export const REMOVE_CART_ITEM = gql`
     }
   }
 `;
+
+export const REMOVE_POS_CART_ITEM = gql`
+  mutation RemovePOSCartItem($id: Int!) {
+    removePOSCartItem(id: $id) {
+      status
+      message
+    }
+  }
+`;

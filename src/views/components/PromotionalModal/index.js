@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import Image from "../../../components/Image";
 import photo from "../../../assets/images/horseRacingTwelve.png";
 import burgerPhoto from "../../../assets/images/desafioBurger.jpg";
+import organic from "../../../assets/images/organic.jpeg";
 import AnimatedSection from "../../../ui-component/AnimatedSection";
 import HorseRacePromotional from "../../../components/HorseRacePromotional";
 import ToastedPromotion from "../../../components/ToastedPromotion";
+import OrganicMarketPromotionalModal from "../../../components/OragnicMarketPromotionalModal";
 
 const useStyles = makeStyles((theme) => ({
   modalTitle: {
@@ -74,7 +76,22 @@ const PromotionalModal = ({ open, setOpen }) => {
     }, 100);
   }, [animate]);
 
-  const promotionTopic = "toasted";
+  const promotionTopic = "organic";
+
+  const popupContent = {
+    toasted: {
+      image: burgerPhoto,
+      component: <ToastedPromotion setOpen={setOpen} />,
+    },
+    racecourse: {
+      image: photo,
+      component: <HorseRacePromotional setOpen={setOpen} />,
+    },
+    organic: {
+      image: organic,
+      component: <OrganicMarketPromotionalModal setOpen={setOpen} />,
+    },
+  };
 
   return (
     <Dialog fullWidth open={open} onClose={handleClose} fullScreen={isMobile}>
@@ -83,17 +100,13 @@ const PromotionalModal = ({ open, setOpen }) => {
           <Grid item xs={12}>
             <Image
               alt="Img"
-              src={promotionTopic === "toasted" ? burgerPhoto : photo}
+              src={popupContent[promotionTopic].image}
               className={classes.productImage}
             />
           </Grid>
         </Grid>
       </AnimatedSection>
-      {promotionTopic === "toasted" ? (
-        <ToastedPromotion setOpen={setOpen} />
-      ) : (
-        <HorseRacePromotional setOpen={setOpen} />
-      )}
+      {popupContent[promotionTopic].component}
     </Dialog>
   );
 };

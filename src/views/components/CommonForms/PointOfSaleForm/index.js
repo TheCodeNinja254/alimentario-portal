@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 import { grey } from "@mui/material/colors";
 import AnimateButton from "../../../../ui-component/extended/AnimateButton";
 import ErrorHandler from "../../../../utils/errorHandler";
-import { GET_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
+import { GET_POS_CART_ITEMS } from "../../../../api/Queries/Cart/GetCartItems";
 import { ADD_TO_POS_CART } from "../../../../api/Mutations/Cart";
 import {
   getOrderDetails,
@@ -122,8 +122,11 @@ const AddToCartForm = ({ productId, setSubmitDetails, productFamily }) => {
             },
             refetchQueries: [
               {
-                query: GET_CART_ITEMS,
-                variables: { awaitRefetchQueries: true },
+                query: GET_POS_CART_ITEMS,
+                variables: {
+                  guestId: guestIdInContext,
+                  awaitRefetchQueries: true,
+                },
               },
             ],
           })

@@ -240,7 +240,7 @@ const AddToCartModal = ({
                     variant="contained"
                     color="secondary"
                     component={RouterLink}
-                    to="/checkout"
+                    to={isPOS ? "/admin/point-of-sale/checkout" : "/checkout"}
                   >
                     Checkout
                   </Button>

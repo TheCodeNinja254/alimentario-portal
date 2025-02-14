@@ -3,11 +3,11 @@ import { Grid } from "@material-ui/core";
 import POSCheckoutHeader from "./POSCheckoutHeader";
 import { gridSpacing } from "../../../store/constant";
 import Cart from "./Cart";
-import OrderCompletion from "./OrderCompletion";
+import POSOrderCompletion from "./POSOrderCompletion";
 import { GetPOSCartItemsQuery } from "../../../api/Queries/Cart/GetCartItems";
 import { getOrderDetails } from "../../../utils/orderDetailsStorage";
 
-const Checkout = () => {
+const POSCheckout = () => {
   const [totalDue, setTotalDue] = useState(0);
 
   const calculateTotalDue = (cartList) => {
@@ -46,7 +46,7 @@ const Checkout = () => {
                     getCartItemStatus={getCartItemStatus}
                     cartItemsList={cartItemsList}
                   />
-                  <OrderCompletion
+                  <POSOrderCompletion
                     totalDue={totalDue}
                     cartItemsList={cartItemsList}
                     preOrderItemsFound={preOrderItemsFound}
@@ -61,4 +61,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default POSCheckout;

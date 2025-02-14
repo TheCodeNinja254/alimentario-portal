@@ -11,6 +11,12 @@ import App from "./App";
 import "./assets/scss/style.scss";
 import "./theme/global.css";
 
+// tasks
+// Update menu
+// complete order
+// mpesa stk push - do one
+// product minus function
+
 ReactDOM.render(
   <Provider store={store}>
     <ApolloProvider client={Client}>

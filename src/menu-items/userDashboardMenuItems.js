@@ -21,8 +21,8 @@ const dashboard = {
       breadcrumbs: false,
     },
     {
-      id: "orders",
-      title: "Orders",
+      id: "pospos",
+      title: "Point of Sale",
       type: "collapse",
       icon: ShoppingCart,
       children: [
@@ -32,6 +32,20 @@ const dashboard = {
           type: "item",
           url: "/admin/point-of-sale",
         },
+        {
+          id: "pos",
+          title: "POS Orders",
+          type: "item",
+          url: "/admin/point-of-sale/orders",
+        },
+      ],
+    },
+    {
+      id: "orders",
+      title: "Orders",
+      type: "collapse",
+      icon: ShoppingCart,
+      children: [
         {
           id: "new",
           title: "New Orders",
